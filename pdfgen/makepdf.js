@@ -7,7 +7,7 @@ const puppeteer = require('puppeteer');
         waitUntil: 'networkidle0',
     });
     await page.pdf({
-        path: 'rumble-api.pdf',
+        path: 'runzero-api.pdf',
         format: 'letter',
         margin: {
             top: "1in",
@@ -15,7 +15,7 @@ const puppeteer = require('puppeteer');
             left: "0.75in",
             right: "0.74in"
         },
-        headerTemplate: '<div style="width: 100%"><p style="text-align: center; font-size: 9px;">Rumble API documentation</p></div>',
+        headerTemplate: '<div style="width: 100%"><p style="text-align: center; font-size: 9px;">runZero API documentation</p></div>',
         footerTemplate: '<div style="width: 100%"><p style="text-align: center; font-size: 9px;">Page&nbsp;<span class="pageNumber"></span>&nbsp;of&nbsp;<span class="totalPages"></span></p></div>',
         displayHeaderFooter: true,
         printBackground: true

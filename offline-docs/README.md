@@ -1,12 +1,12 @@
-# Rumble API offline documentation
-This directory contains an offline version of the Rumble Swagger API docs. It can be opened locally in a browser,
+# runZero API offline documentation
+This directory contains an offline version of the runZero Swagger API docs. It can be opened locally in a browser,
 or be served from a webserver such as Apache or NGINX.
 
 ## Using the offline documentation
 You have two options for using this documentation.
 ### Open locally in your browser
 You can open the provided `index.html` in your browser. This will show you all the API endpoints you can use. You will
-need to change the server URL to be your self-hosted console or `console.rumble.run`.
+need to change the server URL to be your self-hosted console or `console.runzero.com`.
 
 ### Hosting behind a webserver
 Hosting the documentation with a webserver is very easy. You will need to configure a site to host static files and

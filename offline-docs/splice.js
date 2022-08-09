@@ -1,9 +1,9 @@
 const yaml = require('js-yaml');
 const fs   = require('fs');
 
-// const indexFile = 'rumble-api/index.html';
-const indexFile = 'rumble-api/swagger-initializer.js';
-const specYAML = 'rumble-api.yml';
+// const indexFile = 'runzero-api/index.html';
+const indexFile = 'runzero-api/swagger-initializer.js';
+const specYAML = 'runzero-api.yml';
 
 try {
   const doc = yaml.load(fs.readFileSync(specYAML, 'utf8'));

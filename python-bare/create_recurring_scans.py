@@ -2,12 +2,12 @@ import requests
 import os
 import json
 
-token = os.getenv("RUMBLE_API_KEY", "")
+token = os.getenv("RUNZERO_API_KEY", "")
 if token == "":
-    print("Error: The RUMBLE_API_KEY environment variable is not set")
+    print("Error: The RUNZERO_API_KEY environment variable is not set")
     exit(1)
 
-baseURL = "https://console.rumble.run/api/v1.0"
+baseURL = "https://console.runzero.com/api/v1.0"
 headers = {"Authorization": "Bearer " + token, "Content-Type": "application/json"}
 
 # Make sure our key is valid
@@ -15,7 +15,7 @@ keyInfo = requests.get(baseURL+"/org/key", data={}, headers=headers).json()
 print("API Key: ", keyInfo)
 
 if 'organization_id' not in keyInfo:
-    print("Error: The RUMBLE_API_KEY value is not a valid organization API key")
+    print("Error: The RUNZERO_API_KEY value is not a valid organization API key")
     exit(1)
 
 
