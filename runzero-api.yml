@@ -4,7 +4,7 @@ servers:
     url: https://console.runzero.com/api/v1.0
 info:
   description: runZero Network Discovery API
-  version: "2.14.10"
+  version: "3.0.0"
   title: runZero API
   contact:
     email: support@runzero.com
