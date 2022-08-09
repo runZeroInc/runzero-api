@@ -2948,7 +2948,7 @@ components:
         role:
           type: string
           format: string
-          example: "rumble-role"
+          example: "runzero-role"
 
     AzureClientSecretCredentialFields:
       type: object
@@ -4340,7 +4340,7 @@ components:
         name:
           type: string
           format: hostname
-          example: RUMBLE-AGENT
+          example: RUNZERO-AGENT
         site_id:
           type: string
           format: uuid
@@ -4586,7 +4586,7 @@ components:
           example: viewer
         partner:
           type: string
-          example: Rumble
+          example: runZero
 
     Event:
       type: object
@@ -4898,10 +4898,10 @@ components:
           additionalProperties: true
         subject:
           type: string
-          example: Welcome to Rumble
+          example: Welcome to runZero
         message:
           type: string
-          example: You have been invited to the Rumble Network Discovery platform
+          example: You have been invited to the runZero Network Discovery platform
 
     AssetServiceNow:
       type: object
@@ -4979,7 +4979,7 @@ components:
           example: owner=IT;location=Austin
         domains:
           type: string
-          example: runzero.com;rumble.local.lan
+          example: runzero.com;runzero.local.lan
         service_count:
           type: integer
           format: int64
