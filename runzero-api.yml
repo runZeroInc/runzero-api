@@ -1,16 +1,16 @@
 openapi: 3.0.0
 servers:
-  - description: Rumble Console
-    url: https://console.rumble.run/api/v1.0
+  - description: runZero Console
+    url: https://console.runzero.com/api/v1.0
 info:
-  description: Rumble Network Discovery API
+  description: runZero Network Discovery API
   version: "2.14.10"
-  title: Rumble API
+  title: runZero API
   contact:
-    email: support@rumble.run
+    email: support@runzero.com
   license:
     name: Commercial
-    url: 'https://www.rumble.run/legal/terms'
+    url: 'https://www.runzero.com/legal/terms'
 tags:
   - name: Organization
     description: Requires Organization Key
@@ -3130,7 +3130,7 @@ components:
         id:
           type: string
           format: url
-          example: https://www.rumble.run/docs/
+          example: https://www.runzero.com/docs/
 
     ScanOptions:
       type: object
@@ -4565,7 +4565,7 @@ components:
           example: saml20
         sso_domain:
           type: string
-          example: rumble.run
+          example: runzero.com
         sso_mode:
           type: string
           example: required
@@ -4979,7 +4979,7 @@ components:
           example: owner=IT;location=Austin
         domains:
           type: string
-          example: rumble.run;rumble.local.lan
+          example: runzero.com;rumble.local.lan
         service_count:
           type: integer
           format: int64

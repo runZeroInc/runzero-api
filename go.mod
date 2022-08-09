@@ -1,4 +1,4 @@
-module github.com/RumbleDiscovery/rumble-api
+module github.com/RumbleDiscovery/runzero-api
 
 go 1.14
 
