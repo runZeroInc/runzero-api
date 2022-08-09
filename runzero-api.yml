@@ -1236,6 +1236,33 @@ paths:
         '404':
           $ref: '#/components/responses/NotFoundError'
 
+  /org/assets/merge:
+    patch:
+      tags:
+        - Organization
+      operationId: mergeAssets
+      summary: Merge multiple assets
+      security:
+        - bearerAuth: []
+      requestBody:
+        description: List of Asset IDs to merge
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AssetIDs'
+      responses:
+        '200':
+          description: status message
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/responses/StatusMessage'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+
   /org/assets/bulk/tags:
     patch:
       tags:
@@ -3518,6 +3545,17 @@ components:
         tags:
           type: string
           example: ThisTag=Value -OldTag
+
+    AssetIDs:
+      type: object
+      required:
+        - asset_ids
+      properties:
+        asset_ids:
+          type: array
+          items:
+            type: string
+            example: 453C191F-644E-4EA8-9727-0E81E5275C35
 
     AssetTagsWithSearch:
       type: object
