@@ -12,10 +12,10 @@ package openapi
 
 import (
 	_context "context"
+	"io"
 	_ioutil "io/ioutil"
 	_nethttp "net/http"
 	_neturl "net/url"
-	"os"
 	"strings"
 )
 
@@ -1991,11 +1991,11 @@ type apiImportScanDataRequest struct {
 	ctx        _context.Context
 	apiService *OrganizationApiService
 	siteId     string
-	body       **os.File
+	body       io.Reader
 }
 
-func (r apiImportScanDataRequest) Body(body *os.File) apiImportScanDataRequest {
-	r.body = &body
+func (r apiImportScanDataRequest) Body(body io.Reader) apiImportScanDataRequest {
+	r.body = body
 	return r
 }
 
