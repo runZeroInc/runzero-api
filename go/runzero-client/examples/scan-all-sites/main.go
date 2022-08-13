@@ -8,9 +8,9 @@ import (
 	"strings"
 	"time"
 
-	openapi "github.com/RumbleDiscovery/rumble-api/go"
-	rc "github.com/RumbleDiscovery/rumble-api/go/rumble-client"
 	"github.com/gofrs/uuid"
+	openapi "github.com/runZeroInc/runzero-api/go"
+	rc "github.com/runZeroInc/runzero-api/go/runzero-client"
 )
 
 func main() {

@@ -1,6 +1,6 @@
 # \OrganizationApi
 
-All URIs are relative to *https://console.rumble.run/api/v1.0*
+All URIs are relative to *https://console.runzero.com/api/v1.0*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------

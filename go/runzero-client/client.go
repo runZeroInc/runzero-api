@@ -3,7 +3,7 @@ package client
 import (
 	"os"
 
-	rapi "github.com/RumbleDiscovery/rumble-api/go"
+	rapi "github.com/runZeroInc/runzero-api/go"
 )
 
 // Config provides overrides the API host and key
@@ -12,10 +12,10 @@ type Config struct {
 	Key string
 }
 
-// NewClient retuns a ready to use Rumble API Client
+// NewClient retuns a ready to use runZero API Client
 func NewClient(c *Config) *rapi.APIClient {
 	// Configure the endpoint host
-	apiURL := "https://console.rumble.run/api/v1.0"
+	apiURL := "https://console.runzero.com/api/v1.0"
 	if envHost := os.Getenv("RUMBLE_API_URL"); envHost != "" {
 		apiURL = envHost
 	}
@@ -39,7 +39,7 @@ func NewClient(c *Config) *rapi.APIClient {
 	config.Servers = rapi.ServerConfigurations{
 		{
 			URL:         apiURL,
-			Description: "Rumble Console",
+			Description: "runZero Console",
 		},
 	}
 

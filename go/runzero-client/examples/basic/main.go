@@ -5,7 +5,7 @@ import (
 	"log"
 	"net/http"
 
-	rc "github.com/RumbleDiscovery/rumble-api/go/rumble-client"
+	rc "github.com/runZeroInc/runzero-api/go/runzero-client"
 )
 
 func main() {
@@ -15,7 +15,7 @@ func main() {
 	ctx := context.Background()
 	client := rc.NewClient(&rc.Config{})
 
-	log.Printf("Rumble Components")
+	log.Printf("runZero Components")
 	log.Printf("=================")
 	areq := client.PublicApi.GetLatestAgentVersion(ctx)
 	aver, res, err := areq.Execute()
