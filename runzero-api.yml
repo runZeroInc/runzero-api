@@ -1104,6 +1104,12 @@ paths:
           required: false
           schema:
             type: string
+        - in: query
+          name: fields
+          description: an optional list of fields to export, comma-separated
+          required: false
+          schema:
+            type: string
       responses:
         '200':
           description: array of assets
