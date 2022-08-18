@@ -10,3 +10,4 @@ The OpenAPI generator can be used to create client stubs for most languages:
  - https://openapi-generator.tech/
 
 Please see the [offical documentation](https://www.runzero.com/docs/organization-api/) for additional information.
+ 
