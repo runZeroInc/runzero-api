@@ -1172,6 +1172,31 @@ paths:
         '404':
           $ref: '#/components/responses/NotFoundError'
 
+  /org/assets/bulk/delete:
+    delete:
+      tags:
+        - Organization
+      operationId: removeBulkAssets
+      summary: Removes multiple assets by ID
+      security:
+        - bearerAuth: []
+      requestBody:
+        description: list of asset IDs to remove
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AssetIDs'
+      responses:
+        '204':
+          description: empty response
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
   /org/assets/{asset_id}/comments:
     patch:
       tags:
@@ -2936,6 +2961,8 @@ components:
       description: Request could not be processed
     NotFoundError:
       description: Resource not found
+    InternalServerError:
+      description: Unexpected error occurred on the server
     StatusMessage:
       description: Summary of operation results
   schemas:
