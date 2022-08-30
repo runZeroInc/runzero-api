@@ -9,4 +9,6 @@ For offline use, we provide a [PDF version](https://raw.githubusercontent.com/ru
 The OpenAPI generator can be used to create client stubs for most languages:
  - https://openapi-generator.tech/
 
+The generated stub code in the `go` directory does not relect the current API, and is deprecated.
+
 Please see the [offical documentation](https://www.runzero.com/docs/organization-api/) for additional information.
