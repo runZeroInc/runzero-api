@@ -3,7 +3,7 @@ servers:
   - description: runZero Console
     url: https://console.runzero.com/api/v1.0
 info:
-  description: runZero API
+  description: runZero API. API use is rate limited, you can make as many calls per day as you have licensed assets.
   version: "3.0.0"
   title: runZero API
   contact:
