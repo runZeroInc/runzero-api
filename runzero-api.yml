@@ -451,6 +451,190 @@ paths:
         '401':
           $ref: '#/components/responses/UnauthorizedError'
 
+  /export/org/software.json:
+    get:
+      tags:
+        - Export
+      operationId: exportSoftwareJSON
+      summary: Exports the software inventory
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          name: search
+          description: an optional search string for filtering results
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: fields
+          description: an optional list of fields to export, comma-separated
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: filtered software results
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Software'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+
+  /export/org/software.jsonl:
+    get:
+      tags:
+        - Export
+      operationId: exportSoftwareJSONL
+      summary: Software inventory as JSON line-delimited
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          name: search
+          description: an optional search string for filtering results
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: fields
+          description: an optional list of fields to export, comma-separated
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          # This is a streaming response of one Software object per line in JSON format
+          description: filtered software results
+          content:
+            application/json:
+              schema:
+                type: string
+                format: binary
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+
+  /export/org/software.csv:
+    get:
+      tags:
+        - Export
+      operationId: exportSoftwareCSV
+      summary: Software inventory as CSV
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          name: search
+          description: an optional search string for filtering results
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: filtered software results
+          content:
+            text/csv:
+              schema:
+                type: string
+                format: binary
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+
+  /export/org/vulnerabilities.json:
+    get:
+      tags:
+        - Export
+      operationId: exportVulnerabilitiesJSON
+      summary: Exports the vulnerability inventory
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          name: search
+          description: an optional search string for filtering results
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: fields
+          description: an optional list of fields to export, comma-separated
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: filtered vulnerability results
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Vulnerability'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+
+  /export/org/vulnerabilities.jsonl:
+    get:
+      tags:
+        - Export
+      operationId: exportVulnerabilitiesJSONL
+      summary: Vulnerability inventory as JSON line-delimited
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          name: search
+          description: an optional search string for filtering results
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: fields
+          description: an optional list of fields to export, comma-separated
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          # This is a streaming response of one Vulnerability object per line in JSON format
+          description: filtered vulnerability results
+          content:
+            application/json:
+              schema:
+                type: string
+                format: binary
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+
+  /export/org/vulnerabilities.csv:
+    get:
+      tags:
+        - Export
+      operationId: exportVulnerabilitiesCSV
+      summary: Vulnerability inventory as CSV
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          name: search
+          description: an optional search string for filtering results
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: filtered vulnerability results
+          content:
+            text/csv:
+              schema:
+                type: string
+                format: binary
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+
   /org/assets/top.types.csv:
     get:
       tags:
@@ -4152,6 +4336,196 @@ components:
         agent_name:
           type: string
           example: LAPTOP-F4P1R6
+
+    Software:
+      type: object
+      required:
+        - id
+      properties:
+        software_id:
+          type: string
+          format: uuid
+          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+        software_asset_id:
+          type: string
+          format: uuid
+          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+        software_organization_id:
+          type: string
+          format: uuid
+          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+        software_source_id:
+          type: integer
+          example: 1
+        software_created_at:
+          type: integer
+          format: int64
+          example: 1576300370
+        software_updated_at:
+          type: integer
+          format: int64
+          example: 1576300370
+        software_service_address:
+          type: string
+          example: 192.168.0.1
+        software_service_transport:
+          type: string
+          example: tcp
+        software_service_port:
+          type: integer
+          format: int64
+          example: 80
+        software_installed_at:
+          type: integer
+          format: int64
+          example: 1576300370
+        software_installed_size:
+          type: integer
+          format: int64
+          example: 0
+        software_installed_from:
+          type: string
+        software_app_id:
+          type: string
+        software_part:
+          type: string
+          example: a
+        software_vendor:
+          type: string
+          example: OpenBSD
+        software_product:
+          type: string
+          example: OpenSSH
+        software_version:
+          type: string
+          example: 8.3p1
+        software_update:
+          type: string
+        software_edition:
+          type: string
+        software_language:
+          type: string
+        software_sw_edition:
+          type: string
+        software_target_sw:
+          type: string
+        software_target_hw:
+          type: string
+        software_other:
+          type: string
+        software_cpe23:
+          type: string
+          example: cpe:/a:openbsd:openssh:8.2
+        software_attributes:
+          type: object
+          additionalProperties:
+            type: string
+
+    Vulnerability:
+      type: object
+      required:
+        - id
+      properties:
+        vulnerability_id:
+          type: string
+          format: uuid
+          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+        vulnerability_asset_id:
+          type: string
+          format: uuid
+          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+        vulnerability_organization_id:
+          type: string
+          format: uuid
+          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+        vulnerability_source_id:
+          type: integer
+          example: 1
+        vulnerability_created_at:
+          type: integer
+          format: int64
+          example: 1576300370
+        vulnerability_updated_at:
+          type: integer
+          format: int64
+          example: 1576300370
+        vulnerability_service_address:
+          type: string
+          example: 192.168.0.1
+        vulnerability_service_transport:
+          type: string
+          example: tcp
+        vulnerability_service_port:
+          type: integer
+          format: int64
+          example: 80
+        vulnerability_cpe23:
+          type: string
+          example: cpe:/o:cisco:ios
+        vulnerability_vuln_id:
+          type: string
+          example: 103565
+        vulnerability_category:
+          type: string
+          example: Remote
+        vulnerability_name:
+          type: string
+          example: Cisco IOS Software DHCP Remote Code Execution Vulnerability
+        vulnerability_description:
+          type: string
+          example: The remote device is missing a vendor-supplied security patch.
+        vulnerability_solution:
+          type: string
+          example: Upgrade to the relevant fixed version referenced in Cisco bug ID(s) CSCsm45390 and CSCuw77959.
+        vulnerability_cve:
+          type: string
+          example: CVE-2017-12240
+        vulnerability_cvss2_base_score:
+          type: number
+          format: double
+          example: 10
+        vulnerability_cvss2_temporal_score:
+          type: number
+          format: double
+          example: 8.7
+        vulnerability_cvss3_base_score:
+          type: number
+          format: double
+          example: 9.8
+        vulnerability_cvss3_temporal_score:
+          type: number
+          format: double
+          example: 9.4
+        vulnerability_severity:
+          type: string
+          example: Critical
+        vulnerability_severity_score:
+          type: number
+          format: double
+          example: 10
+        vulnerability_risk:
+          type: string
+          example: High
+        vulnerability_risk_score:
+          type: number
+          format: double
+          example: 7.4
+        vulnerability_published_at:
+          type: integer
+          format: int64
+          example: 1576300370
+        vulnerability_first_detected_at:
+          type: integer
+          format: int64
+          example: 1576300370
+        vulnerability_last_detected_at:
+          type: integer
+          format: int64
+          example: 1576300370
+        vulnerability_attributes:
+          type: object
+          additionalProperties:
+            type: string
 
     Organization:
       type: object
