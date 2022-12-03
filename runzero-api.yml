@@ -4,7 +4,7 @@ servers:
     url: https://console.runzero.com/api/v1.0
 info:
   description: runZero API. API use is rate limited, you can make as many calls per day as you have licensed assets.
-  version: "3.0.0"
+  version: "3.3.0"
   title: runZero API
   contact:
     email: support@runzero.com
@@ -61,6 +61,21 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ComponentVersion'
+
+  /health:
+    get:
+      tags:
+        - Public
+      operationId: getHealthCheck
+      summary: Returns a health check status (cloud and self-hosted)
+      responses:
+        '200':
+          description: health status and current version
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthCheckResponse'
+
 
   /export/org/assets.json:
     get:
@@ -635,7 +650,52 @@ paths:
         '401':
           $ref: '#/components/responses/UnauthorizedError'
 
-  /org/assets/top.types.csv:
+  /export/org/subnet.stats.csv:
+    get:
+      tags:
+        - Export
+      operationId: exportSubnetUtilizationStatsCSV
+      summary: Subnet utilization statistics as as CSV
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          name: mask
+          description: an optional subnet mask size (ex:24)
+          required: false
+          schema:
+            type: string        
+      responses:
+        '200':
+          description: subnet utilization stats as csv
+          content:
+            text/csv:
+              schema:
+                type: string
+                format: binary
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'  
+
+  /export/org/snmp.arpcache.csv:
+    get:
+      tags:
+        - Export
+      operationId: exportSNMPARPCacheCSV
+      summary: SNMP ARP cache data as CSV
+      security:
+        - bearerAuth: []   
+      responses:
+        '200':
+          description: SNMP ARP cache data as csv
+          content:
+            text/csv:
+              schema:
+                type: string
+                format: binary
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'  
+
+  /org/assets/type.csv:
     get:
       tags:
         - Export
@@ -654,7 +714,7 @@ paths:
         '401':
           $ref: '#/components/responses/UnauthorizedError'
 
-  /org/assets/top.os.csv:
+  /org/assets/os.csv:
     get:
       tags:
         - Export
@@ -673,7 +733,7 @@ paths:
         '401':
           $ref: '#/components/responses/UnauthorizedError'
 
-  /org/assets/top.hw.csv:
+  /org/assets/hw.csv:
     get:
       tags:
         - Export
@@ -692,7 +752,7 @@ paths:
         '401':
           $ref: '#/components/responses/UnauthorizedError'
 
-  /org/assets/top.tags.csv:
+  /org/assets/tags.csv:
     get:
       tags:
         - Export
@@ -712,8 +772,7 @@ paths:
           $ref: '#/components/responses/UnauthorizedError'                    
 
 
-
-  /org/services/top.tcp.csv:
+  /org/services/tcp.csv:
     get:
       tags:
         - Export
@@ -732,7 +791,7 @@ paths:
         '401':
           $ref: '#/components/responses/UnauthorizedError'      
 
-  /org/services/top.udp.csv:
+  /org/services/udp.csv:
     get:
       tags:
         - Export
@@ -751,7 +810,7 @@ paths:
         '401':
           $ref: '#/components/responses/UnauthorizedError'  
 
-  /org/services/top.protocols.csv:
+  /org/services/protocols.csv:
     get:
       tags:
         - Export
@@ -770,7 +829,7 @@ paths:
         '401':
           $ref: '#/components/responses/UnauthorizedError'  
 
-  /org/services/top.products.csv:
+  /org/services/products.csv:
     get:
       tags:
         - Export
@@ -781,32 +840,6 @@ paths:
       responses:
         '200':
           description: top service products and counts as csv
-          content:
-            text/csv:
-              schema:
-                type: string
-                format: binary
-        '401':
-          $ref: '#/components/responses/UnauthorizedError'  
-
-  /org/services/subnet.stats.csv:
-    get:
-      tags:
-        - Export
-      operationId: exportSubnetUtilizationStatsCSV
-      summary: Subnet utilization statistics as as CSV
-      security:
-        - bearerAuth: []
-      parameters:
-        - in: query
-          name: mask
-          description: an optional subnet mask size (ex:24)
-          required: false
-          schema:
-            type: string        
-      responses:
-        '200':
-          description: subnet utilization stats as csv
           content:
             text/csv:
               schema:
@@ -1357,7 +1390,7 @@ paths:
           $ref: '#/components/responses/NotFoundError'
 
   /org/assets/bulk/delete:
-    delete:
+    post:
       tags:
         - Organization
       operationId: removeBulkAssets
@@ -3364,6 +3397,22 @@ components:
           type: string
           format: string
           example: '1.0.0'
+
+    HealthCheckResponse:
+      type: object
+      description: A health check response and version
+      required:
+        - status
+        - version
+      properties:
+        status:
+          type: string
+          format: string
+          example: ok
+        version:
+          type: string
+          format: string
+          example: '3.0.0'
 
     URL:
       description: A URL to a resource
