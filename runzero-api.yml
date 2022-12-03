@@ -664,7 +664,7 @@ paths:
           description: an optional subnet mask size (ex:24)
           required: false
           schema:
-            type: string        
+            type: string
       responses:
         '200':
           description: subnet utilization stats as csv
@@ -674,7 +674,7 @@ paths:
                 type: string
                 format: binary
         '401':
-          $ref: '#/components/responses/UnauthorizedError'  
+          $ref: '#/components/responses/UnauthorizedError'
 
   /export/org/snmp.arpcache.csv:
     get:
@@ -683,7 +683,7 @@ paths:
       operationId: exportSNMPARPCacheCSV
       summary: SNMP ARP cache data as CSV
       security:
-        - bearerAuth: []   
+        - bearerAuth: []
       responses:
         '200':
           description: SNMP ARP cache data as csv
@@ -693,7 +693,7 @@ paths:
                 type: string
                 format: binary
         '401':
-          $ref: '#/components/responses/UnauthorizedError'  
+          $ref: '#/components/responses/UnauthorizedError'
 
   /org/assets/type.csv:
     get:
@@ -769,7 +769,7 @@ paths:
                 type: string
                 format: binary
         '401':
-          $ref: '#/components/responses/UnauthorizedError'                    
+          $ref: '#/components/responses/UnauthorizedError'
 
 
   /org/services/tcp.csv:
@@ -789,7 +789,7 @@ paths:
                 type: string
                 format: binary
         '401':
-          $ref: '#/components/responses/UnauthorizedError'      
+          $ref: '#/components/responses/UnauthorizedError'
 
   /org/services/udp.csv:
     get:
@@ -808,7 +808,7 @@ paths:
                 type: string
                 format: binary
         '401':
-          $ref: '#/components/responses/UnauthorizedError'  
+          $ref: '#/components/responses/UnauthorizedError'
 
   /org/services/protocols.csv:
     get:
@@ -827,7 +827,7 @@ paths:
                 type: string
                 format: binary
         '401':
-          $ref: '#/components/responses/UnauthorizedError'  
+          $ref: '#/components/responses/UnauthorizedError'
 
   /org/services/products.csv:
     get:
@@ -846,7 +846,7 @@ paths:
                 type: string
                 format: binary
         '401':
-          $ref: '#/components/responses/UnauthorizedError'  
+          $ref: '#/components/responses/UnauthorizedError'
 
   /org:
     get:
@@ -2465,7 +2465,7 @@ paths:
                   $ref: '#/components/schemas/ScanTemplate'
         '422':
           description: failed to parse search string
-        '401': 
+        '401':
           $ref: '#/components/responses/UnauthorizedError'
     post:
       tags:
@@ -2487,7 +2487,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ScanTemplate'
-        '401': 
+        '401':
           $ref: '#/components/responses/UnauthorizedError'
         '422':
           description: invalid request body
@@ -2513,7 +2513,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ScanTemplate'
-        '401': 
+        '401':
           $ref: '#/components/responses/UnauthorizedError'
         '422':
           description: invalid request body
@@ -2545,12 +2545,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ScanTemplate'
-        '401': 
+        '401':
           $ref: '#/components/responses/UnauthorizedError'
-        '422': 
+        '422':
           description: invalid scan template id
         '404':
-          description: scan template not found      
+          description: scan template not found
     delete:
       tags:
         - Account
@@ -2573,13 +2573,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ScanTemplate'
-        '401': 
+        '401':
           $ref: '#/components/responses/UnauthorizedError'
         '422':
           description: invalid request
         '404':
-          description: scan template not found 
-        
+          description: scan template not found
+
 
   /account/agents:
     get:
@@ -2698,7 +2698,11 @@ paths:
           description: UUID of the user to retrieve
       responses:
         '200':
-          $ref: '#/components/schemas/User'
+          description: array of users
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
         '401':
           $ref: '#/components/responses/UnauthorizedError'
     delete:
@@ -3245,7 +3249,7 @@ components:
 
     AzureUsernamePasswordCredentialFields:
       type: object
-      required: 
+      required:
         - client_id
         - tenant_id
         - username
@@ -3349,7 +3353,7 @@ components:
 
     VMwareCredentialFields:
       type: object
-      required: 
+      required:
         - username
         - password
       properties:
@@ -3503,7 +3507,7 @@ components:
         - name
         - global
         - acl
-      properties:        
+      properties:
         name:
           type: string
           example: My Scan Template
@@ -4291,7 +4295,7 @@ components:
           example: "192.168.0.5"
         subnets:
           type: object
-          additionalProperties: true          
+          additionalProperties: true
 
     Wireless:
       type: object
