@@ -1872,7 +1872,11 @@ paths:
           description: UUID of the task
       responses:
         '200':
-          $ref: '#/components/schemas/URL'
+          description: URL
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/URL'
         '401':
           $ref: '#/components/responses/UnauthorizedError'
         '404':
@@ -1896,7 +1900,11 @@ paths:
           description: UUID of the task to stop
       responses:
         '200':
-          $ref: '#/components/schemas/Task'
+          description: task information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
         '401':
           $ref: '#/components/responses/UnauthorizedError'
         '404':
@@ -1920,7 +1928,11 @@ paths:
           description: UUID of the task to hide
       responses:
         '200':
-          $ref: '#/components/schemas/Task'
+          description: task information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
         '401':
           $ref: '#/components/responses/UnauthorizedError'
         '404':
@@ -1996,7 +2008,11 @@ paths:
           description: UUID of the organization to retrieve
       responses:
         '200':
-          $ref: '#/components/schemas/Organization'
+          description: organization information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Organization'
         '401':
           $ref: '#/components/responses/UnauthorizedError'
     patch:
@@ -2898,7 +2914,11 @@ paths:
               $ref: "#/components/schemas/GroupPut"
       responses:
         '200':
-          $ref: '#/components/schemas/Group'
+          description: group information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Group'
         '401':
           $ref: '#/components/responses/UnauthorizedError'
 
@@ -2920,7 +2940,11 @@ paths:
         - bearerAuth: []
       responses:
         '200':
-          $ref: '#/components/schemas/Group'
+          description: group information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Group'
         '401':
           $ref: '#/components/responses/UnauthorizedError'
         '404':
@@ -2948,7 +2972,11 @@ paths:
         - bearerAuth: []
       responses:
         '200':
-          $ref: '#/components/schemas/GroupMapping'
+          description: group mapping information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GroupMapping'
         '401':
           $ref: '#/components/responses/UnauthorizedError'
     post:
@@ -3006,7 +3034,11 @@ paths:
         - bearerAuth: []
       responses:
         '200':
-          $ref: '#/components/schemas/GroupMapping'
+          description: task information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GroupMapping'
         '401':
           $ref: '#/components/responses/UnauthorizedError'
         '404':
