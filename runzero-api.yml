@@ -2125,7 +2125,11 @@ paths:
         - bearerAuth: []
       responses:
         '200':
-          $ref: '#/components/schemas/License'
+          description: license information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/License'
         '401':
           $ref: '#/components/responses/UnauthorizedError'
 
@@ -2320,7 +2324,11 @@ paths:
           description: UUID of the key to retrieve
       responses:
         '200':
-          $ref: '#/components/schemas/APIKey'
+          description: api key information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIKey'
         '401':
           $ref: '#/components/responses/UnauthorizedError'
     delete:
@@ -2994,7 +3002,11 @@ paths:
               $ref: "#/components/schemas/GroupMapping"
       responses:
         '200':
-          $ref: '#/components/schemas/GroupMapping'
+          description: group information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GroupMapping'
         '401':
           $ref: '#/components/responses/UnauthorizedError'
     put:
@@ -3012,7 +3024,11 @@ paths:
               $ref: "#/components/schemas/GroupMapping"
       responses:
         '200':
-          $ref: '#/components/schemas/GroupMapping'
+          description: group information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GroupMapping'
         '401':
           $ref: '#/components/responses/UnauthorizedError'
 
@@ -3034,7 +3050,7 @@ paths:
         - bearerAuth: []
       responses:
         '200':
-          description: task information
+          description: group information
           content:
             application/json:
               schema:
