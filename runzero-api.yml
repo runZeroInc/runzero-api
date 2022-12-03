@@ -1501,11 +1501,7 @@ paths:
               $ref: '#/components/schemas/AssetIDs'
       responses:
         '200':
-          description: status message
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/responses/StatusMessage'
+          $ref: '#/components/responses/StatusMessage'
         '401':
           $ref: '#/components/responses/UnauthorizedError'
         '404':
@@ -1528,11 +1524,7 @@ paths:
               $ref: '#/components/schemas/AssetTagsWithSearch'
       responses:
         '200':
-          description: status message
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/responses/StatusMessage'
+          $ref: '#/components/responses/StatusMessage'
         '401':
           $ref: '#/components/responses/UnauthorizedError'
         '404':
@@ -1555,11 +1547,7 @@ paths:
               $ref: '#/components/schemas/Search'
       responses:
         '200':
-          description: status message
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/responses/StatusMessage'
+          $ref: '#/components/responses/StatusMessage'
         '401':
           $ref: '#/components/responses/UnauthorizedError'
         '404':
