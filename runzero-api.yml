@@ -18,6 +18,10 @@ tags:
     description: Requires Export Token or Organization Key
   - name: Public
     description: Unauthenticated
+    
+security:
+  - bearerAuth: []
+  - oauthDefaults: []
 
 paths:
   /releases/agent/version:
@@ -25,6 +29,7 @@ paths:
       tags:
         - Public
       operationId: getLatestAgentVersion
+      security: []   # No security
       summary: Returns latest agent version
       responses:
         '200':
@@ -39,6 +44,7 @@ paths:
       tags:
         - Public
       operationId: getLatestScannerVersion
+      security: []   # No security
       summary: Returns latest scanner version
       responses:
         '200':
@@ -53,6 +59,7 @@ paths:
       tags:
         - Public
       operationId: getLatestPlatformVersion
+      security: []   # No security
       summary: Returns latest platform version
       responses:
         '200':
@@ -67,6 +74,7 @@ paths:
       tags:
         - Public
       operationId: getHealthCheck
+      security: []   # No security
       summary: Returns a health check status (cloud and self-hosted)
       responses:
         '200':
@@ -78,13 +86,13 @@ paths:
 
 
   /export/org/assets.json:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
     get:
       tags:
         - Export
       operationId: exportAssetsJSON
       summary: Exports the asset inventory
-      security:
-        - bearerAuth: []
       parameters:
         - in: query
           name: search
@@ -111,13 +119,13 @@ paths:
           $ref: '#/components/responses/UnauthorizedError'
 
   /export/org/assets.jsonl:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
     get:
       tags:
         - Export
       operationId: exportAssetsJSONL
       summary: Asset inventory as JSON line-delimited
-      security:
-        - bearerAuth: []
       parameters:
         - in: query
           name: search
@@ -144,13 +152,13 @@ paths:
           $ref: '#/components/responses/UnauthorizedError'
 
   /export/org/assets.csv:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
     get:
       tags:
         - Export
       operationId: exportAssetsCSV
       summary: Asset inventory as CSV
-      security:
-        - bearerAuth: []
       parameters:
         - in: query
           name: search
@@ -170,13 +178,13 @@ paths:
           $ref: '#/components/responses/UnauthorizedError'
 
   /export/org/assets.nmap.xml:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
     get:
       tags:
         - Export
       operationId: exportAssetsNmapXML
       summary: Asset inventory as Nmap-style XML
-      security:
-        - bearerAuth: []
       parameters:
         - in: query
           name: search
@@ -196,13 +204,13 @@ paths:
           $ref: '#/components/responses/UnauthorizedError'
 
   /export/org/services.json:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
     get:
       tags:
         - Export
       operationId: exportServicesJSON
       summary: Service inventory as JSON
-      security:
-        - bearerAuth: []
       parameters:
         - in: query
           name: search
@@ -229,13 +237,13 @@ paths:
           $ref: '#/components/responses/UnauthorizedError'
 
   /export/org/services.jsonl:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
     get:
       tags:
         - Export
       operationId: exportServicesJSONL
       summary: Service inventory as JSON line-delimited
-      security:
-        - bearerAuth: []
       parameters:
         - in: query
           name: search
@@ -262,13 +270,13 @@ paths:
           $ref: '#/components/responses/UnauthorizedError'
 
   /export/org/services.csv:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
     get:
       tags:
         - Export
       operationId: exportServicesCSV
       summary: Service inventory as CSV
-      security:
-        - bearerAuth: []
       parameters:
         - in: query
           name: search
@@ -289,13 +297,13 @@ paths:
 
 
   /export/org/sites.json:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
     get:
       tags:
         - Export
       operationId: exportSitesJSON
       summary: Export all sites
-      security:
-        - bearerAuth: []
       parameters:
         - in: query
           name: search
@@ -322,13 +330,13 @@ paths:
           $ref: '#/components/responses/UnauthorizedError'
 
   /export/org/sites.jsonl:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
     get:
       tags:
         - Export
       operationId:  exportSitesJSONL
       summary: Site list as JSON line-delimited
-      security:
-        - bearerAuth: []
       parameters:
         - in: query
           name: search
@@ -355,13 +363,13 @@ paths:
           $ref: '#/components/responses/UnauthorizedError'
 
   /export/org/sites.csv:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
     get:
       tags:
         - Export
       operationId:  exportSitesCSV
       summary: Site list as CSV
-      security:
-        - bearerAuth: []
       responses:
         '200':
           description: all sites
@@ -375,13 +383,13 @@ paths:
 
 
   /export/org/wireless.json:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
     get:
       tags:
         - Export
       operationId: exportWirelessJSON
       summary: Wireless inventory as JSON
-      security:
-        - bearerAuth: []
       parameters:
         - in: query
           name: search
@@ -408,13 +416,13 @@ paths:
           $ref: '#/components/responses/UnauthorizedError'
 
   /export/org/wireless.jsonl:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
     get:
       tags:
         - Export
       operationId: exportWirelessJSONL
       summary: Wireless inventory as JSON line-delimited
-      security:
-        - bearerAuth: []
       parameters:
         - in: query
           name: search
@@ -441,13 +449,13 @@ paths:
           $ref: '#/components/responses/UnauthorizedError'
 
   /export/org/wireless.csv:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
     get:
       tags:
         - Export
       operationId: exportWirelessCSV
       summary: Wireless inventory as CSV
-      security:
-        - bearerAuth: []
       parameters:
         - in: query
           name: search
@@ -467,13 +475,13 @@ paths:
           $ref: '#/components/responses/UnauthorizedError'
 
   /export/org/software.json:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
     get:
       tags:
         - Export
       operationId: exportSoftwareJSON
       summary: Exports the software inventory
-      security:
-        - bearerAuth: []
       parameters:
         - in: query
           name: search
@@ -500,13 +508,13 @@ paths:
           $ref: '#/components/responses/UnauthorizedError'
 
   /export/org/software.jsonl:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
     get:
       tags:
         - Export
       operationId: exportSoftwareJSONL
       summary: Software inventory as JSON line-delimited
-      security:
-        - bearerAuth: []
       parameters:
         - in: query
           name: search
@@ -533,13 +541,13 @@ paths:
           $ref: '#/components/responses/UnauthorizedError'
 
   /export/org/software.csv:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
     get:
       tags:
         - Export
       operationId: exportSoftwareCSV
       summary: Software inventory as CSV
-      security:
-        - bearerAuth: []
       parameters:
         - in: query
           name: search
@@ -559,13 +567,13 @@ paths:
           $ref: '#/components/responses/UnauthorizedError'
 
   /export/org/vulnerabilities.json:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
     get:
       tags:
         - Export
       operationId: exportVulnerabilitiesJSON
       summary: Exports the vulnerability inventory
-      security:
-        - bearerAuth: []
       parameters:
         - in: query
           name: search
@@ -592,13 +600,13 @@ paths:
           $ref: '#/components/responses/UnauthorizedError'
 
   /export/org/vulnerabilities.jsonl:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
     get:
       tags:
         - Export
       operationId: exportVulnerabilitiesJSONL
       summary: Vulnerability inventory as JSON line-delimited
-      security:
-        - bearerAuth: []
       parameters:
         - in: query
           name: search
@@ -625,13 +633,13 @@ paths:
           $ref: '#/components/responses/UnauthorizedError'
 
   /export/org/vulnerabilities.csv:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
     get:
       tags:
         - Export
       operationId: exportVulnerabilitiesCSV
       summary: Vulnerability inventory as CSV
-      security:
-        - bearerAuth: []
       parameters:
         - in: query
           name: search
@@ -651,13 +659,13 @@ paths:
           $ref: '#/components/responses/UnauthorizedError'
 
   /export/org/subnet.stats.csv:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
     get:
       tags:
         - Export
       operationId: exportSubnetUtilizationStatsCSV
       summary: Subnet utilization statistics as as CSV
-      security:
-        - bearerAuth: []
       parameters:
         - in: query
           name: mask
@@ -677,13 +685,13 @@ paths:
           $ref: '#/components/responses/UnauthorizedError'
 
   /export/org/snmp.arpcache.csv:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
     get:
       tags:
         - Export
       operationId: exportSNMPARPCacheCSV
       summary: SNMP ARP cache data as CSV
-      security:
-        - bearerAuth: []
       responses:
         '200':
           description: SNMP ARP cache data as csv
@@ -696,13 +704,13 @@ paths:
           $ref: '#/components/responses/UnauthorizedError'
 
   /org/assets/type.csv:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
     get:
       tags:
         - Export
       operationId: exportAssetTopTypesCSV
       summary: Top asset types as CSV
-      security:
-        - bearerAuth: []
       responses:
         '200':
           description: top asset types and counts as csv
@@ -715,13 +723,13 @@ paths:
           $ref: '#/components/responses/UnauthorizedError'
 
   /org/assets/os.csv:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
     get:
       tags:
         - Export
       operationId: exportAssetTopOSCSV
       summary: Top asset operating systems as CSV
-      security:
-        - bearerAuth: []
       responses:
         '200':
           description: top operating systems and counts as csv
@@ -734,13 +742,13 @@ paths:
           $ref: '#/components/responses/UnauthorizedError'
 
   /org/assets/hw.csv:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
     get:
       tags:
         - Export
       operationId: exportAssetTopHWCSV
       summary: Top asset hardware products as CSV
-      security:
-        - bearerAuth: []
       responses:
         '200':
           description: top asset hardware platforms and counts as csv
@@ -753,13 +761,13 @@ paths:
           $ref: '#/components/responses/UnauthorizedError'
 
   /org/assets/tags.csv:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
     get:
       tags:
         - Export
       operationId: exportAssetTopTagsCSV
       summary: Top asset tags as CSV
-      security:
-        - bearerAuth: []
       responses:
         '200':
           description: top asset tags and counts as csv
@@ -773,13 +781,13 @@ paths:
 
 
   /org/services/tcp.csv:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
     get:
       tags:
         - Export
       operationId: exportServicesTopTCPCSV
       summary: Top TCP services as CSV
-      security:
-        - bearerAuth: []
       responses:
         '200':
           description: top TCP services and counts as csv
@@ -792,13 +800,13 @@ paths:
           $ref: '#/components/responses/UnauthorizedError'
 
   /org/services/udp.csv:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
     get:
       tags:
         - Export
       operationId: exportServicesTopUDPCSV
       summary: Top UDP services as CSV
-      security:
-        - bearerAuth: []
       responses:
         '200':
           description: top UDP services and counts as csv
@@ -811,13 +819,13 @@ paths:
           $ref: '#/components/responses/UnauthorizedError'
 
   /org/services/protocols.csv:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
     get:
       tags:
         - Export
       operationId: exportServicesTopProtocolsCSV
       summary: Top service protocols as CSV
-      security:
-        - bearerAuth: []
       responses:
         '200':
           description: top service protocols and counts as csv
@@ -830,13 +838,13 @@ paths:
           $ref: '#/components/responses/UnauthorizedError'
 
   /org/services/products.csv:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
     get:
       tags:
         - Export
       operationId: exportServicesTopProductsCSV
       summary: Top service products as CSV
-      security:
-        - bearerAuth: []
       responses:
         '200':
           description: top service products and counts as csv
@@ -849,13 +857,13 @@ paths:
           $ref: '#/components/responses/UnauthorizedError'
 
   /org:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
     get:
       tags:
         - Organization
       operationId: getOrganization
       summary: Get organization details
-      security:
-        - bearerAuth: []
       responses:
         '200':
           description: organization details
@@ -870,8 +878,6 @@ paths:
         - Organization
       operationId: updateOrganization
       summary: Update organization details
-      security:
-        - bearerAuth: []
       requestBody:
         description: organization options
         required: true
@@ -891,13 +897,13 @@ paths:
           $ref: '#/components/responses/UnauthorizedError'
 
   /org/key:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
     get:
       tags:
         - Organization
       operationId: getKey
       summary: Get API key details
-      security:
-        - bearerAuth: []
       responses:
         '200':
           description: api key details
@@ -912,8 +918,6 @@ paths:
         - Organization
       operationId: removeKey
       summary: Remove the current API key
-      security:
-        - bearerAuth: []
       responses:
         '204':
           description: empty response
@@ -921,13 +925,13 @@ paths:
           $ref: '#/components/responses/UnauthorizedError'
 
   /org/key/rotate:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
     patch:
       tags:
         - Organization
       operationId: rotateKey
       summary: Rotate the API key secret and return the updated key
-      security:
-        - bearerAuth: []
       responses:
         '200':
           description: api key details
@@ -939,13 +943,13 @@ paths:
           $ref: '#/components/responses/UnauthorizedError'
 
   /org/agents:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
     get:
       tags:
         - Organization
       operationId: getAgents
       summary: Get all agents
-      security:
-        - bearerAuth: []
       responses:
         '200':
           description: array of agents
@@ -959,13 +963,13 @@ paths:
           $ref: '#/components/responses/UnauthorizedError'
 
   /org/agents/{agent_id}:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
     get:
       tags:
         - Organization
       operationId: getAgent
       summary: Get details for a single agent
-      security:
-        - bearerAuth: []
       parameters:
         - in: path
           name: agent_id
@@ -990,8 +994,6 @@ paths:
         - Organization
       operationId: removeAgent
       summary: Remove and uninstall an agent
-      security:
-        - bearerAuth: []
       parameters:
         - in: path
           name: agent_id
@@ -1012,8 +1014,6 @@ paths:
         - Organization
       operationId: updateAgentSite
       summary: Update the site associated with agent
-      security:
-        - bearerAuth: []
       parameters:
         - in: path
           name: agent_id
@@ -1042,13 +1042,13 @@ paths:
           $ref: '#/components/responses/NotFoundError'
 
   /org/agents/{agent_id}/update:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
     post:
       tags:
         - Organization
       operationId: upgradeAgent
       summary: Force an agent to update and restart
-      security:
-        - bearerAuth: []
       parameters:
         - in: path
           name: agent_id
@@ -1066,13 +1066,13 @@ paths:
           $ref: '#/components/responses/NotFoundError'
 
   /org/sites:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
     get:
       tags:
         - Organization
       operationId: getSites
       summary: Get all sites
-      security:
-        - bearerAuth: []
       responses:
         '200':
           description: array of sites
@@ -1089,8 +1089,6 @@ paths:
         - Organization
       operationId: createSite
       summary: Create a new site
-      security:
-        - bearerAuth: []
       requestBody:
         description: site definition
         required: true
@@ -1111,13 +1109,13 @@ paths:
           $ref: '#/components/responses/NotFoundError'
 
   /org/sites/{site_id}:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
     get:
       tags:
         - Organization
       operationId: getSite
       summary: Get site details
-      security:
-        - bearerAuth: []
       parameters:
         - in: path
           name: site_id
@@ -1142,8 +1140,6 @@ paths:
         - Organization
       operationId: removeSite
       summary: Remove a site and associated assets
-      security:
-        - bearerAuth: []
       parameters:
         - in: path
           name: site_id
@@ -1164,8 +1160,6 @@ paths:
         - Organization
       operationId: updateSite
       summary: Update a site definition
-      security:
-        - bearerAuth: []
       parameters:
         - in: path
           name: site_id
@@ -1194,13 +1188,13 @@ paths:
           $ref: '#/components/responses/NotFoundError'
 
   /org/sites/{site_id}/import:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
     put:
       tags:
         - Organization
       operationId: importScanData
       summary: Import a scan data file into a site
-      security:
-        - bearerAuth: []
       parameters:
         - in: path
           name: site_id
@@ -1232,13 +1226,13 @@ paths:
           $ref: '#/components/responses/ProcessingError'
 
   /org/sites/{site_id}/import/nessus:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
     put:
       tags:
         - Organization
       operationId: importNessusScanData
       summary: Import a Nessus scan data file into a site
-      security:
-        - bearerAuth: []
       parameters:
         - in: path
           name: site_id
@@ -1270,13 +1264,13 @@ paths:
           $ref: '#/components/responses/ProcessingError'
 
   /org/sites/{site_id}/scan:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
     put:
       tags:
         - Organization
       operationId: createScan
       summary: Create a scan task for a given site
-      security:
-        - bearerAuth: []
       parameters:
         - in: path
           name: site_id
@@ -1307,13 +1301,13 @@ paths:
           $ref: '#/components/responses/ProcessingError'
 
   /org/assets:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
     get:
       tags:
         - Organization
       operationId: getAssets
       summary: Get all assets
-      security:
-        - bearerAuth: []
       parameters:
         - in: query
           name: search
@@ -1340,13 +1334,13 @@ paths:
           $ref: '#/components/responses/UnauthorizedError'
 
   /org/assets/{asset_id}:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
     get:
       tags:
         - Organization
       operationId: getAsset
       summary: Get asset details
-      security:
-        - bearerAuth: []
       parameters:
         - in: path
           name: asset_id
@@ -1371,8 +1365,6 @@ paths:
         - Organization
       operationId: removeAsset
       summary: Remove an asset
-      security:
-        - bearerAuth: []
       parameters:
         - in: path
           name: asset_id
@@ -1390,13 +1382,13 @@ paths:
           $ref: '#/components/responses/NotFoundError'
 
   /org/assets/bulk/delete:
-    post:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
+    delete:
       tags:
         - Organization
       operationId: removeBulkAssets
       summary: Removes multiple assets by ID
-      security:
-        - bearerAuth: []
       requestBody:
         description: list of asset IDs to remove
         required: true
@@ -1415,13 +1407,13 @@ paths:
           $ref: '#/components/responses/InternalServerError'
 
   /org/assets/{asset_id}/comments:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
     patch:
       tags:
         - Organization
       operationId: updateAssetComments
       summary: Update asset comments
-      security:
-        - bearerAuth: []
       parameters:
         - in: path
           name: asset_id
@@ -1450,13 +1442,13 @@ paths:
           $ref: '#/components/responses/NotFoundError'
 
   /org/assets/{asset_id}/tags:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
     patch:
       tags:
         - Organization
       operationId: updateAssetTags
       summary: Update asset tags
-      security:
-        - bearerAuth: []
       parameters:
         - in: path
           name: asset_id
@@ -1485,13 +1477,13 @@ paths:
           $ref: '#/components/responses/NotFoundError'
 
   /org/assets/merge:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
     patch:
       tags:
         - Organization
       operationId: mergeAssets
       summary: Merge multiple assets
-      security:
-        - bearerAuth: []
       requestBody:
         description: List of Asset IDs to merge
         required: true
@@ -1508,13 +1500,13 @@ paths:
           $ref: '#/components/responses/NotFoundError'
 
   /org/assets/bulk/tags:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
     patch:
       tags:
         - Organization
       operationId: updateBulkAssetTags
       summary: Update tags across multiple assets based on a search query
-      security:
-        - bearerAuth: []
       requestBody:
         description: search query to filter and tags to apply
         required: true
@@ -1531,13 +1523,13 @@ paths:
           $ref: '#/components/responses/NotFoundError'
 
   /org/assets/bulk/clearTags:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
     post:
       tags:
         - Organization
       operationId: clearBulkAssetTags
       summary: Clear all tags across multiple assets based on a search query
-      security:
-        - bearerAuth: []
       requestBody:
         description: search query to filter
         required: true
@@ -1554,13 +1546,13 @@ paths:
           $ref: '#/components/responses/NotFoundError'
 
   /org/services:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
     get:
       tags:
         - Organization
       operationId: getServices
       summary: Get all services
-      security:
-        - bearerAuth: []
       parameters:
         - in: query
           name: search
@@ -1581,13 +1573,13 @@ paths:
           $ref: '#/components/responses/UnauthorizedError'
 
   /org/services/{service_id}:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
     get:
       tags:
         - Organization
       operationId: getService
       summary: Get service details
-      security:
-        - bearerAuth: []
       parameters:
         - in: path
           name: service_id
@@ -1612,8 +1604,6 @@ paths:
         - Organization
       operationId: removeService
       summary: Remove a service
-      security:
-        - bearerAuth: []
       parameters:
         - in: path
           name: service_id
@@ -1631,13 +1621,13 @@ paths:
           $ref: '#/components/responses/NotFoundError'
 
   /org/wireless:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
     get:
       tags:
         - Organization
       operationId: getWirelessLANs
       summary: Get all wireless LANs
-      security:
-        - bearerAuth: []
       parameters:
         - in: query
           name: search
@@ -1658,13 +1648,13 @@ paths:
           $ref: '#/components/responses/UnauthorizedError'
 
   /org/wireless/{wireless_id}:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
     get:
       tags:
         - Organization
       operationId: getWirelessLAN
       summary: Get wireless LAN details
-      security:
-        - bearerAuth: []
       parameters:
         - in: path
           name: wireless_id
@@ -1687,8 +1677,6 @@ paths:
         - Organization
       operationId: removeWirelessLAN
       summary: Remove a wireless LAN
-      security:
-        - bearerAuth: []
       parameters:
         - in: path
           name: wireless_id
@@ -1707,13 +1695,13 @@ paths:
 
 
   /org/tasks:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
     get:
       tags:
         - Organization
       operationId: getTasks
       summary: Get all tasks (last 1000)
-      security:
-        - bearerAuth: []
       parameters:
         - in: query
           name: status
@@ -1740,13 +1728,13 @@ paths:
           $ref: '#/components/responses/UnauthorizedError'
 
   /org/tasks/{task_id}:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
     get:
       tags:
         - Organization
       operationId: getTask
       summary: Get task details
-      security:
-        - bearerAuth: []
       parameters:
         - in: path
           name: task_id
@@ -1769,8 +1757,6 @@ paths:
         - Organization
       operationId: updateTask
       summary: Update task parameters
-      security:
-        - bearerAuth: []
       parameters:
         - in: path
           name: task_id
@@ -1799,13 +1785,13 @@ paths:
           $ref: '#/components/responses/NotFoundError'
 
   /org/tasks/{task_id}/data:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
     get:
       tags:
         - Organization
       operationId: getTaskScanData
       summary: Returns a temporary task scan data url
-      security:
-        - bearerAuth: []
       parameters:
         - in: path
           name: task_id
@@ -1827,13 +1813,13 @@ paths:
           $ref: '#/components/responses/NotFoundError'
 
   /org/tasks/{task_id}/changes:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
     get:
       tags:
         - Organization
       operationId: getTaskChangeReport
       summary: Returns a temporary task change report data url
-      security:
-        - bearerAuth: []
       parameters:
         - in: path
           name: task_id
@@ -1855,13 +1841,13 @@ paths:
           $ref: '#/components/responses/NotFoundError'
 
   /org/tasks/{task_id}/log:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
     get:
       tags:
         - Organization
       operationId: getTaskLog
       summary: Returns a temporary task log data url
-      security:
-        - bearerAuth: []
       parameters:
         - in: path
           name: task_id
@@ -1883,13 +1869,13 @@ paths:
           $ref: '#/components/responses/NotFoundError'
 
   /org/tasks/{task_id}/stop:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
     post:
       tags:
         - Organization
       operationId: stopTask
       summary: Signal that a task should be stopped or canceledThis will also remove recurring and scheduled tasks
-      security:
-        - bearerAuth: []
       parameters:
         - in: path
           name: task_id
@@ -1911,13 +1897,13 @@ paths:
           $ref: '#/components/responses/NotFoundError'
 
   /org/tasks/{task_id}/hide:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
     post:
       tags:
         - Organization
       operationId: hideTask
       summary: Signal that a completed task should be hidden
-      security:
-        - bearerAuth: []
       parameters:
         - in: path
           name: task_id
@@ -1944,8 +1930,6 @@ paths:
         - Account
       operationId: getAccountOrganizations
       summary: Get all organization details
-      security:
-        - bearerAuth: []
       parameters:
         - in: query
           name: search
@@ -1969,8 +1953,6 @@ paths:
         - Account
       operationId: createAccountOrganization
       summary: Create a new organization
-      security:
-        - bearerAuth: []
       requestBody:
         description: organization definition
         required: true
@@ -1996,8 +1978,6 @@ paths:
         - Account
       operationId: getAccountOrganization
       summary: Get organization details
-      security:
-        - bearerAuth: []
       parameters:
         - in: path
           name: org_id
@@ -2020,8 +2000,6 @@ paths:
         - Account
       operationId: updateAccountOrganization
       summary: Update organization details
-      security:
-        - bearerAuth: []
       parameters:
         - in: path
           name: org_id
@@ -2051,8 +2029,6 @@ paths:
         - Account
       operationId: removeAccountOrganization
       summary: Remove this organization
-      security:
-        - bearerAuth: []
       parameters:
         - in: path
           name: org_id
@@ -2073,8 +2049,6 @@ paths:
         - Account
       operationId: deleteAccountOrganizationExportToken
       summary: Removes the export token from the specified organization
-      security:
-        - bearerAuth: []
       parameters:
         - in: path
           name: org_id
@@ -2095,8 +2069,6 @@ paths:
         - Account
       operationId: rotateAccountOrganizationExportToken
       summary: Rotates the organization export token and returns the updated organization
-      security:
-        - bearerAuth: []
       parameters:
         - in: path
           name: org_id
@@ -2121,8 +2093,6 @@ paths:
         - Account
       operationId: getAccountLicense
       summary: Get license details
-      security:
-        - bearerAuth: []
       responses:
         '200':
           description: license information
@@ -2140,8 +2110,6 @@ paths:
         - Account
       operationId: getAccountSites
       summary: Get all sites details across all organizations
-      security:
-        - bearerAuth: []
       parameters:
         - in: query
           name: search
@@ -2166,8 +2134,6 @@ paths:
         - Account
       operationId: getAccountCredentials
       summary: Get all account credentials
-      security:
-        - bearerAuth: []
       parameters:
         - in: query
           name: search
@@ -2191,8 +2157,6 @@ paths:
         - Account
       operationId: createAccountCredential
       summary: Create a new credential
-      security:
-        - bearerAuth: []
       requestBody:
         description: credential parameters
         required: true
@@ -2218,8 +2182,6 @@ paths:
         - Account
       operationId: getAccountCredential
       summary: Get credential details
-      security:
-        - bearerAuth: []
       parameters:
         - in: path
           name: credential_id
@@ -2244,8 +2206,6 @@ paths:
         - Account
       operationId: removeAccountCredential
       summary: Remove this credential
-      security:
-        - bearerAuth: []
       parameters:
         - in: path
           name: credential_id
@@ -2268,8 +2228,6 @@ paths:
         - Account
       operationId: getAccountKeys
       summary: Get all active API keys
-      security:
-        - bearerAuth: []
       responses:
         '200':
           description: array of keys
@@ -2286,8 +2244,6 @@ paths:
         - Account
       operationId: createAccountKey
       summary: Create a new key
-      security:
-        - bearerAuth: []
       requestBody:
         description: key parameters
         required: true
@@ -2312,8 +2268,6 @@ paths:
         - Account
       operationId: getAccountKey
       summary: Get key details
-      security:
-        - bearerAuth: []
       parameters:
         - in: path
           name: key_id
@@ -2336,8 +2290,6 @@ paths:
         - Account
       operationId: removeAccountKey
       summary: Remove this key
-      security:
-        - bearerAuth: []
       parameters:
         - in: path
           name: key_id
@@ -2358,8 +2310,6 @@ paths:
         - Account
       operationId: rotateAccountKey
       summary: Rotates the key secret
-      security:
-        - bearerAuth: []
       parameters:
         - in: path
           name: key_id
@@ -2384,8 +2334,6 @@ paths:
         - Account
       operationId: exportEventsJSON
       summary: System event log as JSON
-      security:
-        - bearerAuth: []
       parameters:
         - in: query
           name: search
@@ -2417,8 +2365,6 @@ paths:
         - Account
       operationId: exportEventsJSONL
       summary: System event log as JSON line-delimited
-      security:
-        - bearerAuth: []
       parameters:
         - in: query
           name: search
@@ -2450,8 +2396,6 @@ paths:
         - Account
       operationId: getAccountTasks
       summary: Get all task details across all organizations (up to 1000)
-      security:
-        - bearerAuth: []
       parameters:
         - in: query
           name: search
@@ -2477,8 +2421,6 @@ paths:
         - Account
       operationId: getAccountScanTemplates
       summary: Get all scan templates across all organizations (up to 1000)
-      security:
-        - bearerAuth: []
       parameters:
         - in: query
           name: search
@@ -2504,8 +2446,6 @@ paths:
         - Account
       operationId: createAccountScanTemplate
       summary: Create a new scan template
-      security:
-        - bearerAuth: []
       requestBody:
         required: true
         content:
@@ -2530,8 +2470,6 @@ paths:
         - Account
       operationId: updateAccountScanTemplate
       summary: Update scan template
-      security:
-        - bearerAuth: []
       requestBody:
         required: true
         content:
@@ -2560,8 +2498,6 @@ paths:
         - Account
       operationId: getAccountScanTemplate
       summary: Get scan template details
-      security:
-        - bearerAuth: []
       parameters:
         - in: path
           name: scan_template_id
@@ -2588,8 +2524,6 @@ paths:
         - Account
       operationId: removeAccountScanTemplate
       summary: Remove scan template
-      security:
-        - bearerAuth: []
       parameters:
         - in: path
           name: scan_template_id
@@ -2619,8 +2553,6 @@ paths:
         - Account
       operationId: getAccountAgents
       summary: Get all agents across all organizations
-      security:
-        - bearerAuth: []
       parameters:
         - in: query
           name: search
@@ -2646,8 +2578,6 @@ paths:
         - Account
       operationId: getAccountUsers
       summary: Get all users
-      security:
-        - bearerAuth: []
       responses:
         '200':
           description: array of users
@@ -2664,8 +2594,6 @@ paths:
         - Account
       operationId: createAccountUser
       summary: Create a new user account
-      security:
-        - bearerAuth: []
       requestBody:
         description: user parameters
         required: true
@@ -2691,8 +2619,6 @@ paths:
         - Account
       operationId: createAccountUserInvite
       summary: Create a new user account and send an email invite
-      security:
-        - bearerAuth: []
       requestBody:
         description: user invite parameters
         required: true
@@ -2718,8 +2644,6 @@ paths:
         - Account
       operationId: getAccountUser
       summary: Get user details
-      security:
-        - bearerAuth: []
       parameters:
         - in: path
           name: user_id
@@ -2742,8 +2666,6 @@ paths:
         - Account
       operationId: removeAccountUser
       summary: Remove this user
-      security:
-        - bearerAuth: []
       parameters:
         - in: path
           name: user_id
@@ -2762,8 +2684,6 @@ paths:
         - Account
       operationId: updateAccountUser
       summary: Update a user's details
-      security:
-        - bearerAuth: []
       parameters:
         - in: path
           name: user_id
@@ -2795,8 +2715,6 @@ paths:
         - Account
       operationId: resetAccountUserMFA
       summary: Resets the user's MFA tokens
-      security:
-        - bearerAuth: []
       parameters:
         - in: path
           name: user_id
@@ -2822,8 +2740,6 @@ paths:
         - Account
       operationId: resetAccountUserLockout
       summary: Resets the user's lockout status
-      security:
-        - bearerAuth: []
       parameters:
         - in: path
           name: user_id
@@ -2848,8 +2764,6 @@ paths:
         - Account
       operationId: resetAccountUserPassword
       summary: Sends the user a password reset email
-      security:
-        - bearerAuth: []
       parameters:
         - in: path
           name: user_id
@@ -2874,8 +2788,6 @@ paths:
         - Account
       operationId: getAccountGroups
       summary: Get all groups
-      security:
-        - bearerAuth: []
       responses:
         '200':
           description: group information
@@ -2890,8 +2802,6 @@ paths:
         - Account
       operationId: createAccountGroup
       summary: Create a new group
-      security:
-        - bearerAuth: []
       requestBody:
         required: true
         content:
@@ -2912,8 +2822,6 @@ paths:
         - Account
       operationId: updateAccountGroup
       summary: Update an existing group
-      security:
-        - bearerAuth: []
       requestBody:
         required: true
         content:
@@ -2944,8 +2852,6 @@ paths:
         - Account
       operationId: getAccountGroup
       summary: Get group details
-      security:
-        - bearerAuth: []
       responses:
         '200':
           description: group information
@@ -2962,8 +2868,6 @@ paths:
         - Account
       operationId: removeAccountGroup
       summary: Remove this group
-      security:
-        - bearerAuth: []
       responses:
         '204':
           description: empty response
@@ -2976,8 +2880,6 @@ paths:
         - Account
       operationId: getAccountGroupMappings
       summary: Get all SSO group mappings
-      security:
-        - bearerAuth: []
       responses:
         '200':
           description: group mapping information
@@ -2992,8 +2894,6 @@ paths:
         - Account
       operationId: createAccountGroupMapping
       summary: Create a new SSO group mapping
-      security:
-        - bearerAuth: []
       requestBody:
         required: true
         content:
@@ -3014,8 +2914,6 @@ paths:
         - Account
       operationId: updateAccountGroupMapping
       summary: Update an existing SSO group mapping
-      security:
-        - bearerAuth: []
       requestBody:
         required: true
         content:
@@ -3046,8 +2944,6 @@ paths:
         - Account
       operationId: getAccountGroupMapping
       summary: Get SSO group mapping details
-      security:
-        - bearerAuth: []
       responses:
         '200':
           description: group information
@@ -3064,8 +2960,6 @@ paths:
         - Account
       operationId: removeAccountGroupMapping
       summary: Remove this SSO group mapping
-      security:
-        - bearerAuth: []
       responses:
         '204':
           description: empty response
@@ -3073,13 +2967,13 @@ paths:
           $ref: '#/components/responses/UnauthorizedError'
 
   /export/org/assets/sync/created/assets.json:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
     get:
       tags:
         - Splunk
       operationId: splunkAssetSyncCreatedJSON
       summary: Exports the asset inventory in a sync-friendly manner using created_at as a checkpoint. Requires the Splunk entitlement.
-      security:
-        - bearerAuth: []
       parameters:
         - in: query
           name: search
@@ -3112,13 +3006,13 @@ paths:
           $ref: '#/components/responses/UnauthorizedError'
 
   /export/org/assets/sync/updated/assets.json:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
     get:
       tags:
         - Splunk
       operationId: splunkAssetSyncUpdatedJSON
       summary: Exports the asset inventory in a sync-friendly manner using updated_at as a checkpoint. Requires the Splunk entitlement.
-      security:
-        - bearerAuth: []
       parameters:
         - in: query
           name: search
@@ -3152,13 +3046,13 @@ paths:
 
 
   /export/org/assets.servicenow.csv:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
     get:
       tags:
         - ServiceNow
       operationId: snowExportAssetsCSV
       summary: Export an asset inventory as CSV for ServiceNow integration
-      security:
-        - bearerAuth: []
       responses:
         '200':
           description: asset export
@@ -3171,13 +3065,13 @@ paths:
           $ref: '#/components/responses/UnauthorizedError'
 
   /export/org/assets.servicenow.json:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
     get:
       tags:
         - ServiceNow
       operationId: snowExportAssetsJSON
       summary: Exports the asset inventory as JSON
-      security:
-        - bearerAuth: []
       responses:
         '200':
           description: filtered asset results
@@ -3191,13 +3085,13 @@ paths:
           $ref: '#/components/responses/UnauthorizedError'
 
   /export/org/services.servicenow.csv:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
     get:
       tags:
         - ServiceNow
       operationId: snowExportServicesCSV
       summary: Export a service inventory as CSV for ServiceNow integration
-      security:
-        - bearerAuth: []
       responses:
         '200':
           description: services export
@@ -3211,13 +3105,13 @@ paths:
 
 
   /export/org/assets.cisco.csv:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
     get:
       tags:
         - Cisco SNTC
       operationId: exportAssetsCiscoCSV
       summary: Cisco serial number and model name export for Cisco Smart Net Total Care Service.
-      security:
-        - bearerAuth: []
       parameters:
         - in: query
           name: search
@@ -3237,10 +3131,24 @@ paths:
           $ref: '#/components/responses/UnauthorizedError'
 
 components:
+  parameters:
+    orgID:
+      in: query
+      name: _oid
+      required: false
+      schema:
+        type: string
+      description: The current Organization
   securitySchemes:
     bearerAuth:
       type: http
       scheme: bearer
+    oauthDefaults:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://console.runzero.com/api/v1.0/account/api/token
+          scopes: {}
   responses:
     UnauthorizedError:
       description: Access token is missing or invalid
@@ -3765,10 +3673,6 @@ components:
         export_token:
           type: string
           example: ETXXXXXXXXXXXXXXXX
-        project:
-          type: string
-          format: boolean
-          example: false
         parent_id:
           type: string
           format: uuid
