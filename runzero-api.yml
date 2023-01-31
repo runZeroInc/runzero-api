@@ -658,6 +658,190 @@ paths:
         '401':
           $ref: '#/components/responses/UnauthorizedError'
 
+  /export/org/users.json:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
+    get:
+      tags:
+        - Export
+      operationId: exportDirectoryUsersJSON
+      summary: Exports the user inventory
+      parameters:
+        - in: query
+          name: search
+          description: an optional search string for filtering results
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: fields
+          description: an optional list of fields to export, comma-separated
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: filtered user results
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DirectoryUser'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+
+  /export/org/users.jsonl:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
+    get:
+      tags:
+        - Export
+      operationId: exportDirectoryUsersJSONL
+      summary: User inventory as JSON line-delimited
+      parameters:
+        - in: query
+          name: search
+          description: an optional search string for filtering results
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: fields
+          description: an optional list of fields to export, comma-separated
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          # This is a streaming response of one DirectoryUser object per line in JSON format
+          description: filtered user results
+          content:
+            application/json:
+              schema:
+                type: string
+                format: binary
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+
+  /export/org/users.csv:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
+    get:
+      tags:
+        - Export
+      operationId: exportDirectoryUsersCSV
+      summary: User inventory as CSV
+      parameters:
+        - in: query
+          name: search
+          description: an optional search string for filtering results
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: filtered user results
+          content:
+            text/csv:
+              schema:
+                type: string
+                format: binary
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+
+  /export/org/groups.json:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
+    get:
+      tags:
+        - Export
+      operationId: exportDirectoryGroupsJSON
+      summary: Exports the group inventory
+      parameters:
+        - in: query
+          name: search
+          description: an optional search string for filtering results
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: fields
+          description: an optional list of fields to export, comma-separated
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: filtered group results
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DirectoryGroup'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+
+  /export/org/groups.jsonl:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
+    get:
+      tags:
+        - Export
+      operationId: exportDirectoryGroupsJSONL
+      summary: Group inventory as JSON line-delimited
+      parameters:
+        - in: query
+          name: search
+          description: an optional search string for filtering results
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: fields
+          description: an optional list of fields to export, comma-separated
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          # This is a streaming response of one DirectoryGroup object per line in JSON format
+          description: filtered group results
+          content:
+            application/json:
+              schema:
+                type: string
+                format: binary
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+
+  /export/org/groups.csv:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
+    get:
+      tags:
+        - Export
+      operationId: exportDirectoryGroupsCSV
+      summary: Group inventory as CSV
+      parameters:
+        - in: query
+          name: search
+          description: an optional search string for filtering results
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: filtered group results
+          content:
+            text/csv:
+              schema:
+                type: string
+                format: binary
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+
   /export/org/subnet.stats.csv:
     parameters:
       - $ref: '#/components/parameters/orgID'
@@ -4548,6 +4732,142 @@ components:
           format: int64
           example: 1576300370
         vulnerability_attributes:
+          type: object
+          additionalProperties:
+            type: string
+
+    DirectoryUser:
+      type: object
+      required:
+        - id
+      properties:
+        directory_user_id:
+          type: string
+          format: uuid
+          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+        directory_user_organization_id:
+          type: string
+          format: uuid
+          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+        directory_user_site_id:
+          type: string
+          format: uuid
+          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+        directory_user_source_id:
+          type: integer
+          example: 1
+        directory_user_created_at:
+          type: integer
+          format: int64
+          example: 1576300370
+        directory_user_updated_at:
+          type: integer
+          format: int64
+          example: 1576300370
+        directory_user_user_id:
+          type: string
+          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+        directory_user_group_ids:
+          type: array
+          items:
+            type: string
+          example:
+            - e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+            - e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+        directory_user_display_name:
+          type: string
+          example: Jane Doe
+        directory_user_name:
+          type: string
+          example: CN=Jane Doe,OU=Employees,DC=example,DC=com
+        directory_user_first_name:
+          type: string
+          example: Jane
+        directory_user_last_name:
+          type: string
+          example: Doe
+        directory_user_description:
+          type: string
+          example: Example user
+        directory_user_email:
+          type: string
+          format: email
+          example: user@example.com
+        directory_user_email_normalized:
+          type: string
+          format: email
+          example: user@example.com
+        directory_user_phone:
+          type: string
+          example: 555-555-5555
+        directory_user_title:
+          type: string
+          example: Software Engineer
+        directory_user_location:
+          type: string
+          example: Remote
+        directory_user_last_logon_at:
+          type: integer
+          format: int64
+          example: 1576300370
+        directory_user_attributes:
+          type: object
+          additionalProperties:
+            type: string
+
+    DirectoryGroup:
+      type: object
+      required:
+        - id
+      properties:
+        directory_group_id:
+          type: string
+          format: uuid
+          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+        directory_group_organization_id:
+          type: string
+          format: uuid
+          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+        directory_group_site_id:
+          type: string
+          format: uuid
+          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+        directory_group_source_id:
+          type: integer
+          example: 1
+        directory_group_created_at:
+          type: integer
+          format: int64
+          example: 1576300370
+        directory_group_updated_at:
+          type: integer
+          format: int64
+          example: 1576300370
+        directory_group_group_id:
+          type: string
+          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+        directory_group_user_count:
+          type: integer
+          format: int64
+          example: 1
+        directory_group_name:
+          type: string
+          example: CN=Remote Desktop Users,CN=Builtin,DC=example,DC=com
+        directory_group_display_name:
+          type: string
+          example: Remote Desktop Users
+        directory_group_description:
+          type: string
+          example: Members in this group are granted the right to logon remotely
+        directory_group_email:
+          type: string
+          format: email
+          example: user@example.com
+        directory_group_email_normalized:
+          type: string
+          format: email
+          example: user@example.com
+        directory_group_attributes:
           type: object
           additionalProperties:
             type: string
