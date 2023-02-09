@@ -2646,9 +2646,9 @@ paths:
         '401':
           $ref: '#/components/responses/UnauthorizedError'
         '422':
-          description: invalid request body
+          $ref: '#/components/responses/InvalidRequestBodyError'
         '400':
-          description: invalid request body
+          $ref: '#/components/responses/InvalidRequestBodyError'
     put:
       tags:
         - Account
@@ -2670,9 +2670,9 @@ paths:
         '401':
           $ref: '#/components/responses/UnauthorizedError'
         '422':
-          description: invalid request body
+          $ref: '#/components/responses/InvalidRequestBodyError'
         '400':
-          description: invalid request body
+          $ref: '#/components/responses/InvalidRequestBodyError'
         '404':
           description: scan template or permissions not found
 
@@ -3150,6 +3150,196 @@ paths:
         '401':
           $ref: '#/components/responses/UnauthorizedError'
 
+  /account/assets/ownership-types:
+    get:
+      tags:
+        - Account
+      operationId: getAccountAssetOwnershipTypes
+      summary: Get all asset ownership types
+      responses:
+        '200':
+          description: array of asset ownership types
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AssetOwnershipType'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/NotAllowedForLicenseError'
+        '500': 
+          $ref: '#/components/responses/InternalServerError'
+    post:
+      tags:
+        - Account
+      operationId: createAccountAssetOwnershipTypes
+      summary: Create new asset ownership types
+      requestBody:
+        required: true
+        description: array of asset ownership types
+        content:
+          application/json:
+            schema:
+              type: array
+              items: 
+                $ref: '#/components/schemas/AssetOwnershipTypePost'
+      responses:
+        '200':
+          description: array of asset ownership types
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AssetOwnershipType'
+        '400':
+          $ref: '#/components/responses/InvalidRequestBodyError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/NotAllowedForLicenseError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+        '422':
+          $ref: '#/components/responses/InvalidRequestBodyError'
+        '500': 
+          $ref: '#/components/responses/InternalServerError'
+    put:
+      tags:
+        - Account
+      operationId: updateAccountAssetOwnershipTypes
+      summary: Update asset ownership types
+      requestBody:
+        required: true
+        description: array of asset ownership types
+        content:
+          application/json:
+            schema:
+              type: array
+              items: 
+                $ref: '#/components/schemas/AssetOwnershipType'
+      responses:
+        '200':
+          description: array of asset ownership types
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AssetOwnershipType'
+        '400': 
+          $ref: '#/components/responses/InvalidRequestBodyError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/NotAllowedForLicenseError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+        '422':
+          $ref: '#/components/responses/InvalidRequestBodyError'
+        '500': 
+          $ref: '#/components/responses/InternalServerError'
+    delete:  
+      tags:
+        - Account
+      operationId: deleteAccountAssetOwnershipTypes
+      summary: Delete asset ownership types
+      requestBody:
+        required: true
+        description: Array of ids
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: string
+              example: ["2318e078-4164-4e1b-92a5-11e353093f4b", "a352c76b-0eb7-4dab-adea-66e8b6016565"]
+      responses:
+        '200':
+          description: array of remaining asset ownership types
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AssetOwnershipType'
+        '400': 
+          $ref: '#/components/responses/InvalidRequestBodyError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/NotAllowedForLicenseError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+        '500': 
+          $ref: '#/components/responses/InternalServerError'
+
+  /account/assets/ownership-types/{ownership_type_id}:
+    parameters:
+      - in: path
+        name: ownership_type_id
+        schema:
+          type: string
+          format: uuid
+        required: true
+        description: UUID of the asset ownership type
+    patch:
+      tags:
+        - Account
+      operationId: updateAccountAssetOwnershipType
+      summary: Update a single asset ownership type
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AssetOwnershipTypePost'
+      responses:
+        '200':
+          description: updated asset ownership type
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AssetOwnershipType'
+        '400': 
+          $ref: '#/components/responses/InvalidRequestBodyError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/NotAllowedForLicenseError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+        '422':
+          $ref: '#/components/responses/InvalidRequestBodyError'
+        '500': 
+          $ref: '#/components/responses/InternalServerError'
+    delete:
+      tags:
+        - Account
+      operationId: deleteAccountAssetOwnershipType
+      summary: Delete a single asset ownership type
+      responses:
+        '200':
+          description: array of remaining asset ownership types
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AssetOwnershipType'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/NotAllowedForLicenseError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+        '422':
+          $ref: '#/components/responses/InvalidRequestBodyError'
+        '500': 
+          $ref: '#/components/responses/InternalServerError'
+
   /export/org/assets/sync/created/assets.json:
     parameters:
       - $ref: '#/components/parameters/orgID'
@@ -3346,6 +3536,10 @@ components:
       description: Unexpected error occurred on the server
     StatusMessage:
       description: Summary of operation results
+    NotAllowedForLicenseError:
+      description: Action not allowed for this license type
+    InvalidRequestBodyError:
+      description: Invalid request body
   schemas:
     StatusMessage:
       type: object
@@ -5814,3 +6008,49 @@ components:
         comments:
           type: string
           example: File Server
+
+    AssetOwnershipType:
+      type: object
+      required:
+        - id
+        - name
+      properties:
+        id: 
+          type: string
+          format: uuid
+          example: f6cfb91a-52ea-4a86-bf9a-5a891a26f52b
+        name:
+          type: string
+          example: Asset Owner
+        reference:
+          type: integer
+          format: int64
+          example: 1
+        order:
+          type: integer
+          format: int64
+          example: 1
+        hidden:
+          type: boolean
+          example: true
+        
+    AssetOwnershipTypePost:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          example: Asset Owner
+        reference:
+          type: integer
+          format: int64
+          example: 1
+        order:
+          type: integer
+          format: int64
+          example: 1
+        hidden:
+          type: boolean
+          example: true
+        
