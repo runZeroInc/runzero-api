@@ -1729,6 +1729,113 @@ paths:
         '404':
           $ref: '#/components/responses/NotFoundError'
 
+  /org/assets/{asset_id}/owners:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
+    patch:
+      tags:
+        - Organization
+      operationId: updateAssetOwners
+      summary: Update asset owners
+      parameters:
+        - in: path
+          name: asset_id
+          schema:
+            type: string
+            format: uuid
+          required: true
+          description: UUID of the asset to update
+      requestBody:
+        description: list of ownerships to apply to the asset
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AssetOwnerships'
+      responses:
+        '200':
+          description: asset details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Asset'
+        '400': 
+          $ref: '#/components/responses/InvalidRequestBodyError'
+        '403':
+          $ref: '#/components/responses/NotAllowedForLicenseError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+        '500': 
+          $ref: '#/components/responses/InternalServerError'
+
+  /org/assets/bulk/owners:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
+    patch:
+      tags:
+        - Organization
+      operationId: updateBulkAssetOwners
+      summary: Update asset owners across multiple assets based on a search query
+      requestBody:
+        description: search query to filter and ownerships to apply
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AssetOwnershipsWithSearch'
+      responses:
+        '200': 
+          description: updated asset count
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  updated_asset_count:
+                    type: integer
+                    example: 10
+        '400': 
+          $ref: '#/components/responses/InvalidRequestBodyError'
+        '403':
+          $ref: '#/components/responses/NotAllowedForLicenseError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+        '500': 
+          $ref: '#/components/responses/InternalServerError'
+
+  /org/assets/bulk/clearOwners:
+    parameters:
+        - $ref: '#/components/parameters/orgID'
+    post:
+      tags:
+        - Organization
+      operationId: clearBulkAssetOwners
+      summary: Clear all owners across multiple assets based on a search query
+      requestBody:
+        description: search query to filter
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Search'
+      responses:
+        '200': 
+          description: updated asset count
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  updated_asset_count:
+                    type: integer
+                    example: 10
+        '400': 
+          $ref: '#/components/responses/InvalidRequestBodyError'
+        '403':
+          $ref: '#/components/responses/NotAllowedForLicenseError'
+        '500': 
+          $ref: '#/components/responses/InternalServerError'
+
   /org/services:
     parameters:
       - $ref: '#/components/parameters/orgID'
@@ -6053,4 +6160,39 @@ components:
         hidden:
           type: boolean
           example: true
-        
+
+    AssetOwnerships:
+      type: object
+      properties:
+        ownerships: 
+          type: array
+          items: 
+            type: object
+            properties: 
+              ownership_type_id: 
+                type: string
+                example: 2318e078-4164-4e1b-92a5-11e353093f4b
+              owner: 
+                type: string
+                example: "it@runzero.com"
+
+    AssetOwnershipsWithSearch:
+      type: object
+      required:
+        - ownerships
+        - search
+      properties:
+        search:
+          type: string
+          example: alive:true and os:windows
+        ownerships: 
+          type: array
+          items: 
+            type: object
+            properties: 
+              ownership_type_id: 
+                type: string
+                example: 2318e078-4164-4e1b-92a5-11e353093f4b
+              owner: 
+                type: string
+                example: "it@runzero.com"
