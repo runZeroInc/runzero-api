@@ -4,7 +4,7 @@ servers:
     url: https://console.runzero.com/api/v1.0
 info:
   description: runZero API. API use is rate limited, you can make as many calls per day as you have licensed assets.
-  version: "3.5.0"
+  version: 3.6.0
   title: runZero API
   contact:
     email: support@runzero.com
@@ -4735,36 +4735,39 @@ components:
         - id
         - name
       properties:
-        id:
-          type: string
-          format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
-        created_at:
-          type: integer
-          format: int64
-          example: 1576300370
-        updated_at:
-          type: integer
-          format: int64
-          example: 1576300370
-        permanent:
-          type: boolean
-          example: true
-        name:
-          type: string
-          example: Primary
-        description:
-          type: string
-          example: Headquarters
-        scope:
-          type: string
-          example: "192.168.0.0/24"
-        excludes:
-          type: string
-          example: "192.168.0.5"
-        subnets:
+        data:
           type: object
-          additionalProperties: true
+          properties:
+            id:
+              type: string
+              format: uuid
+              example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+            created_at:
+              type: integer
+              format: int64
+              example: 1576300370
+            updated_at:
+              type: integer
+              format: int64
+              example: 1576300370
+            permanent:
+              type: boolean
+              example: true
+            name:
+              type: string
+              example: Primary
+            description:
+              type: string
+              example: Headquarters
+            scope:
+              type: string
+              example: "192.168.0.0/24"
+            excludes:
+              type: string
+              example: "192.168.0.5"
+            subnets:
+              type: object
+              additionalProperties: true
 
     Wireless:
       type: object
