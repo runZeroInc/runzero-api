@@ -5816,15 +5816,18 @@ components:
           format: int64
           example: 0
 
-    Task:
+    TaskBase:
+      description: All fields of a Task with none required
       type: object
-      required:
-        - id
       properties:
         id:
           type: string
           format: uuid
           example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          x-go-type: uuid.UUID
+          x-go-import:
+            name: uuid
+            path: github.com/gofrs/uuid
         name:
           type: string
           example: Hourly Scan
@@ -5835,38 +5838,88 @@ components:
           type: string
           format: uuid
           example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          x-go-type: uuid.UUID
+          x-go-import:
+            name: uuid
+            path: github.com/gofrs/uuid
         client_id:
           type: string
           format: uuid
           example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          x-go-type: uuid.UUID
+          x-go-import:
+            name: uuid
+            path: github.com/gofrs/uuid
         organization_id:
           type: string
           format: uuid
           example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          x-go-type: uuid.UUID
+          x-go-import:
+            name: uuid
+            path: github.com/gofrs/uuid
         agent_id:
           type: string
           format: uuid
           example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          x-go-type: uuid.UUID
+          x-go-import:
+            name: uuid
+            path: github.com/gofrs/uuid
+        hosted_zone_id:
+          description: |
+            The ID of the Hosted Zone which executes the task. If the
+          type: string
+          format: uuid
+          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          x-go-type: uuid.UUID
+          x-go-import:
+            name: uuid
+            path: github.com/gofrs/uuid
         site_id:
           type: string
           format: uuid
           example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          x-go-type: uuid.UUID
+          x-go-import:
+            name: uuid
+            path: github.com/gofrs/uuid
         cruncher_id:
           type: string
           format: uuid
           example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          x-go-type: uuid.UUID
+          x-go-import:
+            name: uuid
+            path: github.com/gofrs/uuid
         created_at:
           type: integer
           format: int64
           example: 1576300370
         created_by:
           type: string
-          format: email
           example: user@example.com
         created_by_user_id:
           type: string
           format: uuid
           example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          x-go-type: uuid.UUID
+          x-go-import:
+            name: uuid
+            path: github.com/gofrs/uuid
+        custom_integration_id:
+          description: The ID of the custom integration source, if the last task executed with this template was an import of Asset Data.
+          type: string
+          format: uuid
+          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          x-go-type: uuid.UUID
+          x-go-import:
+            name: uuid
+            path: github.com/gofrs/uuid
+        source_id:
+          description: The numeric ID of the data source, if the task executed with this template is a runZero scan or third party data connection import.
+          type: integer
+          example: 1
         updated_at:
           type: integer
           format: int64
@@ -5894,12 +5947,16 @@ components:
           type: string
           format: uuid
           example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          x-go-type: uuid.UUID
+          x-go-import:
+            name: uuid
+            path: github.com/gofrs/uuid
         recur:
           type: boolean
           example: false
         recur_frequency:
           type: string
-          example: hour
+          example: hourly
         start_time:
           type: integer
           format: int64
@@ -5916,6 +5973,27 @@ components:
           type: string
           format: uuid
           example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          x-go-type: uuid.UUID
+          x-go-import:
+            name: uuid
+            path: github.com/gofrs/uuid
+
+    Task:
+      description: A task object
+      required:
+        - id
+      allOf:
+        - $ref: "#/components/schemas/TaskBase"
+
+    TaskOptions:
+      description: Options which can be set to create or modify a task.
+      properties:
+        hosted_zone_name:
+          type: string
+          example: auto
+          description: The string 'auto' will use any available hosted zone. Otherwise, provide the string name (hostedzone1) of the hosted zone.
+      allOf:
+        - $ref: "#/components/schemas/TaskBase"
 
     License:
       type: object
@@ -6485,6 +6563,7 @@ components:
         hidden:
           type: boolean
           example: true
+
 
     AssetOwnershipTypePost:
       type: object
