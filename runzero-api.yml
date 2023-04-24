@@ -1187,7 +1187,7 @@ paths:
       tags:
         - Organization
       operationId: getAgents
-      summary: Get all agents
+      summary: Get all agents. Legacy path for /org/explorers
       responses:
         '200':
           description: array of agents
@@ -1207,7 +1207,7 @@ paths:
       tags:
         - Organization
       operationId: getAgent
-      summary: Get details for a single agent
+      summary: Get details for a single agent. Legacy path for /org/explorers/{explorer_id}
       parameters:
         - in: path
           name: agent_id
@@ -1231,7 +1231,7 @@ paths:
       tags:
         - Organization
       operationId: removeAgent
-      summary: Remove and uninstall an agent
+      summary: Remove and uninstall an agent. Legacy path for /org/explorers/{explorer_id}
       parameters:
         - in: path
           name: agent_id
@@ -1251,7 +1251,7 @@ paths:
       tags:
         - Organization
       operationId: updateAgentSite
-      summary: Update the site associated with agent
+      summary: Update the site associated with agent. Legacy path for /org/explorers/{explorer_id}
       parameters:
         - in: path
           name: agent_id
@@ -1286,7 +1286,7 @@ paths:
       tags:
         - Organization
       operationId: upgradeAgent
-      summary: Force an agent to update and restart
+      summary: Force an agent to update and restart. Legacy path for /org/explorers/{explorer_id}/update
       parameters:
         - in: path
           name: agent_id
@@ -1295,6 +1295,134 @@ paths:
             format: uuid
           required: true
           description: UUID of the agent to update
+      responses:
+        '204':
+          description: empty response
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+
+  /org/explorers:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
+    get:
+      tags:
+        - Organization
+      operationId: getExplorers
+      summary: Get all explorers
+      description: Get all explorers. This is the same call as legacy path, /org/agents
+      responses:
+        '200':
+          description: array of agents
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Explorer'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+
+  /org/explorers/{explorer_id}:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
+    get:
+      tags:
+        - Organization
+      operationId: getExplorer
+      summary: Get details for a single explorer.
+      description: Get details for a single explorer. This is the same call as legacy path, /org/agents/{agent_id}
+      parameters:
+        - in: path
+          name: explorer_id
+          schema:
+            type: string
+            format: uuid
+          required: true
+          description: UUID of the explorer
+      responses:
+        '200':
+          description: explorer details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Explorer'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+    delete:
+      tags:
+        - Organization
+      operationId: removeExplorer
+      summary: Remove and uninstall an explorer
+      description: Remove and uninstall an explorer. This is the same call as legacy path, /org/agents/{agent_id}
+      parameters:
+        - in: path
+          name: explorer_id
+          schema:
+            type: string
+            format: uuid
+          required: true
+          description: UUID of the explorer to remove
+      responses:
+        '204':
+          description: empty response
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+    patch:
+      tags:
+        - Organization
+      operationId: updateExplorerSite
+      summary: Update the site associated with the explorer
+      description: Update the site associated with the explorer. This is the same call as legacy path, /org/agents/{agent_id}
+      parameters:
+        - in: path
+          name: explorer_id
+          schema:
+            type: string
+            format: uuid
+          required: true
+          description: UUID of the explorer to update
+      requestBody:
+        description: site_id to associate with the explorer
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ExplorerSiteID"
+      responses:
+        '200':
+          description: explorer details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Explorer'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+
+  /org/explorers/{explorer_id}/update:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
+    post:
+      tags:
+        - Organization
+      operationId: upgradeExplorer
+      summary: Force an explorer to update and restart
+      description: Force an explorer to update and restart. This is the same call as legacy path, /org/agents/{agent_id}/update
+      parameters:
+        - in: path
+          name: explorer_id
+          schema:
+            type: string
+            format: uuid
+          required: true
+          description: UUID of the explorer to update
       responses:
         '204':
           description: empty response
@@ -4669,6 +4797,8 @@ components:
           example:
             e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8: user
 
+
+
     AgentSiteID:
       type: object
       required:
@@ -4678,6 +4808,13 @@ components:
           type: string
           format: uuid
           example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+
+    Explorer:
+      $ref: '#/components/schemas/Agent'
+
+    ExplorerSiteID:
+      $ref: '#/components/schemas/AgentSiteID'
+
     OrgOptions:
       type: object
       properties:
@@ -5940,6 +6077,9 @@ components:
           example: org
 
     Agent:
+      description: |
+        A deployed service which performs scan tasks.
+        Explorers may be referred to by their legacy name, Agents.
       type: object
       required:
         - id
@@ -5973,7 +6113,6 @@ components:
           example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
         name:
           type: string
-          format: hostname
           example: RUNZERO-AGENT
         site_id:
           type: string
