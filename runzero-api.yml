@@ -1303,6 +1303,56 @@ paths:
         '404':
           $ref: '#/components/responses/NotFoundError'
 
+  /org/hosted-zones:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
+    get:
+      tags:
+        - Organization
+      operationId: getHostedZones
+      summary: Get all hosted zones
+      description: Get all hosted zones. Hosted Zones are only available to Enterprise licensed customers.
+      responses:
+        '200':
+          description: array of hosted zones
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/HostedZone'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+
+  /org/hosted-zones/{hosted_zone_id}:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
+    get:
+      tags:
+        - Organization
+      operationId: getHostedZone
+      summary: Get details for a single hosted zone.
+      description: Get details for a single Hosted Zone. Hosted Zones are only available to Enterprise licensed customers.
+      parameters:
+        - in: path
+          name: hosted_zone_id
+          schema:
+            type: string
+            format: uuid
+          required: true
+          description: UUID of the hosted zone
+      responses:
+        '200':
+          description: hosted zone details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HostedZone'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+
   /org/sites:
     parameters:
       - $ref: '#/components/parameters/orgID'
@@ -5994,6 +6044,62 @@ components:
           description: The string 'auto' will use any available hosted zone. Otherwise, provide the string name (hostedzone1) of the hosted zone.
       allOf:
         - $ref: "#/components/schemas/TaskBase"
+
+    HostedZone:
+      description: |
+        A hosted service which performs scan tasks. Hosted zones are only available to
+        Enterprise customers.
+      type: object
+      required:
+        - id
+      properties:
+        id:
+          description: The ID of the hosted zone
+          type: string
+          format: uuid
+          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+        name:
+          type: string
+          example: zone1
+        enabled:
+          description: Whether the hosted zone is enabled
+          type: boolean
+          example: true
+        updated_at:
+          description: The last modification time of the hosted zone
+          type: string
+          format: date-time
+          example: "2023-03-06T18:14:50.52Z"
+        processor_id:
+          description: The processor ID assigned to the hosted zone
+          type: string
+          format: uuid
+          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+        explorers_concurrency:
+          description: The number of concurrent explorer tasks that can be executed
+          type: integer
+          format: int64
+          example: 0
+        explorers_total:
+          description: The number of explorers available in the zone
+          type: integer
+          format: int64
+          example: 0
+        tasks_active:
+          description: The number of tasks executing in the zone
+          type: integer
+          format: int64
+          example: 0
+        tasks_waiting:
+          description: The number of tasks waiting to execute in the zone
+          type: integer
+          format: int64
+          example: 0
+        organization_id:
+          description: The ID of the organization the hosted zone is assigned to
+          type: string
+          format: uuid
+          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
 
     License:
       type: object
