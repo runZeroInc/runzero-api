@@ -4276,6 +4276,7 @@ components:
           example: https://www.runzero.com/docs/
 
     ScanOptions:
+      description: Options which can be set to create or modify a scan.
       type: object
       required:
         - targets
@@ -4289,14 +4290,21 @@ components:
           type: string
           example: My Scan
         scan-description:
+          description: A description of the scan.
           type: string
           example: Scan of Wireless
+        scan-template:
+          type: string
+          format: uuid
+          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
         scan-frequency:
+          description: A string time duration value representing execution frequency, if scheduled to repeat.
           type: string
           enum: [once, hourly, daily, weekly, monthly, continuous]
+          example: hour
         scan-start:
+          description: Unix timestamp value indicating when the template was created.
           type: string
-          format: unixtime
           example: "0"
         scan-tags:
           type: string
@@ -4308,6 +4316,18 @@ components:
           type: string
           format: uuid
           example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+        explorer:
+          type: string
+          format: uuid
+          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+        hosted-zone-id:
+          type: string
+          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          description: The string 'auto' will use any available hosted zone. Otherwise, provide the string name (hostedzone1) or UUID (e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8) of a hosted zone.
+        hosted-zone-name:
+          type: string
+          example: auto
+          description: The string 'auto' will use any available hosted zone. Otherwise, provide the string name (hostedzone1) of the hosted zone.
         rate:
           type: string
           example: "10000"
@@ -4329,6 +4349,9 @@ components:
         max-ttl:
           type: string
           example: "255"
+        tos:
+          type: string
+          example: "255"
         tcp-ports:
           type: string
           example: "1-1000,5000-6000"
@@ -4347,12 +4370,20 @@ components:
         subnet-ping-net-size:
           type: string
           example: "256"
+        subnet-ping-probes:
+          type: string
+          description: Optional subnet ping probe list as comma separated strings. The example shows possibilities.
+          example: arp, echo, syn, connect, netbios, snmp, ntp, sunrpc, ike, openvpn, mdns
         subnet-ping-sample-rate:
           type: string
           example: "3"
         host-ping:
           type: string
           example: "false"
+        host-ping-probes:
+          type: string
+          description: Optional host ping probe list as comma separated strings. The example shows possibilities.
+          example: arp, echo, syn, connect, netbios, snmp, ntp, sunrpc, ike, openvpn, mdns
         probes:
           type: string
           description: Optional probe list, otherwise all probes are used
@@ -4360,130 +4391,211 @@ components:
         # Probe options are also supported with values like: dns-port: "53"
 
     ScanTemplateOptions:
+      description: Options which can be set to create a scan template.
       type: object
       required:
         - name
+        - organization_id
         - global
         - acl
       properties:
         name:
+          description: Name of the template.
           type: string
           example: My Scan Template
         description:
+          description: Description of the template.
           type: string
           example: My Scan Template
+        organization_id:
+          description: The ID of the organization the template will be created in
+          type: string
+          format: uuid
+          example: f6cfb91a-52ea-4a86-bf9a-5a891a26f52b
+          x-go-type: uuid.UUID
+          x-go-import:
+            name: uuid
+            path: github.com/gofrs/uuid
         params:
+          description: A number of scan parameter values. Currently there is no authoritative list of acceptable values. See existing templates for examples.
           type: object
           additionalProperties:
             type: string
         global:
+          description: Whether the template is globally available to all organizations.
           type: boolean
           example: false
         acl:
+          description: A map of IDs to strings which describe how the template may be accessed. Currently there is no authoritative list of acceptable values. See existing templates for examples.
           type: object
           additionalProperties: true
           example:
             e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8: user
 
     ScanTemplate:
+      description: A scan task template
       type: object
       required:
         - id
         - global
+        - organization_id
         - acl
       properties:
         id:
+          description: ID of the template.
           type: string
           format: uuid
           example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          x-go-type: uuid.UUID
+          x-go-import:
+            name: uuid
+            path: github.com/gofrs/uuid
+        name:
+          description: The name of the template.
+          type: string
+          example: My Scan Template
+        description:
+          description: The description of the template.
+          type: string
+          example: My Scan Template
         client_id:
+          description: ID of the account which owns the template.
           type: string
           format: uuid
           example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          x-go-type: uuid.UUID
+          x-go-import:
+            name: uuid
+            path: github.com/gofrs/uuid
         organization_id:
+          description: ID of the organization the template is available in.
           type: string
           format: uuid
           example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          x-go-type: uuid.UUID
+          x-go-import:
+            name: uuid
+            path: github.com/gofrs/uuid
         agent_id:
+          description: ID of the explorer which may execute the template.
           type: string
           format: uuid
           example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          x-go-type: uuid.UUID
+          x-go-import:
+            name: uuid
+            path: github.com/gofrs/uuid
         site_id:
+          description: ID of the site the template is being used in.
           type: string
           format: uuid
           example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          x-go-type: uuid.UUID
+          x-go-import:
+            name: uuid
+            path: github.com/gofrs/uuid
         cruncher_id:
+          description: ID of the runZero cruncher the task is executing on.
           type: string
           format: uuid
           example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          x-go-type: uuid.UUID
+          x-go-import:
+            name: uuid
+            path: github.com/gofrs/uuid
         created_at:
+          description: Unix timestamp value indicating when the template was created.
           type: integer
           format: int64
           example: 1576300370
         created_by:
+          description: The username of the account which created the template.
           type: string
-          format: email
           example: user@example.com
         created_by_user_id:
+          description: The ID of the account which created the template.
           type: string
           format: uuid
           example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          x-go-type: uuid.UUID
+          x-go-import:
+            name: uuid
+            path: github.com/gofrs/uuid
         updated_at:
+          description: Unix timestamp value indicating when the template was last modified.
           type: integer
           format: int64
           example: 1576300370
         type:
+          description: The type of task the template creates.
           type: string
           example: scan
         status:
+          description: The status of the last task using the template.
           type: string
           example: processed
         error:
+          description: The error message, if any, of the last task using the template.
           type: string
           example: agent unavailable
         params:
+          description: A number of task parameter values. Currently there is no authoritative list of in-use values. See existing templates for examples.
           type: object
           additionalProperties:
             type: string
         stats:
+          description: A map of statistics about the last task executed with the template. Currently there is no authoritative list of in-use values. See existing templates for examples.
           type: object
           additionalProperties: true
         hidden:
+          description: A flag indicating whether the item is hidden from common view.
           type: boolean
           example: false
         parent_id:
+          description: The ID of the parent entity of the task scheduled.
           type: string
           format: uuid
           example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          x-go-type: uuid.UUID
+          x-go-import:
+            name: uuid
+            path: github.com/gofrs/uuid
         recur:
+          description: A flag representing whether derived tasks are scheduled to repeat.
           type: boolean
           example: false
         recur_frequency:
+          description: |
+            A string time duration value representing execution frequency, if scheduled to repeat. You may use
+            values including as once, hourly, daily, weekly, monthly, continuous
           type: string
-          example: hour
+          example: hourly
         start_time:
+          description: Unix timestamp representing the next execution time.
           type: integer
           format: int64
           example: 1576300370
         recur_last:
+          description: Unix timestamp representing the last execution if scheduled to repeat.
           type: integer
           format: int64
           example: 1576300370
         recur_next:
+          description: Unix timestamp representing the next execution if scheduled to repeat.
           type: integer
           format: int64
           example: 1576300370
         recur_last_task_id:
+          description: The ID of the task that last executed if scheduled to repeat.
           type: string
           format: uuid
           example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
-        name:
-          type: string
-          example: My Scan Template
-        description:
-          type: string
-          example: My Scan Template
+          x-go-type: uuid.UUID
+          x-go-import:
+            name: uuid
+            path: github.com/gofrs/uuid
         grace_period:
+          description: Additional time beyond hard expiration deadline by which the task may still be allowed to execute.
           type: string
           example: "4"
         custom_integration_id:
@@ -4496,36 +4608,62 @@ components:
             name: uuid
             path: github.com/gofrs/uuid
         source_id:
+          description: The numeric ID of the data source, if the task executed with this template is a runZero scan or third party data connection import.
           type: string
           example: "1"
-        template_id:
+        custom_integration_id:
+          description: The ID of the custom integration source, if the last task executed with this template was an import of Asset Data.
           type: string
           format: uuid
           example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          x-go-type: uuid.UUID
+          x-go-import:
+            name: uuid
+            path: github.com/gofrs/uuid
+        template_id:
+          description: The ID of the template.
+          type: string
+          format: uuid
+          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          x-go-type: uuid.UUID
+          x-go-import:
+            name: uuid
+            path: github.com/gofrs/uuid
         size_site:
+          description: The size in assets of the site the last task the template was executed against.
           type: integer
           format: int64
           example: 0
         size_data:
+          description: The total size of result data of the last task the template was used with.
           type: integer
           format: int64
           example: 0
         size_results:
+          description: The number of results in the last task the template was used with.
           type: integer
           format: int64
           example: 0
         hosted_zone_id:
+          description: The ID of the hosted zone that ran the last task the template was used with.
           type: string
           format: uuid
           example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          x-go-type: uuid.UUID
+          x-go-import:
+            name: uuid
+            path: github.com/gofrs/uuid
         linked_task_count:
+          description: The number of tasks derived from the template.
           type: integer
           format: int32
           example: 1
         global:
+          description: Whether the template is globally available to all organizations.
           type: boolean
           example: false
         acl:
+          description: A map of IDs to strings which describe how the template may be accessed. Currently there is no authoritative list of in-use values. See existing templates for examples.
           type: object
           additionalProperties: true
           example:
@@ -5580,6 +5718,10 @@ components:
           type: string
           format: uuid
           example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          x-go-type: uuid.UUID
+          x-go-import:
+            name: uuid
+            path: github.com/gofrs/uuid
         created_at:
           type: integer
           format: int64
@@ -5592,6 +5734,10 @@ components:
           type: string
           format: uuid
           example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          x-go-type: uuid.UUID
+          x-go-import:
+            name: uuid
+            path: github.com/gofrs/uuid
         download_token:
           type: string
           example: DT11226D9EEEA2B035D42569585900
