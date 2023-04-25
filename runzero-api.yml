@@ -1311,7 +1311,7 @@ paths:
         - Organization
       operationId: getExplorers
       summary: Get all explorers
-      description: Get all explorers. This is the same call as legacy path, /org/agents
+      description: Get all explorers. This is the same call as legacy path /org/agents
       responses:
         '200':
           description: array of agents
@@ -1332,7 +1332,7 @@ paths:
         - Organization
       operationId: getExplorer
       summary: Get details for a single explorer.
-      description: Get details for a single explorer. This is the same call as legacy path, /org/agents/{agent_id}
+      description: Get details for a single explorer. This is the same call as legacy path /org/agents/{agent_id}
       parameters:
         - in: path
           name: explorer_id
@@ -1357,7 +1357,7 @@ paths:
         - Organization
       operationId: removeExplorer
       summary: Remove and uninstall an explorer
-      description: Remove and uninstall an explorer. This is the same call as legacy path, /org/agents/{agent_id}
+      description: Remove and uninstall an explorer. This is the same call as legacy path /org/agents/{agent_id}
       parameters:
         - in: path
           name: explorer_id
@@ -1378,7 +1378,7 @@ paths:
         - Organization
       operationId: updateExplorerSite
       summary: Update the site associated with the explorer
-      description: Update the site associated with the explorer. This is the same call as legacy path, /org/agents/{agent_id}
+      description: Update the site associated with the explorer. This is the same call as legacy path /org/agents/{agent_id}
       parameters:
         - in: path
           name: explorer_id
@@ -1414,7 +1414,7 @@ paths:
         - Organization
       operationId: upgradeExplorer
       summary: Force an explorer to update and restart
-      description: Force an explorer to update and restart. This is the same call as legacy path, /org/agents/{agent_id}/update
+      description: Force an explorer to update and restart. This is the same call as legacy path /org/agents/{agent_id}/update
       parameters:
         - in: path
           name: explorer_id
@@ -6954,7 +6954,6 @@ components:
         hidden:
           type: boolean
           example: true
-
 
     AssetOwnershipTypePost:
       type: object
