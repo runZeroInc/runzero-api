@@ -12,13 +12,17 @@ info:
     name: Commercial
     url: 'https://www.runzero.com/legal/terms'
 tags:
+  - name: Account
+    description: Requires Account key (starts with CT), or OAuth
   - name: Organization
-    description: Requires Organization Key
+    description: Requires Organization key (starts with OT), Account key (starts with CT), or OAuth
   - name: Export
-    description: Requires Export Token or Organization Key
+    description: Requires Export token (starts with ET), Organization key (starts with OT), Account key (starts with CT), or OAuth
+  - name: Import
+    description: Requires Organization key (starts with OT), Account key (starts with CT), or OAuth
   - name: Public
     description: Unauthenticated
-    
+
 security:
   - bearerAuth: []
   - oauthDefaults: []
@@ -84,6 +88,56 @@ paths:
               schema:
                 $ref: '#/components/schemas/HealthCheckResponse'
 
+  /import/org/{orgId}/assets:
+    post:
+      parameters:
+        - name: orgId
+          in: path
+          description: The unique ID of the organization that the assets will be imported into.
+          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          required: true
+          schema:
+            type: string
+            format: uuid
+            x-go-type: uuid.UUID
+            x-go-type-import:
+              path: github.com/gofrs/uuid
+      tags:
+        - Organization
+        - Import
+      operationId: importCustomIntegrationAssets
+      summary: Import assets described by a registered custom integration
+      description: |
+        Assets can be discovered, imported, and merged by runZero scan tasks, first-party integrations, and third-party
+        defined custom integrations. See [/account/custom-integrations](#/account/getAccountCustomIntegrations). Currently only assets for custom integrations are importable here.
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/NewAssetImport'
+            encoding:
+              assetData:
+                contentType: application/gzip
+      responses:
+        '200':
+          description: import task created. The task ID should be checked for its status.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+        '400':
+          $ref: '#/components/responses/InvalidRequestBodyError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/NotAllowedForLicenseError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+        '422':
+          $ref: '#/components/responses/InvalidRequestBodyError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
 
   /export/org/assets.json:
     parameters:
@@ -261,7 +315,7 @@ paths:
         '200':
           description: filtered service results
           content:
-          # This is a streaming response of one Service object per line in JSON format
+            # This is a streaming response of one Service object per line in JSON format
             application/json:
               schema:
                 type: string
@@ -354,7 +408,7 @@ paths:
         '200':
           description: all sites
           content:
-          # This is a streaming response of one Site object per line in JSON format
+            # This is a streaming response of one Site object per line in JSON format
             application/json:
               schema:
                 type: string
@@ -440,7 +494,7 @@ paths:
         '200':
           description: filtered wireless results
           content:
-          # This is a streaming response of one Wireless object per line in JSON format
+            # This is a streaming response of one Wireless object per line in JSON format
             application/json:
               schema:
                 type: string
@@ -1467,7 +1521,7 @@ paths:
         content:
           text/json:
             schema:
-               $ref: '#/components/schemas/ScanOptions'
+              $ref: '#/components/schemas/ScanOptions'
       responses:
         '200':
           description: a created scan task
@@ -1759,13 +1813,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Asset'
-        '400': 
+        '400':
           $ref: '#/components/responses/InvalidRequestBodyError'
         '403':
           $ref: '#/components/responses/NotAllowedForLicenseError'
         '404':
           $ref: '#/components/responses/NotFoundError'
-        '500': 
+        '500':
           $ref: '#/components/responses/InternalServerError'
 
   /org/assets/bulk/owners:
@@ -1784,7 +1838,7 @@ paths:
             schema:
               $ref: '#/components/schemas/AssetOwnershipsWithSearch'
       responses:
-        '200': 
+        '200':
           description: updated asset count
           content:
             application/json:
@@ -1794,18 +1848,18 @@ paths:
                   updated_asset_count:
                     type: integer
                     example: 10
-        '400': 
+        '400':
           $ref: '#/components/responses/InvalidRequestBodyError'
         '403':
           $ref: '#/components/responses/NotAllowedForLicenseError'
         '404':
           $ref: '#/components/responses/NotFoundError'
-        '500': 
+        '500':
           $ref: '#/components/responses/InternalServerError'
 
   /org/assets/bulk/clearOwners:
     parameters:
-        - $ref: '#/components/parameters/orgID'
+      - $ref: '#/components/parameters/orgID'
     post:
       tags:
         - Organization
@@ -1819,7 +1873,7 @@ paths:
             schema:
               $ref: '#/components/schemas/Search'
       responses:
-        '200': 
+        '200':
           description: updated asset count
           content:
             application/json:
@@ -1829,11 +1883,63 @@ paths:
                   updated_asset_count:
                     type: integer
                     example: 10
-        '400': 
+        '400':
           $ref: '#/components/responses/InvalidRequestBodyError'
         '403':
           $ref: '#/components/responses/NotAllowedForLicenseError'
-        '500': 
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /org/custom-integrations:
+    get:
+      tags:
+        - Org
+      operationId: getOrgCustomIntegrations
+      summary: Get all custom integrations
+      responses:
+        '200':
+          description: An array of all custom integrations
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomIntegration'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/NotAllowedForLicenseError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /org/custom-integrations/{customIntegrationId}:
+    parameters:
+      - in: path
+        name: customIntegrationId
+        schema:
+          type: string
+          format: uuid
+        required: true
+        description: UUID of the custom integration
+    get:
+      tags:
+        - Org
+      operationId: getOrgCustomIntegration
+      summary: Get single custom integration
+      responses:
+        '200':
+          description: The custom integration with given ID
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomIntegration'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/NotAllowedForLicenseError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+        '500':
           $ref: '#/components/responses/InternalServerError'
 
   /org/services:
@@ -3276,7 +3382,7 @@ paths:
           $ref: '#/components/responses/UnauthorizedError'
         '403':
           $ref: '#/components/responses/NotAllowedForLicenseError'
-        '500': 
+        '500':
           $ref: '#/components/responses/InternalServerError'
     post:
       tags:
@@ -3290,7 +3396,7 @@ paths:
           application/json:
             schema:
               type: array
-              items: 
+              items:
                 $ref: '#/components/schemas/AssetOwnershipTypePost'
       responses:
         '200':
@@ -3311,7 +3417,7 @@ paths:
           $ref: '#/components/responses/NotFoundError'
         '422':
           $ref: '#/components/responses/InvalidRequestBodyError'
-        '500': 
+        '500':
           $ref: '#/components/responses/InternalServerError'
     put:
       tags:
@@ -3325,7 +3431,7 @@ paths:
           application/json:
             schema:
               type: array
-              items: 
+              items:
                 $ref: '#/components/schemas/AssetOwnershipType'
       responses:
         '200':
@@ -3336,7 +3442,7 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/AssetOwnershipType'
-        '400': 
+        '400':
           $ref: '#/components/responses/InvalidRequestBodyError'
         '401':
           $ref: '#/components/responses/UnauthorizedError'
@@ -3346,9 +3452,9 @@ paths:
           $ref: '#/components/responses/NotFoundError'
         '422':
           $ref: '#/components/responses/InvalidRequestBodyError'
-        '500': 
+        '500':
           $ref: '#/components/responses/InternalServerError'
-    delete:  
+    delete:
       tags:
         - Account
       operationId: deleteAccountAssetOwnershipTypes
@@ -3372,7 +3478,7 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/AssetOwnershipType'
-        '400': 
+        '400':
           $ref: '#/components/responses/InvalidRequestBodyError'
         '401':
           $ref: '#/components/responses/UnauthorizedError'
@@ -3380,7 +3486,7 @@ paths:
           $ref: '#/components/responses/NotAllowedForLicenseError'
         '404':
           $ref: '#/components/responses/NotFoundError'
-        '500': 
+        '500':
           $ref: '#/components/responses/InternalServerError'
 
   /account/assets/ownership-types/{ownership_type_id}:
@@ -3410,7 +3516,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AssetOwnershipType'
-        '400': 
+        '400':
           $ref: '#/components/responses/InvalidRequestBodyError'
         '401':
           $ref: '#/components/responses/UnauthorizedError'
@@ -3420,7 +3526,7 @@ paths:
           $ref: '#/components/responses/NotFoundError'
         '422':
           $ref: '#/components/responses/InvalidRequestBodyError'
-        '500': 
+        '500':
           $ref: '#/components/responses/InternalServerError'
     delete:
       tags:
@@ -3444,7 +3550,175 @@ paths:
           $ref: '#/components/responses/NotFoundError'
         '422':
           $ref: '#/components/responses/InvalidRequestBodyError'
-        '500': 
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /account/custom-integrations:
+    get:
+      tags:
+        - Account
+      operationId: getAccountCustomIntegrations
+      summary: Get all custom integrations
+      responses:
+        '200':
+          description: An array of all custom integrations
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomIntegration'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/NotAllowedForLicenseError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+    post:
+      tags:
+        - Account
+      operationId: createAccountCustomIntegration
+      summary: Create a new custom integration
+      requestBody:
+        required: true
+        description: The description of the custom integration
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NewCustomIntegration"
+      responses:
+        '200':
+          description: The custom integration created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomIntegration'
+        '400':
+          $ref: '#/components/responses/InvalidRequestBodyError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/NotAllowedForLicenseError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+        '422':
+          $ref: '#/components/responses/InvalidRequestBodyError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /account/custom-integrations/{customIntegrationId}:
+    parameters:
+      - in: path
+        name: customIntegrationId
+        schema:
+          type: string
+          format: uuid
+        required: true
+        description: UUID of the custom integration
+    get:
+      tags:
+        - Account
+      operationId: getAccountCustomIntegration
+      summary: Get single custom integration
+      responses:
+        '200':
+          description: The custom integration with given ID
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomIntegration'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/NotAllowedForLicenseError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+    patch:
+      tags:
+        - Account
+      operationId: updateAccountCustomIntegration
+      summary: Update a single custom integration
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BaseCustomIntegration'
+      responses:
+        '200':
+          description: The updated custom integration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomIntegration'
+        '400':
+          $ref: '#/components/responses/InvalidRequestBodyError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/NotAllowedForLicenseError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+        '422':
+          $ref: '#/components/responses/InvalidRequestBodyError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+    put:
+      tags:
+        - Account
+      operationId: createAccountCustomIntegrationAndID
+      summary: Replace custom integration at provided ID
+      requestBody:
+        required: true
+        description: single custom integration type
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewCustomIntegration'
+      responses:
+        '200':
+          description: The updated custom integration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomIntegration'
+        '400':
+          $ref: '#/components/responses/InvalidRequestBodyError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/NotAllowedForLicenseError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+        '422':
+          $ref: '#/components/responses/InvalidRequestBodyError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+    delete:
+      tags:
+        - Account
+      operationId: deleteAccountCustomIntegration
+      summary: Delete an custom integration
+      responses:
+        '200':
+          description: The deleted custom integration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomIntegration'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/NotAllowedForLicenseError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+        '500':
           $ref: '#/components/responses/InternalServerError'
 
   /export/org/assets/sync/created/assets.json:
@@ -3633,23 +3907,84 @@ components:
   responses:
     UnauthorizedError:
       description: Access token is missing or invalid
+      content:
+        application/problem+json:
+          schema:
+            $ref: "#/components/schemas/Problem"
     LicenseExpiredError:
       description: License has expired
+      content:
+        application/problem+json:
+          schema:
+            $ref: "#/components/schemas/Problem"
     ProcessingError:
       description: Request could not be processed
+      content:
+        application/problem+json:
+          schema:
+            $ref: "#/components/schemas/Problem"
     NotFoundError:
       description: Resource not found
+      content:
+        application/problem+json:
+          schema:
+            $ref: "#/components/schemas/Problem"
     InternalServerError:
       description: Unexpected error occurred on the server
-    StatusMessage:
-      description: Summary of operation results
+      content:
+        application/problem+json:
+          schema:
+            $ref: "#/components/schemas/Problem"
     NotAllowedForLicenseError:
       description: Action not allowed for this license type
+      content:
+        application/problem+json:
+          schema:
+            $ref: "#/components/schemas/Problem"
     InvalidRequestBodyError:
       description: Invalid request body
+      content:
+        application/problem+json:
+          schema:
+            $ref: "#/components/schemas/Problem"
+    StatusMessage:
+      description: Summary of operation results
+
   schemas:
     StatusMessage:
       type: object
+
+    Problem:
+      description: >
+        RFC7807 Problem JSON object from https://opensource.zalando.com/restful-api-guidelines/models/problem-1.0.1.yaml
+        without the standard 'type' and 'instance' fields.
+      type: object
+      properties:
+        title:
+          type: string
+          description: >
+            A short summary of the problem type. Written in English and readable
+            for engineers, usually not suited for non technical stakeholders and
+            not localized.
+          example: some title for the error situation
+        status:
+          type: integer
+          format: int32
+          description: >
+            The HTTP status code generated by the origin server for this occurrence
+            of the problem.
+          minimum: 100
+          maximum: 600
+          exclusiveMaximum: true
+        detail:
+          type: string
+          description: >
+            A human readable explanation specific to this occurrence of the
+            problem that is helpful to locate the problem and give advice on how
+            to proceed. Written in English and readable for engineers, usually not
+            suited for non technical stakeholders and not localized.
+          example: some description for the error situation
+
     MiradoreCredentialFields:
       type: object
       required:
@@ -4101,6 +4436,15 @@ components:
         grace_period:
           type: string
           example: "4"
+        custom_integration_id:
+          description: The ID of the custom integration source, if the last task executed with this template was an import of Asset Data.
+          type: string
+          format: uuid
+          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          x-go-type: uuid.UUID
+          x-go-import:
+            name: uuid
+            path: github.com/gofrs/uuid
         source_id:
           type: string
           example: "1"
@@ -4355,7 +4699,7 @@ components:
           example: Ubuntu Linux
         os_version:
           type: string
-          example: 18.04
+          example: "18.04"
         hw:
           type: string
           example: Dell PowerEdge 2500
@@ -5394,7 +5738,7 @@ components:
           example: CTXXXXXXXXXXXXX
         inactive:
           type: boolean
-          example: tue
+          example: true
         type:
           type: string
           example: org
@@ -5874,10 +6218,9 @@ components:
         org_roles:
           type: object
           additionalProperties: true
-          example: {
-            "1a5e612e-4d64-45fe-aa3e-afba5cf3b9bf": "viewer",
-            "fd6d6662-732b-4c4b-8331-051178994384": "admin"
-          }
+          example:
+            1a5e612e-4d64-45fe-aa3e-afba5cf3b9bf: viewer,
+            fd6d6662-732b-4c4b-8331-051178994384: admin
 
     GroupPut:
       type: object
@@ -5902,10 +6245,9 @@ components:
         org_roles:
           type: object
           additionalProperties: true
-          example: {
-            "1a5e612e-4d64-45fe-aa3e-afba5cf3b9bf": "viewer",
-            "fd6d6662-732b-4c4b-8331-051178994384": "admin"
-          }
+          example:
+            1a5e612e-4d64-45fe-aa3e-afba5cf3b9bf: viewer,
+            fd6d6662-732b-4c4b-8331-051178994384: admin
 
     GroupMapping:
       type: object
@@ -6125,7 +6467,7 @@ components:
         - id
         - name
       properties:
-        id: 
+        id:
           type: string
           format: uuid
           example: f6cfb91a-52ea-4a86-bf9a-5a891a26f52b
@@ -6143,7 +6485,7 @@ components:
         hidden:
           type: boolean
           example: true
-        
+
     AssetOwnershipTypePost:
       type: object
       required:
@@ -6167,15 +6509,15 @@ components:
     AssetOwnerships:
       type: object
       properties:
-        ownerships: 
+        ownerships:
           type: array
-          items: 
+          items:
             type: object
-            properties: 
-              ownership_type_id: 
+            properties:
+              ownership_type_id:
                 type: string
                 example: 2318e078-4164-4e1b-92a5-11e353093f4b
-              owner: 
+              owner:
                 type: string
                 example: "it@runzero.com"
 
@@ -6188,14 +6530,300 @@ components:
         search:
           type: string
           example: alive:true and os:windows
-        ownerships: 
+        ownerships:
           type: array
-          items: 
+          items:
             type: object
-            properties: 
-              ownership_type_id: 
+            properties:
+              ownership_type_id:
                 type: string
                 example: 2318e078-4164-4e1b-92a5-11e353093f4b
-              owner: 
+              owner:
                 type: string
                 example: "it@runzero.com"
+
+    BaseResponse:
+      description: Minimal identifying information with lifecycle metadata
+      type: object
+      required:
+        - id
+        - clientId
+        - createdAt
+        - createdById
+        - updatedAt
+      properties:
+        id:
+          description: The unique ID of the object
+          type: string
+          format: uuid
+          example: f6cfb91a-52ea-4a86-bf9a-5a891a26f52b
+          x-go-type: uuid.UUID
+          x-go-import:
+            name: uuid
+            path: github.com/gofrs/uuid
+        clientId:
+          description: The unique ID of the runZero client/customer account that owns the object
+          type: string
+          format: uuid
+          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          x-go-type: uuid.UUID
+          x-go-import:
+            name: uuid
+            path: github.com/gofrs/uuid
+        createdById:
+          description: The unique ID of the entity that created the object
+          type: string
+          format: uuid
+          example: f6cfb91a-52ea-4a86-bf9a-5a891a26f52b
+          x-go-type: uuid.UUID
+          x-go-import:
+            name: uuid
+            path: github.com/gofrs/uuid
+        createdAt:
+          description: A timestamp indicating creation time of the object
+          type: string
+          format: date-time
+          example: "2023-03-06T18:14:50.52Z"
+        updatedAt:
+          description: A timestamp indicating last modified time of the object
+          type: string
+          format: date-time
+          example: "2023-03-06T18:14:50.52Z"
+        destroyedAt:
+          description: A timestamp indicating deletion time of the object
+          type: string
+          format: date-time
+          example: "2023-03-06T18:14:50.52Z"
+
+    BaseCustomIntegration:
+      type: object
+      properties:
+        name:
+          description: The unique name of the custom integration, without spaces.
+          pattern: '^\S+$'
+          type: string
+          example: my-custom-integration
+        icon:
+          description: Base64 encoded png with maximum size 256x256 pixels
+          type: string
+          format: byte
+          example: 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
+        description:
+          description: A text description of the custom integration
+          type: string
+          example: My custom integration description.
+
+    CustomIntegration:
+      required:
+        - name
+      allOf:
+        - $ref: "#/components/schemas/BaseCustomIntegration"
+        - $ref: "#/components/schemas/BaseResponse"
+
+    NewCustomIntegration:
+      required:
+        - name
+      allOf:
+        - $ref: "#/components/schemas/BaseCustomIntegration"
+
+    NewAssetImport:
+      description: |
+        Represents a request to import asset data described by the specified custom integration into the specified site.
+
+        Assets will be created new or merged according to merge rules defined by the version of the platform
+        you are uploading the asset data file to. Typically, this involves matching network and other unique
+        single or grouped properties.
+
+        There is a maximum of 256 custom asset properties that can be applied to any asset. This means
+        that, aside from the per-import asset property limit set on ImportAsset, if a new import sets
+        different custom properties on the same asset, the new properties are combined with the
+        pre-existing ones.
+
+      type: object
+      required:
+        - assetData
+        - siteId
+        - customIntegrationId
+        - importTask
+      properties:
+        siteId:
+          description: The ID of the site assets are to be imported into.
+          type: string
+          format: uuid
+          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          x-go-type: uuid.UUID
+          x-go-import:
+            name: uuid
+            path: github.com/gofrs/uuid
+        customIntegrationId:
+          description: The unique ID of the registered custom integration which produced the asset data. Uniqueness is not checked/enforced. See /account/custom-integrations api.
+          type: string
+          format: uuid
+          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          x-go-type: uuid.UUID
+          x-go-import:
+            name: uuid
+            path: github.com/gofrs/uuid
+        runZeroId:
+          description: The unique ID of the runZero asset to force a merge onto. It is not necessary to provide this data, merging will work according to typical runZero merge rules otherwise.
+          type: string
+          format: uuid
+          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          x-go-type: uuid.UUID
+          x-go-import:
+            name: uuid
+            path: github.com/gofrs/uuid
+
+        importTask:
+          title: ImportTask
+          description: Information which describes the task created when asset data is imported.
+          type: object
+          required:
+            - name
+          properties:
+            name:
+              type: string
+              maxLength: 100
+              example: "my import task"
+            description:
+              type: string
+              maxLength: 1024
+              example: "importing assets from custom integration A"
+            tags:
+              description: Arbitrary string tag values which are applied to the asset data import task created.
+              type: array
+              maxItems: 100
+              items:
+                type: string
+                maxLength: 1024
+              example: [ "tag1", "tag2" ]
+        assetData:
+          description: |
+            A gzip (not .tar.gz) compressed file containing ImportAsset objects. The file data may be a JSON array of
+            ImportAsset objects, e.g. [{},{},...] or JSONL format, with a single JSON representation of an ImportAsset
+            object on each new line, e.g. {}\n{}\n...
+          type: string
+          format: binary
+
+    ImportAsset:
+      description: Represents a custom asset to be created or merged after import.
+      type: object
+      required:
+        - id
+      properties:
+        id:
+          description: Any value which can uniquely identify the asset within the custom integration.
+          maxLength: 1024
+          type: string
+        runZeroID:
+          description: The unique identifier of the runZero asset to merge into.
+          type: string
+          format: uuid
+          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          x-go-type: uuid.UUID
+          x-go-import:
+            name: uuid
+            path: github.com/gofrs/uuid
+        networkInterfaces:
+          title: NetworkInterfaces
+          description: The asset's networking configuration.
+          type: array
+          maxItems: 256
+          items:
+            type: object
+            properties:
+              ipv4Addresses:
+                description: Represents IPV4 addresses. Addresses are ordered from most to least likely to uniquely identify the asset.
+                type: array
+                maxItems: 256
+                items:
+                  type: string
+                  format: ipv4
+              ipv6Addresses:
+                description: Represents the IPV6 addresses. Addresses are ordered from most to least likely to uniquely identify the asset.
+                type: array
+                maxItems: 100
+                items:
+                  type: string
+                  format: ipv6
+              macAddress:
+                description: |
+                  Represents a MAC address in IEEE 802 MAC/EUI-48, or EUI-64 form in one of the following formats:
+                    01:23:45:67:89:AB
+                    01:23:45:67:89:ab:cd:ef
+                    01-23-45-67-89-ab
+                    01-23-45-67-89-ab-cd-ef
+                    0123.4567.89ab
+                    0123.4567.89ab.cdef
+                    0123 4567 89ab cdEF
+                type: string
+                maxLength: 23
+                example: "01:23:45:67:89:0A"
+                pattern: "^([A-Fa-f0-9]{2}:){5}[A-Fa-f0-9]{2}$|\
+                          ^([A-Fa-f0-9]{2}:){7}[A-Fa-f0-9]{2}$|\
+                          ^([A-Fa-f0-9]{2}-){5}[A-Fa-f0-9]{2}$|\
+                          ^([A-Fa-f0-9]{2}-){7}[A-Fa-f0-9]{2}$|\
+                          ^([A-Fa-f0-9]{4}\\.){2}[A-Fa-f0-9]{4}$|\
+                          ^([A-Fa-f0-9]{4}\\.){3}[A-Fa-f0-9]{4}$|\
+                          ^([A-Fa-f0-9]{4} ){3}[A-Fa-f0-9]{4}$"
+
+        hostnames:
+          description: Represents hostnames the asset is assigned or reachable at. These can be fully-qualified hostnames with the domain name, or a short hostname.
+          type: array
+          maxItems: 100
+          items:
+            type: string
+            maxLength: 260
+            example: "host.domain.com"
+        domain:
+          description: Represents a single domain name which could be applied to all non-fqdns in the hostnames field.
+          type: string
+          maxLength: 260
+          example: "domain.com"
+        firstSeenTS:
+          description: Represents the earliest time the asset was seen by the custom integration reporting it, using a date string as defined by RFC 3339, section 5.6.
+          type: string
+          format: date-time
+          example: "2023-03-06T18:14:50.52Z"
+        os:
+          description: The name of the asset's operating system. It is advisable to keep the data clean by normalizing to existing values when possible.
+          type: string
+          maxLength: 1024
+          example: "Ubuntu Linux 22.04"
+        osVersion:
+          description: The version of the asset's operating system. It is advisable to keep the data clean by normalizing to existing values when possible.
+          type: string
+          maxLength: 1024
+          example: "22.04"
+        manufacturer:
+          description: The manufacturer of the operating system of the asset. It is advisable to keep the data clean by normalizing to existing values when possible.
+          type: string
+          maxLength: 1024
+          example: "Apple Inc."
+        model:
+          description: The hardware model of the asset. It is advisable to keep the data clean by normalizing to existing values when possible.
+          type: string
+          maxLength: 1024
+          example: "Macbook Air"
+        tags:
+          description: Arbitrary string tags applied to the asset.
+          type: array
+          maxItems: 100
+          items:
+            type: string
+            maxLength: 1024
+          example: ["foo", "key=value"]
+        deviceType: # TODO: an enum might make better sense here in place of allowing an arbitrary string?
+          type: string
+          maxLength: 1024
+          example: "Desktop"
+        customAttributes:
+          title: CustomAttributes
+          description: Flat map of arbitrary string key/value pairs representing custom attribute data not described in properties above. Note the maximum number of keys and length of values.
+            Additionally, property names may only be 256 characters long.
+          type: object
+          maxProperties: 1024
+          additionalProperties:
+            anyOf:
+              - type: string
+                maxLength: 1024
