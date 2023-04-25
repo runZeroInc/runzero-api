@@ -4739,15 +4739,6 @@ components:
           description: The numeric ID of the data source, if the task executed with this template is a runZero scan or third party data connection import.
           type: string
           example: "1"
-        custom_integration_id:
-          description: The ID of the custom integration source, if the last task executed with this template was an import of Asset Data.
-          type: string
-          format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
-          x-go-type: uuid.UUID
-          x-go-import:
-            name: uuid
-            path: github.com/gofrs/uuid
         template_id:
           description: The ID of the template.
           type: string
