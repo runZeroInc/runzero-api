@@ -13,13 +13,13 @@ info:
     url: 'https://www.runzero.com/legal/terms'
 tags:
   - name: Account
-    description: Requires Account Key starting with CT or OAuth
+    description: Requires Account key (starts with CT), or OAuth
   - name: Organization
-    description: Requires Organization Key starting with OT, Account Key, or OAuth
+    description: Requires Organization key (starts with OT), Account key (starts with CT), or OAuth
   - name: Export
-    description: Requires Export Token starting with ET, Account Key, or Organization Key
+    description: Requires Export token (starts with ET), Organization key (starts with OT), Account key (starts with CT), or OAuth
   - name: Import
-    description: Requires Account Key, Organization Key, or OAuth
+    description: Requires Organization key (starts with OT), Account key (starts with CT), or OAuth
   - name: Public
     description: Unauthenticated
 
