@@ -7124,15 +7124,6 @@ components:
           x-go-import:
             name: uuid
             path: github.com/gofrs/uuid
-        runZeroId:
-          description: The unique ID of the runZero asset to force a merge onto. It is not necessary to provide this data, merging will work according to typical runZero merge rules otherwise.
-          type: string
-          format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
-          x-go-type: uuid.UUID
-          x-go-import:
-            name: uuid
-            path: github.com/gofrs/uuid
 
         importTask:
           title: ImportTask
