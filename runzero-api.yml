@@ -4,7 +4,7 @@ servers:
     url: https://console.runzero.com/api/v1.0
 info:
   description: runZero API. API use is rate limited, you can make as many calls per day as you have licensed assets.
-  version: 3.7.6
+  version: 3.7.7
   title: runZero API
   contact:
     email: support@runzero.com
@@ -2450,7 +2450,7 @@ paths:
       tags:
         - Organization
       operationId: stopTask
-      summary: Signal that a task should be stopped or canceledThis will also remove recurring and scheduled tasks
+      summary: Signal that a task should be stopped or canceled.This will also remove recurring and scheduled tasks
       parameters:
         - in: path
           name: task_id
