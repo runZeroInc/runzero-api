@@ -4086,43 +4086,43 @@ components:
     UnauthorizedError:
       description: Access token is missing or invalid
       content:
-        application/problem+json:
+        application/json:
           schema:
             $ref: "#/components/schemas/Problem"
     LicenseExpiredError:
       description: License has expired
       content:
-        application/problem+json:
+        application/json:
           schema:
             $ref: "#/components/schemas/Problem"
     ProcessingError:
       description: Request could not be processed
       content:
-        application/problem+json:
+        application/json:
           schema:
             $ref: "#/components/schemas/Problem"
     NotFoundError:
       description: Resource not found
       content:
-        application/problem+json:
+        application/json:
           schema:
             $ref: "#/components/schemas/Problem"
     InternalServerError:
       description: Unexpected error occurred on the server
       content:
-        application/problem+json:
+        application/json:
           schema:
             $ref: "#/components/schemas/Problem"
     NotAllowedForLicenseError:
       description: Action not allowed for this license type
       content:
-        application/problem+json:
+        application/json:
           schema:
             $ref: "#/components/schemas/Problem"
     InvalidRequestBodyError:
       description: Invalid request body
       content:
-        application/problem+json:
+        application/json:
           schema:
             $ref: "#/components/schemas/Problem"
     StatusMessage:
@@ -4144,7 +4144,7 @@ components:
             A short summary of the problem type. Written in English and readable
             for engineers, usually not suited for non technical stakeholders and
             not localized.
-          example: some title for the error situation
+          example: A short summary of the problem type.
         status:
           type: integer
           format: int32
@@ -4161,7 +4161,7 @@ components:
             problem that is helpful to locate the problem and give advice on how
             to proceed. Written in English and readable for engineers, usually not
             suited for non technical stakeholders and not localized.
-          example: some description for the error situation
+          example: A human readable explanation specific to this occurrence of the problem.
 
     MiradoreCredentialFields:
       type: object
