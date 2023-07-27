@@ -1679,6 +1679,44 @@ paths:
         '500':
           $ref: '#/components/responses/ProcessingError'
 
+  /org/sites/{site_id}/import/packet:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
+    put:
+      tags:
+        - Organization
+      operationId: importPacketScanData
+      summary: Import a packet capture file into a site
+      parameters:
+        - in: path
+          name: site_id
+          schema:
+            type: string
+            format: uuid
+          required: true
+          description: UUID or name of the site to import packet capture into
+      requestBody:
+        content:
+          application/octet-stream:
+            schema:
+              type: string
+              format: binary
+      responses:
+        '200':
+          description: import task
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/LicenseExpiredError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+        '500':
+          $ref: '#/components/responses/ProcessingError'
+
   /org/sites/{site_id}/scan:
     parameters:
       - $ref: '#/components/parameters/orgID'
@@ -1700,6 +1738,43 @@ paths:
           text/json:
             schema:
               $ref: '#/components/schemas/ScanOptions'
+      responses:
+        '200':
+          description: a created scan task
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/LicenseExpiredError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+        '500':
+          $ref: '#/components/responses/ProcessingError'
+
+  /org/sites/{site_id}/sample:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
+    put:
+      tags:
+        - Organization
+      operationId: createSample
+      summary: Create a traffic sampling task for a given site
+      parameters:
+        - in: path
+          name: site_id
+          schema:
+            type: string
+            format: uuid
+          required: true
+          description: UUID or name of the site to scan
+      requestBody:
+        content:
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SampleOptions'
       responses:
         '200':
           description: a created scan task
@@ -4402,6 +4477,32 @@ components:
           type: string
           format: url
           example: https://www.runzero.com/docs/
+
+    SampleOptions:
+      description: Options which can be set to create or modify traffic sampling.
+      type: object
+      required:
+        - interfaces
+      properties:
+        explorer:
+          type: string
+          format: uuid
+          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+        agent:
+          type: string
+          format: uuid
+          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+        targets:
+          type: string
+          example: "10.0.0.0/8 172.16.0.0/12 192.168.0.0/16"
+        excludes:
+          type: string
+        tags:
+          type: string
+          example: "owner=IT location=Texas"
+        interfaces:
+          type: string
+          example: "eth0,wlan0"
 
     ScanOptions:
       description: Options which can be set to create or modify a scan.
