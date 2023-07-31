@@ -1685,7 +1685,7 @@ paths:
     put:
       tags:
         - Organization
-      operationId: importPacketScanData
+      operationId: importPacketData
       summary: Import a packet capture file into a site
       parameters:
         - in: path
