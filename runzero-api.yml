@@ -3980,6 +3980,13 @@ paths:
         - Account
       operationId: getAPIToken
       summary: Generate an access token using an API client
+      requestBody:
+        description: Client ID and secret
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: "#/components/schemas/ClientIDForm"
       responses:
         '200':
           description: An access token
@@ -3999,6 +4006,13 @@ paths:
         - Account
       operationId: rotateAPIToken
       summary: Rotate the API client secret
+      requestBody:
+        description: Client ID and secret
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: "#/components/schemas/ClientIDForm"
       responses:
         '200':
           description: Client details with an updated api_client_secret value
@@ -7435,4 +7449,19 @@ components:
           format: uuid
           example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
         api_client_secret: 
+          type: string
+
+    ClientIDForm:
+      type: object
+      required:
+        - grant_type
+        - client_id
+        - client_secret
+      properties:
+        grant_type:
+          type: string
+          example: client_credential
+        client_id:
+          type: string
+        client_secret:
           type: string
