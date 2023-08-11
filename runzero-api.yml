@@ -4,7 +4,7 @@ servers:
     url: https://console.runzero.com/api/v1.0
 info:
   description: runZero API. API use is rate limited, you can make as many calls per day as you have licensed assets.
-  version: 3.8.12
+  version: 3.10.11
   title: runZero API
   contact:
     email: support@runzero.com
@@ -3974,6 +3974,44 @@ paths:
         '500':
           $ref: '#/components/responses/InternalServerError'
 
+  /account/api/token:
+    post:
+      tags:
+        - Account
+      operationId: getAPIToken
+      summary: Generate an access token using an API client
+      responses:
+        '200':
+          description: An access token
+          content:
+            application/json:
+              schema: 
+                $ref: '#/components/schemas/AccessToken'
+        '400':
+          $ref: '#/components/responses/InvalidRequestBodyError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        
+
+  /account/api/rotate:
+    post:
+      tags:
+        - Account
+      operationId: rotateAPIToken
+      summary: Rotate the API client secret
+      responses:
+        '200':
+          description: Client details with an updated api_client_secret value
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIClient'
+        '400':
+          $ref: '#/components/responses/InvalidRequestBodyError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+
+
   /export/org/assets/sync/created/assets.json:
     parameters:
       - $ref: '#/components/parameters/orgID'
@@ -7379,3 +7417,22 @@ components:
             anyOf:
               - type: string
                 maxLength: 1024
+    AccessToken: 
+      type: object
+      properties:
+        access_token:
+          type: string
+        token_type:
+          type: string
+        expires_in:
+          type: integer
+
+    APIClient:
+      type: object
+      properties:
+        api_client_id:
+          type: string
+          format: uuid
+          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+        api_client_secret: 
+          type: string
