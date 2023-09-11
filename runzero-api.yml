@@ -5147,7 +5147,6 @@ components:
           example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
         alive:
           type: boolean
-          format: boolean
           example: true
         first_seen:
           type: integer
@@ -5381,7 +5380,6 @@ components:
           example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
         alive:
           type: boolean
-          format: boolean
           example: true
         first_seen:
           type: integer
@@ -7059,7 +7057,6 @@ components:
           example: 1
         alive:
           type: boolean
-          format: boolean
           example: true
         first_discovered:
           type: string
