@@ -12,3 +12,7 @@ The OpenAPI generator can be used to create client stubs for most languages:
 The generated stub code in the `go` directory does not reflect the current API, and is deprecated.
 
 Please see the [offical documentation](https://www.runzero.com/docs/organization-api/) for additional information.
+
+## runZero SDK
+
+Presently, we offer a [python sdk](https://github.com/runZeroInc/runzero-sdk-py). At this time, the SDK is in beta and does not have full coverage of the runZero platform APIs yet.
