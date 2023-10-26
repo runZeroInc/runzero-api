@@ -1967,6 +1967,41 @@ paths:
         '404':
           $ref: '#/components/responses/NotFoundError'
 
+  /org/assets/{asset_id}/criticality:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
+    patch:
+      tags:
+        - Organization
+      operationId: updateAssetCriticality
+      summary: Update asset criticality
+      parameters:
+        - in: path
+          name: asset_id
+          schema:
+            type: string
+            format: uuid
+          required: true
+          description: UUID of the asset to update
+      requestBody:
+        description: comments to apply to the asset
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AssetCriticality'
+      responses:
+        '200':
+          description: asset details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Asset'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+
   /org/assets/merge:
     parameters:
       - $ref: '#/components/parameters/orgID'
@@ -2028,6 +2063,29 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Search'
+      responses:
+        '200':
+          $ref: '#/components/responses/StatusMessage'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+
+  /org/assets/bulk/criticality:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
+    patch:
+      tags:
+        - Organization
+      operationId: updateBulkAssetCriticality
+      summary: Update criticality across multiple assets based on a search query
+      requestBody:
+        description: search query to filter and criticality to apply
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AssetCriticalityWithSearch'
       responses:
         '200':
           $ref: '#/components/responses/StatusMessage'
@@ -5086,6 +5144,15 @@ components:
           type: string
           example: ThisTag=Value -OldTag
 
+    AssetCriticality:
+      type: object
+      required:
+        - criticality
+      properties:
+        comments:
+          type: string
+          example: high
+
     AssetIDs:
       type: object
       required:
@@ -5106,6 +5173,19 @@ components:
         tags:
           type: string
           example: ThisTag=Value -OldTag
+        search:
+          type: string
+          example: alive:true and os:windows
+
+    AssetCriticalityWithSearch:
+      type: object
+      required:
+        - criticality
+        - search
+      properties:
+        criticality:
+          type: string
+          example: high
         search:
           type: string
           example: alive:true and os:windows
