@@ -5930,6 +5930,187 @@ components:
           type: object
           additionalProperties:
             type: string
+        id:
+          type: string
+          format: uuid
+          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+        created_at:
+          type: integer
+          format: int64
+          example: 1576300370
+        updated_at:
+          type: integer
+          format: int64
+          example: 1576300370
+        organization_id:
+          type: string
+          format: uuid
+          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+        site_id:
+          type: string
+          format: uuid
+          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+        alive:
+          type: boolean
+          example: true
+        first_seen:
+          type: integer
+          format: int64
+          example: 1576300370
+        last_seen:
+          type: integer
+          format: int64
+          example: 1576300370
+        detected_by:
+          type: string
+          example: icmp
+        type:
+          type: string
+          example: Server
+        os:
+          type: string
+          example: Ubuntu Linux
+        os_version:
+          type: string
+          example: "18.04"
+        hw:
+          type: string
+          example: Dell PowerEdge 2500
+        addresses:
+          type: array
+          items:
+            type: string
+            example: 192.168.0.1
+        addresses_extra:
+          type: array
+          items:
+            type: string
+            example: 192.168.100.1
+        macs:
+          type: array
+          items:
+            type: string
+            format: mac
+            example: 11:22:33:44:55:66
+        mac_vendors:
+          type: array
+          items:
+            type: string
+            example: Dell
+        names:
+          type: array
+          items:
+            type: string
+            example: www
+        domains:
+          type: array
+          items:
+            type: string
+            example: www
+        service_count:
+          type: integer
+          format: int64
+          example: 10
+        service_count_tcp:
+          type: integer
+          format: int64
+          example: 7
+        service_count_udp:
+          type: integer
+          format: int64
+          example: 1
+        service_count_arp:
+          type: integer
+          format: int64
+          example: 1
+        service_count_icmp:
+          type: integer
+          format: int64
+          example: 1
+        lowest_ttl:
+          type: integer
+          format: int64
+          example: 0
+        lowest_rtt:
+          type: integer
+          format: int64
+          example: 1
+        last_agent_id:
+          type: string
+          format: uuid
+          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+        last_task_id:
+          type: string
+          format: uuid
+          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+        newest_mac:
+          type: string
+          format: mac
+          example: 11:22:33:44:55:66
+        newest_mac_vendor:
+          type: string
+          example: Intel Corporate
+        newest_mac_age:
+          type: integer
+          format: int64
+          example: 1304035200000000000
+        comments:
+          type: string
+          example: File Server
+        service_ports_tcp:
+          type: array
+          items:
+            type: string
+            format: port
+            example: 22
+        service_ports_udp:
+          type: array
+          items:
+            type: string
+            format: port
+            example: 53
+        service_ports_protocols:
+          type: array
+          items:
+            type: string
+            example: ssh
+        service_ports_products:
+          type: array
+          items:
+            type: string
+            example: bind
+        org_name:
+          type: string
+          example: Test Labs
+        site_name:
+          type: string
+          example: Primary
+        agent_name:
+          type: string
+          example: LAPTOP-F4P1R6
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+        services:
+          type: object
+          additionalProperties:
+            type: object
+            additionalProperties:
+              type: string
+        rtts:
+          type: object
+          additionalProperties: true
+        credentials:
+          type: object
+          additionalProperties:
+            type: string
+            additionalProperties:
+              type: boolean
+        attributes:
+          type: object
+          additionalProperties:
+            type: string
 
     DirectoryUser:
       type: object
