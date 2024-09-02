@@ -5062,6 +5062,9 @@ components:
         excludes:
           type: string
           example: 192.168.10.1
+        subnets:
+          type: object
+          additionalProperties: true
 
     CredentialFields:
       oneOf:
@@ -5641,9 +5644,6 @@ components:
               type: integer
               format: int64
               example: 1576300370
-            permanent:
-              type: boolean
-              example: true
             name:
               type: string
               example: Primary
@@ -6285,9 +6285,6 @@ components:
           type: integer
           format: int64
           example: 1576300370
-        permanent:
-          type: boolean
-          example: true
         name:
           type: string
           example: My Company
