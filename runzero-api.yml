@@ -2201,6 +2201,72 @@ paths:
         '500':
           $ref: '#/components/responses/InternalServerError'
 
+  /org/assets/{asset_id}/custom-integrations/{custom_integration_id}/remove:
+    parameters:
+    - in: path
+      name: asset_id
+      schema:
+        type: string
+        format: uuid
+      required: true
+      description: UUID of the asset to update
+    - in: path
+      name: custom_integration_id
+      schema:
+        type: string
+        format: uuid
+      required: true
+      description: UUID of the custom integration
+    delete:
+      tags:
+        - Organization
+      operationId: removeCustomIntegration
+      summary: Remove single custom integration from asset
+      responses:
+        '204':
+          description: empty response
+        '400':
+          $ref: '#/components/responses/InvalidRequestParamError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/NotAllowedForLicenseError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /org/assets/{asset_id}/sources/{source_id}/remove:
+    parameters:
+    - in: path
+      name: asset_id
+      schema:
+        type: string
+        format: uuid
+      required: true
+      description: UUID of the asset to update
+    - in: path
+      name: source_id
+      schema:
+        type: string
+        format: uuid
+      required: true
+      description: UUID of the source
+    delete:
+      tags:
+        - Organization
+      operationId: removeAssetSource
+      summary: Remove single source from asset
+      responses:
+        '204':
+          description: empty response
+        '400':
+          $ref: '#/components/responses/InvalidRequestParamError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/NotAllowedForLicenseError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
   /org/custom-integrations:
     get:
       tags:
