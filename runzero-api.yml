@@ -2197,7 +2197,40 @@ paths:
         '400':
           $ref: '#/components/responses/InvalidRequestBodyError'
         '403':
+          $ref: '#/components/responses/InternalServerError'
+
+  /org/custom-integrations/{custom_integration_id}/bulk/remove:
+    parameters:
+    - in: path
+      name: custom_integration_id
+      schema:
+        type: string
+        format: uuid
+      required: true
+      description: UUID of the custom integration
+    post:
+      tags:
+        - Organization
+      operationId: bulkRemoveCustomIntegration
+      summary: Remove custom integration from a list of assets
+      requestBody:
+        description: list of asset IDs to remove
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AssetIDs'
+      responses:
+        '204':
+          description: empty response
+        '400':
+          $ref: '#/components/responses/InvalidRequestParamError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
           $ref: '#/components/responses/NotAllowedForLicenseError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
         '500':
           $ref: '#/components/responses/InternalServerError'
 
