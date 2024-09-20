@@ -4,7 +4,7 @@ servers:
     url: https://console.runzero.com/api/v1.0
 info:
   description: runZero API. API use is rate limited, you can make as many calls per day as you have licensed assets.
-  version: 3.10.230913.0
+  version: 4.0.240919.0
   title: runZero API
   contact:
     email: support@runzero.com
@@ -4320,6 +4320,36 @@ paths:
         '401':
           $ref: '#/components/responses/UnauthorizedError'
 
+  /export/org/assets.servicegraph.json:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
+    get:
+      tags:
+        - ServiceNow
+      operationId: snowServiceGraphExportAssetsJSON
+      summary: Exports the asset inventory as JSON
+      parameters: 
+        - in: query
+          name: search
+          description: an optional search string for filtering results
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: filtered asset results
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AssetServiceNow'
+        '400':
+          $ref: '#/components/responses/InvalidRequestBodyError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/NotAllowedForLicenseError'
 
   /export/org/assets.cisco.csv:
     parameters:
