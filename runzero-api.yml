@@ -2923,7 +2923,7 @@ paths:
                   $ref: '#/components/schemas/ExportToken'
         '401':
           $ref: '#/components/responses/UnauthorizedError'
-    put:
+    post:
       tags:
         - Account
       operationId: createAccountOrganizationExportToken
