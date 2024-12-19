@@ -4,7 +4,7 @@ servers:
     url: https://console.runzero.com/api/v1.0
 info:
   description: runZero API. API use is rate limited, you can make as many calls per day as you have licensed assets.
-  version: 4.0.241016.0
+  version: 4.0.241218.0
   title: runZero API
   contact:
     email: support@runzero.com
@@ -940,6 +940,73 @@ paths:
                 format: binary
         '401':
           $ref: '#/components/responses/UnauthorizedError'
+
+  /export/org/tasks.json:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
+    get:
+      tags:
+        - Export
+      operationId: exportTasksJSON
+      summary: Exports organization tasks
+      parameters:
+        - in: query
+          name: search
+          description: an optional search string for filtering results
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: fields
+          description: an optional list of fields to export, comma-separated
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: filtered task results
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Task'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+
+  /export/org/tasks.jsonl:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
+    get:
+      tags:
+        - Export
+      operationId: exportTasksJSONL
+      summary: Organization tasks as JSON line-delimited
+      parameters:
+        - in: query
+          name: search
+          description: an optional search string for filtering results
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: fields
+          description: an optional list of fields to export, comma-separated
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          # This is a streaming response of one Task object per line in JSON format
+          description: filtered task results
+          content:
+            application/json:
+              schema:
+                type: string
+                format: binary
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+
 
   /org/assets/type.csv:
     parameters:
