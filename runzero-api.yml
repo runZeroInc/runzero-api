@@ -4,7 +4,7 @@ servers:
     url: https://console.runzero.com/api/v1.0
 info:
   description: runZero API. API use is rate limited, you can make as many calls per day as you have licensed assets.
-  version: 4.0.240919.0
+  version: 4.0.241016.0
   title: runZero API
   contact:
     email: support@runzero.com
@@ -2852,10 +2852,12 @@ paths:
 
   /account/orgs/{org_id}/exportToken:
     delete:
+      deprecated: true
       tags:
         - Account
-      operationId: deleteAccountOrganizationExportToken
+      operationId: deleteAccountOrganizationExportTokenDeprecated
       summary: Removes the export token from the specified organization
+      description: This API has been deprecated.  Please use `DELETE /account/orgs/{org_id}/exportTokens/{key_id}` instead.  This API will fail if more than one export tokens exist for the given organization.
       parameters:
         - in: path
           name: org_id
@@ -2872,10 +2874,12 @@ paths:
 
   /account/orgs/{org_id}/exportToken/rotate:
     patch:
+      deprecated: true
       tags:
         - Account
-      operationId: rotateAccountOrganizationExportToken
-      summary: Rotates the organization export token and returns the updated organization
+      operationId: rotateAccountOrganizationExportTokenDeprecated
+      summary: Rotates an organization export token and returns the updated token
+      description: This API has been deprecated.  Please use `PATCH /account/orgs/{org_id}/exportTokens/{key_id}/rotate` instead.  This API will fail if more than one export tokens exist for the given organization.
       parameters:
         - in: path
           name: org_id
@@ -2886,11 +2890,155 @@ paths:
           description: UUID of the organization to retrieve
       responses:
         '200':
-          description: organization details
+          description: export token details
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Organization'
+                $ref: '#/components/schemas/ExportToken'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+
+  /account/orgs/{org_id}/exportTokens:
+    get:
+      tags:
+        - Account
+      operationId: getAccountOrganizationExportTokens
+      summary: Get all active export tokens for an organization
+      parameters:
+        - in: path
+          name: org_id
+          schema:
+            type: string
+            format: uuid
+          required: true
+          description: UUID of the organization to retrieve export tokens for
+      responses:
+        '200':
+          description: array of export tokens
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ExportToken'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+    post:
+      tags:
+        - Account
+      operationId: createAccountOrganizationExportToken
+      summary: Create a new export token for an organization
+      parameters:
+        - in: path
+          name: org_id
+          schema:
+            type: string
+            format: uuid
+          required: true
+          description: UUID of the organization to create an export token for
+      requestBody:
+        description: export token parameters
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ExportTokenOptions"
+      responses:
+        '200':
+          description: export token details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExportToken'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+
+  /account/orgs/{org_id}/exportTokens/{key_id}:
+    get:
+      tags:
+        - Account
+      operationId: getAccountOrganizationExportToken
+      summary: Get export token details
+      parameters:
+        - in: path
+          name: org_id
+          schema:
+            type: string
+            format: uuid
+          required: true
+          description: UUID of the organization to retrieve
+        - in: path
+          name: key_id
+          schema:
+            type: string
+            format: uuid
+          required: true
+          description: UUID of the export token ID to retrieve
+      responses:
+        '200':
+          description: export token details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExportToken'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+    delete:
+      tags:
+        - Account
+      operationId: deleteAccountOrganizationExportToken
+      summary: Removes the export token from the specified organization
+      parameters:
+        - in: path
+          name: org_id
+          schema:
+            type: string
+            format: uuid
+          required: true
+          description: UUID of the organization to retrieve
+        - in: path
+          name: key_id
+          schema:
+            type: string
+            format: uuid
+          required: true
+          description: UUID of the export token ID to remove
+      responses:
+        '204':
+          description: empty response
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+
+  /account/orgs/{org_id}/exportTokens/{key_id}/rotate:
+    patch:
+      tags:
+        - Account
+      operationId: rotateAccountOrganizationExportToken
+      summary: Rotates an organization export token and returns the updated token
+      parameters:
+        - in: path
+          name: org_id
+          schema:
+            type: string
+            format: uuid
+          required: true
+          description: UUID of the organization to retrieve
+        - in: path
+          name: key_id
+          schema:
+            type: string
+            format: uuid
+          required: true
+          description: UUID of the export token ID to rotate
+      responses:
+        '200':
+          description: export token details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExportToken'
         '401':
           $ref: '#/components/responses/UnauthorizedError'
 
@@ -5155,9 +5303,6 @@ components:
         description:
           type: string
           example: Wobbly Widgets, Inc.
-        export_token:
-          type: string
-          example: ETXXXXXXXXXXXXXXXX
         parent_id:
           type: string
           format: uuid
@@ -5242,6 +5387,13 @@ components:
           type: string
           format: uuid
           example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+
+    ExportTokenOptions:
+      type: object
+      properties:
+        comment:
+          type: string
+          example: Splunk export key
 
     AssetsWithCheckpoint:
       type: object
@@ -6451,24 +6603,6 @@ components:
           type: integer
           format: int64
           example: 100
-        export_token:
-          type: string
-          example: ET11226D9EEEA2B035D42569585900
-        export_token_created_at:
-          type: integer
-          format: int64
-          example: 1576300370
-        export_token_last_used_at:
-          type: integer
-          format: int64
-          example: 0
-        export_token_last_used_by:
-          type: string
-          example: 127.0.0.1
-        export_token_counter:
-          type: integer
-          format: int64
-          example: 0
         project:
           type: boolean
           example: false
@@ -6488,6 +6622,29 @@ components:
           type: integer
           format: int64
           example: 365
+        export_token:
+          deprecated: true
+          type: string
+          example: ET11226D9EEEA2B035D42569585900
+        export_token_created_at:
+          deprecated: true
+          type: integer
+          format: int64
+          example: 1576300370
+        export_token_last_used_at:
+          deprecated: true
+          type: integer
+          format: int64
+          example: 0
+        export_token_last_used_by:
+          deprecated: true
+          type: string
+          example: 127.0.0.1
+        export_token_counter:
+          deprecated: true
+          type: integer
+          format: int64
+          example: 0
 
     Credential:
       type: object
@@ -6604,6 +6761,36 @@ components:
         type:
           type: string
           example: org
+
+    ExportToken:
+      type: object
+      required:
+        - id
+      properties:
+        id:
+          format: uuid
+          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+        token:
+          type: string
+          example: ET11226D9EEEA2B035D42569585900
+        comment:
+          type: string
+          example: Export token used for Splunk integration
+        created_at:
+          type: integer
+          format: int64
+          example: 1576300370
+        last_used_at:
+          type: integer
+          format: int64
+          example: 0
+        last_used_by:
+          type: string
+          example: 127.0.0.1
+        counter:
+          type: integer
+          format: int64
+          example: 0
 
     Agent:
       description: |
