@@ -5852,7 +5852,7 @@ components:
             - tenable_access_secret
             - tenable_security_center_access_secret
             - vmware_username_password
-            - wiz_cleint_secret
+            - wiz_client_secret
             - x509_keypair
           example: miradore_api_key_v1
         acl:
