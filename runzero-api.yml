@@ -4692,21 +4692,6 @@ components:
             suited for non technical stakeholders and not localized.
           example: A human readable explanation specific to this occurrence of the problem.
 
-    MiradoreCredentialFields:
-      type: object
-      required:
-        - hostname
-        - api_key
-      properties:
-        hostname:
-          type: string
-          format: string
-          example: yourcompanyinc.online.miradore.com
-        api_key:
-          type: string
-          format: string
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
-
     AWSCredentialFields:
       type: object
       required:
@@ -4787,6 +4772,25 @@ components:
           format: string
           example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
 
+    CensysCredentialFields:
+      type: object
+      required:
+        - client_id
+        - client_secret
+      properties:
+        client_id:
+          type: string
+          format: string
+          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+        client_secret:
+          type: string
+          format: string
+          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+        api_url:
+          type: string
+          format: string
+          example: https://search.censys.io
+
     CrowdstrikeCredentialFields:
       type: object
       required:
@@ -4807,24 +4811,312 @@ components:
           format: string
           example: example.crowdstrike.com
 
-    CensysCredentialFields:
+    CustomIntegrationScriptCredentialFields:
       type: object
       required:
-        - client_id
-        - client_secret
+        - access_key
+        - access_secret
       properties:
+        access_key:
+          type: string
+          format: string
+        access_secret:
+          type: string
+          format: string
+
+    GCPCredentialFields:
+      type: object
+      properties:
+        cross_project:
+          type: string
+          format: string
+          example: false
+        auth_provider_x509_cert_url:
+          type: string
+          format: string
+          example: https://www.googleapis.com/oauth2/v1/certs
+        auth_uri:
+          type: string
+          format: string
+          example: https://accounts.google.com/o/oauth2/auth
+        client_email:
+          type: string
+          format: string
+          example: example@example.iam.gserviceaccount.com
         client_id:
           type: string
           format: string
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
-        client_secret:
+          example: 111111111111111111111
+        client_x509_cert_url:
           type: string
           format: string
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: https://www.googleapis.com/robot/v1/metadata/x509/example.iam.gserviceaccount.com
+        private_key:
+          type: string
+          format: string
+          description: base64 encoded private key, beginning with -----BEGIN PRIVATE KEY-----
+        private_key_id:
+          type: string
+          format: string
+          example: 1111111111111111111111111111111111111111
+        project_id:
+          type: string
+          format: string
+          example: example
+        token_uri:
+          type: string
+          format: string
+          example: https://oauth2.googleapis.com/token
+        type:
+          type: string
+          format: string
+          example: service_account
+        universe_domain:
+          type: string
+          format: string
+          example: googleapis.com
+
+    GoogleWorkspaceCredentialFields:
+      type: object
+      required:
+        - delegate
+      properties:
+        delegate:
+          type: string
+          format: string
+          example: adminexample@example.com
+        customer_id:
+          type: string
+          format: string
+        auth_provider_x509_cert_url:
+          type: string
+          format: string
+          example: https://www.googleapis.com/oauth2/v1/certs
+        auth_uri:
+          type: string
+          format: string
+          example: https://accounts.google.com/o/oauth2/auth
+        client_email:
+          type: string
+          format: string
+          example: example@example.iam.gserviceaccount.com
+        client_id:
+          type: string
+          format: string
+          example: 111111111111111111111
+        client_x509_cert_url:
+          type: string
+          format: string
+          example: https://www.googleapis.com/robot/v1/metadata/x509/example.iam.gserviceaccount.com
+        private_key:
+          type: string
+          format: string
+          description: base64 encoded private key, beginning with -----BEGIN PRIVATE KEY-----
+        private_key_id:
+          type: string
+          format: string
+          example: 1111111111111111111111111111111111111111
+        project_id:
+          type: string
+          format: string
+          example: example
+        token_uri:
+          type: string
+          format: string
+          example: https://oauth2.googleapis.com/token
+        type:
+          type: string
+          format: string
+          example: service_account
+        universe_domain:
+          type: string
+          format: string
+          example: googleapis.com
+
+    InsightVMCredentialFields:
+      type: object
+      required:
+        - api_url
+        - username
+        - password
+      properties:
         api_url:
           type: string
           format: string
-          example: https://search.censys.io
+          example: https://ivm.example:3780
+        username:
+          type: string
+          format: string
+          example: admin
+        password:
+          type: string
+          format: string
+          example: pass
+        insecure:
+          type: string
+          format: string
+          example: true
+        thumbprints:
+          type: string
+          format: string
+
+    LDAPCredentialFields:
+      type: object
+      required:
+        - username
+        - password
+        - base_dn
+        - url
+      properties:
+        url:
+          type: string
+          format: string
+          example: ldap://example.com:389
+        username:
+          type: string
+          format: string
+          example: admin
+        password:
+          type: string
+          format: string
+          example: pass
+        base_dn:
+          type: string
+          format: string
+          example: dc=example,dc=com
+        insecure:
+          type: string
+          format: string
+          example: true
+        legacy_tls:
+          type: string
+          format: string
+          example: false
+        thumbprints:
+          type: string
+          format: string
+
+    MECMCredentialFields:
+      type: object
+      required:
+        - db_connection_string
+      properties:
+        db_connection_string:
+          type: string
+          format: string
+
+    MirakiCredentialFields:
+      type: object
+      required:
+        - api_url
+        - api_key
+      properties:
+        api_url:
+          type: string
+          format: string
+        api_key:
+          type: string
+          format: string
+
+    MiradoreCredentialFields:
+      type: object
+      required:
+        - hostname
+        - api_key
+      properties:
+        hostname:
+          type: string
+          format: string
+          example: yourcompanyinc.online.miradore.com
+        api_key:
+          type: string
+          format: string
+          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+
+    NessusCredentialFields:
+      type: object
+      required:
+        - api_url
+        - access_key
+        - secret_key
+      properties:
+        api_url:
+          type: string
+          format: string
+        access_key:
+          type: string
+          format: string
+        secret_key:
+          type: string
+          format: string
+        insecure:
+          type: string
+          format: string
+          example: false
+        thumbprints:
+          type: string
+          format: string
+
+    NetboxCredentialFields:
+      type: object
+      required:
+        - api_url
+        - api_key
+      properties:
+        api_url:
+          type: string
+          format: string
+        api_key:
+          type: string
+          format: string
+
+    PaloAltoFirewallCredentialFields:
+      type: object
+      required:
+        - api_key
+      properties:
+        api_key:
+          type: string
+          format: string
+
+    QualysCredentialFields:
+      type: object
+      required:
+        - api_url
+        - username
+        - password
+      properties:
+        api_url:
+          type: string
+          format: string
+        username:
+          type: string
+          format: string
+        password:
+          type: string
+          format: string
+
+    SentinelOneCredentialFields:
+      type: object
+      required:
+        - api_url
+        - api_key
+      properties:
+        api_url:
+          type: string
+          format: string
+        api_key:
+          type: string
+          format: string
+
+    ShodanCredentialFields:
+      type: object
+      required:
+        - api_key
+      properties:
+        api_key:
+          type: string
+          format: string
 
     SNMPv2CommunitiesCredentialFields:
       type: object
@@ -4866,6 +5158,60 @@ components:
           format: string
           example: privpass
 
+    TaniumCredentialFields:
+      type: object
+      required:
+        - api_url
+        - api_token
+      properties:
+        api_url:
+          type: string
+          format: string
+        api_token:
+          type: string
+          format: string
+
+    TenableIoCredentialFields:
+      type: object
+      required:
+        - api_url
+        - access_key
+        - secret_key
+      properties:
+        api_url:
+          type: string
+          format: string
+        access_key:
+          type: string
+          format: string
+        secret_key:
+          type: string
+          format: string
+
+    TenableScCredentialFields:
+      type: object
+      required:
+        - api_url
+        - access_key
+        - secret_key
+      properties:
+        api_url:
+          type: string
+          format: string
+        access_key:
+          type: string
+          format: string
+        secret_key:
+          type: string
+          format: string
+        insecure:
+          type: string
+          format: string
+          example: false
+        thumbprints:
+          type: string
+          format: string
+
     VMwareCredentialFields:
       type: object
       required:
@@ -4888,6 +5234,41 @@ components:
           type: string
           format: string
           example: IP=SHA256:B64HASH
+
+    WizCredentialFields:
+      type: object
+      required:
+        - client_id
+        - client_secret
+        - auth_url
+        - api_url
+      properties:
+        auth_url:
+          type: string
+          format: string
+          example: https://auth.app.wiz.io/
+        api_url:
+          type: string
+          format: string
+        client_id:
+          type: string
+          format: string
+        client_secret:
+          type: string
+          format: string
+
+    X509CredentialFields:
+      type: object
+      required:
+        - x509_certificate
+        - private_key
+      properties:
+        x509_certificate:
+          type: string
+          format: string
+        private_key:
+          type: string
+          format: string
 
     ComponentVersion:
       type: object
@@ -5409,15 +5790,33 @@ components:
 
     CredentialFields:
       oneOf:
-        - $ref: '#/components/schemas/MiradoreCredentialFields'
         - $ref: '#/components/schemas/AWSCredentialFields'
         - $ref: '#/components/schemas/AzureClientSecretCredentialFields'
         - $ref: '#/components/schemas/AzureUsernamePasswordCredentialFields'
-        - $ref: '#/components/schemas/CrowdstrikeCredentialFields'
         - $ref: '#/components/schemas/CensysCredentialFields'
+        - $ref: '#/components/schemas/CrowdstrikeCredentialFields'
+        - $ref: '#/components/schemas/CustomIntegrationScriptCredentialFields'
+        - $ref: '#/components/schemas/GCPCredentialFields'
+        - $ref: '#/components/schemas/GoogleWorkspaceCredentialFields'
+        - $ref: '#/components/schemas/InsightVMCredentialFields'
+        - $ref: '#/components/schemas/LDAPCredentialFields'
+        - $ref: '#/components/schemas/MECMCredentialFields'
+        - $ref: '#/components/schemas/MirakiCredentialFields'
+        - $ref: '#/components/schemas/MiradoreCredentialFields'
+        - $ref: '#/components/schemas/NessusCredentialFields'
+        - $ref: '#/components/schemas/NetboxCredentialFields'
+        - $ref: '#/components/schemas/PaloAltoFirewallCredentialFields'
+        - $ref: '#/components/schemas/QualysCredentialFields'
+        - $ref: '#/components/schemas/SentinelOneCredentialFields'
+        - $ref: '#/components/schemas/ShodanCredentialFields'
         - $ref: '#/components/schemas/SNMPv2CommunitiesCredentialFields'
         - $ref: '#/components/schemas/SNMPv3CredentialFields'
+        - $ref: '#/components/schemas/TaniumCredentialFields'
+        - $ref: '#/components/schemas/TenableIoCredentialFields'
+        - $ref: '#/components/schemas/TenableScCredentialFields'
         - $ref: '#/components/schemas/VMwareCredentialFields'
+        - $ref: '#/components/schemas/WizCredentialFields'
+        - $ref: '#/components/schemas/X509CredentialFields'
 
     CredentialOptions:
       type: object
