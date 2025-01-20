@@ -5826,7 +5826,34 @@ components:
           example: credentials_name
         type:
           type: string
-          enum: [miradore_api_key_v1, aws_access_secret]
+          enum:
+            - aws_access_secret
+            - azure_client_secret
+            - azure_username_password
+            - censys_search_api_key
+            - crowdstrike_api_key
+            - custom_integration_credential
+            - gcp_service_account_key
+            - google_workspace_client_secret
+            - insightvm_username_password
+            - ldap_username_password
+            - mecm_db_connection_string
+            - meraki_api_key
+            - miradore_api_key_v1
+            - nessus_access_secret
+            - netbox_api_key
+            - palo_alto_api_key
+            - qualys_username_password
+            - sentinelone_api_key
+            - shodan_api_key
+            - snmpv2_community
+            - snmpv3_credential
+            - tanium_api_token
+            - tenable_access_secret
+            - tenable_security_center_access_secret
+            - vmware_username_password
+            - wiz_client_secret
+            - x509_keypair
           example: miradore_api_key_v1
         acl:
           type: object
