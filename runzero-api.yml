@@ -4,7 +4,7 @@ servers:
     url: https://console.runzero.com/api/v1.0
 info:
   description: runZero API. API use is rate limited, you can make as many calls per day as you have licensed assets.
-  version: 4.0.241219.0
+  version: 4.0.250119.0
   title: runZero API
   contact:
     email: support@runzero.com
