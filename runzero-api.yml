@@ -4725,6 +4725,7 @@ components:
         - client_id
         - client_secret
         - tenant_id
+        - environment
       properties:
         client_id:
           type: string
@@ -4733,11 +4734,16 @@ components:
         client_secret:
           type: string
           format: string
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: abcde~abcdefghiklmnopqrstuvwx_yz123456-7
         tenant_id:
           type: string
           format: string
           example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+        environment:
+          type: string
+          format: string
+          example: global
+          enum: ["global", "gcc", "gcc_high", "dod"]
         multi_subscription:
           type: string
           format: string
