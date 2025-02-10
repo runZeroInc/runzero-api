@@ -5769,6 +5769,10 @@ components:
           type: string
           format: number
           example: "365"
+        expiration_integration_attributes:
+          type: string
+          format: number
+          example: "30"
         expiration_scans:
           type: string
           format: number
@@ -7114,6 +7118,10 @@ components:
           format: int64
           example: 365
         expiration_assets_offline:
+          type: integer
+          format: int64
+          example: 365
+        expiration_integration_attributes:
           type: integer
           format: int64
           example: 365
