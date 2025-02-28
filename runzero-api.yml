@@ -4654,6 +4654,12 @@ components:
         application/json:
           schema:
             $ref: "#/components/schemas/Problem"
+    InvalidRequestParamError:
+      description: Invalid request parameter
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Problem"
     StatusMessage:
       description: Summary of operation results
 
@@ -5772,11 +5778,18 @@ components:
         expiration_integration_attributes:
           type: string
           format: number
-          example: "30"
+          example: "365"
         expiration_scans:
           type: string
           format: number
           example: "365"
+        expiration_vulnerabilities:
+          type: string
+          format: number
+          example: "365"
+        keep_latest_integration_attributes:
+          type: string
+          example: "true"
     SiteOptions:
       type: object
       required:
@@ -7129,6 +7142,10 @@ components:
           type: integer
           format: int64
           example: 365
+        expiration_vulnerabilities:
+          type: integer
+          format: int64
+          example: 365
         export_token:
           deprecated: true
           type: string
@@ -7152,6 +7169,9 @@ components:
           type: integer
           format: int64
           example: 0
+        keep_latest_integration_attributes:
+          type: boolean
+          example: true
 
     Credential:
       type: object
