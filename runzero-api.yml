@@ -7823,6 +7823,9 @@ components:
           type: integer
           format: int64
           example: 1576300370
+        name:
+          type: string
+          example: James Smith
         first_name:
           type: string
           example: James
@@ -7841,11 +7844,19 @@ components:
         org_roles:
           type: object
           additionalProperties: true
-        reset_token_expiration:
+        password_enabled_at:
           type: integer
           format: int64
           example: 1576300370
         invite_token_expiration:
+          type: integer
+          format: int64
+          example: 1576300370
+        reset_token_expiration:
+          type: integer
+          format: int64
+          example: 1576300370
+        terms_agreed_as_of:
           type: integer
           format: int64
           example: 1576300370
@@ -7859,6 +7870,10 @@ components:
         last_login_ua:
           type: string
           example: curl/1.0
+        last_activity_at:
+          type: integer
+          format: int64
+          example: 1576300370
         sso_only:
           type: boolean
           example: false
@@ -7866,6 +7881,17 @@ components:
           type: integer
           format: int64
           example: 0
+        actions:
+          type: integer
+          format: int64
+          example: 0
+        last_action_at:
+          type: integer
+          format: int64
+          example: 1576300370
+        mfa_enabled:
+          type: boolean
+          example: false
 
     Group:
       type: object
