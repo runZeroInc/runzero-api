@@ -965,6 +965,86 @@ paths:
         '401':
           $ref: '#/components/responses/UnauthorizedError'
 
+  /export/org/findings.csv:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
+    get:
+      tags:
+        - Export
+      operationId: exportFindingsCSV
+      summary: Export findings as CSV
+      parameters:
+        - in: query
+          name: search
+          description: an optional search string for filtering results
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: filtered findings
+          content:
+            text/csv:
+              schema:
+                type: string
+                format: binary
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+
+  /export/org/findings.json:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
+    get:
+      tags:
+        - Export
+      operationId: exportFindingsJSON
+      summary: Export findings as JSON
+      parameters:
+        - in: query
+          name: search
+          description: an optional search string for filtering results
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: filtered findings
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Finding'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+
+  /export/org/findings.jsonl:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
+    get:
+      tags:
+        - Export
+      operationId: exportFindingsJSONL
+      summary: Export findings as JSON line-delimited
+      parameters:
+        - in: query
+          name: search
+          description: an optional search string for filtering results
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: filtered findings
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Finding'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+
   /export/org/subnet.stats.csv:
     parameters:
       - $ref: '#/components/parameters/orgID'
@@ -5080,6 +5160,84 @@ components:
         access_secret:
           type: string
           format: string
+
+    Finding:
+      type: object
+      required:
+        - id
+        - organization_id
+      properties:
+        category:
+          type: string
+          format: string
+        organization_id:
+          type: string
+          format: uuid
+        finding_code:
+          description: A runZero-assigned code for the finding.
+          type: string
+        name:
+          description: The title of the finding.
+          type: string
+        description:
+          description: Additional information about the finding.
+          type: string
+        solution:
+          description: Remediation information.
+          type: string
+        links:
+          type: object
+          properties:
+            cves:
+              type: array
+              items:
+                type: object
+                properties:
+                  title:
+                    type: string
+                  url:
+                    type: string
+            rz_blog:
+              description: URLs of relevant runZero blog postings.
+              type: array
+              items:
+                type: object
+                properties:
+                  title:
+                    type: string
+                  url:
+                    type: string
+            urls:
+              description: Additional relevant URLs.
+              type: array
+              items:
+                type: object
+                properties:
+                  title:
+                    type: string
+                  url:
+                    type: string
+        created_at:
+          type: integer
+          format: int64
+        updated_at:
+          type: integer
+          format: int64
+        last_detected_at:
+          type: integer
+          format: int64
+        vulnerability_count:
+          type: integer
+          format: int64
+        risk_score:
+          description: 0 = info, 4 = critical
+          type: integer
+          format: int8
+          minimum: 0
+          maximum: 4
+        risk_rank:
+          type: integer
+          format: int32
 
     GCPCredentialFields:
       type: object
