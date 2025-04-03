@@ -88,20 +88,10 @@ paths:
               schema:
                 $ref: '#/components/schemas/HealthCheckResponse'
 
-  /import/org/{orgId}/assets:
+  /import/org/{orgID}/assets:
     post:
       parameters:
-        - name: orgId
-          in: path
-          description: The unique ID of the organization that the assets will be imported into.
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
-          required: true
-          schema:
-            type: string
-            format: uuid
-            x-go-type: uuid.UUID
-            x-go-type-import:
-              path: github.com/gofrs/uuid
+        - $ref: '#/components/parameters/orgID'
       tags:
         - Organization
         - Import
@@ -627,7 +617,7 @@ paths:
       tags:
         - Export
       operationId: exportVulnerabilitiesJSON
-      summary: Exports the vulnerability inventory
+      summary: Export the vulnerability inventory as JSON
       parameters:
         - in: query
           name: search
@@ -660,7 +650,7 @@ paths:
       tags:
         - Export
       operationId: exportVulnerabilitiesJSONL
-      summary: Vulnerability inventory as JSON line-delimited
+      summary: Export the vulnerability inventory as JSON line-delimited
       parameters:
         - in: query
           name: search
@@ -693,7 +683,7 @@ paths:
       tags:
         - Export
       operationId: exportVulnerabilitiesCSV
-      summary: Vulnerability inventory as CSV
+      summary: Export the vulnerability inventory as CSV
       parameters:
         - in: query
           name: search
@@ -709,6 +699,85 @@ paths:
               schema:
                 type: string
                 format: binary
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+
+  /export/org/{orgId}/certificates.csv:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
+    get:
+      tags:
+        - Export
+        - Certificates
+      operationId: exportCertificatesCSV
+      summary: Export the certificate inventory as CSV
+      parameters:
+        - in: query
+          name: search
+          description: an optional search string for filtering results
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: filtered certificate results
+          content:
+            text/csv:
+              schema:
+                type: string
+                format: binary
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+
+  /export/org/{orgId}/certificates.json:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
+    get:
+      tags:
+        - Export
+        - Certificates
+      operationId: exportCertificatesJSON
+      summary: Export the certificate inventory as JSON
+      parameters:
+        - in: query
+          name: search
+          description: an optional search string for filtering results
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: filtered certificate results
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Certificate"
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+
+  /export/org/{orgId}/certificates.jsonl:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
+    get:
+      tags:
+        - Export
+        - Certificates
+      operationId: exportCertificatesJSON
+      summary: Export the certificate inventory as JSONL line-delimited
+      parameters:
+        - in: query
+          name: search
+          description: an optional search string for filtering results
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: filtered certificate results
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Certificate"
         '401':
           $ref: '#/components/responses/UnauthorizedError'
 
@@ -4802,6 +4871,182 @@ components:
           type: string
           format: string
           example: https://search.censys.io
+
+    Certificate:
+      type: object
+      required:
+        - id
+        - organization_id
+      properties:
+        id:
+          type: string
+          format: string
+          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+        type:
+          type: string
+          enum: [x509, ssh]
+        created_at:
+          type: integer
+          format: int64
+          example: 1576300370
+        updated_at:
+          description: When the certificate was last seen in a response from a service, and updated.
+          type: integer
+          format: int64
+          example: 1576300370
+        organization_id:
+          type: string
+          format: uuid
+          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+        names:
+          type: array
+          description: An assembled list of all names in the certificate.
+          items:
+            type: string
+            example: CN=server,OU=Dept,O=Company
+        self_signed:
+          description: Whether the certificate appears to be self-signed based on subject and authority.
+          type: boolean
+        hidden:
+          description: Whether the certificate has been hidden from the default certificates view.
+          type: boolean
+        serial:
+          description: The serial number of the certificate.
+          type: string
+          format: string
+          example: 03beffa48e31b95581b0ebb0b1b3fe5ada9c
+        validity_start:
+          description: When the certificate becomes valid.
+          type: integer
+          format: int64
+          example: 1576300370
+        validity_end:
+          description: When the certificate ceases to be valid.
+          type: integer
+          format: int64
+          example: 1576300370
+        public_key:
+          type: string
+          format: base64
+        public_key_bits:
+          type: integer
+          format: int32
+          example: 2048
+        public_key_algorithm:
+          type: string
+          format: string
+          example: rsaEncryption
+        signature:
+          type: string
+          format: base64
+        signature_algorithm:
+          type: string
+          format: string
+          example: sha256WithRSAEncryption
+        fp_bkhash:
+          description: The badkeys hash.
+          type: string
+          format: string
+        fp_sha1:
+          description: The SHA1 hash of the certificate.
+          type: string
+          format: string
+        fp_sha256:
+          description: The SHA256 hash of the certificate.
+          type: string
+          format: string
+        fp_md5:
+          description: The MD5 hash of the certificate (for SSH).
+          type: string
+          format: string
+        attributes:
+          description: Properties specific to the certificate type.
+          type: object
+          additionalProperties:
+            properties:
+              subject:
+                description: The subject of the certificate.
+                type: string
+                format: dn
+              cn:
+                description: The Common Name field from the certificate (no longer used by web browsers).
+                type: string
+                format: string
+                example: www.example.com
+              version:
+                description: The version of the certificate.
+                type: integer
+                format: int32
+              issuer:
+                description: The authority which issued the certificate.
+                type: string
+                format: dn
+              subject_key_id:
+                description: The key ID of the subject of the certificate.
+                type: string
+                format: string
+              authority_key_id:
+                description: The key ID of the authority which signed the certificate.
+                type: string
+                format: string
+              ocsp_server:
+                description: Zero or more OCSP server URLs.
+                type: array
+                items:
+                  type: string
+                  format: url
+              crl_distribution_points:
+                description: Zero or more URLs of CRLs.
+                type: array
+                items:
+                  type: string
+                  format: url
+              issuing_certificate_url:
+                description: Zero or more URLs where the issuing certificate can be found.
+                type: array
+                items:
+                  type: string
+                  format: url
+              is_ca:
+                description: Whether the certificate claims to be a Certificate Authority.
+                type: boolean
+              key_usage:
+                description: Valid purposes the certificate's key can be used for.
+                type: array
+                items:
+                  type: string
+              ext_key_usage:
+                description: Additional purposes the certificate's key can be used for.
+                type: array
+                items:
+                  type: string
+              san_dns_names:
+                description: Subject Alternative Name hostnames.
+                type: array
+                items:
+                  type: string
+                  format: hostname
+              san_ip_addresses:
+                description: Subject Alternative Name IP addresses.
+                type: array
+                items:
+                  type: string
+                  oneOf:
+                    - format: ipv4
+                    - format: ipv6
+              san_email_addresses:
+                description: Subject Alternative Name email addresses.
+                items:
+                  type: string
+                  format: email
+              san_uris:
+                description: Subject Alternative Name URIs.
+                items:
+                  type: string
+                  format: uri
+              public_key_parameters:
+                description: Parameters specific to the public key type.
+                type: object
 
     CrowdstrikeCredentialFields:
       type: object
