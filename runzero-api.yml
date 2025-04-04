@@ -5230,14 +5230,15 @@ components:
           type: integer
           format: int64
         risk_score:
+          type: number
+          format: float64
+          minimum: 0
+        risk_rank:
           description: 0 = info, 4 = critical
           type: integer
-          format: int8
+          format: int32
           minimum: 0
           maximum: 4
-        risk_rank:
-          type: integer
-          format: int32
 
     GCPCredentialFields:
       type: object
