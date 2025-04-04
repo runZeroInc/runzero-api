@@ -6429,6 +6429,9 @@ components:
           type: string
           format: uuid
           example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+        scanned:
+          type: boolean
+          example: true
         alive:
           type: boolean
           example: true
@@ -6459,11 +6462,17 @@ components:
           type: array
           items:
             type: string
+            oneOf:
+              - format: ipv4
+              - format: ipv6
             example: 192.168.0.1
         addresses_extra:
           type: array
           items:
             type: string
+            oneOf:
+              - format: ipv4
+              - format: ipv6
             example: 192.168.100.1
         macs:
           type: array
@@ -6548,12 +6557,12 @@ components:
             type: string
             format: port
             example: 53
-        service_ports_protocols:
+        service_protocols:
           type: array
           items:
             type: string
             example: ssh
-        service_ports_products:
+        service_products:
           type: array
           items:
             type: string
@@ -6580,12 +6589,42 @@ components:
         rtts:
           type: object
           additionalProperties: true
+        risk_rank:
+          description: -1 = none, 0 = info, 4 = critical
+          type: number
+          format: int32
+          minimum: -1
+          maximum: 4
+        risk:
+          type: string
+          format: string
+          example: critical
         credentials:
           type: object
           additionalProperties:
             type: string
             additionalProperties:
               type: boolean
+        vulnerability_count:
+          type: number
+          format: int64
+        finding_count:
+          type: number
+          format: int64
+        eol_os:
+          description: OS main EOL date
+          type: number
+          format: int64
+        eol_os_ext:
+          description: OS extended support EOL date
+          type: number
+          format: int64
+        sources:
+          description: Sources used for asset data
+          type: array
+          items:
+            type: string
+            format: string
         attributes:
           type: object
           additionalProperties:
@@ -6615,6 +6654,9 @@ components:
           example: 1576300370
         service_address:
           type: string
+          oneOf:
+            - format: ipv4
+            - format: ipv6
           example: 192.168.0.1
         service_transport:
           type: string
@@ -6692,11 +6734,17 @@ components:
           type: array
           items:
             type: string
+            oneOf:
+              - format: ipv4
+              - format: ipv6
             example: 192.168.0.1
         addresses_extra:
           type: array
           items:
             type: string
+            oneOf:
+              - format: ipv4
+              - format: ipv6
             example: 192.168.100.1
         macs:
           type: array
@@ -6972,6 +7020,9 @@ components:
           example: 1576300370
         software_service_address:
           type: string
+          oneOf:
+            - format: ipv4
+            - format: ipv6
           example: 192.168.0.1
         software_service_transport:
           type: string
@@ -7056,6 +7107,9 @@ components:
           example: 1576300370
         vulnerability_service_address:
           type: string
+          oneOf:
+            - format: ipv4
+            - format: ipv6
           example: 192.168.0.1
         vulnerability_service_transport:
           type: string
@@ -7181,11 +7235,17 @@ components:
           type: array
           items:
             type: string
+            oneOf:
+              - format: ipv4
+              - format: ipv6
             example: 192.168.0.1
         addresses_extra:
           type: array
           items:
             type: string
+            oneOf:
+              - format: ipv4
+              - format: ipv6
             example: 192.168.100.1
         macs:
           type: array
@@ -7783,6 +7843,9 @@ components:
           example: 1.1.1.1
         internal_ip:
           type: string
+          oneOf:
+            - format: ipv4
+            - format: ipv6
           example: 192.168.0.1
         system_info:
           type: object
@@ -8266,6 +8329,9 @@ components:
           example: 1576300370
         last_login_ip:
           type: string
+          oneOf:
+            - format: ipv4
+            - format: ipv6
           example: 192.168.0.1
         last_login_at:
           type: integer
@@ -8525,6 +8591,9 @@ components:
           example: 2.0
         ip_address:
           type: string
+          oneOf:
+            - format: ipv4
+            - format: ipv6
           example: 192.168.0.1
         addresses_scope:
           type: string
