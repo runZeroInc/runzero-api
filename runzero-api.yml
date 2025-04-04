@@ -702,7 +702,7 @@ paths:
         '401':
           $ref: '#/components/responses/UnauthorizedError'
 
-  /export/org/{orgId}/certificates.csv:
+  /export/org/certificates.csv:
     parameters:
       - $ref: '#/components/parameters/orgID'
     get:
@@ -729,7 +729,7 @@ paths:
         '401':
           $ref: '#/components/responses/UnauthorizedError'
 
-  /export/org/{orgId}/certificates.json:
+  /export/org/certificates.json:
     parameters:
       - $ref: '#/components/parameters/orgID'
     get:
@@ -755,7 +755,7 @@ paths:
         '401':
           $ref: '#/components/responses/UnauthorizedError'
 
-  /export/org/{orgId}/certificates.jsonl:
+  /export/org/certificates.jsonl:
     parameters:
       - $ref: '#/components/parameters/orgID'
     get:
