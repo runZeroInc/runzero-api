@@ -91,7 +91,13 @@ paths:
   /import/org/{orgID}/assets:
     post:
       parameters:
-        - $ref: '#/components/parameters/orgID'
+        - name: orgID
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+          description: The ID of the organization to import the assets into
       tags:
         - Organization
         - Import
@@ -132,24 +138,13 @@ paths:
   /export/org/assets.json:
     parameters:
       - $ref: '#/components/parameters/orgID'
+      - $ref: '#/components/parameters/search'
+      - $ref: '#/components/parameters/fields'
     get:
       tags:
         - Export
       operationId: exportAssetsJSON
       summary: Exports the asset inventory
-      parameters:
-        - in: query
-          name: search
-          description: an optional search string for filtering results
-          required: false
-          schema:
-            type: string
-        - in: query
-          name: fields
-          description: an optional list of fields to export, comma-separated
-          required: false
-          schema:
-            type: string
       responses:
         '200':
           description: filtered asset results
@@ -165,24 +160,13 @@ paths:
   /export/org/assets.jsonl:
     parameters:
       - $ref: '#/components/parameters/orgID'
+      - $ref: '#/components/parameters/search'
+      - $ref: '#/components/parameters/fields'
     get:
       tags:
         - Export
       operationId: exportAssetsJSONL
       summary: Asset inventory as JSON line-delimited
-      parameters:
-        - in: query
-          name: search
-          description: an optional search string for filtering results
-          required: false
-          schema:
-            type: string
-        - in: query
-          name: fields
-          description: an optional list of fields to export, comma-separated
-          required: false
-          schema:
-            type: string
       responses:
         '200':
           # This is a streaming response of one Asset object per line in JSON format
@@ -198,18 +182,12 @@ paths:
   /export/org/assets.csv:
     parameters:
       - $ref: '#/components/parameters/orgID'
+      - $ref: '#/components/parameters/search'
     get:
       tags:
         - Export
       operationId: exportAssetsCSV
       summary: Asset inventory as CSV
-      parameters:
-        - in: query
-          name: search
-          description: an optional search string for filtering results
-          required: false
-          schema:
-            type: string
       responses:
         '200':
           description: filtered asset results
@@ -224,18 +202,12 @@ paths:
   /export/org/assets.nmap.xml:
     parameters:
       - $ref: '#/components/parameters/orgID'
+      - $ref: '#/components/parameters/search'
     get:
       tags:
         - Export
       operationId: exportAssetsNmapXML
       summary: Asset inventory as Nmap-style XML
-      parameters:
-        - in: query
-          name: search
-          description: an optional search string for filtering results
-          required: false
-          schema:
-            type: string
       responses:
         '200':
           description: filtered asset results
@@ -250,24 +222,13 @@ paths:
   /export/org/services.json:
     parameters:
       - $ref: '#/components/parameters/orgID'
+      - $ref: '#/components/parameters/search'
+      - $ref: '#/components/parameters/fields'
     get:
       tags:
         - Export
       operationId: exportServicesJSON
       summary: Service inventory as JSON
-      parameters:
-        - in: query
-          name: search
-          description: an optional search string for filtering results
-          required: false
-          schema:
-            type: string
-        - in: query
-          name: fields
-          description: an optional list of fields to export, comma-separated
-          required: false
-          schema:
-            type: string
       responses:
         '200':
           description: filtered service results
@@ -283,24 +244,13 @@ paths:
   /export/org/services.jsonl:
     parameters:
       - $ref: '#/components/parameters/orgID'
+      - $ref: '#/components/parameters/search'
+      - $ref: '#/components/parameters/fields'
     get:
       tags:
         - Export
       operationId: exportServicesJSONL
       summary: Service inventory as JSON line-delimited
-      parameters:
-        - in: query
-          name: search
-          description: an optional search string for filtering results
-          required: false
-          schema:
-            type: string
-        - in: query
-          name: fields
-          description: an optional list of fields to export, comma-separated
-          required: false
-          schema:
-            type: string
       responses:
         '200':
           description: filtered service results
@@ -316,18 +266,12 @@ paths:
   /export/org/services.csv:
     parameters:
       - $ref: '#/components/parameters/orgID'
+      - $ref: '#/components/parameters/search'
     get:
       tags:
         - Export
       operationId: exportServicesCSV
       summary: Service inventory as CSV
-      parameters:
-        - in: query
-          name: search
-          description: an optional search string for filtering results
-          required: false
-          schema:
-            type: string
       responses:
         '200':
           description: filtered service results
@@ -343,24 +287,13 @@ paths:
   /export/org/sites.json:
     parameters:
       - $ref: '#/components/parameters/orgID'
+      - $ref: '#/components/parameters/search'
+      - $ref: '#/components/parameters/fields'
     get:
       tags:
         - Export
       operationId: exportSitesJSON
       summary: Export all sites
-      parameters:
-        - in: query
-          name: search
-          description: an optional search string for filtering results
-          required: false
-          schema:
-            type: string
-        - in: query
-          name: fields
-          description: an optional list of fields to export, comma-separated
-          required: false
-          schema:
-            type: string
       responses:
         '200':
           description: all sites
@@ -376,24 +309,13 @@ paths:
   /export/org/sites.jsonl:
     parameters:
       - $ref: '#/components/parameters/orgID'
+      - $ref: '#/components/parameters/search'
+      - $ref: '#/components/parameters/fields'
     get:
       tags:
         - Export
       operationId:  exportSitesJSONL
       summary: Site list as JSON line-delimited
-      parameters:
-        - in: query
-          name: search
-          description: an optional search string for filtering results
-          required: false
-          schema:
-            type: string
-        - in: query
-          name: fields
-          description: an optional list of fields to export, comma-separated
-          required: false
-          schema:
-            type: string
       responses:
         '200':
           description: all sites
@@ -429,24 +351,13 @@ paths:
   /export/org/wireless.json:
     parameters:
       - $ref: '#/components/parameters/orgID'
+      - $ref: '#/components/parameters/search'
+      - $ref: '#/components/parameters/fields'
     get:
       tags:
         - Export
       operationId: exportWirelessJSON
       summary: Wireless inventory as JSON
-      parameters:
-        - in: query
-          name: search
-          description: an optional search string for filtering results
-          required: false
-          schema:
-            type: string
-        - in: query
-          name: fields
-          description: an optional list of fields to export, comma-separated
-          required: false
-          schema:
-            type: string
       responses:
         '200':
           description: filtered wireless results
@@ -462,24 +373,13 @@ paths:
   /export/org/wireless.jsonl:
     parameters:
       - $ref: '#/components/parameters/orgID'
+      - $ref: '#/components/parameters/search'
+      - $ref: '#/components/parameters/fields'
     get:
       tags:
         - Export
       operationId: exportWirelessJSONL
       summary: Wireless inventory as JSON line-delimited
-      parameters:
-        - in: query
-          name: search
-          description: an optional search string for filtering results
-          required: false
-          schema:
-            type: string
-        - in: query
-          name: fields
-          description: an optional list of fields to export, comma-separated
-          required: false
-          schema:
-            type: string
       responses:
         '200':
           description: filtered wireless results
@@ -495,18 +395,12 @@ paths:
   /export/org/wireless.csv:
     parameters:
       - $ref: '#/components/parameters/orgID'
+      - $ref: '#/components/parameters/search'
     get:
       tags:
         - Export
       operationId: exportWirelessCSV
       summary: Wireless inventory as CSV
-      parameters:
-        - in: query
-          name: search
-          description: an optional search string for filtering results
-          required: false
-          schema:
-            type: string
       responses:
         '200':
           description: filtered wireless results
@@ -518,27 +412,39 @@ paths:
         '401':
           $ref: '#/components/responses/UnauthorizedError'
 
+  /export/org/metrics:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
+    get:
+      operationId: exportAssetMetricsJSON
+      summary: Export asset metrics
+      responses:
+        '200':
+          description: asset metrics
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: object
+                  properties:
+                    site_id:
+                      type: string
+                    metrics:
+                      type: object
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+
   /export/org/software.json:
     parameters:
       - $ref: '#/components/parameters/orgID'
+      - $ref: '#/components/parameters/search'
+      - $ref: '#/components/parameters/fields'
     get:
       tags:
         - Export
       operationId: exportSoftwareJSON
       summary: Exports the software inventory
-      parameters:
-        - in: query
-          name: search
-          description: an optional search string for filtering results
-          required: false
-          schema:
-            type: string
-        - in: query
-          name: fields
-          description: an optional list of fields to export, comma-separated
-          required: false
-          schema:
-            type: string
       responses:
         '200':
           description: filtered software results
@@ -554,24 +460,13 @@ paths:
   /export/org/software.jsonl:
     parameters:
       - $ref: '#/components/parameters/orgID'
+      - $ref: '#/components/parameters/search'
+      - $ref: '#/components/parameters/fields'
     get:
       tags:
         - Export
       operationId: exportSoftwareJSONL
       summary: Software inventory as JSON line-delimited
-      parameters:
-        - in: query
-          name: search
-          description: an optional search string for filtering results
-          required: false
-          schema:
-            type: string
-        - in: query
-          name: fields
-          description: an optional list of fields to export, comma-separated
-          required: false
-          schema:
-            type: string
       responses:
         '200':
           # This is a streaming response of one Software object per line in JSON format
@@ -587,18 +482,12 @@ paths:
   /export/org/software.csv:
     parameters:
       - $ref: '#/components/parameters/orgID'
+      - $ref: '#/components/parameters/search'
     get:
       tags:
         - Export
       operationId: exportSoftwareCSV
       summary: Software inventory as CSV
-      parameters:
-        - in: query
-          name: search
-          description: an optional search string for filtering results
-          required: false
-          schema:
-            type: string
       responses:
         '200':
           description: filtered software results
@@ -613,24 +502,13 @@ paths:
   /export/org/vulnerabilities.json:
     parameters:
       - $ref: '#/components/parameters/orgID'
+      - $ref: '#/components/parameters/search'
+      - $ref: '#/components/parameters/fields'
     get:
       tags:
         - Export
       operationId: exportVulnerabilitiesJSON
       summary: Export the vulnerability inventory as JSON
-      parameters:
-        - in: query
-          name: search
-          description: an optional search string for filtering results
-          required: false
-          schema:
-            type: string
-        - in: query
-          name: fields
-          description: an optional list of fields to export, comma-separated
-          required: false
-          schema:
-            type: string
       responses:
         '200':
           description: filtered vulnerability results
@@ -646,24 +524,13 @@ paths:
   /export/org/vulnerabilities.jsonl:
     parameters:
       - $ref: '#/components/parameters/orgID'
+      - $ref: '#/components/parameters/search'
+      - $ref: '#/components/parameters/fields'
     get:
       tags:
         - Export
       operationId: exportVulnerabilitiesJSONL
       summary: Export the vulnerability inventory as JSON line-delimited
-      parameters:
-        - in: query
-          name: search
-          description: an optional search string for filtering results
-          required: false
-          schema:
-            type: string
-        - in: query
-          name: fields
-          description: an optional list of fields to export, comma-separated
-          required: false
-          schema:
-            type: string
       responses:
         '200':
           # This is a streaming response of one Vulnerability object per line in JSON format
@@ -679,18 +546,12 @@ paths:
   /export/org/vulnerabilities.csv:
     parameters:
       - $ref: '#/components/parameters/orgID'
+      - $ref: '#/components/parameters/search'
     get:
       tags:
         - Export
       operationId: exportVulnerabilitiesCSV
       summary: Export the vulnerability inventory as CSV
-      parameters:
-        - in: query
-          name: search
-          description: an optional search string for filtering results
-          required: false
-          schema:
-            type: string
       responses:
         '200':
           description: filtered vulnerability results
@@ -705,19 +566,13 @@ paths:
   /export/org/certificates.csv:
     parameters:
       - $ref: '#/components/parameters/orgID'
+      - $ref: '#/components/parameters/search'
     get:
       tags:
         - Export
         - Certificates
       operationId: exportCertificatesCSV
       summary: Export the certificate inventory as CSV
-      parameters:
-        - in: query
-          name: search
-          description: an optional search string for filtering results
-          required: false
-          schema:
-            type: string
       responses:
         '200':
           description: filtered certificate results
@@ -732,45 +587,35 @@ paths:
   /export/org/certificates.json:
     parameters:
       - $ref: '#/components/parameters/orgID'
+      - $ref: '#/components/parameters/search'
     get:
       tags:
         - Export
         - Certificates
       operationId: exportCertificatesJSON
       summary: Export the certificate inventory as JSON
-      parameters:
-        - in: query
-          name: search
-          description: an optional search string for filtering results
-          required: false
-          schema:
-            type: string
       responses:
         '200':
           description: filtered certificate results
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Certificate"
+                type: array
+                items:
+                  $ref: "#/components/schemas/Certificate"
         '401':
           $ref: '#/components/responses/UnauthorizedError'
 
   /export/org/certificates.jsonl:
     parameters:
       - $ref: '#/components/parameters/orgID'
+      - $ref: '#/components/parameters/search'
     get:
       tags:
         - Export
         - Certificates
-      operationId: exportCertificatesJSON
+      operationId: exportCertificatesJSONL
       summary: Export the certificate inventory as JSONL line-delimited
-      parameters:
-        - in: query
-          name: search
-          description: an optional search string for filtering results
-          required: false
-          schema:
-            type: string
       responses:
         '200':
           description: filtered certificate results
@@ -784,24 +629,13 @@ paths:
   /export/org/users.json:
     parameters:
       - $ref: '#/components/parameters/orgID'
+      - $ref: '#/components/parameters/search'
+      - $ref: '#/components/parameters/fields'
     get:
       tags:
         - Export
       operationId: exportDirectoryUsersJSON
       summary: Exports the user inventory
-      parameters:
-        - in: query
-          name: search
-          description: an optional search string for filtering results
-          required: false
-          schema:
-            type: string
-        - in: query
-          name: fields
-          description: an optional list of fields to export, comma-separated
-          required: false
-          schema:
-            type: string
       responses:
         '200':
           description: filtered user results
@@ -817,24 +651,13 @@ paths:
   /export/org/users.jsonl:
     parameters:
       - $ref: '#/components/parameters/orgID'
+      - $ref: '#/components/parameters/search'
+      - $ref: '#/components/parameters/fields'
     get:
       tags:
         - Export
       operationId: exportDirectoryUsersJSONL
       summary: User inventory as JSON line-delimited
-      parameters:
-        - in: query
-          name: search
-          description: an optional search string for filtering results
-          required: false
-          schema:
-            type: string
-        - in: query
-          name: fields
-          description: an optional list of fields to export, comma-separated
-          required: false
-          schema:
-            type: string
       responses:
         '200':
           # This is a streaming response of one DirectoryUser object per line in JSON format
@@ -850,18 +673,12 @@ paths:
   /export/org/users.csv:
     parameters:
       - $ref: '#/components/parameters/orgID'
+      - $ref: '#/components/parameters/search'
     get:
       tags:
         - Export
       operationId: exportDirectoryUsersCSV
       summary: User inventory as CSV
-      parameters:
-        - in: query
-          name: search
-          description: an optional search string for filtering results
-          required: false
-          schema:
-            type: string
       responses:
         '200':
           description: filtered user results
@@ -876,24 +693,13 @@ paths:
   /export/org/groups.json:
     parameters:
       - $ref: '#/components/parameters/orgID'
+      - $ref: '#/components/parameters/search'
+      - $ref: '#/components/parameters/fields'
     get:
       tags:
         - Export
       operationId: exportDirectoryGroupsJSON
       summary: Exports the group inventory
-      parameters:
-        - in: query
-          name: search
-          description: an optional search string for filtering results
-          required: false
-          schema:
-            type: string
-        - in: query
-          name: fields
-          description: an optional list of fields to export, comma-separated
-          required: false
-          schema:
-            type: string
       responses:
         '200':
           description: filtered group results
@@ -909,24 +715,13 @@ paths:
   /export/org/groups.jsonl:
     parameters:
       - $ref: '#/components/parameters/orgID'
+      - $ref: '#/components/parameters/search'
+      - $ref: '#/components/parameters/fields'
     get:
       tags:
         - Export
       operationId: exportDirectoryGroupsJSONL
       summary: Group inventory as JSON line-delimited
-      parameters:
-        - in: query
-          name: search
-          description: an optional search string for filtering results
-          required: false
-          schema:
-            type: string
-        - in: query
-          name: fields
-          description: an optional list of fields to export, comma-separated
-          required: false
-          schema:
-            type: string
       responses:
         '200':
           # This is a streaming response of one DirectoryGroup object per line in JSON format
@@ -942,18 +737,12 @@ paths:
   /export/org/groups.csv:
     parameters:
       - $ref: '#/components/parameters/orgID'
+      - $ref: '#/components/parameters/search'
     get:
       tags:
         - Export
       operationId: exportDirectoryGroupsCSV
       summary: Group inventory as CSV
-      parameters:
-        - in: query
-          name: search
-          description: an optional search string for filtering results
-          required: false
-          schema:
-            type: string
       responses:
         '200':
           description: filtered group results
@@ -968,18 +757,12 @@ paths:
   /export/org/findings.csv:
     parameters:
       - $ref: '#/components/parameters/orgID'
+      - $ref: '#/components/parameters/search'
     get:
       tags:
         - Export
       operationId: exportFindingsCSV
       summary: Export findings as CSV
-      parameters:
-        - in: query
-          name: search
-          description: an optional search string for filtering results
-          required: false
-          schema:
-            type: string
       responses:
         '200':
           description: filtered findings
@@ -994,18 +777,12 @@ paths:
   /export/org/findings.json:
     parameters:
       - $ref: '#/components/parameters/orgID'
+      - $ref: '#/components/parameters/search'
     get:
       tags:
         - Export
       operationId: exportFindingsJSON
       summary: Export findings as JSON
-      parameters:
-        - in: query
-          name: search
-          description: an optional search string for filtering results
-          required: false
-          schema:
-            type: string
       responses:
         '200':
           description: filtered findings
@@ -1021,18 +798,12 @@ paths:
   /export/org/findings.jsonl:
     parameters:
       - $ref: '#/components/parameters/orgID'
+      - $ref: '#/components/parameters/search'
     get:
       tags:
         - Export
       operationId: exportFindingsJSONL
       summary: Export findings as JSON line-delimited
-      parameters:
-        - in: query
-          name: search
-          description: an optional search string for filtering results
-          required: false
-          schema:
-            type: string
       responses:
         '200':
           description: filtered findings
@@ -1093,24 +864,13 @@ paths:
   /export/org/tasks.json:
     parameters:
       - $ref: '#/components/parameters/orgID'
+      - $ref: '#/components/parameters/search'
+      - $ref: '#/components/parameters/fields'
     get:
       tags:
         - Export
       operationId: exportTasksJSON
       summary: Exports organization tasks
-      parameters:
-        - in: query
-          name: search
-          description: an optional search string for filtering results
-          required: false
-          schema:
-            type: string
-        - in: query
-          name: fields
-          description: an optional list of fields to export, comma-separated
-          required: false
-          schema:
-            type: string
       responses:
         '200':
           description: filtered task results
@@ -1126,24 +886,13 @@ paths:
   /export/org/tasks.jsonl:
     parameters:
       - $ref: '#/components/parameters/orgID'
+      - $ref: '#/components/parameters/search'
+      - $ref: '#/components/parameters/fields'
     get:
       tags:
         - Export
       operationId: exportTasksJSONL
       summary: Organization tasks as JSON line-delimited
-      parameters:
-        - in: query
-          name: search
-          description: an optional search string for filtering results
-          required: false
-          schema:
-            type: string
-        - in: query
-          name: fields
-          description: an optional list of fields to export, comma-separated
-          required: false
-          schema:
-            type: string
       responses:
         '200':
           # This is a streaming response of one Task object per line in JSON format
@@ -2010,24 +1759,13 @@ paths:
   /org/assets:
     parameters:
       - $ref: '#/components/parameters/orgID'
+      - $ref: '#/components/parameters/search'
+      - $ref: '#/components/parameters/fields'
     get:
       tags:
         - Organization
       operationId: getAssets
       summary: Get all assets
-      parameters:
-        - in: query
-          name: search
-          description: an optional search string for filtering results
-          required: false
-          schema:
-            type: string
-        - in: query
-          name: fields
-          description: an optional list of fields to export, comma-separated
-          required: false
-          schema:
-            type: string
       responses:
         '200':
           description: array of assets
@@ -2091,7 +1829,7 @@ paths:
   /org/assets/bulk/delete:
     parameters:
       - $ref: '#/components/parameters/orgID'
-    delete:
+    post:
       tags:
         - Organization
       operationId: removeBulkAssets
@@ -2824,8 +2562,8 @@ paths:
           required: true
           description: UUID of the task
       responses:
-        '200':
-          description: URL
+        '303':
+          description: Redirection to scan data
           content:
             application/json:
               schema:
@@ -2852,8 +2590,8 @@ paths:
           required: true
           description: UUID of the task
       responses:
-        '200':
-          description: URL
+        '303':
+          description: Redirection to scan data
           content:
             application/json:
               schema:
@@ -2880,8 +2618,8 @@ paths:
           required: true
           description: UUID of the task
       responses:
-        '200':
-          description: URL
+        '303':
+          description: Redirection to scan data
           content:
             application/json:
               schema:
@@ -4750,6 +4488,20 @@ components:
       schema:
         type: string
       description: The current Organization
+    search:
+      in: query
+      name: search
+      required: false
+      schema:
+        type: string
+      description: A search query in runZero search query syntax
+    fields:
+      in: query
+      name: fields
+      required: false
+      schema:
+        type: string
+      description: A list of fields to export, comma-separated
   securitySchemes:
     bearerAuth:
       type: http
@@ -5167,6 +4919,9 @@ components:
         - id
         - organization_id
       properties:
+        id:
+          type: string
+          format: uuid
         category:
           type: string
           format: string
@@ -5246,7 +5001,7 @@ components:
         cross_project:
           type: string
           format: string
-          example: false
+          example: "false"
         auth_provider_x509_cert_url:
           type: string
           format: string
@@ -5262,7 +5017,7 @@ components:
         client_id:
           type: string
           format: string
-          example: 111111111111111111111
+          example: "111111111111111111111"
         client_x509_cert_url:
           type: string
           format: string
@@ -5274,7 +5029,7 @@ components:
         private_key_id:
           type: string
           format: string
-          example: 1111111111111111111111111111111111111111
+          example: "1111111111111111111111111111111111111111"
         project_id:
           type: string
           format: string
@@ -5319,7 +5074,7 @@ components:
         client_id:
           type: string
           format: string
-          example: 111111111111111111111
+          example: "111111111111111111111"
         client_x509_cert_url:
           type: string
           format: string
@@ -5331,7 +5086,7 @@ components:
         private_key_id:
           type: string
           format: string
-          example: 1111111111111111111111111111111111111111
+          example: "1111111111111111111111111111111111111111"
         project_id:
           type: string
           format: string
@@ -5371,7 +5126,7 @@ components:
         insecure:
           type: string
           format: string
-          example: true
+          example: "true"
         thumbprints:
           type: string
           format: string
@@ -5403,11 +5158,11 @@ components:
         insecure:
           type: string
           format: string
-          example: true
+          example: "true"
         legacy_tls:
           type: string
           format: string
-          example: false
+          example: "false"
         thumbprints:
           type: string
           format: string
@@ -5468,7 +5223,7 @@ components:
         insecure:
           type: string
           format: string
-          example: false
+          example: "false"
         thumbprints:
           type: string
           format: string
@@ -5623,7 +5378,7 @@ components:
         insecure:
           type: string
           format: string
-          example: false
+          example: "false"
         thumbprints:
           type: string
           format: string
@@ -5724,7 +5479,7 @@ components:
       required:
         - url
       properties:
-        id:
+        url:
           type: string
           format: url
           example: https://www.runzero.com/docs/
@@ -5781,7 +5536,7 @@ components:
           description: A string time duration value representing execution frequency, if scheduled to repeat.
           type: string
           enum: [once, hourly, daily, weekly, monthly, continuous]
-          example: hour
+          example: hourly
         scan-start:
           description: Unix timestamp value indicating when the template was created.
           type: string
@@ -6353,7 +6108,7 @@ components:
       required:
         - criticality
       properties:
-        comments:
+        criticality:
           type: string
           example: high
 
@@ -6407,7 +6162,6 @@ components:
       type: object
       required:
         - id
-        - version
       properties:
         id:
           type: string
@@ -6550,13 +6304,13 @@ components:
           items:
             type: string
             format: port
-            example: 22
+            example: "22"
         service_ports_udp:
           type: array
           items:
             type: string
             format: port
-            example: 53
+            example: "53"
         service_protocols:
           type: array
           items:
@@ -6667,7 +6421,7 @@ components:
         service_port:
           type: string
           format: port
-          example: 80
+          example: "80"
         service_data:
           type: object
           additionalProperties:
@@ -6726,7 +6480,7 @@ components:
           example: Ubuntu Linux
         os_version:
           type: string
-          example: 18.04
+          example: "18.04"
         hw:
           type: string
           example: Dell PowerEdge 2500
@@ -6822,13 +6576,13 @@ components:
           items:
             type: string
             format: port
-            example: 22
+            example: "22"
         service_ports_udp:
           type: array
           items:
             type: string
             format: port
-            example: 53
+            example: "53"
         service_ports_protocols:
           type: array
           items:
@@ -6878,36 +6632,33 @@ components:
         - id
         - name
       properties:
-        data:
+        id:
+          type: string
+          format: uuid
+          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+        created_at:
+          type: integer
+          format: int64
+          example: 1576300370
+        updated_at:
+          type: integer
+          format: int64
+          example: 1576300370
+        name:
+          type: string
+          example: Primary
+        description:
+          type: string
+          example: Headquarters
+        scope:
+          type: string
+          example: "192.168.0.0/24"
+        excludes:
+          type: string
+          example: "192.168.0.5"
+        subnets:
           type: object
-          properties:
-            id:
-              type: string
-              format: uuid
-              example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
-            created_at:
-              type: integer
-              format: int64
-              example: 1576300370
-            updated_at:
-              type: integer
-              format: int64
-              example: 1576300370
-            name:
-              type: string
-              example: Primary
-            description:
-              type: string
-              example: Headquarters
-            scope:
-              type: string
-              example: "192.168.0.0/24"
-            excludes:
-              type: string
-              example: "192.168.0.5"
-            subnets:
-              type: object
-              additionalProperties: true
+          additionalProperties: true
 
     Wireless:
       type: object
@@ -6975,7 +6726,7 @@ components:
           example: "Ubiquiti Networks"
         family:
           type: string
-          example: 223344
+          example: "223344"
         data:
           type: object
           additionalProperties:
@@ -6995,6 +6746,10 @@ components:
       required:
         - id
       properties:
+        id:
+          type: string
+          format: uuid
+          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
         software_id:
           type: string
           format: uuid
@@ -7123,7 +6878,7 @@ components:
           example: cpe:/o:cisco:ios
         vulnerability_vuln_id:
           type: string
-          example: 103565
+          example: "103565"
         vulnerability_category:
           type: string
           example: Remote
@@ -7323,13 +7078,13 @@ components:
           items:
             type: string
             format: port
-            example: 22
+            example: "22"
         service_ports_udp:
           type: array
           items:
             type: string
             format: port
-            example: 53
+            example: "53"
         service_ports_protocols:
           type: array
           items:
@@ -7378,6 +7133,10 @@ components:
       required:
         - id
       properties:
+        id:
+          type: string
+          format: uuid
+          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
         directory_user_id:
           type: string
           format: uuid
@@ -7457,6 +7216,10 @@ components:
       required:
         - id
       properties:
+        id:
+          type: string
+          format: uuid
+          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
         directory_group_id:
           type: string
           format: uuid
@@ -8157,7 +7920,7 @@ components:
           example: Texas
         address_postal:
           type: string
-          example: 78700
+          example: "78700"
         subscription_period_start:
           type: integer
           format: int64
@@ -8579,7 +8342,7 @@ components:
           example: Windows 10
         os_version:
           type: string
-          example: 1903
+          example: "1903"
         hw_vendor:
           type: string
           example: Dell
@@ -8588,7 +8351,7 @@ components:
           example: PowerEdge
         hw_version:
           type: string
-          example: 2.0
+          example: "2.0"
         ip_address:
           type: string
           oneOf:
