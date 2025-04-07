@@ -4608,11 +4608,11 @@ components:
         access_key:
           type: string
           format: string
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         secret_access_key:
           type: string
           format: string
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         regions:
           type: string
           format: string
@@ -4637,15 +4637,15 @@ components:
         client_id:
           type: string
           format: string
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         client_secret:
           type: string
           format: string
-          example: abcde~abcdefghiklmnopqrstuvwx_yz123456-7
+          example: "abcde~abcdefghiklmnopqrstuvwx_yz123456-7"
         tenant_id:
           type: string
           format: string
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         environment:
           type: string
           format: string
@@ -4658,7 +4658,7 @@ components:
         subscription_id:
           type: string
           format: string
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
 
     AzureUsernamePasswordCredentialFields:
       type: object
@@ -4671,11 +4671,11 @@ components:
         client_id:
           type: string
           format: string
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         tenant_id:
           type: string
           format: string
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         username:
           type: string
           format: string
@@ -4683,7 +4683,7 @@ components:
         password:
           type: string
           format: string
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
 
     CensysCredentialFields:
       type: object
@@ -4694,11 +4694,11 @@ components:
         client_id:
           type: string
           format: string
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         client_secret:
           type: string
           format: string
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         api_url:
           type: string
           format: string
@@ -4713,7 +4713,7 @@ components:
         id:
           type: string
           format: string
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         type:
           type: string
           enum: [x509, ssh]
@@ -4729,7 +4729,7 @@ components:
         organization_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         names:
           type: array
           description: An assembled list of all names in the certificate.
@@ -4890,11 +4890,11 @@ components:
         client_id:
           type: string
           format: string
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         client_secret:
           type: string
           format: string
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         api_url:
           type: string
           format: string
@@ -5202,7 +5202,7 @@ components:
         api_key:
           type: string
           format: string
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
 
     NessusCredentialFields:
       type: object
@@ -5396,7 +5396,7 @@ components:
         password:
           type: string
           format: string
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         insecure:
           type: string
           format: string
@@ -5493,11 +5493,11 @@ components:
         explorer:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         agent:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         targets:
           type: string
           example: "10.0.0.0/8 172.16.0.0/12 192.168.0.0/16"
@@ -5531,7 +5531,7 @@ components:
         scan-template:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         scan-frequency:
           description: A string time duration value representing execution frequency, if scheduled to repeat.
           type: string
@@ -5550,15 +5550,15 @@ components:
         agent:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         explorer:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         hosted-zone-id:
           type: string
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
-          description: The string 'auto' will use any available hosted zone. Otherwise, provide the string name (hostedzone1) or UUID (e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8) of a hosted zone.
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
+          description: The string 'auto' will use any available hosted zone. Otherwise, provide the string name (hostedzone1) or UUID ("e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8") of a hosted zone.
         hosted-zone-name:
           type: string
           example: auto
@@ -5646,7 +5646,7 @@ components:
           description: The ID of the organization the template will be created in
           type: string
           format: uuid
-          example: f6cfb91a-52ea-4a86-bf9a-5a891a26f52b
+          example: "f6cfb91a-52ea-4a86-bf9a-5a891a26f52b"
           x-go-type: uuid.UUID
           x-go-import:
             name: uuid
@@ -5665,7 +5665,7 @@ components:
           type: object
           additionalProperties: true
           example:
-            e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8: user
+            "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8": user
 
     ScanTemplate:
       description: A scan task template
@@ -5680,7 +5680,7 @@ components:
           description: ID of the template.
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
           x-go-type: uuid.UUID
           x-go-import:
             name: uuid
@@ -5697,7 +5697,7 @@ components:
           description: ID of the account which owns the template.
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
           x-go-type: uuid.UUID
           x-go-import:
             name: uuid
@@ -5706,7 +5706,7 @@ components:
           description: ID of the organization the template is available in.
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
           x-go-type: uuid.UUID
           x-go-import:
             name: uuid
@@ -5715,7 +5715,7 @@ components:
           description: ID of the explorer which may execute the template.
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
           x-go-type: uuid.UUID
           x-go-import:
             name: uuid
@@ -5724,7 +5724,7 @@ components:
           description: ID of the site the template is being used in.
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
           x-go-type: uuid.UUID
           x-go-import:
             name: uuid
@@ -5733,7 +5733,7 @@ components:
           description: ID of the runZero cruncher the task is executing on.
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
           x-go-type: uuid.UUID
           x-go-import:
             name: uuid
@@ -5751,7 +5751,7 @@ components:
           description: The ID of the account which created the template.
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
           x-go-type: uuid.UUID
           x-go-import:
             name: uuid
@@ -5790,7 +5790,7 @@ components:
           description: The ID of the parent entity of the task scheduled.
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
           x-go-type: uuid.UUID
           x-go-import:
             name: uuid
@@ -5824,7 +5824,7 @@ components:
           description: The ID of the task that last executed if scheduled to repeat.
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
           x-go-type: uuid.UUID
           x-go-import:
             name: uuid
@@ -5837,7 +5837,7 @@ components:
           description: The ID of the custom integration source, if the last task executed with this template was an import of Asset Data.
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
           x-go-type: uuid.UUID
           x-go-import:
             name: uuid
@@ -5850,7 +5850,7 @@ components:
           description: The ID of the template.
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
           x-go-type: uuid.UUID
           x-go-import:
             name: uuid
@@ -5874,7 +5874,7 @@ components:
           description: The ID of the hosted zone that ran the last task the template was used with.
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
           x-go-type: uuid.UUID
           x-go-import:
             name: uuid
@@ -5893,7 +5893,7 @@ components:
           type: object
           additionalProperties: true
           example:
-            e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8: user
+            "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8": user
 
 
 
@@ -5905,7 +5905,7 @@ components:
         site_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
 
     Explorer:
       $ref: '#/components/schemas/Agent'
@@ -5925,7 +5925,7 @@ components:
         parent_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         expiration_assets_stale:
           type: string
           format: number
@@ -6041,8 +6041,8 @@ components:
           type: object
           additionalProperties: true
           example:
-            e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8: user
-            e77602e0-3fb8-4734-aef9-fbc6fdcb0fa9: none
+            "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8": user
+            "e77602e0-3fb8-4734-aef9-fbc6fdcb0fe9": none
         global:
           type: boolean
           example: false
@@ -6061,7 +6061,7 @@ components:
         organization_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
 
     ExportTokenOptions:
       type: object
@@ -6121,7 +6121,7 @@ components:
           type: array
           items:
             type: string
-            example: 453C191F-644E-4EA8-9727-0E81E5275C35
+            example: "453C191F-644E-4EA8-9727-0E81E5275C35"
 
     AssetTagsWithSearch:
       type: object
@@ -6166,7 +6166,7 @@ components:
         id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         created_at:
           type: integer
           format: int64
@@ -6178,11 +6178,11 @@ components:
         organization_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         site_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         scanned:
           type: boolean
           example: true
@@ -6280,11 +6280,11 @@ components:
         last_agent_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         last_task_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         newest_mac:
           type: string
           format: mac
@@ -6393,11 +6393,11 @@ components:
         service_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         service_asset_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         service_created_at:
           type: integer
           format: int64
@@ -6441,7 +6441,7 @@ components:
         id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         created_at:
           type: integer
           format: int64
@@ -6453,11 +6453,11 @@ components:
         organization_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         site_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         alive:
           type: boolean
           example: true
@@ -6552,11 +6552,11 @@ components:
         last_agent_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         last_task_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         newest_mac:
           type: string
           format: mac
@@ -6635,7 +6635,7 @@ components:
         id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         created_at:
           type: integer
           format: int64
@@ -6668,7 +6668,7 @@ components:
         id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         created_at:
           type: integer
           format: int64
@@ -6680,19 +6680,19 @@ components:
         organization_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         site_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         last_agent_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         last_task_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         essid:
           type: string
           format: uuid
@@ -6749,19 +6749,19 @@ components:
         id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         software_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         software_asset_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         software_organization_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         software_source_id:
           type: integer
           example: 1
@@ -6840,15 +6840,15 @@ components:
         vulnerability_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         vulnerability_asset_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         vulnerability_organization_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         vulnerability_source_id:
           type: integer
           example: 1
@@ -6943,7 +6943,7 @@ components:
         id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         created_at:
           type: integer
           format: int64
@@ -6955,11 +6955,11 @@ components:
         organization_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         site_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         alive:
           type: boolean
           example: true
@@ -7054,11 +7054,11 @@ components:
         last_agent_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         last_task_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         newest_mac:
           type: string
           format: mac
@@ -7136,19 +7136,19 @@ components:
         id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         directory_user_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         directory_user_organization_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         directory_user_site_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         directory_user_source_id:
           type: integer
           example: 1
@@ -7162,14 +7162,14 @@ components:
           example: 1576300370
         directory_user_user_id:
           type: string
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         directory_user_group_ids:
           type: array
           items:
             type: string
           example:
-            - e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
-            - e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+            - "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
+            - "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         directory_user_display_name:
           type: string
           example: Jane Doe
@@ -7219,19 +7219,19 @@ components:
         id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         directory_group_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         directory_group_organization_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         directory_group_site_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         directory_group_source_id:
           type: integer
           example: 1
@@ -7245,7 +7245,7 @@ components:
           example: 1576300370
         directory_group_group_id:
           type: string
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         directory_group_user_count:
           type: integer
           format: int64
@@ -7281,7 +7281,7 @@ components:
         id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
           x-go-type: uuid.UUID
           x-go-import:
             name: uuid
@@ -7297,7 +7297,7 @@ components:
         client_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
           x-go-type: uuid.UUID
           x-go-import:
             name: uuid
@@ -7352,7 +7352,7 @@ components:
         parent_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         expiration_assets_stale:
           type: integer
           format: int64
@@ -7408,11 +7408,11 @@ components:
         id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         client_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         name:
           type: string
           example: credentials_name
@@ -7427,7 +7427,7 @@ components:
         created_by_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         created_by_email:
           type: string
           format: email
@@ -7436,7 +7436,7 @@ components:
           type: object
           additionalProperties: true
           example:
-            e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8: user
+            "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8": user
         global:
           type: boolean
           example: false
@@ -7454,7 +7454,7 @@ components:
         last_used_by_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
 
     APIKey:
       type: object
@@ -7464,15 +7464,15 @@ components:
         id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         client_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         organization_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         created_at:
           type: integer
           format: int64
@@ -7523,7 +7523,7 @@ components:
       properties:
         id:
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         token:
           type: string
           example: ET11226D9EEEA2B035D42569585900
@@ -7557,15 +7557,15 @@ components:
         id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         client_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         organization_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         created_at:
           type: integer
           format: int64
@@ -7580,14 +7580,14 @@ components:
         hub_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         name:
           type: string
           example: RUNZERO-AGENT
         site_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         last_checkin:
           type: integer
           format: int64
@@ -7631,7 +7631,7 @@ components:
         id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
           x-go-type: uuid.UUID
           x-go-import:
             name: uuid
@@ -7645,7 +7645,7 @@ components:
         template_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
           x-go-type: uuid.UUID
           x-go-import:
             name: uuid
@@ -7653,7 +7653,7 @@ components:
         client_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
           x-go-type: uuid.UUID
           x-go-import:
             name: uuid
@@ -7661,7 +7661,7 @@ components:
         organization_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
           x-go-type: uuid.UUID
           x-go-import:
             name: uuid
@@ -7669,7 +7669,7 @@ components:
         agent_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
           x-go-type: uuid.UUID
           x-go-import:
             name: uuid
@@ -7679,7 +7679,7 @@ components:
             The ID of the Hosted Zone which executes the task. If the
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
           x-go-type: uuid.UUID
           x-go-import:
             name: uuid
@@ -7687,7 +7687,7 @@ components:
         site_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
           x-go-type: uuid.UUID
           x-go-import:
             name: uuid
@@ -7695,7 +7695,7 @@ components:
         cruncher_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
           x-go-type: uuid.UUID
           x-go-import:
             name: uuid
@@ -7710,7 +7710,7 @@ components:
         created_by_user_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
           x-go-type: uuid.UUID
           x-go-import:
             name: uuid
@@ -7719,7 +7719,7 @@ components:
           description: The ID of the custom integration source, if the last task executed with this template was an import of Asset Data.
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
           x-go-type: uuid.UUID
           x-go-import:
             name: uuid
@@ -7754,7 +7754,7 @@ components:
         parent_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
           x-go-type: uuid.UUID
           x-go-import:
             name: uuid
@@ -7780,7 +7780,7 @@ components:
         recur_last_task_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
           x-go-type: uuid.UUID
           x-go-import:
             name: uuid
@@ -7815,7 +7815,7 @@ components:
           description: The ID of the hosted zone
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         name:
           type: string
           example: zone1
@@ -7832,7 +7832,7 @@ components:
           description: The processor ID assigned to the hosted zone
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         explorers_concurrency:
           description: The number of concurrent explorer tasks that can be executed
           type: integer
@@ -7857,7 +7857,7 @@ components:
           description: The ID of the organization the hosted zone is assigned to
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
 
     License:
       type: object
@@ -7865,7 +7865,7 @@ components:
         id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         created_at:
           type: integer
           format: int64
@@ -7974,7 +7974,7 @@ components:
         id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         created_at:
           type: integer
           format: int64
@@ -7982,22 +7982,22 @@ components:
         client_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         organization_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         site_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         action:
           type: string
           example: login
         source_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         source_name:
           type: string
           example: SiteName
@@ -8007,7 +8007,7 @@ components:
         target_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         target_name:
           type: string
           example: SiteName
@@ -8026,7 +8026,7 @@ components:
         processor_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         processed_at:
           type: integer
           format: int64
@@ -8040,11 +8040,11 @@ components:
         id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         client_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         created_at:
           type: integer
           format: int64
@@ -8134,7 +8134,7 @@ components:
         id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         description:
           type: string
           example: Viewers Group
@@ -8190,8 +8190,8 @@ components:
           type: object
           additionalProperties: true
           example:
-            1a5e612e-4d64-45fe-aa3e-afba5cf3b9bf: viewer,
-            fd6d6662-732b-4c4b-8331-051178994384: admin
+            "1a5e612e-4d64-45fe-aa3e-afba5cf3b9bf": viewer,
+            "fd6d6662-732b-4c4b-8331-051178994384": admin
 
     GroupPut:
       type: object
@@ -8199,7 +8199,7 @@ components:
         id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         description:
           type: string
           example: Viewers Group
@@ -8217,8 +8217,8 @@ components:
           type: object
           additionalProperties: true
           example:
-            1a5e612e-4d64-45fe-aa3e-afba5cf3b9bf: viewer,
-            fd6d6662-732b-4c4b-8331-051178994384: admin
+            "1a5e612e-4d64-45fe-aa3e-afba5cf3b9bf": viewer,
+            "fd6d6662-732b-4c4b-8331-051178994384": admin
 
     GroupMapping:
       type: object
@@ -8231,11 +8231,11 @@ components:
         id:
           type: string
           format: uuid
-          example: f6cfb91a-52ea-4a86-bf9a-5a891a26f52b
+          example: "f6cfb91a-52ea-4a86-bf9a-5a891a26f52b"
         group_id:
           type: string
           format: uuid
-          example: 2b096711-4d28-4417-8635-64af4f62c1ae
+          example: "2b096711-4d28-4417-8635-64af4f62c1ae"
         group_name:
           type: string
           example: Viewers Group
@@ -8318,7 +8318,7 @@ components:
         asset_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         organization:
           type: string
           example: Headquarters
@@ -8443,7 +8443,7 @@ components:
         id:
           type: string
           format: uuid
-          example: f6cfb91a-52ea-4a86-bf9a-5a891a26f52b
+          example: "f6cfb91a-52ea-4a86-bf9a-5a891a26f52b"
         name:
           type: string
           example: Asset Owner
@@ -8489,7 +8489,7 @@ components:
             properties:
               ownership_type_id:
                 type: string
-                example: 2318e078-4164-4e1b-92a5-11e353093f4b
+                example: "2318e078-4164-4e1b-92a5-11e353093f4b"
               owner:
                 type: string
                 example: "it@runzero.com"
@@ -8510,7 +8510,7 @@ components:
             properties:
               ownership_type_id:
                 type: string
-                example: 2318e078-4164-4e1b-92a5-11e353093f4b
+                example: "2318e078-4164-4e1b-92a5-11e353093f4b"
               owner:
                 type: string
                 example: "it@runzero.com"
@@ -8529,7 +8529,7 @@ components:
           description: The unique ID of the object
           type: string
           format: uuid
-          example: f6cfb91a-52ea-4a86-bf9a-5a891a26f52b
+          example: "f6cfb91a-52ea-4a86-bf9a-5a891a26f52b"
           x-go-type: uuid.UUID
           x-go-import:
             name: uuid
@@ -8538,7 +8538,7 @@ components:
           description: The unique ID of the runZero client/customer account that owns the object
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
           x-go-type: uuid.UUID
           x-go-import:
             name: uuid
@@ -8547,7 +8547,7 @@ components:
           description: The unique ID of the entity that created the object
           type: string
           format: uuid
-          example: f6cfb91a-52ea-4a86-bf9a-5a891a26f52b
+          example: "f6cfb91a-52ea-4a86-bf9a-5a891a26f52b"
           x-go-type: uuid.UUID
           x-go-import:
             name: uuid
@@ -8623,7 +8623,7 @@ components:
           description: The ID of the site assets are to be imported into.
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
           x-go-type: uuid.UUID
           x-go-import:
             name: uuid
@@ -8632,7 +8632,7 @@ components:
           description: The unique ID of the registered custom integration which produced the asset data. Uniqueness is not checked/enforced. See /account/custom-integrations api.
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
           x-go-type: uuid.UUID
           x-go-import:
             name: uuid
@@ -8688,7 +8688,7 @@ components:
           description: The unique identifier of the runZero asset to merge into.
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
           x-go-type: uuid.UUID
           x-go-import:
             name: uuid
@@ -8812,7 +8812,7 @@ components:
         api_client_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         api_client_secret: 
           type: string
 
