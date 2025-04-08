@@ -4,7 +4,7 @@ servers:
     url: https://console.runzero.com/api/v1.0
 info:
   description: runZero API. API use is rate limited, you can make as many calls per day as you have licensed assets.
-  version: 4.0.250401.0
+  version: 4.0.250404.0
   title: runZero API
   contact:
     email: support@runzero.com
@@ -88,20 +88,16 @@ paths:
               schema:
                 $ref: '#/components/schemas/HealthCheckResponse'
 
-  /import/org/{orgId}/assets:
+  /import/org/{orgID}/assets:
     post:
       parameters:
-        - name: orgId
+        - name: orgID
           in: path
-          description: The unique ID of the organization that the assets will be imported into.
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
           required: true
           schema:
             type: string
             format: uuid
-            x-go-type: uuid.UUID
-            x-go-type-import:
-              path: github.com/gofrs/uuid
+          description: The ID of the organization to import the assets into
       tags:
         - Organization
         - Import
@@ -142,24 +138,13 @@ paths:
   /export/org/assets.json:
     parameters:
       - $ref: '#/components/parameters/orgID'
+      - $ref: '#/components/parameters/search'
+      - $ref: '#/components/parameters/fields'
     get:
       tags:
         - Export
       operationId: exportAssetsJSON
       summary: Exports the asset inventory
-      parameters:
-        - in: query
-          name: search
-          description: an optional search string for filtering results
-          required: false
-          schema:
-            type: string
-        - in: query
-          name: fields
-          description: an optional list of fields to export, comma-separated
-          required: false
-          schema:
-            type: string
       responses:
         '200':
           description: filtered asset results
@@ -175,24 +160,13 @@ paths:
   /export/org/assets.jsonl:
     parameters:
       - $ref: '#/components/parameters/orgID'
+      - $ref: '#/components/parameters/search'
+      - $ref: '#/components/parameters/fields'
     get:
       tags:
         - Export
       operationId: exportAssetsJSONL
       summary: Asset inventory as JSON line-delimited
-      parameters:
-        - in: query
-          name: search
-          description: an optional search string for filtering results
-          required: false
-          schema:
-            type: string
-        - in: query
-          name: fields
-          description: an optional list of fields to export, comma-separated
-          required: false
-          schema:
-            type: string
       responses:
         '200':
           # This is a streaming response of one Asset object per line in JSON format
@@ -208,18 +182,12 @@ paths:
   /export/org/assets.csv:
     parameters:
       - $ref: '#/components/parameters/orgID'
+      - $ref: '#/components/parameters/search'
     get:
       tags:
         - Export
       operationId: exportAssetsCSV
       summary: Asset inventory as CSV
-      parameters:
-        - in: query
-          name: search
-          description: an optional search string for filtering results
-          required: false
-          schema:
-            type: string
       responses:
         '200':
           description: filtered asset results
@@ -234,18 +202,12 @@ paths:
   /export/org/assets.nmap.xml:
     parameters:
       - $ref: '#/components/parameters/orgID'
+      - $ref: '#/components/parameters/search'
     get:
       tags:
         - Export
       operationId: exportAssetsNmapXML
       summary: Asset inventory as Nmap-style XML
-      parameters:
-        - in: query
-          name: search
-          description: an optional search string for filtering results
-          required: false
-          schema:
-            type: string
       responses:
         '200':
           description: filtered asset results
@@ -260,24 +222,13 @@ paths:
   /export/org/services.json:
     parameters:
       - $ref: '#/components/parameters/orgID'
+      - $ref: '#/components/parameters/search'
+      - $ref: '#/components/parameters/fields'
     get:
       tags:
         - Export
       operationId: exportServicesJSON
       summary: Service inventory as JSON
-      parameters:
-        - in: query
-          name: search
-          description: an optional search string for filtering results
-          required: false
-          schema:
-            type: string
-        - in: query
-          name: fields
-          description: an optional list of fields to export, comma-separated
-          required: false
-          schema:
-            type: string
       responses:
         '200':
           description: filtered service results
@@ -293,24 +244,13 @@ paths:
   /export/org/services.jsonl:
     parameters:
       - $ref: '#/components/parameters/orgID'
+      - $ref: '#/components/parameters/search'
+      - $ref: '#/components/parameters/fields'
     get:
       tags:
         - Export
       operationId: exportServicesJSONL
       summary: Service inventory as JSON line-delimited
-      parameters:
-        - in: query
-          name: search
-          description: an optional search string for filtering results
-          required: false
-          schema:
-            type: string
-        - in: query
-          name: fields
-          description: an optional list of fields to export, comma-separated
-          required: false
-          schema:
-            type: string
       responses:
         '200':
           description: filtered service results
@@ -326,18 +266,12 @@ paths:
   /export/org/services.csv:
     parameters:
       - $ref: '#/components/parameters/orgID'
+      - $ref: '#/components/parameters/search'
     get:
       tags:
         - Export
       operationId: exportServicesCSV
       summary: Service inventory as CSV
-      parameters:
-        - in: query
-          name: search
-          description: an optional search string for filtering results
-          required: false
-          schema:
-            type: string
       responses:
         '200':
           description: filtered service results
@@ -353,24 +287,13 @@ paths:
   /export/org/sites.json:
     parameters:
       - $ref: '#/components/parameters/orgID'
+      - $ref: '#/components/parameters/search'
+      - $ref: '#/components/parameters/fields'
     get:
       tags:
         - Export
       operationId: exportSitesJSON
       summary: Export all sites
-      parameters:
-        - in: query
-          name: search
-          description: an optional search string for filtering results
-          required: false
-          schema:
-            type: string
-        - in: query
-          name: fields
-          description: an optional list of fields to export, comma-separated
-          required: false
-          schema:
-            type: string
       responses:
         '200':
           description: all sites
@@ -386,24 +309,13 @@ paths:
   /export/org/sites.jsonl:
     parameters:
       - $ref: '#/components/parameters/orgID'
+      - $ref: '#/components/parameters/search'
+      - $ref: '#/components/parameters/fields'
     get:
       tags:
         - Export
       operationId:  exportSitesJSONL
       summary: Site list as JSON line-delimited
-      parameters:
-        - in: query
-          name: search
-          description: an optional search string for filtering results
-          required: false
-          schema:
-            type: string
-        - in: query
-          name: fields
-          description: an optional list of fields to export, comma-separated
-          required: false
-          schema:
-            type: string
       responses:
         '200':
           description: all sites
@@ -439,24 +351,13 @@ paths:
   /export/org/wireless.json:
     parameters:
       - $ref: '#/components/parameters/orgID'
+      - $ref: '#/components/parameters/search'
+      - $ref: '#/components/parameters/fields'
     get:
       tags:
         - Export
       operationId: exportWirelessJSON
       summary: Wireless inventory as JSON
-      parameters:
-        - in: query
-          name: search
-          description: an optional search string for filtering results
-          required: false
-          schema:
-            type: string
-        - in: query
-          name: fields
-          description: an optional list of fields to export, comma-separated
-          required: false
-          schema:
-            type: string
       responses:
         '200':
           description: filtered wireless results
@@ -472,24 +373,13 @@ paths:
   /export/org/wireless.jsonl:
     parameters:
       - $ref: '#/components/parameters/orgID'
+      - $ref: '#/components/parameters/search'
+      - $ref: '#/components/parameters/fields'
     get:
       tags:
         - Export
       operationId: exportWirelessJSONL
       summary: Wireless inventory as JSON line-delimited
-      parameters:
-        - in: query
-          name: search
-          description: an optional search string for filtering results
-          required: false
-          schema:
-            type: string
-        - in: query
-          name: fields
-          description: an optional list of fields to export, comma-separated
-          required: false
-          schema:
-            type: string
       responses:
         '200':
           description: filtered wireless results
@@ -505,18 +395,12 @@ paths:
   /export/org/wireless.csv:
     parameters:
       - $ref: '#/components/parameters/orgID'
+      - $ref: '#/components/parameters/search'
     get:
       tags:
         - Export
       operationId: exportWirelessCSV
       summary: Wireless inventory as CSV
-      parameters:
-        - in: query
-          name: search
-          description: an optional search string for filtering results
-          required: false
-          schema:
-            type: string
       responses:
         '200':
           description: filtered wireless results
@@ -528,27 +412,39 @@ paths:
         '401':
           $ref: '#/components/responses/UnauthorizedError'
 
+  /export/org/metrics:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
+    get:
+      operationId: exportAssetMetricsJSON
+      summary: Export asset metrics
+      responses:
+        '200':
+          description: asset metrics
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: object
+                  properties:
+                    site_id:
+                      type: string
+                    metrics:
+                      type: object
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+
   /export/org/software.json:
     parameters:
       - $ref: '#/components/parameters/orgID'
+      - $ref: '#/components/parameters/search'
+      - $ref: '#/components/parameters/fields'
     get:
       tags:
         - Export
       operationId: exportSoftwareJSON
       summary: Exports the software inventory
-      parameters:
-        - in: query
-          name: search
-          description: an optional search string for filtering results
-          required: false
-          schema:
-            type: string
-        - in: query
-          name: fields
-          description: an optional list of fields to export, comma-separated
-          required: false
-          schema:
-            type: string
       responses:
         '200':
           description: filtered software results
@@ -564,24 +460,13 @@ paths:
   /export/org/software.jsonl:
     parameters:
       - $ref: '#/components/parameters/orgID'
+      - $ref: '#/components/parameters/search'
+      - $ref: '#/components/parameters/fields'
     get:
       tags:
         - Export
       operationId: exportSoftwareJSONL
       summary: Software inventory as JSON line-delimited
-      parameters:
-        - in: query
-          name: search
-          description: an optional search string for filtering results
-          required: false
-          schema:
-            type: string
-        - in: query
-          name: fields
-          description: an optional list of fields to export, comma-separated
-          required: false
-          schema:
-            type: string
       responses:
         '200':
           # This is a streaming response of one Software object per line in JSON format
@@ -597,18 +482,12 @@ paths:
   /export/org/software.csv:
     parameters:
       - $ref: '#/components/parameters/orgID'
+      - $ref: '#/components/parameters/search'
     get:
       tags:
         - Export
       operationId: exportSoftwareCSV
       summary: Software inventory as CSV
-      parameters:
-        - in: query
-          name: search
-          description: an optional search string for filtering results
-          required: false
-          schema:
-            type: string
       responses:
         '200':
           description: filtered software results
@@ -623,24 +502,13 @@ paths:
   /export/org/vulnerabilities.json:
     parameters:
       - $ref: '#/components/parameters/orgID'
+      - $ref: '#/components/parameters/search'
+      - $ref: '#/components/parameters/fields'
     get:
       tags:
         - Export
       operationId: exportVulnerabilitiesJSON
-      summary: Exports the vulnerability inventory
-      parameters:
-        - in: query
-          name: search
-          description: an optional search string for filtering results
-          required: false
-          schema:
-            type: string
-        - in: query
-          name: fields
-          description: an optional list of fields to export, comma-separated
-          required: false
-          schema:
-            type: string
+      summary: Export the vulnerability inventory as JSON
       responses:
         '200':
           description: filtered vulnerability results
@@ -656,24 +524,13 @@ paths:
   /export/org/vulnerabilities.jsonl:
     parameters:
       - $ref: '#/components/parameters/orgID'
+      - $ref: '#/components/parameters/search'
+      - $ref: '#/components/parameters/fields'
     get:
       tags:
         - Export
       operationId: exportVulnerabilitiesJSONL
-      summary: Vulnerability inventory as JSON line-delimited
-      parameters:
-        - in: query
-          name: search
-          description: an optional search string for filtering results
-          required: false
-          schema:
-            type: string
-        - in: query
-          name: fields
-          description: an optional list of fields to export, comma-separated
-          required: false
-          schema:
-            type: string
+      summary: Export the vulnerability inventory as JSON line-delimited
       responses:
         '200':
           # This is a streaming response of one Vulnerability object per line in JSON format
@@ -689,18 +546,12 @@ paths:
   /export/org/vulnerabilities.csv:
     parameters:
       - $ref: '#/components/parameters/orgID'
+      - $ref: '#/components/parameters/search'
     get:
       tags:
         - Export
       operationId: exportVulnerabilitiesCSV
-      summary: Vulnerability inventory as CSV
-      parameters:
-        - in: query
-          name: search
-          description: an optional search string for filtering results
-          required: false
-          schema:
-            type: string
+      summary: Export the vulnerability inventory as CSV
       responses:
         '200':
           description: filtered vulnerability results
@@ -712,27 +563,79 @@ paths:
         '401':
           $ref: '#/components/responses/UnauthorizedError'
 
+  /export/org/certificates.csv:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
+      - $ref: '#/components/parameters/search'
+    get:
+      tags:
+        - Export
+        - Certificates
+      operationId: exportCertificatesCSV
+      summary: Export the certificate inventory as CSV
+      responses:
+        '200':
+          description: filtered certificate results
+          content:
+            text/csv:
+              schema:
+                type: string
+                format: binary
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+
+  /export/org/certificates.json:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
+      - $ref: '#/components/parameters/search'
+    get:
+      tags:
+        - Export
+        - Certificates
+      operationId: exportCertificatesJSON
+      summary: Export the certificate inventory as JSON
+      responses:
+        '200':
+          description: filtered certificate results
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Certificate"
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+
+  /export/org/certificates.jsonl:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
+      - $ref: '#/components/parameters/search'
+    get:
+      tags:
+        - Export
+        - Certificates
+      operationId: exportCertificatesJSONL
+      summary: Export the certificate inventory as JSONL line-delimited
+      responses:
+        '200':
+          description: filtered certificate results
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Certificate"
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+
   /export/org/users.json:
     parameters:
       - $ref: '#/components/parameters/orgID'
+      - $ref: '#/components/parameters/search'
+      - $ref: '#/components/parameters/fields'
     get:
       tags:
         - Export
       operationId: exportDirectoryUsersJSON
       summary: Exports the user inventory
-      parameters:
-        - in: query
-          name: search
-          description: an optional search string for filtering results
-          required: false
-          schema:
-            type: string
-        - in: query
-          name: fields
-          description: an optional list of fields to export, comma-separated
-          required: false
-          schema:
-            type: string
       responses:
         '200':
           description: filtered user results
@@ -748,24 +651,13 @@ paths:
   /export/org/users.jsonl:
     parameters:
       - $ref: '#/components/parameters/orgID'
+      - $ref: '#/components/parameters/search'
+      - $ref: '#/components/parameters/fields'
     get:
       tags:
         - Export
       operationId: exportDirectoryUsersJSONL
       summary: User inventory as JSON line-delimited
-      parameters:
-        - in: query
-          name: search
-          description: an optional search string for filtering results
-          required: false
-          schema:
-            type: string
-        - in: query
-          name: fields
-          description: an optional list of fields to export, comma-separated
-          required: false
-          schema:
-            type: string
       responses:
         '200':
           # This is a streaming response of one DirectoryUser object per line in JSON format
@@ -781,18 +673,12 @@ paths:
   /export/org/users.csv:
     parameters:
       - $ref: '#/components/parameters/orgID'
+      - $ref: '#/components/parameters/search'
     get:
       tags:
         - Export
       operationId: exportDirectoryUsersCSV
       summary: User inventory as CSV
-      parameters:
-        - in: query
-          name: search
-          description: an optional search string for filtering results
-          required: false
-          schema:
-            type: string
       responses:
         '200':
           description: filtered user results
@@ -807,24 +693,13 @@ paths:
   /export/org/groups.json:
     parameters:
       - $ref: '#/components/parameters/orgID'
+      - $ref: '#/components/parameters/search'
+      - $ref: '#/components/parameters/fields'
     get:
       tags:
         - Export
       operationId: exportDirectoryGroupsJSON
       summary: Exports the group inventory
-      parameters:
-        - in: query
-          name: search
-          description: an optional search string for filtering results
-          required: false
-          schema:
-            type: string
-        - in: query
-          name: fields
-          description: an optional list of fields to export, comma-separated
-          required: false
-          schema:
-            type: string
       responses:
         '200':
           description: filtered group results
@@ -840,24 +715,13 @@ paths:
   /export/org/groups.jsonl:
     parameters:
       - $ref: '#/components/parameters/orgID'
+      - $ref: '#/components/parameters/search'
+      - $ref: '#/components/parameters/fields'
     get:
       tags:
         - Export
       operationId: exportDirectoryGroupsJSONL
       summary: Group inventory as JSON line-delimited
-      parameters:
-        - in: query
-          name: search
-          description: an optional search string for filtering results
-          required: false
-          schema:
-            type: string
-        - in: query
-          name: fields
-          description: an optional list of fields to export, comma-separated
-          required: false
-          schema:
-            type: string
       responses:
         '200':
           # This is a streaming response of one DirectoryGroup object per line in JSON format
@@ -873,18 +737,12 @@ paths:
   /export/org/groups.csv:
     parameters:
       - $ref: '#/components/parameters/orgID'
+      - $ref: '#/components/parameters/search'
     get:
       tags:
         - Export
       operationId: exportDirectoryGroupsCSV
       summary: Group inventory as CSV
-      parameters:
-        - in: query
-          name: search
-          description: an optional search string for filtering results
-          required: false
-          schema:
-            type: string
       responses:
         '200':
           description: filtered group results
@@ -893,6 +751,68 @@ paths:
               schema:
                 type: string
                 format: binary
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+
+  /export/org/findings.csv:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
+      - $ref: '#/components/parameters/search'
+    get:
+      tags:
+        - Export
+      operationId: exportFindingsCSV
+      summary: Export findings as CSV
+      responses:
+        '200':
+          description: filtered findings
+          content:
+            text/csv:
+              schema:
+                type: string
+                format: binary
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+
+  /export/org/findings.json:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
+      - $ref: '#/components/parameters/search'
+    get:
+      tags:
+        - Export
+      operationId: exportFindingsJSON
+      summary: Export findings as JSON
+      responses:
+        '200':
+          description: filtered findings
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Finding'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+
+  /export/org/findings.jsonl:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
+      - $ref: '#/components/parameters/search'
+    get:
+      tags:
+        - Export
+      operationId: exportFindingsJSONL
+      summary: Export findings as JSON line-delimited
+      responses:
+        '200':
+          description: filtered findings
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Finding'
         '401':
           $ref: '#/components/responses/UnauthorizedError'
 
@@ -944,24 +864,13 @@ paths:
   /export/org/tasks.json:
     parameters:
       - $ref: '#/components/parameters/orgID'
+      - $ref: '#/components/parameters/search'
+      - $ref: '#/components/parameters/fields'
     get:
       tags:
         - Export
       operationId: exportTasksJSON
       summary: Exports organization tasks
-      parameters:
-        - in: query
-          name: search
-          description: an optional search string for filtering results
-          required: false
-          schema:
-            type: string
-        - in: query
-          name: fields
-          description: an optional list of fields to export, comma-separated
-          required: false
-          schema:
-            type: string
       responses:
         '200':
           description: filtered task results
@@ -977,24 +886,13 @@ paths:
   /export/org/tasks.jsonl:
     parameters:
       - $ref: '#/components/parameters/orgID'
+      - $ref: '#/components/parameters/search'
+      - $ref: '#/components/parameters/fields'
     get:
       tags:
         - Export
       operationId: exportTasksJSONL
       summary: Organization tasks as JSON line-delimited
-      parameters:
-        - in: query
-          name: search
-          description: an optional search string for filtering results
-          required: false
-          schema:
-            type: string
-        - in: query
-          name: fields
-          description: an optional list of fields to export, comma-separated
-          required: false
-          schema:
-            type: string
       responses:
         '200':
           # This is a streaming response of one Task object per line in JSON format
@@ -1861,24 +1759,13 @@ paths:
   /org/assets:
     parameters:
       - $ref: '#/components/parameters/orgID'
+      - $ref: '#/components/parameters/search'
+      - $ref: '#/components/parameters/fields'
     get:
       tags:
         - Organization
       operationId: getAssets
       summary: Get all assets
-      parameters:
-        - in: query
-          name: search
-          description: an optional search string for filtering results
-          required: false
-          schema:
-            type: string
-        - in: query
-          name: fields
-          description: an optional list of fields to export, comma-separated
-          required: false
-          schema:
-            type: string
       responses:
         '200':
           description: array of assets
@@ -1942,7 +1829,7 @@ paths:
   /org/assets/bulk/delete:
     parameters:
       - $ref: '#/components/parameters/orgID'
-    delete:
+    post:
       tags:
         - Organization
       operationId: removeBulkAssets
@@ -2675,8 +2562,8 @@ paths:
           required: true
           description: UUID of the task
       responses:
-        '200':
-          description: URL
+        '303':
+          description: Redirection to scan data
           content:
             application/json:
               schema:
@@ -2703,8 +2590,8 @@ paths:
           required: true
           description: UUID of the task
       responses:
-        '200':
-          description: URL
+        '303':
+          description: Redirection to scan data
           content:
             application/json:
               schema:
@@ -2731,8 +2618,8 @@ paths:
           required: true
           description: UUID of the task
       responses:
-        '200':
-          description: URL
+        '303':
+          description: Redirection to scan data
           content:
             application/json:
               schema:
@@ -4601,6 +4488,20 @@ components:
       schema:
         type: string
       description: The current Organization
+    search:
+      in: query
+      name: search
+      required: false
+      schema:
+        type: string
+      description: A search query in runZero search query syntax
+    fields:
+      in: query
+      name: fields
+      required: false
+      schema:
+        type: string
+      description: A list of fields to export, comma-separated
   securitySchemes:
     bearerAuth:
       type: http
@@ -4707,11 +4608,11 @@ components:
         access_key:
           type: string
           format: string
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         secret_access_key:
           type: string
           format: string
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         regions:
           type: string
           format: string
@@ -4736,15 +4637,15 @@ components:
         client_id:
           type: string
           format: string
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         client_secret:
           type: string
           format: string
-          example: abcde~abcdefghiklmnopqrstuvwx_yz123456-7
+          example: "abcde~abcdefghiklmnopqrstuvwx_yz123456-7"
         tenant_id:
           type: string
           format: string
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         environment:
           type: string
           format: string
@@ -4757,7 +4658,7 @@ components:
         subscription_id:
           type: string
           format: string
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
 
     AzureUsernamePasswordCredentialFields:
       type: object
@@ -4770,11 +4671,11 @@ components:
         client_id:
           type: string
           format: string
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         tenant_id:
           type: string
           format: string
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         username:
           type: string
           format: string
@@ -4782,7 +4683,7 @@ components:
         password:
           type: string
           format: string
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
 
     CensysCredentialFields:
       type: object
@@ -4793,15 +4694,191 @@ components:
         client_id:
           type: string
           format: string
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         client_secret:
           type: string
           format: string
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         api_url:
           type: string
           format: string
           example: https://search.censys.io
+
+    Certificate:
+      type: object
+      required:
+        - id
+        - organization_id
+      properties:
+        id:
+          type: string
+          format: string
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
+        type:
+          type: string
+          enum: [x509, ssh]
+        created_at:
+          type: integer
+          format: int64
+          example: 1576300370
+        updated_at:
+          description: When the certificate was last seen in a response from a service, and updated.
+          type: integer
+          format: int64
+          example: 1576300370
+        organization_id:
+          type: string
+          format: uuid
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
+        names:
+          type: array
+          description: An assembled list of all names in the certificate.
+          items:
+            type: string
+            example: CN=server,OU=Dept,O=Company
+        self_signed:
+          description: Whether the certificate appears to be self-signed based on subject and authority.
+          type: boolean
+        hidden:
+          description: Whether the certificate has been hidden from the default certificates view.
+          type: boolean
+        serial:
+          description: The serial number of the certificate.
+          type: string
+          format: string
+          example: 03beffa48e31b95581b0ebb0b1b3fe5ada9c
+        validity_start:
+          description: When the certificate becomes valid.
+          type: integer
+          format: int64
+          example: 1576300370
+        validity_end:
+          description: When the certificate ceases to be valid.
+          type: integer
+          format: int64
+          example: 1576300370
+        public_key:
+          type: string
+          format: base64
+        public_key_bits:
+          type: integer
+          format: int32
+          example: 2048
+        public_key_algorithm:
+          type: string
+          format: string
+          example: rsaEncryption
+        signature:
+          type: string
+          format: base64
+        signature_algorithm:
+          type: string
+          format: string
+          example: sha256WithRSAEncryption
+        fp_bkhash:
+          description: The badkeys hash.
+          type: string
+          format: string
+        fp_sha1:
+          description: The SHA1 hash of the certificate.
+          type: string
+          format: string
+        fp_sha256:
+          description: The SHA256 hash of the certificate.
+          type: string
+          format: string
+        fp_md5:
+          description: The MD5 hash of the certificate (for SSH).
+          type: string
+          format: string
+        attributes:
+          description: Properties specific to the certificate type.
+          type: object
+          additionalProperties:
+            properties:
+              subject:
+                description: The subject of the certificate.
+                type: string
+                format: dn
+              cn:
+                description: The Common Name field from the certificate (no longer used by web browsers).
+                type: string
+                format: string
+                example: www.example.com
+              version:
+                description: The version of the certificate.
+                type: integer
+                format: int32
+              issuer:
+                description: The authority which issued the certificate.
+                type: string
+                format: dn
+              subject_key_id:
+                description: The key ID of the subject of the certificate.
+                type: string
+                format: string
+              authority_key_id:
+                description: The key ID of the authority which signed the certificate.
+                type: string
+                format: string
+              ocsp_server:
+                description: Zero or more OCSP server URLs.
+                type: array
+                items:
+                  type: string
+                  format: url
+              crl_distribution_points:
+                description: Zero or more URLs of CRLs.
+                type: array
+                items:
+                  type: string
+                  format: url
+              issuing_certificate_url:
+                description: Zero or more URLs where the issuing certificate can be found.
+                type: array
+                items:
+                  type: string
+                  format: url
+              is_ca:
+                description: Whether the certificate claims to be a Certificate Authority.
+                type: boolean
+              key_usage:
+                description: Valid purposes the certificate's key can be used for.
+                type: array
+                items:
+                  type: string
+              ext_key_usage:
+                description: Additional purposes the certificate's key can be used for.
+                type: array
+                items:
+                  type: string
+              san_dns_names:
+                description: Subject Alternative Name hostnames.
+                type: array
+                items:
+                  type: string
+                  format: hostname
+              san_ip_addresses:
+                description: Subject Alternative Name IP addresses.
+                type: array
+                items:
+                  type: string
+                  oneOf:
+                    - format: ipv4
+                    - format: ipv6
+              san_email_addresses:
+                description: Subject Alternative Name email addresses.
+                items:
+                  type: string
+                  format: email
+              san_uris:
+                description: Subject Alternative Name URIs.
+                items:
+                  type: string
+                  format: uri
+              public_key_parameters:
+                description: Parameters specific to the public key type.
+                type: object
 
     CrowdstrikeCredentialFields:
       type: object
@@ -4813,11 +4890,11 @@ components:
         client_id:
           type: string
           format: string
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         client_secret:
           type: string
           format: string
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         api_url:
           type: string
           format: string
@@ -4836,13 +4913,95 @@ components:
           type: string
           format: string
 
+    Finding:
+      type: object
+      required:
+        - id
+        - organization_id
+      properties:
+        id:
+          type: string
+          format: uuid
+        category:
+          type: string
+          format: string
+        organization_id:
+          type: string
+          format: uuid
+        finding_code:
+          description: A runZero-assigned code for the finding.
+          type: string
+        name:
+          description: The title of the finding.
+          type: string
+        description:
+          description: Additional information about the finding.
+          type: string
+        solution:
+          description: Remediation information.
+          type: string
+        links:
+          type: object
+          properties:
+            cves:
+              type: array
+              items:
+                type: object
+                properties:
+                  title:
+                    type: string
+                  url:
+                    type: string
+            rz_blog:
+              description: URLs of relevant runZero blog postings.
+              type: array
+              items:
+                type: object
+                properties:
+                  title:
+                    type: string
+                  url:
+                    type: string
+            urls:
+              description: Additional relevant URLs.
+              type: array
+              items:
+                type: object
+                properties:
+                  title:
+                    type: string
+                  url:
+                    type: string
+        created_at:
+          type: integer
+          format: int64
+        updated_at:
+          type: integer
+          format: int64
+        last_detected_at:
+          type: integer
+          format: int64
+        vulnerability_count:
+          type: integer
+          format: int64
+        risk_score:
+          type: number
+          format: float64
+          minimum: 0
+        risk_rank:
+          description: 0 = info, 4 = critical
+          type: integer
+          format: int32
+          minimum: 0
+          maximum: 4
+
     GCPCredentialFields:
       type: object
       properties:
         cross_project:
           type: string
           format: string
-          example: false
+          example: "false"
         auth_provider_x509_cert_url:
           type: string
           format: string
@@ -4858,7 +5017,7 @@ components:
         client_id:
           type: string
           format: string
-          example: 111111111111111111111
+          example: "111111111111111111111"
         client_x509_cert_url:
           type: string
           format: string
@@ -4870,7 +5029,7 @@ components:
         private_key_id:
           type: string
           format: string
-          example: 1111111111111111111111111111111111111111
+          example: "1111111111111111111111111111111111111111"
         project_id:
           type: string
           format: string
@@ -4915,7 +5074,7 @@ components:
         client_id:
           type: string
           format: string
-          example: 111111111111111111111
+          example: "111111111111111111111"
         client_x509_cert_url:
           type: string
           format: string
@@ -4927,7 +5086,7 @@ components:
         private_key_id:
           type: string
           format: string
-          example: 1111111111111111111111111111111111111111
+          example: "1111111111111111111111111111111111111111"
         project_id:
           type: string
           format: string
@@ -4967,7 +5126,7 @@ components:
         insecure:
           type: string
           format: string
-          example: true
+          example: "true"
         thumbprints:
           type: string
           format: string
@@ -4999,11 +5158,11 @@ components:
         insecure:
           type: string
           format: string
-          example: true
+          example: "true"
         legacy_tls:
           type: string
           format: string
-          example: false
+          example: "false"
         thumbprints:
           type: string
           format: string
@@ -5043,7 +5202,7 @@ components:
         api_key:
           type: string
           format: string
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
 
     NessusCredentialFields:
       type: object
@@ -5064,7 +5223,7 @@ components:
         insecure:
           type: string
           format: string
-          example: false
+          example: "false"
         thumbprints:
           type: string
           format: string
@@ -5219,7 +5378,7 @@ components:
         insecure:
           type: string
           format: string
-          example: false
+          example: "false"
         thumbprints:
           type: string
           format: string
@@ -5237,7 +5396,7 @@ components:
         password:
           type: string
           format: string
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         insecure:
           type: string
           format: string
@@ -5320,7 +5479,7 @@ components:
       required:
         - url
       properties:
-        id:
+        url:
           type: string
           format: url
           example: https://www.runzero.com/docs/
@@ -5334,11 +5493,11 @@ components:
         explorer:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         agent:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         targets:
           type: string
           example: "10.0.0.0/8 172.16.0.0/12 192.168.0.0/16"
@@ -5372,12 +5531,12 @@ components:
         scan-template:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         scan-frequency:
           description: A string time duration value representing execution frequency, if scheduled to repeat.
           type: string
           enum: [once, hourly, daily, weekly, monthly, continuous]
-          example: hour
+          example: hourly
         scan-start:
           description: Unix timestamp value indicating when the template was created.
           type: string
@@ -5391,15 +5550,15 @@ components:
         agent:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         explorer:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         hosted-zone-id:
           type: string
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
-          description: The string 'auto' will use any available hosted zone. Otherwise, provide the string name (hostedzone1) or UUID (e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8) of a hosted zone.
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
+          description: The string 'auto' will use any available hosted zone. Otherwise, provide the string name (hostedzone1) or UUID ("e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8") of a hosted zone.
         hosted-zone-name:
           type: string
           example: auto
@@ -5487,7 +5646,7 @@ components:
           description: The ID of the organization the template will be created in
           type: string
           format: uuid
-          example: f6cfb91a-52ea-4a86-bf9a-5a891a26f52b
+          example: "f6cfb91a-52ea-4a86-bf9a-5a891a26f52b"
           x-go-type: uuid.UUID
           x-go-import:
             name: uuid
@@ -5506,7 +5665,7 @@ components:
           type: object
           additionalProperties: true
           example:
-            e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8: user
+            "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8": user
 
     ScanTemplate:
       description: A scan task template
@@ -5521,7 +5680,7 @@ components:
           description: ID of the template.
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
           x-go-type: uuid.UUID
           x-go-import:
             name: uuid
@@ -5538,7 +5697,7 @@ components:
           description: ID of the account which owns the template.
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
           x-go-type: uuid.UUID
           x-go-import:
             name: uuid
@@ -5547,7 +5706,7 @@ components:
           description: ID of the organization the template is available in.
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
           x-go-type: uuid.UUID
           x-go-import:
             name: uuid
@@ -5556,7 +5715,7 @@ components:
           description: ID of the explorer which may execute the template.
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
           x-go-type: uuid.UUID
           x-go-import:
             name: uuid
@@ -5565,7 +5724,7 @@ components:
           description: ID of the site the template is being used in.
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
           x-go-type: uuid.UUID
           x-go-import:
             name: uuid
@@ -5574,7 +5733,7 @@ components:
           description: ID of the runZero cruncher the task is executing on.
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
           x-go-type: uuid.UUID
           x-go-import:
             name: uuid
@@ -5592,7 +5751,7 @@ components:
           description: The ID of the account which created the template.
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
           x-go-type: uuid.UUID
           x-go-import:
             name: uuid
@@ -5631,7 +5790,7 @@ components:
           description: The ID of the parent entity of the task scheduled.
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
           x-go-type: uuid.UUID
           x-go-import:
             name: uuid
@@ -5665,7 +5824,7 @@ components:
           description: The ID of the task that last executed if scheduled to repeat.
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
           x-go-type: uuid.UUID
           x-go-import:
             name: uuid
@@ -5678,7 +5837,7 @@ components:
           description: The ID of the custom integration source, if the last task executed with this template was an import of Asset Data.
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
           x-go-type: uuid.UUID
           x-go-import:
             name: uuid
@@ -5691,7 +5850,7 @@ components:
           description: The ID of the template.
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
           x-go-type: uuid.UUID
           x-go-import:
             name: uuid
@@ -5715,7 +5874,7 @@ components:
           description: The ID of the hosted zone that ran the last task the template was used with.
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
           x-go-type: uuid.UUID
           x-go-import:
             name: uuid
@@ -5734,7 +5893,7 @@ components:
           type: object
           additionalProperties: true
           example:
-            e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8: user
+            "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8": user
 
 
 
@@ -5746,7 +5905,7 @@ components:
         site_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
 
     Explorer:
       $ref: '#/components/schemas/Agent'
@@ -5766,7 +5925,7 @@ components:
         parent_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         expiration_assets_stale:
           type: string
           format: number
@@ -5882,8 +6041,8 @@ components:
           type: object
           additionalProperties: true
           example:
-            e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8: user
-            e77602e0-3fb8-4734-aef9-fbc6fdcb0fa9: none
+            "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8": user
+            "e77602e0-3fb8-4734-aef9-fbc6fdcb0fe9": none
         global:
           type: boolean
           example: false
@@ -5902,7 +6061,7 @@ components:
         organization_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
 
     ExportTokenOptions:
       type: object
@@ -5949,7 +6108,7 @@ components:
       required:
         - criticality
       properties:
-        comments:
+        criticality:
           type: string
           example: high
 
@@ -5962,7 +6121,7 @@ components:
           type: array
           items:
             type: string
-            example: 453C191F-644E-4EA8-9727-0E81E5275C35
+            example: "453C191F-644E-4EA8-9727-0E81E5275C35"
 
     AssetTagsWithSearch:
       type: object
@@ -6003,12 +6162,11 @@ components:
       type: object
       required:
         - id
-        - version
       properties:
         id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         created_at:
           type: integer
           format: int64
@@ -6020,11 +6178,14 @@ components:
         organization_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         site_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
+        scanned:
+          type: boolean
+          example: true
         alive:
           type: boolean
           example: true
@@ -6055,11 +6216,17 @@ components:
           type: array
           items:
             type: string
+            oneOf:
+              - format: ipv4
+              - format: ipv6
             example: 192.168.0.1
         addresses_extra:
           type: array
           items:
             type: string
+            oneOf:
+              - format: ipv4
+              - format: ipv6
             example: 192.168.100.1
         macs:
           type: array
@@ -6113,11 +6280,11 @@ components:
         last_agent_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         last_task_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         newest_mac:
           type: string
           format: mac
@@ -6137,19 +6304,19 @@ components:
           items:
             type: string
             format: port
-            example: 22
+            example: "22"
         service_ports_udp:
           type: array
           items:
             type: string
             format: port
-            example: 53
-        service_ports_protocols:
+            example: "53"
+        service_protocols:
           type: array
           items:
             type: string
             example: ssh
-        service_ports_products:
+        service_products:
           type: array
           items:
             type: string
@@ -6176,12 +6343,42 @@ components:
         rtts:
           type: object
           additionalProperties: true
+        risk_rank:
+          description: -1 = none, 0 = info, 4 = critical
+          type: number
+          format: int32
+          minimum: -1
+          maximum: 4
+        risk:
+          type: string
+          format: string
+          example: critical
         credentials:
           type: object
           additionalProperties:
             type: string
             additionalProperties:
               type: boolean
+        vulnerability_count:
+          type: number
+          format: int64
+        finding_count:
+          type: number
+          format: int64
+        eol_os:
+          description: OS main EOL date
+          type: number
+          format: int64
+        eol_os_ext:
+          description: OS extended support EOL date
+          type: number
+          format: int64
+        sources:
+          description: Sources used for asset data
+          type: array
+          items:
+            type: string
+            format: string
         attributes:
           type: object
           additionalProperties:
@@ -6196,11 +6393,11 @@ components:
         service_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         service_asset_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         service_created_at:
           type: integer
           format: int64
@@ -6211,6 +6408,9 @@ components:
           example: 1576300370
         service_address:
           type: string
+          oneOf:
+            - format: ipv4
+            - format: ipv6
           example: 192.168.0.1
         service_transport:
           type: string
@@ -6221,7 +6421,7 @@ components:
         service_port:
           type: string
           format: port
-          example: 80
+          example: "80"
         service_data:
           type: object
           additionalProperties:
@@ -6241,7 +6441,7 @@ components:
         id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         created_at:
           type: integer
           format: int64
@@ -6253,11 +6453,11 @@ components:
         organization_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         site_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         alive:
           type: boolean
           example: true
@@ -6280,7 +6480,7 @@ components:
           example: Ubuntu Linux
         os_version:
           type: string
-          example: 18.04
+          example: "18.04"
         hw:
           type: string
           example: Dell PowerEdge 2500
@@ -6288,11 +6488,17 @@ components:
           type: array
           items:
             type: string
+            oneOf:
+              - format: ipv4
+              - format: ipv6
             example: 192.168.0.1
         addresses_extra:
           type: array
           items:
             type: string
+            oneOf:
+              - format: ipv4
+              - format: ipv6
             example: 192.168.100.1
         macs:
           type: array
@@ -6346,11 +6552,11 @@ components:
         last_agent_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         last_task_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         newest_mac:
           type: string
           format: mac
@@ -6370,13 +6576,13 @@ components:
           items:
             type: string
             format: port
-            example: 22
+            example: "22"
         service_ports_udp:
           type: array
           items:
             type: string
             format: port
-            example: 53
+            example: "53"
         service_ports_protocols:
           type: array
           items:
@@ -6426,36 +6632,33 @@ components:
         - id
         - name
       properties:
-        data:
+        id:
+          type: string
+          format: uuid
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
+        created_at:
+          type: integer
+          format: int64
+          example: 1576300370
+        updated_at:
+          type: integer
+          format: int64
+          example: 1576300370
+        name:
+          type: string
+          example: Primary
+        description:
+          type: string
+          example: Headquarters
+        scope:
+          type: string
+          example: "192.168.0.0/24"
+        excludes:
+          type: string
+          example: "192.168.0.5"
+        subnets:
           type: object
-          properties:
-            id:
-              type: string
-              format: uuid
-              example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
-            created_at:
-              type: integer
-              format: int64
-              example: 1576300370
-            updated_at:
-              type: integer
-              format: int64
-              example: 1576300370
-            name:
-              type: string
-              example: Primary
-            description:
-              type: string
-              example: Headquarters
-            scope:
-              type: string
-              example: "192.168.0.0/24"
-            excludes:
-              type: string
-              example: "192.168.0.5"
-            subnets:
-              type: object
-              additionalProperties: true
+          additionalProperties: true
 
     Wireless:
       type: object
@@ -6465,7 +6668,7 @@ components:
         id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         created_at:
           type: integer
           format: int64
@@ -6477,19 +6680,19 @@ components:
         organization_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         site_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         last_agent_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         last_task_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         essid:
           type: string
           format: uuid
@@ -6523,7 +6726,7 @@ components:
           example: "Ubiquiti Networks"
         family:
           type: string
-          example: 223344
+          example: "223344"
         data:
           type: object
           additionalProperties:
@@ -6543,18 +6746,22 @@ components:
       required:
         - id
       properties:
+        id:
+          type: string
+          format: uuid
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         software_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         software_asset_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         software_organization_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         software_source_id:
           type: integer
           example: 1
@@ -6568,6 +6775,9 @@ components:
           example: 1576300370
         software_service_address:
           type: string
+          oneOf:
+            - format: ipv4
+            - format: ipv6
           example: 192.168.0.1
         software_service_transport:
           type: string
@@ -6630,15 +6840,15 @@ components:
         vulnerability_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         vulnerability_asset_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         vulnerability_organization_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         vulnerability_source_id:
           type: integer
           example: 1
@@ -6652,6 +6862,9 @@ components:
           example: 1576300370
         vulnerability_service_address:
           type: string
+          oneOf:
+            - format: ipv4
+            - format: ipv6
           example: 192.168.0.1
         vulnerability_service_transport:
           type: string
@@ -6665,7 +6878,7 @@ components:
           example: cpe:/o:cisco:ios
         vulnerability_vuln_id:
           type: string
-          example: 103565
+          example: "103565"
         vulnerability_category:
           type: string
           example: Remote
@@ -6730,7 +6943,7 @@ components:
         id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         created_at:
           type: integer
           format: int64
@@ -6742,11 +6955,11 @@ components:
         organization_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         site_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         alive:
           type: boolean
           example: true
@@ -6777,11 +6990,17 @@ components:
           type: array
           items:
             type: string
+            oneOf:
+              - format: ipv4
+              - format: ipv6
             example: 192.168.0.1
         addresses_extra:
           type: array
           items:
             type: string
+            oneOf:
+              - format: ipv4
+              - format: ipv6
             example: 192.168.100.1
         macs:
           type: array
@@ -6835,11 +7054,11 @@ components:
         last_agent_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         last_task_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         newest_mac:
           type: string
           format: mac
@@ -6859,13 +7078,13 @@ components:
           items:
             type: string
             format: port
-            example: 22
+            example: "22"
         service_ports_udp:
           type: array
           items:
             type: string
             format: port
-            example: 53
+            example: "53"
         service_ports_protocols:
           type: array
           items:
@@ -6914,18 +7133,22 @@ components:
       required:
         - id
       properties:
+        id:
+          type: string
+          format: uuid
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         directory_user_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         directory_user_organization_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         directory_user_site_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         directory_user_source_id:
           type: integer
           example: 1
@@ -6939,14 +7162,14 @@ components:
           example: 1576300370
         directory_user_user_id:
           type: string
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         directory_user_group_ids:
           type: array
           items:
             type: string
           example:
-            - e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
-            - e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+            - "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
+            - "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         directory_user_display_name:
           type: string
           example: Jane Doe
@@ -6993,18 +7216,22 @@ components:
       required:
         - id
       properties:
+        id:
+          type: string
+          format: uuid
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         directory_group_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         directory_group_organization_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         directory_group_site_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         directory_group_source_id:
           type: integer
           example: 1
@@ -7018,7 +7245,7 @@ components:
           example: 1576300370
         directory_group_group_id:
           type: string
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         directory_group_user_count:
           type: integer
           format: int64
@@ -7054,7 +7281,7 @@ components:
         id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
           x-go-type: uuid.UUID
           x-go-import:
             name: uuid
@@ -7070,7 +7297,7 @@ components:
         client_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
           x-go-type: uuid.UUID
           x-go-import:
             name: uuid
@@ -7125,7 +7352,7 @@ components:
         parent_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         expiration_assets_stale:
           type: integer
           format: int64
@@ -7181,11 +7408,11 @@ components:
         id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         client_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         name:
           type: string
           example: credentials_name
@@ -7200,7 +7427,7 @@ components:
         created_by_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         created_by_email:
           type: string
           format: email
@@ -7209,7 +7436,7 @@ components:
           type: object
           additionalProperties: true
           example:
-            e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8: user
+            "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8": user
         global:
           type: boolean
           example: false
@@ -7227,7 +7454,7 @@ components:
         last_used_by_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
 
     APIKey:
       type: object
@@ -7237,15 +7464,15 @@ components:
         id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         client_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         organization_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         created_at:
           type: integer
           format: int64
@@ -7296,7 +7523,7 @@ components:
       properties:
         id:
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         token:
           type: string
           example: ET11226D9EEEA2B035D42569585900
@@ -7330,15 +7557,15 @@ components:
         id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         client_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         organization_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         created_at:
           type: integer
           format: int64
@@ -7353,14 +7580,14 @@ components:
         hub_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         name:
           type: string
           example: RUNZERO-AGENT
         site_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         last_checkin:
           type: integer
           format: int64
@@ -7379,6 +7606,9 @@ components:
           example: 1.1.1.1
         internal_ip:
           type: string
+          oneOf:
+            - format: ipv4
+            - format: ipv6
           example: 192.168.0.1
         system_info:
           type: object
@@ -7401,7 +7631,7 @@ components:
         id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
           x-go-type: uuid.UUID
           x-go-import:
             name: uuid
@@ -7415,7 +7645,7 @@ components:
         template_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
           x-go-type: uuid.UUID
           x-go-import:
             name: uuid
@@ -7423,7 +7653,7 @@ components:
         client_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
           x-go-type: uuid.UUID
           x-go-import:
             name: uuid
@@ -7431,7 +7661,7 @@ components:
         organization_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
           x-go-type: uuid.UUID
           x-go-import:
             name: uuid
@@ -7439,7 +7669,7 @@ components:
         agent_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
           x-go-type: uuid.UUID
           x-go-import:
             name: uuid
@@ -7449,7 +7679,7 @@ components:
             The ID of the Hosted Zone which executes the task. If the
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
           x-go-type: uuid.UUID
           x-go-import:
             name: uuid
@@ -7457,7 +7687,7 @@ components:
         site_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
           x-go-type: uuid.UUID
           x-go-import:
             name: uuid
@@ -7465,7 +7695,7 @@ components:
         cruncher_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
           x-go-type: uuid.UUID
           x-go-import:
             name: uuid
@@ -7480,7 +7710,7 @@ components:
         created_by_user_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
           x-go-type: uuid.UUID
           x-go-import:
             name: uuid
@@ -7489,7 +7719,7 @@ components:
           description: The ID of the custom integration source, if the last task executed with this template was an import of Asset Data.
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
           x-go-type: uuid.UUID
           x-go-import:
             name: uuid
@@ -7524,7 +7754,7 @@ components:
         parent_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
           x-go-type: uuid.UUID
           x-go-import:
             name: uuid
@@ -7550,7 +7780,7 @@ components:
         recur_last_task_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
           x-go-type: uuid.UUID
           x-go-import:
             name: uuid
@@ -7585,7 +7815,7 @@ components:
           description: The ID of the hosted zone
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         name:
           type: string
           example: zone1
@@ -7602,7 +7832,7 @@ components:
           description: The processor ID assigned to the hosted zone
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         explorers_concurrency:
           description: The number of concurrent explorer tasks that can be executed
           type: integer
@@ -7627,7 +7857,7 @@ components:
           description: The ID of the organization the hosted zone is assigned to
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
 
     License:
       type: object
@@ -7635,7 +7865,7 @@ components:
         id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         created_at:
           type: integer
           format: int64
@@ -7690,7 +7920,7 @@ components:
           example: Texas
         address_postal:
           type: string
-          example: 78700
+          example: "78700"
         subscription_period_start:
           type: integer
           format: int64
@@ -7744,7 +7974,7 @@ components:
         id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         created_at:
           type: integer
           format: int64
@@ -7752,22 +7982,22 @@ components:
         client_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         organization_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         site_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         action:
           type: string
           example: login
         source_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         source_name:
           type: string
           example: SiteName
@@ -7777,7 +8007,7 @@ components:
         target_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         target_name:
           type: string
           example: SiteName
@@ -7796,7 +8026,7 @@ components:
         processor_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         processed_at:
           type: integer
           format: int64
@@ -7810,11 +8040,11 @@ components:
         id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         client_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         created_at:
           type: integer
           format: int64
@@ -7862,6 +8092,9 @@ components:
           example: 1576300370
         last_login_ip:
           type: string
+          oneOf:
+            - format: ipv4
+            - format: ipv6
           example: 192.168.0.1
         last_login_at:
           type: integer
@@ -7901,7 +8134,7 @@ components:
         id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         description:
           type: string
           example: Viewers Group
@@ -7957,8 +8190,8 @@ components:
           type: object
           additionalProperties: true
           example:
-            1a5e612e-4d64-45fe-aa3e-afba5cf3b9bf: viewer,
-            fd6d6662-732b-4c4b-8331-051178994384: admin
+            "1a5e612e-4d64-45fe-aa3e-afba5cf3b9bf": viewer,
+            "fd6d6662-732b-4c4b-8331-051178994384": admin
 
     GroupPut:
       type: object
@@ -7966,7 +8199,7 @@ components:
         id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         description:
           type: string
           example: Viewers Group
@@ -7984,8 +8217,8 @@ components:
           type: object
           additionalProperties: true
           example:
-            1a5e612e-4d64-45fe-aa3e-afba5cf3b9bf: viewer,
-            fd6d6662-732b-4c4b-8331-051178994384: admin
+            "1a5e612e-4d64-45fe-aa3e-afba5cf3b9bf": viewer,
+            "fd6d6662-732b-4c4b-8331-051178994384": admin
 
     GroupMapping:
       type: object
@@ -7998,11 +8231,11 @@ components:
         id:
           type: string
           format: uuid
-          example: f6cfb91a-52ea-4a86-bf9a-5a891a26f52b
+          example: "f6cfb91a-52ea-4a86-bf9a-5a891a26f52b"
         group_id:
           type: string
           format: uuid
-          example: 2b096711-4d28-4417-8635-64af4f62c1ae
+          example: "2b096711-4d28-4417-8635-64af4f62c1ae"
         group_name:
           type: string
           example: Viewers Group
@@ -8085,7 +8318,7 @@ components:
         asset_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         organization:
           type: string
           example: Headquarters
@@ -8109,7 +8342,7 @@ components:
           example: Windows 10
         os_version:
           type: string
-          example: 1903
+          example: "1903"
         hw_vendor:
           type: string
           example: Dell
@@ -8118,9 +8351,12 @@ components:
           example: PowerEdge
         hw_version:
           type: string
-          example: 2.0
+          example: "2.0"
         ip_address:
           type: string
+          oneOf:
+            - format: ipv4
+            - format: ipv6
           example: 192.168.0.1
         addresses_scope:
           type: string
@@ -8207,7 +8443,7 @@ components:
         id:
           type: string
           format: uuid
-          example: f6cfb91a-52ea-4a86-bf9a-5a891a26f52b
+          example: "f6cfb91a-52ea-4a86-bf9a-5a891a26f52b"
         name:
           type: string
           example: Asset Owner
@@ -8253,7 +8489,7 @@ components:
             properties:
               ownership_type_id:
                 type: string
-                example: 2318e078-4164-4e1b-92a5-11e353093f4b
+                example: "2318e078-4164-4e1b-92a5-11e353093f4b"
               owner:
                 type: string
                 example: "it@runzero.com"
@@ -8274,7 +8510,7 @@ components:
             properties:
               ownership_type_id:
                 type: string
-                example: 2318e078-4164-4e1b-92a5-11e353093f4b
+                example: "2318e078-4164-4e1b-92a5-11e353093f4b"
               owner:
                 type: string
                 example: "it@runzero.com"
@@ -8293,7 +8529,7 @@ components:
           description: The unique ID of the object
           type: string
           format: uuid
-          example: f6cfb91a-52ea-4a86-bf9a-5a891a26f52b
+          example: "f6cfb91a-52ea-4a86-bf9a-5a891a26f52b"
           x-go-type: uuid.UUID
           x-go-import:
             name: uuid
@@ -8302,7 +8538,7 @@ components:
           description: The unique ID of the runZero client/customer account that owns the object
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
           x-go-type: uuid.UUID
           x-go-import:
             name: uuid
@@ -8311,7 +8547,7 @@ components:
           description: The unique ID of the entity that created the object
           type: string
           format: uuid
-          example: f6cfb91a-52ea-4a86-bf9a-5a891a26f52b
+          example: "f6cfb91a-52ea-4a86-bf9a-5a891a26f52b"
           x-go-type: uuid.UUID
           x-go-import:
             name: uuid
@@ -8387,7 +8623,7 @@ components:
           description: The ID of the site assets are to be imported into.
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
           x-go-type: uuid.UUID
           x-go-import:
             name: uuid
@@ -8396,7 +8632,7 @@ components:
           description: The unique ID of the registered custom integration which produced the asset data. Uniqueness is not checked/enforced. See /account/custom-integrations api.
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
           x-go-type: uuid.UUID
           x-go-import:
             name: uuid
@@ -8452,7 +8688,7 @@ components:
           description: The unique identifier of the runZero asset to merge into.
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
           x-go-type: uuid.UUID
           x-go-import:
             name: uuid
@@ -8576,7 +8812,7 @@ components:
         api_client_id:
           type: string
           format: uuid
-          example: e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         api_client_secret: 
           type: string
 
