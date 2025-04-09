@@ -412,29 +412,6 @@ paths:
         '401':
           $ref: '#/components/responses/UnauthorizedError'
 
-  /export/org/metrics:
-    parameters:
-      - $ref: '#/components/parameters/orgID'
-    get:
-      operationId: exportAssetMetricsJSON
-      summary: Export asset metrics
-      responses:
-        '200':
-          description: asset metrics
-          content:
-            application/json:
-              schema:
-                type: object
-                additionalProperties:
-                  type: object
-                  properties:
-                    site_id:
-                      type: string
-                    metrics:
-                      type: object
-        '401':
-          $ref: '#/components/responses/UnauthorizedError'
-
   /export/org/software.json:
     parameters:
       - $ref: '#/components/parameters/orgID'
@@ -1056,6 +1033,29 @@ paths:
               schema:
                 type: string
                 format: binary
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+
+  /org/metrics:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
+    get:
+      operationId: exportAssetMetricsJSON
+      summary: Export asset metrics
+      responses:
+        '200':
+          description: asset metrics
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: object
+                  properties:
+                    site_id:
+                      type: string
+                    metrics:
+                      type: object
         '401':
           $ref: '#/components/responses/UnauthorizedError'
 
