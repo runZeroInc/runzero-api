@@ -4,7 +4,7 @@ servers:
     url: https://console.runzero.com/api/v1.0
 info:
   description: runZero API. API use is rate limited, you can make as many calls per day as you have licensed assets.
-  version: 4.0.250404.0
+  version: 4.0.250415.0
   title: runZero API
   contact:
     email: support@runzero.com
@@ -4981,14 +4981,12 @@ components:
         last_detected_at:
           type: integer
           format: int64
-        vulnerability_count:
+        instance_count:
           type: integer
           format: int64
-        risk_score:
-          type: number
-          format: float64
-          minimum: 0
         risk_rank:
+          type: string
+        risk_rank_value:
           description: 0 = info, 4 = critical
           type: integer
           format: int32
