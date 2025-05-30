@@ -561,47 +561,49 @@ paths:
         '401':
           $ref: '#/components/responses/UnauthorizedError'
 
-  /export/org/certificates.json:
-    parameters:
-      - $ref: '#/components/parameters/orgID'
-      - $ref: '#/components/parameters/search'
-    get:
-      tags:
-        - Export
-        - Certificates
-      operationId: exportCertificatesJSON
-      summary: Export the certificate inventory as JSON
-      responses:
-        '200':
-          description: filtered certificate results
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/Certificate"
-        '401':
-          $ref: '#/components/responses/UnauthorizedError'
-
-  /export/org/certificates.jsonl:
-    parameters:
-      - $ref: '#/components/parameters/orgID'
-      - $ref: '#/components/parameters/search'
-    get:
-      tags:
-        - Export
-        - Certificates
-      operationId: exportCertificatesJSONL
-      summary: Export the certificate inventory as JSONL line-delimited
-      responses:
-        '200':
-          description: filtered certificate results
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Certificate"
-        '401':
-          $ref: '#/components/responses/UnauthorizedError'
+# Temporarily withdrawn pending possible changes to the schema
+#
+#  /export/org/certificates.json:
+#    parameters:
+#      - $ref: '#/components/parameters/orgID'
+#      - $ref: '#/components/parameters/search'
+#    get:
+#      tags:
+#        - Export
+#        - Certificates
+#      operationId: exportCertificatesJSON
+#      summary: Export the certificate inventory as JSON
+#      responses:
+#        '200':
+#          description: filtered certificate results
+#          content:
+#            application/json:
+#              schema:
+#                type: array
+#                items:
+#                  $ref: "#/components/schemas/Certificate"
+#        '401':
+#          $ref: '#/components/responses/UnauthorizedError'
+#
+#  /export/org/certificates.jsonl:
+#    parameters:
+#      - $ref: '#/components/parameters/orgID'
+#      - $ref: '#/components/parameters/search'
+#    get:
+#      tags:
+#        - Export
+#        - Certificates
+#      operationId: exportCertificatesJSONL
+#      summary: Export the certificate inventory as JSONL line-delimited
+#      responses:
+#        '200':
+#          description: filtered certificate results
+#          content:
+#            application/json:
+#              schema:
+#                $ref: "#/components/schemas/Certificate"
+#        '401':
+#          $ref: '#/components/responses/UnauthorizedError'
 
   /export/org/users.json:
     parameters:
