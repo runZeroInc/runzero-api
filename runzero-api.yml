@@ -140,6 +140,8 @@ paths:
       - $ref: '#/components/parameters/orgID'
       - $ref: '#/components/parameters/search'
       - $ref: '#/components/parameters/fields'
+      - $ref: '#/components/parameters/pageSize'
+      - $ref: '#/components/parameters/startKey'
     get:
       tags:
         - Export
@@ -147,13 +149,23 @@ paths:
       summary: Exports the asset inventory
       responses:
         '200':
-          description: filtered asset results
+          description: Filtered asset results. <ul><li>When the `page_size` query parameter is not set in the request, the response will be a JSON array of assets.</li><li>When the `page_size` query parameter is present in the request, the response will be an object with an assets array and a `next_key` string for pagination.</li></ul>
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Asset'
+                oneOf:
+                  - type: array
+                    items:
+                      $ref: '#/components/schemas/Asset'
+                  - type: object
+                    properties:
+                      assets:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Asset'
+                      next_key:
+                        type: string
+                        description: The key to use for the next page of results
         '401':
           $ref: '#/components/responses/UnauthorizedError'
 
@@ -224,6 +236,8 @@ paths:
       - $ref: '#/components/parameters/orgID'
       - $ref: '#/components/parameters/search'
       - $ref: '#/components/parameters/fields'
+      - $ref: '#/components/parameters/pageSize'
+      - $ref: '#/components/parameters/startKey'
     get:
       tags:
         - Export
@@ -231,13 +245,23 @@ paths:
       summary: Service inventory as JSON
       responses:
         '200':
-          description: filtered service results
+          description: Filtered service results. <ul><li>When the `page_size` query parameter is not set in the request, the response will be a JSON array of services.</li><li>When the `page_size` query parameter is present in the request, the response will be an object with a services array and a `next_key` string for pagination.</li></ul>
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Service'
+                oneOf:
+                  - type: array
+                    items:
+                      $ref: '#/components/schemas/Service'
+                  - type: object
+                    properties:
+                      assets:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Service'
+                      next_key:
+                        type: string
+                        description: The key to use for the next page of results
         '401':
           $ref: '#/components/responses/UnauthorizedError'
 
@@ -353,6 +377,8 @@ paths:
       - $ref: '#/components/parameters/orgID'
       - $ref: '#/components/parameters/search'
       - $ref: '#/components/parameters/fields'
+      - $ref: '#/components/parameters/pageSize'
+      - $ref: '#/components/parameters/startKey'
     get:
       tags:
         - Export
@@ -360,13 +386,23 @@ paths:
       summary: Wireless inventory as JSON
       responses:
         '200':
-          description: filtered wireless results
+          description: Filtered wireless results. <ul><li>When the `page_size` query parameter is not set in the request, the response will be a JSON array of wireless.</li><li>When the `page_size` query parameter is present in the request, the response will be an object with a wireless array and a `next_key` string for pagination.</li></ul>
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Wireless'
+                oneOf:
+                  - type: array
+                    items:
+                      $ref: '#/components/schemas/Wireless'
+                  - type: object
+                    properties:
+                      assets:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Wireless'
+                      next_key:
+                        type: string
+                        description: The key to use for the next page of results
         '401':
           $ref: '#/components/responses/UnauthorizedError'
 
@@ -417,6 +453,8 @@ paths:
       - $ref: '#/components/parameters/orgID'
       - $ref: '#/components/parameters/search'
       - $ref: '#/components/parameters/fields'
+      - $ref: '#/components/parameters/pageSize'
+      - $ref: '#/components/parameters/startKey'
     get:
       tags:
         - Export
@@ -424,13 +462,23 @@ paths:
       summary: Exports the software inventory
       responses:
         '200':
-          description: filtered software results
+          description: Filtered software results. <ul><li>When the `page_size` query parameter is not set in the request, the response will be a JSON array of software.</li><li>When the `page_size` query parameter is present in the request, the response will be an object with a software array and a `next_key` string for pagination.</li></ul>
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Software'
+                oneOf:
+                  - type: array
+                    items:
+                      $ref: '#/components/schemas/Software'
+                  - type: object
+                    properties:
+                      assets:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Software'
+                      next_key:
+                        type: string
+                        description: The key to use for the next page of results
         '401':
           $ref: '#/components/responses/UnauthorizedError'
 
@@ -481,6 +529,8 @@ paths:
       - $ref: '#/components/parameters/orgID'
       - $ref: '#/components/parameters/search'
       - $ref: '#/components/parameters/fields'
+      - $ref: '#/components/parameters/pageSize'
+      - $ref: '#/components/parameters/startKey'
     get:
       tags:
         - Export
@@ -488,13 +538,23 @@ paths:
       summary: Export the vulnerability inventory as JSON
       responses:
         '200':
-          description: filtered vulnerability results
+          description: Filtered vulnerability results. <ul><li>When the `page_size` query parameter is not set in the request, the response will be a JSON array of vulnerabilities.</li><li>When the `page_size` query parameter is present in the request, the response will be an object with an vulnerabilites array and a `next_key` string for pagination.</li></ul>
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Vulnerability'
+                oneOf:
+                  - type: array
+                    items:
+                      $ref: '#/components/schemas/Vulnerability'
+                  - type: object
+                    properties:
+                      assets:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Vulnerability'
+                      next_key:
+                        type: string
+                        description: The key to use for the next page of results
         '401':
           $ref: '#/components/responses/UnauthorizedError'
 
@@ -3256,15 +3316,27 @@ paths:
           required: false
           schema:
             type: string
+        - $ref: '#/components/parameters/pageSize'
+        - $ref: '#/components/parameters/startKey'
       responses:
         '200':
-          description: filtered event results
+          description: Filtered event results. <ul><li>When the `page_size` query parameter is not set in the request, the response will be a JSON array of events.</li><li>When the `page_size` query parameter is present in the request, the response will be an object with an events array and a `next_key` string for pagination.</li></ul>
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Event'
+                oneOf:
+                  - type: array
+                    items:
+                      $ref: '#/components/schemas/Event'
+                  - type: object
+                    properties:
+                      assets:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Event'
+                      next_key:
+                        type: string
+                        description: The key to use for the next page of results
         '401':
           $ref: '#/components/responses/UnauthorizedError'
 
@@ -4502,6 +4574,20 @@ components:
       schema:
         type: string
       description: A list of fields to export, comma-separated
+    pageSize:
+      in: query
+      name: page_size
+      required: false
+      schema:
+        type: integer
+      description: The number of results to return per request.
+    startKey:
+      in: query
+      name: start_key
+      required: false
+      schema:
+        type: string
+      description: The value to use for requesting the next page when requesting paginated results.  This should be the value of the `next_key` attribute returned in the previous response.
   securitySchemes:
     bearerAuth:
       type: http
