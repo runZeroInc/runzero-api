@@ -255,7 +255,7 @@ paths:
                       $ref: '#/components/schemas/Service'
                   - type: object
                     properties:
-                      assets:
+                      services:
                         type: array
                         items:
                           $ref: '#/components/schemas/Service'
@@ -396,7 +396,7 @@ paths:
                       $ref: '#/components/schemas/Wireless'
                   - type: object
                     properties:
-                      assets:
+                      wireless:
                         type: array
                         items:
                           $ref: '#/components/schemas/Wireless'
@@ -472,7 +472,7 @@ paths:
                       $ref: '#/components/schemas/Software'
                   - type: object
                     properties:
-                      assets:
+                      software:
                         type: array
                         items:
                           $ref: '#/components/schemas/Software'
@@ -548,7 +548,7 @@ paths:
                       $ref: '#/components/schemas/Vulnerability'
                   - type: object
                     properties:
-                      assets:
+                      vulnerabilities:
                         type: array
                         items:
                           $ref: '#/components/schemas/Vulnerability'
@@ -3330,7 +3330,7 @@ paths:
                       $ref: '#/components/schemas/Event'
                   - type: object
                     properties:
-                      assets:
+                      events:
                         type: array
                         items:
                           $ref: '#/components/schemas/Event'
