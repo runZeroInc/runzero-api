@@ -4877,94 +4877,89 @@ components:
           description: The MD5 hash of the certificate (for SSH).
           type: string
           format: string
-        attributes:
-          description: Properties specific to the certificate type.
+        subject:
+          description: The subject of the certificate.
+          type: string
+          format: dn
+        cn:
+          description: The Common Name field from the certificate (no longer used by web browsers).
+          type: string
+          format: string
+          example: www.example.com
+        version:
+          description: The version of the certificate.
+          type: integer
+          format: int32
+        issuer:
+          description: The authority which issued the certificate.
+          type: string
+          format: dn
+        subject_key_id:
+          description: The key ID of the subject of the certificate.
+          type: string
+          format: string
+        authority_key_id:
+          description: The key ID of the authority which signed the certificate.
+          type: string
+          format: string
+        ocsp_server:
+          description: Zero or more OCSP server URLs.
+          type: array
+          items:
+            type: string
+            format: url
+        crl_distribution_points:
+          description: Zero or more URLs of CRLs.
+          type: array
+          items:
+            type: string
+            format: url
+        issuing_certificate_url:
+          description: Zero or more URLs where the issuing certificate can be found.
+          type: array
+          items:
+            type: string
+            format: url
+        is_ca:
+          description: Whether the certificate claims to be a Certificate Authority.
+          type: boolean
+        key_usage:
+          description: Valid purposes the certificate's key can be used for.
+          type: array
+          items:
+            type: string
+        ext_key_usage:
+          description: Additional purposes the certificate's key can be used for.
+          type: array
+          items:
+            type: string
+        san_dns_names:
+          description: Subject Alternative Name hostnames.
+          type: array
+          items:
+            type: string
+            format: hostname
+        san_ip_addresses:
+          description: Subject Alternative Name IP addresses.
+          type: array
+          items:
+            type: string
+            oneOf:
+              - format: ipv4
+              - format: ipv6
+        san_email_addresses:
+          description: Subject Alternative Name email addresses.
+          items:
+            type: string
+            format: email
+        san_uris:
+          description: Subject Alternative Name URIs.
+          items:
+            type: string
+            format: uri
+        public_key_parameters:
+          description: Parameters specific to the public key type.
           type: object
-          additionalProperties:
-            properties:
-              subject:
-                description: The subject of the certificate.
-                type: string
-                format: dn
-              cn:
-                description: The Common Name field from the certificate (no longer used by web browsers).
-                type: string
-                format: string
-                example: www.example.com
-              version:
-                description: The version of the certificate.
-                type: integer
-                format: int32
-              issuer:
-                description: The authority which issued the certificate.
-                type: string
-                format: dn
-              subject_key_id:
-                description: The key ID of the subject of the certificate.
-                type: string
-                format: string
-              authority_key_id:
-                description: The key ID of the authority which signed the certificate.
-                type: string
-                format: string
-              ocsp_server:
-                description: Zero or more OCSP server URLs.
-                type: array
-                items:
-                  type: string
-                  format: url
-              crl_distribution_points:
-                description: Zero or more URLs of CRLs.
-                type: array
-                items:
-                  type: string
-                  format: url
-              issuing_certificate_url:
-                description: Zero or more URLs where the issuing certificate can be found.
-                type: array
-                items:
-                  type: string
-                  format: url
-              is_ca:
-                description: Whether the certificate claims to be a Certificate Authority.
-                type: boolean
-              key_usage:
-                description: Valid purposes the certificate's key can be used for.
-                type: array
-                items:
-                  type: string
-              ext_key_usage:
-                description: Additional purposes the certificate's key can be used for.
-                type: array
-                items:
-                  type: string
-              san_dns_names:
-                description: Subject Alternative Name hostnames.
-                type: array
-                items:
-                  type: string
-                  format: hostname
-              san_ip_addresses:
-                description: Subject Alternative Name IP addresses.
-                type: array
-                items:
-                  type: string
-                  oneOf:
-                    - format: ipv4
-                    - format: ipv6
-              san_email_addresses:
-                description: Subject Alternative Name email addresses.
-                items:
-                  type: string
-                  format: email
-              san_uris:
-                description: Subject Alternative Name URIs.
-                items:
-                  type: string
-                  format: uri
-              public_key_parameters:
-                description: Parameters specific to the public key type.
-                type: object
 
     CrowdstrikeCredentialFields:
       type: object
