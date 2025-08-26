@@ -4,7 +4,7 @@ servers:
     url: https://console.runzero.com/api/v1.0
 info:
   description: runZero API. API use is rate limited, you can make as many calls per day as you have licensed assets.
-  version: 4.0.250611.0
+  version: 4.0.250826.0
   title: runZero API
   contact:
     email: support@runzero.com
@@ -1275,8 +1275,8 @@ paths:
     patch:
       tags:
         - Organization
-      operationId: updateAgentSite
-      summary: Update the site associated with agent. Legacy path for /org/explorers/{explorer_id}
+      operationId: updateAgentSettings
+      summary: Update the settings associated with the agent. Legacy path for /org/explorers/{explorer_id}
       parameters:
         - in: path
           name: agent_id
@@ -1286,12 +1286,12 @@ paths:
           required: true
           description: UUID of the agent to update
       requestBody:
-        description: site_id to associate with the agent
+        description: The updated settings to apply to the agent
         required: true
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/AgentSiteID"
+              $ref: "#/components/schemas/AgentPatchedSettings"
       responses:
         '200':
           description: agent details
@@ -1401,9 +1401,9 @@ paths:
     patch:
       tags:
         - Organization
-      operationId: updateExplorerSite
-      summary: Update the site associated with the explorer
-      description: Update the site associated with the explorer. This is the same call as legacy path /org/agents/{agent_id}
+      operationId: updateExplorerSettings
+      summary: Update the settings associated with the Explorer
+      description: Update the settings associated with the Explorer. This is the same call as legacy path /org/agents/{agent_id}
       parameters:
         - in: path
           name: explorer_id
@@ -1413,12 +1413,12 @@ paths:
           required: true
           description: UUID of the explorer to update
       requestBody:
-        description: site_id to associate with the explorer
+        description: The updated settings to apply to the Explorer
         required: true
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/ExplorerSiteID"
+              $ref: "#/components/schemas/ExplorerPatchedSettings"
       responses:
         '200':
           description: explorer details
@@ -5976,21 +5976,26 @@ components:
 
 
 
-    AgentSiteID:
+    AgentPatchedSettings:
       type: object
-      required:
-        - site_id
       properties:
         site_id:
           type: string
           format: uuid
           example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
+        settings:
+          type: object
+          properties:
+            max_concurrent_scans:
+              type: integer
+              format: int64
+              example: 5
 
     Explorer:
       $ref: '#/components/schemas/Agent'
 
-    ExplorerSiteID:
-      $ref: '#/components/schemas/AgentSiteID'
+    ExplorerPatchedSettings:
+      $ref: '#/components/schemas/AgentPatchedSettings'
 
     OrgOptions:
       type: object
