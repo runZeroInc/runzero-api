@@ -5634,7 +5634,7 @@ components:
           type: string
           format: uuid
           example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
-        explorer-group:
+        explorer-group-id:
           type: string
           format: uuid
           example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
