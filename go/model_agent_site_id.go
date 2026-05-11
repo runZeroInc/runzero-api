@@ -62,7 +62,7 @@ func (o *AgentSiteID) SetSiteId(v string) {
 }
 
 func (o AgentSiteID) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
+	toSerialize := map[string]any{}
 	if true {
 		toSerialize["site_id"] = o.SiteId
 	}

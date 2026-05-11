@@ -161,7 +161,7 @@ func (o *SiteOptions) SetExcludes(v string) {
 }
 
 func (o SiteOptions) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
+	toSerialize := map[string]any{}
 	if true {
 		toSerialize["name"] = o.Name
 	}

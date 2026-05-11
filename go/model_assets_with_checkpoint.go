@@ -88,7 +88,7 @@ func (o *AssetsWithCheckpoint) SetAssets(v []Asset) {
 }
 
 func (o AssetsWithCheckpoint) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
+	toSerialize := map[string]any{}
 	if true {
 		toSerialize["since"] = o.Since
 	}

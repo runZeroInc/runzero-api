@@ -101,7 +101,6 @@ func main() {
 	scansCurrent := 0
 	todoSites := []openapi.Site{}
 	for _, site := range sites {
-		site := site
 		if _, ok := siteTaskMap[site.GetId()]; ok {
 			scansCurrent++
 			continue

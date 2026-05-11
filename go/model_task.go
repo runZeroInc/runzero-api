@@ -16,31 +16,31 @@ import (
 
 // Task struct for Task
 type Task struct {
-	Id              string                  `json:"id"`
-	Name            *string                 `json:"name,omitempty"`
-	Description     *string                 `json:"description,omitempty"`
-	ClientId        *string                 `json:"client_id,omitempty"`
-	OrganizationId  *string                 `json:"organization_id,omitempty"`
-	AgentId         *string                 `json:"agent_id,omitempty"`
-	SiteId          *string                 `json:"site_id,omitempty"`
-	CruncherId      *string                 `json:"cruncher_id,omitempty"`
-	CreatedAt       *int64                  `json:"created_at,omitempty"`
-	CreatedBy       *string                 `json:"created_by,omitempty"`
-	CreatedByUserId *string                 `json:"created_by_user_id,omitempty"`
-	UpdatedAt       *int64                  `json:"updated_at,omitempty"`
-	Type            *string                 `json:"type,omitempty"`
-	Status          *string                 `json:"status,omitempty"`
-	Error           *string                 `json:"error,omitempty"`
-	Params          *map[string]string      `json:"params,omitempty"`
-	Stats           *map[string]interface{} `json:"stats,omitempty"`
-	Hidden          *bool                   `json:"hidden,omitempty"`
-	ParentId        *string                 `json:"parent_id,omitempty"`
-	Recur           *bool                   `json:"recur,omitempty"`
-	RecurFrequency  *string                 `json:"recur_frequency,omitempty"`
-	StartTime       *int64                  `json:"start_time,omitempty"`
-	RecurLast       *int64                  `json:"recur_last,omitempty"`
-	RecurNext       *int64                  `json:"recur_next,omitempty"`
-	RecurLastTaskId *string                 `json:"recur_last_task_id,omitempty"`
+	Id              string             `json:"id"`
+	Name            *string            `json:"name,omitempty"`
+	Description     *string            `json:"description,omitempty"`
+	ClientId        *string            `json:"client_id,omitempty"`
+	OrganizationId  *string            `json:"organization_id,omitempty"`
+	AgentId         *string            `json:"agent_id,omitempty"`
+	SiteId          *string            `json:"site_id,omitempty"`
+	CruncherId      *string            `json:"cruncher_id,omitempty"`
+	CreatedAt       *int64             `json:"created_at,omitempty"`
+	CreatedBy       *string            `json:"created_by,omitempty"`
+	CreatedByUserId *string            `json:"created_by_user_id,omitempty"`
+	UpdatedAt       *int64             `json:"updated_at,omitempty"`
+	Type            *string            `json:"type,omitempty"`
+	Status          *string            `json:"status,omitempty"`
+	Error           *string            `json:"error,omitempty"`
+	Params          *map[string]string `json:"params,omitempty"`
+	Stats           *map[string]any    `json:"stats,omitempty"`
+	Hidden          *bool              `json:"hidden,omitempty"`
+	ParentId        *string            `json:"parent_id,omitempty"`
+	Recur           *bool              `json:"recur,omitempty"`
+	RecurFrequency  *string            `json:"recur_frequency,omitempty"`
+	StartTime       *int64             `json:"start_time,omitempty"`
+	RecurLast       *int64             `json:"recur_last,omitempty"`
+	RecurNext       *int64             `json:"recur_next,omitempty"`
+	RecurLastTaskId *string            `json:"recur_last_task_id,omitempty"`
 }
 
 // NewTask instantiates a new Task object
@@ -566,9 +566,9 @@ func (o *Task) SetParams(v map[string]string) {
 }
 
 // GetStats returns the Stats field value if set, zero value otherwise.
-func (o *Task) GetStats() map[string]interface{} {
+func (o *Task) GetStats() map[string]any {
 	if o == nil || o.Stats == nil {
-		var ret map[string]interface{}
+		var ret map[string]any
 		return ret
 	}
 	return *o.Stats
@@ -576,7 +576,7 @@ func (o *Task) GetStats() map[string]interface{} {
 
 // GetStatsOk returns a tuple with the Stats field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Task) GetStatsOk() (*map[string]interface{}, bool) {
+func (o *Task) GetStatsOk() (*map[string]any, bool) {
 	if o == nil || o.Stats == nil {
 		return nil, false
 	}
@@ -593,7 +593,7 @@ func (o *Task) HasStats() bool {
 }
 
 // SetStats gets a reference to the given map[string]interface{} and assigns it to the Stats field.
-func (o *Task) SetStats(v map[string]interface{}) {
+func (o *Task) SetStats(v map[string]any) {
 	o.Stats = &v
 }
 
@@ -854,7 +854,7 @@ func (o *Task) SetRecurLastTaskId(v string) {
 }
 
 func (o Task) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
+	toSerialize := map[string]any{}
 	if true {
 		toSerialize["id"] = o.Id
 	}

@@ -88,7 +88,7 @@ func (o *ComponentVersion) SetVersion(v string) {
 }
 
 func (o ComponentVersion) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
+	toSerialize := map[string]any{}
 	if true {
 		toSerialize["id"] = o.Id
 	}

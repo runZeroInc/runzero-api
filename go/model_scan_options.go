@@ -558,7 +558,7 @@ func (o *ScanOptions) SetProbes(v string) {
 }
 
 func (o ScanOptions) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
+	toSerialize := map[string]any{}
 	if true {
 		toSerialize["targets"] = o.Targets
 	}

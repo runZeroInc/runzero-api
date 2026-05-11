@@ -491,7 +491,7 @@ func (o *RunZeroAPIKey) SetInactive(v bool) {
 }
 
 func (o RunZeroAPIKey) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
+	toSerialize := map[string]any{}
 	if true {
 		toSerialize["id"] = o.Id
 	}

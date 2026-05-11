@@ -722,7 +722,7 @@ func (o *Wireless) SetAgentName(v string) {
 }
 
 func (o Wireless) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
+	toSerialize := map[string]any{}
 	if true {
 		toSerialize["id"] = o.Id
 	}

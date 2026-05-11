@@ -62,7 +62,7 @@ func (o *AssetComments) SetComments(v string) {
 }
 
 func (o AssetComments) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
+	toSerialize := map[string]any{}
 	if true {
 		toSerialize["comments"] = o.Comments
 	}

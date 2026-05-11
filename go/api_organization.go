@@ -41,8 +41,9 @@ func (r apiCreateScanRequest) ScanOptions(scanOptions ScanOptions) apiCreateScan
 
 /*
 CreateScan Create a scan task for a given site.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param siteId UUID or name of the site to scan
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param siteId UUID or name of the site to scan
+
 @return apiCreateScanRequest
 */
 func (a *OrganizationApiService) CreateScan(ctx _context.Context, siteId string) apiCreateScanRequest {
@@ -55,12 +56,13 @@ func (a *OrganizationApiService) CreateScan(ctx _context.Context, siteId string)
 
 /*
 Execute executes the request
- @return Task
+
+	@return Task
 */
 func (r apiCreateScanRequest) Execute() (Task, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPut
-		localVarPostBody     interface{}
+		localVarPostBody     any
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
@@ -147,7 +149,8 @@ func (r apiCreateSiteRequest) SiteOptions(siteOptions SiteOptions) apiCreateSite
 
 /*
 CreateSite Create a new site.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+
 @return apiCreateSiteRequest
 */
 func (a *OrganizationApiService) CreateSite(ctx _context.Context) apiCreateSiteRequest {
@@ -159,12 +162,13 @@ func (a *OrganizationApiService) CreateSite(ctx _context.Context) apiCreateSiteR
 
 /*
 Execute executes the request
- @return Site
+
+	@return Site
 */
 func (r apiCreateSiteRequest) Execute() (Site, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPut
-		localVarPostBody     interface{}
+		localVarPostBody     any
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
@@ -249,8 +253,9 @@ type apiGetAgentRequest struct {
 
 /*
 GetAgent Get details for a single agent.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param agentId UUID of the agent
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param agentId UUID of the agent
+
 @return apiGetAgentRequest
 */
 func (a *OrganizationApiService) GetAgent(ctx _context.Context, agentId string) apiGetAgentRequest {
@@ -263,12 +268,13 @@ func (a *OrganizationApiService) GetAgent(ctx _context.Context, agentId string) 
 
 /*
 Execute executes the request
- @return Agent
+
+	@return Agent
 */
 func (r apiGetAgentRequest) Execute() (Agent, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
+		localVarPostBody     any
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
@@ -347,7 +353,8 @@ type apiGetAgentsRequest struct {
 
 /*
 GetAgents Get all agents.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+
 @return apiGetAgentsRequest
 */
 func (a *OrganizationApiService) GetAgents(ctx _context.Context) apiGetAgentsRequest {
@@ -359,12 +366,13 @@ func (a *OrganizationApiService) GetAgents(ctx _context.Context) apiGetAgentsReq
 
 /*
 Execute executes the request
- @return []Agent
+
+	@return []Agent
 */
 func (r apiGetAgentsRequest) Execute() ([]Agent, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
+		localVarPostBody     any
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
@@ -443,8 +451,9 @@ type apiGetAssetRequest struct {
 
 /*
 GetAsset Get asset details.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param assetId UUID of the asset to retrieve
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param assetId UUID of the asset to retrieve
+
 @return apiGetAssetRequest
 */
 func (a *OrganizationApiService) GetAsset(ctx _context.Context, assetId string) apiGetAssetRequest {
@@ -457,12 +466,13 @@ func (a *OrganizationApiService) GetAsset(ctx _context.Context, assetId string) 
 
 /*
 Execute executes the request
- @return Asset
+
+	@return Asset
 */
 func (r apiGetAssetRequest) Execute() (Asset, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
+		localVarPostBody     any
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
@@ -547,7 +557,8 @@ func (r apiGetAssetsRequest) Search(search string) apiGetAssetsRequest {
 
 /*
 GetAssets Get all assets.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+
 @return apiGetAssetsRequest
 */
 func (a *OrganizationApiService) GetAssets(ctx _context.Context) apiGetAssetsRequest {
@@ -559,12 +570,13 @@ func (a *OrganizationApiService) GetAssets(ctx _context.Context) apiGetAssetsReq
 
 /*
 Execute executes the request
- @return []Asset
+
+	@return []Asset
 */
 func (r apiGetAssetsRequest) Execute() ([]Asset, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
+		localVarPostBody     any
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
@@ -645,7 +657,8 @@ type apiGetKeyRequest struct {
 
 /*
 GetKey Get API key details.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+
 @return apiGetKeyRequest
 */
 func (a *OrganizationApiService) GetKey(ctx _context.Context) apiGetKeyRequest {
@@ -657,12 +670,13 @@ func (a *OrganizationApiService) GetKey(ctx _context.Context) apiGetKeyRequest {
 
 /*
 Execute executes the request
- @return APIKey
+
+	@return APIKey
 */
 func (r apiGetKeyRequest) Execute() (APIKey, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
+		localVarPostBody     any
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
@@ -740,7 +754,8 @@ type apiGetOrganizationRequest struct {
 
 /*
 GetOrganization Get organization details.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+
 @return apiGetOrganizationRequest
 */
 func (a *OrganizationApiService) GetOrganization(ctx _context.Context) apiGetOrganizationRequest {
@@ -752,12 +767,13 @@ func (a *OrganizationApiService) GetOrganization(ctx _context.Context) apiGetOrg
 
 /*
 Execute executes the request
- @return Organization
+
+	@return Organization
 */
 func (r apiGetOrganizationRequest) Execute() (Organization, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
+		localVarPostBody     any
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
@@ -836,8 +852,9 @@ type apiGetServiceRequest struct {
 
 /*
 GetService Get service details.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param serviceId UUID of the service to retrieve
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param serviceId UUID of the service to retrieve
+
 @return apiGetServiceRequest
 */
 func (a *OrganizationApiService) GetService(ctx _context.Context, serviceId string) apiGetServiceRequest {
@@ -850,12 +867,13 @@ func (a *OrganizationApiService) GetService(ctx _context.Context, serviceId stri
 
 /*
 Execute executes the request
- @return Service
+
+	@return Service
 */
 func (r apiGetServiceRequest) Execute() (Service, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
+		localVarPostBody     any
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
@@ -940,7 +958,8 @@ func (r apiGetServicesRequest) Search(search string) apiGetServicesRequest {
 
 /*
 GetServices Get all services.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+
 @return apiGetServicesRequest
 */
 func (a *OrganizationApiService) GetServices(ctx _context.Context) apiGetServicesRequest {
@@ -952,12 +971,13 @@ func (a *OrganizationApiService) GetServices(ctx _context.Context) apiGetService
 
 /*
 Execute executes the request
- @return []Service
+
+	@return []Service
 */
 func (r apiGetServicesRequest) Execute() ([]Service, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
+		localVarPostBody     any
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
@@ -1039,8 +1059,9 @@ type apiGetSiteRequest struct {
 
 /*
 GetSite Get site details.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param siteId UUID or name of the site
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param siteId UUID or name of the site
+
 @return apiGetSiteRequest
 */
 func (a *OrganizationApiService) GetSite(ctx _context.Context, siteId string) apiGetSiteRequest {
@@ -1053,12 +1074,13 @@ func (a *OrganizationApiService) GetSite(ctx _context.Context, siteId string) ap
 
 /*
 Execute executes the request
- @return Site
+
+	@return Site
 */
 func (r apiGetSiteRequest) Execute() (Site, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
+		localVarPostBody     any
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
@@ -1137,7 +1159,8 @@ type apiGetSitesRequest struct {
 
 /*
 GetSites Get all sites.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+
 @return apiGetSitesRequest
 */
 func (a *OrganizationApiService) GetSites(ctx _context.Context) apiGetSitesRequest {
@@ -1149,12 +1172,13 @@ func (a *OrganizationApiService) GetSites(ctx _context.Context) apiGetSitesReque
 
 /*
 Execute executes the request
- @return []Site
+
+	@return []Site
 */
 func (r apiGetSitesRequest) Execute() ([]Site, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
+		localVarPostBody     any
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
@@ -1233,8 +1257,9 @@ type apiGetTaskRequest struct {
 
 /*
 GetTask Get task details.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param taskId UUID of the task to retrieve
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param taskId UUID of the task to retrieve
+
 @return apiGetTaskRequest
 */
 func (a *OrganizationApiService) GetTask(ctx _context.Context, taskId string) apiGetTaskRequest {
@@ -1247,12 +1272,13 @@ func (a *OrganizationApiService) GetTask(ctx _context.Context, taskId string) ap
 
 /*
 Execute executes the request
- @return Task
+
+	@return Task
 */
 func (r apiGetTaskRequest) Execute() (Task, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
+		localVarPostBody     any
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
@@ -1332,8 +1358,9 @@ type apiGetTaskChangeReportRequest struct {
 
 /*
 GetTaskChangeReport Returns a temporary task change report data url.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param taskId UUID of the task
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param taskId UUID of the task
+
 @return apiGetTaskChangeReportRequest
 */
 func (a *OrganizationApiService) GetTaskChangeReport(ctx _context.Context, taskId string) apiGetTaskChangeReportRequest {
@@ -1346,12 +1373,11 @@ func (a *OrganizationApiService) GetTaskChangeReport(ctx _context.Context, taskI
 
 /*
 Execute executes the request
-
 */
 func (r apiGetTaskChangeReportRequest) Execute() (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
+		localVarPostBody     any
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
@@ -1421,8 +1447,9 @@ type apiGetTaskScanDataRequest struct {
 
 /*
 GetTaskScanData Returns a temporary task scan data url.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param taskId UUID of the task
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param taskId UUID of the task
+
 @return apiGetTaskScanDataRequest
 */
 func (a *OrganizationApiService) GetTaskScanData(ctx _context.Context, taskId string) apiGetTaskScanDataRequest {
@@ -1435,12 +1462,11 @@ func (a *OrganizationApiService) GetTaskScanData(ctx _context.Context, taskId st
 
 /*
 Execute executes the request
-
 */
 func (r apiGetTaskScanDataRequest) Execute() (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
+		localVarPostBody     any
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
@@ -1510,8 +1536,9 @@ type apiGetTaskLogDataRequest struct {
 
 /*
 GetTaskLog Returns a temporary task log data url.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param taskId UUID of the task
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param taskId UUID of the task
+
 @return apiGetTaskLogDataRequest
 */
 func (a *OrganizationApiService) GetTaskLog(ctx _context.Context, taskId string) apiGetTaskLogDataRequest {
@@ -1524,12 +1551,11 @@ func (a *OrganizationApiService) GetTaskLog(ctx _context.Context, taskId string)
 
 /*
 Execute executes the request
-
 */
 func (r apiGetTaskLogDataRequest) Execute() (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
+		localVarPostBody     any
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
@@ -1604,7 +1630,8 @@ func (r apiGetTasksRequest) Status(status string) apiGetTasksRequest {
 
 /*
 GetTasks Get all tasks (last 1000).
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+
 @return apiGetTasksRequest
 */
 func (a *OrganizationApiService) GetTasks(ctx _context.Context) apiGetTasksRequest {
@@ -1616,12 +1643,13 @@ func (a *OrganizationApiService) GetTasks(ctx _context.Context) apiGetTasksReque
 
 /*
 Execute executes the request
- @return []Task
+
+	@return []Task
 */
 func (r apiGetTasksRequest) Execute() ([]Task, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
+		localVarPostBody     any
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
@@ -1703,8 +1731,9 @@ type apiGetWirelessLANRequest struct {
 
 /*
 GetWirelessLAN Get wireless LAN details.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param wirelessId UUID of the wireless LAN to retrieve
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param wirelessId UUID of the wireless LAN to retrieve
+
 @return apiGetWirelessLANRequest
 */
 func (a *OrganizationApiService) GetWirelessLAN(ctx _context.Context, wirelessId string) apiGetWirelessLANRequest {
@@ -1717,12 +1746,13 @@ func (a *OrganizationApiService) GetWirelessLAN(ctx _context.Context, wirelessId
 
 /*
 Execute executes the request
- @return Wireless
+
+	@return Wireless
 */
 func (r apiGetWirelessLANRequest) Execute() (Wireless, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
+		localVarPostBody     any
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
@@ -1807,7 +1837,8 @@ func (r apiGetWirelessLANsRequest) Search(search string) apiGetWirelessLANsReque
 
 /*
 GetWirelessLANs Get all wireless LANs.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+
 @return apiGetWirelessLANsRequest
 */
 func (a *OrganizationApiService) GetWirelessLANs(ctx _context.Context) apiGetWirelessLANsRequest {
@@ -1819,12 +1850,13 @@ func (a *OrganizationApiService) GetWirelessLANs(ctx _context.Context) apiGetWir
 
 /*
 Execute executes the request
- @return []Wireless
+
+	@return []Wireless
 */
 func (r apiGetWirelessLANsRequest) Execute() ([]Wireless, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
+		localVarPostBody     any
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
@@ -1906,8 +1938,9 @@ type apiHideTaskRequest struct {
 
 /*
 HideTask Signal that a completed task should be hidden.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param taskId UUID of the task to hide
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param taskId UUID of the task to hide
+
 @return apiHideTaskRequest
 */
 func (a *OrganizationApiService) HideTask(ctx _context.Context, taskId string) apiHideTaskRequest {
@@ -1920,12 +1953,11 @@ func (a *OrganizationApiService) HideTask(ctx _context.Context, taskId string) a
 
 /*
 Execute executes the request
-
 */
 func (r apiHideTaskRequest) Execute() (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
+		localVarPostBody     any
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
@@ -2001,8 +2033,9 @@ func (r apiImportScanDataRequest) Body(body io.Reader) apiImportScanDataRequest 
 
 /*
 ImportScanData Import a scan data file into a site.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param siteId UUID or name of the site to import scan data into
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param siteId UUID or name of the site to import scan data into
+
 @return apiImportScanDataRequest
 */
 func (a *OrganizationApiService) ImportScanData(ctx _context.Context, siteId string) apiImportScanDataRequest {
@@ -2015,12 +2048,13 @@ func (a *OrganizationApiService) ImportScanData(ctx _context.Context, siteId str
 
 /*
 Execute executes the request
- @return Task
+
+	@return Task
 */
 func (r apiImportScanDataRequest) Execute() (Task, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPut
-		localVarPostBody     interface{}
+		localVarPostBody     any
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
@@ -2102,8 +2136,9 @@ type apiRemoveAgentRequest struct {
 
 /*
 RemoveAgent Remove and uninstall an agent.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param agentId UUID of the agent to remove
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param agentId UUID of the agent to remove
+
 @return apiRemoveAgentRequest
 */
 func (a *OrganizationApiService) RemoveAgent(ctx _context.Context, agentId string) apiRemoveAgentRequest {
@@ -2116,12 +2151,11 @@ func (a *OrganizationApiService) RemoveAgent(ctx _context.Context, agentId strin
 
 /*
 Execute executes the request
-
 */
 func (r apiRemoveAgentRequest) Execute() (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodDelete
-		localVarPostBody     interface{}
+		localVarPostBody     any
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
@@ -2191,8 +2225,9 @@ type apiRemoveAssetRequest struct {
 
 /*
 RemoveAsset Remove an asset.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param assetId UUID of the asset to remove
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param assetId UUID of the asset to remove
+
 @return apiRemoveAssetRequest
 */
 func (a *OrganizationApiService) RemoveAsset(ctx _context.Context, assetId string) apiRemoveAssetRequest {
@@ -2205,12 +2240,11 @@ func (a *OrganizationApiService) RemoveAsset(ctx _context.Context, assetId strin
 
 /*
 Execute executes the request
-
 */
 func (r apiRemoveAssetRequest) Execute() (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodDelete
-		localVarPostBody     interface{}
+		localVarPostBody     any
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
@@ -2280,8 +2314,9 @@ type apiRemoveServiceRequest struct {
 
 /*
 RemoveService Remove a service.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param serviceId UUID of the service to remove
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param serviceId UUID of the service to remove
+
 @return apiRemoveServiceRequest
 */
 func (a *OrganizationApiService) RemoveService(ctx _context.Context, serviceId string) apiRemoveServiceRequest {
@@ -2294,12 +2329,11 @@ func (a *OrganizationApiService) RemoveService(ctx _context.Context, serviceId s
 
 /*
 Execute executes the request
-
 */
 func (r apiRemoveServiceRequest) Execute() (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodDelete
-		localVarPostBody     interface{}
+		localVarPostBody     any
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
@@ -2369,8 +2403,9 @@ type apiRemoveSiteRequest struct {
 
 /*
 RemoveSite Remove a site and associated assets.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param siteId UUID or name of the site to remove
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param siteId UUID or name of the site to remove
+
 @return apiRemoveSiteRequest
 */
 func (a *OrganizationApiService) RemoveSite(ctx _context.Context, siteId string) apiRemoveSiteRequest {
@@ -2383,12 +2418,11 @@ func (a *OrganizationApiService) RemoveSite(ctx _context.Context, siteId string)
 
 /*
 Execute executes the request
-
 */
 func (r apiRemoveSiteRequest) Execute() (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodDelete
-		localVarPostBody     interface{}
+		localVarPostBody     any
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
@@ -2458,8 +2492,9 @@ type apiRemoveWirelessLANRequest struct {
 
 /*
 RemoveWirelessLAN Remove a wireless LAN.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param wirelessId UUID of the wireless LAN to remove
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param wirelessId UUID of the wireless LAN to remove
+
 @return apiRemoveWirelessLANRequest
 */
 func (a *OrganizationApiService) RemoveWirelessLAN(ctx _context.Context, wirelessId string) apiRemoveWirelessLANRequest {
@@ -2472,12 +2507,11 @@ func (a *OrganizationApiService) RemoveWirelessLAN(ctx _context.Context, wireles
 
 /*
 Execute executes the request
-
 */
 func (r apiRemoveWirelessLANRequest) Execute() (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodDelete
-		localVarPostBody     interface{}
+		localVarPostBody     any
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
@@ -2547,8 +2581,9 @@ type apiStopTaskRequest struct {
 
 /*
 StopTask Signal that a task should be stopped or canceled.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param taskId UUID of the task to stop
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param taskId UUID of the task to stop
+
 @return apiStopTaskRequest
 */
 func (a *OrganizationApiService) StopTask(ctx _context.Context, taskId string) apiStopTaskRequest {
@@ -2561,12 +2596,11 @@ func (a *OrganizationApiService) StopTask(ctx _context.Context, taskId string) a
 
 /*
 Execute executes the request
-
 */
 func (r apiStopTaskRequest) Execute() (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
+		localVarPostBody     any
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
@@ -2642,8 +2676,9 @@ func (r apiUpdateAgentSiteRequest) AgentSiteID(agentSiteID AgentSiteID) apiUpdat
 
 /*
 UpdateAgentSite Update the site associated with agent.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param agentId UUID of the agent to update
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param agentId UUID of the agent to update
+
 @return apiUpdateAgentSiteRequest
 */
 func (a *OrganizationApiService) UpdateAgentSite(ctx _context.Context, agentId string) apiUpdateAgentSiteRequest {
@@ -2656,12 +2691,13 @@ func (a *OrganizationApiService) UpdateAgentSite(ctx _context.Context, agentId s
 
 /*
 Execute executes the request
- @return Agent
+
+	@return Agent
 */
 func (r apiUpdateAgentSiteRequest) Execute() (Agent, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPatch
-		localVarPostBody     interface{}
+		localVarPostBody     any
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
@@ -2753,8 +2789,9 @@ func (r apiUpdateAssetCommentsRequest) AssetComments(assetComments AssetComments
 
 /*
 UpdateAssetComments Update asset comments.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param assetId UUID of the asset to update
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param assetId UUID of the asset to update
+
 @return apiUpdateAssetCommentsRequest
 */
 func (a *OrganizationApiService) UpdateAssetComments(ctx _context.Context, assetId string) apiUpdateAssetCommentsRequest {
@@ -2767,12 +2804,13 @@ func (a *OrganizationApiService) UpdateAssetComments(ctx _context.Context, asset
 
 /*
 Execute executes the request
- @return Asset
+
+	@return Asset
 */
 func (r apiUpdateAssetCommentsRequest) Execute() (Asset, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPatch
-		localVarPostBody     interface{}
+		localVarPostBody     any
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
@@ -2864,8 +2902,9 @@ func (r apiUpdateAssetTagsRequest) AssetTags(assetTags AssetTags) apiUpdateAsset
 
 /*
 UpdateAssetTags Update asset tags.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param assetId UUID of the agent to update
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param assetId UUID of the agent to update
+
 @return apiUpdateAssetTagsRequest
 */
 func (a *OrganizationApiService) UpdateAssetTags(ctx _context.Context, assetId string) apiUpdateAssetTagsRequest {
@@ -2878,12 +2917,13 @@ func (a *OrganizationApiService) UpdateAssetTags(ctx _context.Context, assetId s
 
 /*
 Execute executes the request
- @return Asset
+
+	@return Asset
 */
 func (r apiUpdateAssetTagsRequest) Execute() (Asset, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPatch
-		localVarPostBody     interface{}
+		localVarPostBody     any
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
@@ -2974,7 +3014,8 @@ func (r apiUpdateOrganizationRequest) OrgOptions(orgOptions OrgOptions) apiUpdat
 
 /*
 UpdateOrganization Update organization details.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+
 @return apiUpdateOrganizationRequest
 */
 func (a *OrganizationApiService) UpdateOrganization(ctx _context.Context) apiUpdateOrganizationRequest {
@@ -2986,12 +3027,13 @@ func (a *OrganizationApiService) UpdateOrganization(ctx _context.Context) apiUpd
 
 /*
 Execute executes the request
- @return Organization
+
+	@return Organization
 */
 func (r apiUpdateOrganizationRequest) Execute() (Organization, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPatch
-		localVarPostBody     interface{}
+		localVarPostBody     any
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
@@ -3082,8 +3124,9 @@ func (r apiUpdateSiteRequest) SiteOptions(siteOptions SiteOptions) apiUpdateSite
 
 /*
 UpdateSite Update a site definition.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param siteId UUID or name of the site to update
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param siteId UUID or name of the site to update
+
 @return apiUpdateSiteRequest
 */
 func (a *OrganizationApiService) UpdateSite(ctx _context.Context, siteId string) apiUpdateSiteRequest {
@@ -3096,12 +3139,13 @@ func (a *OrganizationApiService) UpdateSite(ctx _context.Context, siteId string)
 
 /*
 Execute executes the request
- @return Site
+
+	@return Site
 */
 func (r apiUpdateSiteRequest) Execute() (Site, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPatch
-		localVarPostBody     interface{}
+		localVarPostBody     any
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
@@ -3193,8 +3237,9 @@ func (r apiUpdateTaskRequest) Task(task Task) apiUpdateTaskRequest {
 
 /*
 UpdateTask Update task parameters.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param taskId UUID of the task to update
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param taskId UUID of the task to update
+
 @return apiUpdateTaskRequest
 */
 func (a *OrganizationApiService) UpdateTask(ctx _context.Context, taskId string) apiUpdateTaskRequest {
@@ -3207,12 +3252,13 @@ func (a *OrganizationApiService) UpdateTask(ctx _context.Context, taskId string)
 
 /*
 Execute executes the request
- @return Task
+
+	@return Task
 */
 func (r apiUpdateTaskRequest) Execute() (Task, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPatch
-		localVarPostBody     interface{}
+		localVarPostBody     any
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
@@ -3298,8 +3344,9 @@ type apiUpgradeAgentRequest struct {
 
 /*
 UpgradeAgent Force an agent to update and restart.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param agentId UUID of the agent to update
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param agentId UUID of the agent to update
+
 @return apiUpgradeAgentRequest
 */
 func (a *OrganizationApiService) UpgradeAgent(ctx _context.Context, agentId string) apiUpgradeAgentRequest {
@@ -3312,12 +3359,11 @@ func (a *OrganizationApiService) UpgradeAgent(ctx _context.Context, agentId stri
 
 /*
 Execute executes the request
-
 */
 func (r apiUpgradeAgentRequest) Execute() (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
+		localVarPostBody     any
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte

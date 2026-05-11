@@ -51,7 +51,8 @@ func (r apiExportAssetSyncCreatedJSONRequest) Since(since int64) apiExportAssetS
 
 /*
 ExportAssetSyncCreatedJSON Exports the asset inventory in a sync-friendly manner using created_at as a checkpoint.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+
 @return apiExportAssetSyncCreatedJSONRequest
 */
 func (a *ExportApiService) ExportAssetSyncCreatedJSON(ctx _context.Context) apiExportAssetSyncCreatedJSONRequest {
@@ -63,12 +64,13 @@ func (a *ExportApiService) ExportAssetSyncCreatedJSON(ctx _context.Context) apiE
 
 /*
 Execute executes the request
- @return AssetsWithCheckpoint
+
+	@return AssetsWithCheckpoint
 */
 func (r apiExportAssetSyncCreatedJSONRequest) Execute() (AssetsWithCheckpoint, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
+		localVarPostBody     any
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
@@ -173,7 +175,8 @@ func (r apiExportAssetSyncUpdatedJSONRequest) Since(since int64) apiExportAssetS
 
 /*
 ExportAssetSyncUpdatedJSON Exports the asset inventory in a sync-friendly manner using updated_at as a checkpoint.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+
 @return apiExportAssetSyncUpdatedJSONRequest
 */
 func (a *ExportApiService) ExportAssetSyncUpdatedJSON(ctx _context.Context) apiExportAssetSyncUpdatedJSONRequest {
@@ -185,12 +188,13 @@ func (a *ExportApiService) ExportAssetSyncUpdatedJSON(ctx _context.Context) apiE
 
 /*
 Execute executes the request
- @return AssetsWithCheckpoint
+
+	@return AssetsWithCheckpoint
 */
 func (r apiExportAssetSyncUpdatedJSONRequest) Execute() (AssetsWithCheckpoint, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
+		localVarPostBody     any
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
@@ -283,7 +287,8 @@ func (r apiExportAssetsCSVRequest) Search(search string) apiExportAssetsCSVReque
 
 /*
 ExportAssetsCSV Asset inventory as CSV.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+
 @return apiExportAssetsCSVRequest
 */
 func (a *ExportApiService) ExportAssetsCSV(ctx _context.Context) apiExportAssetsCSVRequest {
@@ -295,12 +300,13 @@ func (a *ExportApiService) ExportAssetsCSV(ctx _context.Context) apiExportAssets
 
 /*
 Execute executes the request
- @return *os.File
+
+	@return *os.File
 */
 func (r apiExportAssetsCSVRequest) Execute() (*os.File, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
+		localVarPostBody     any
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
@@ -393,7 +399,8 @@ func (r apiExportAssetsJSONRequest) Fields(fields string) apiExportAssetsJSONReq
 
 /*
 ExportAssetsJSON Exports the asset inventory.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+
 @return apiExportAssetsJSONRequest
 */
 func (a *ExportApiService) ExportAssetsJSON(ctx _context.Context) apiExportAssetsJSONRequest {
@@ -405,12 +412,13 @@ func (a *ExportApiService) ExportAssetsJSON(ctx _context.Context) apiExportAsset
 
 /*
 Execute executes the request
- @return []Asset
+
+	@return []Asset
 */
 func (r apiExportAssetsJSONRequest) Execute() ([]Asset, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
+		localVarPostBody     any
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
@@ -506,7 +514,8 @@ func (r apiExportAssetsJSONLRequest) Fields(fields string) apiExportAssetsJSONLR
 
 /*
 ExportAssetsJSONL Asset inventory as JSON line-delimited.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+
 @return apiExportAssetsJSONLRequest
 */
 func (a *ExportApiService) ExportAssetsJSONL(ctx _context.Context) apiExportAssetsJSONLRequest {
@@ -518,12 +527,13 @@ func (a *ExportApiService) ExportAssetsJSONL(ctx _context.Context) apiExportAsse
 
 /*
 Execute executes the request
- @return *os.File
+
+	@return *os.File
 */
 func (r apiExportAssetsJSONLRequest) Execute() (*os.File, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
+		localVarPostBody     any
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
@@ -613,7 +623,8 @@ func (r apiExportAssetsNmapXMLRequest) Search(search string) apiExportAssetsNmap
 
 /*
 ExportAssetsNmapXML Asset inventory as Nmap-style XML.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+
 @return apiExportAssetsNmapXMLRequest
 */
 func (a *ExportApiService) ExportAssetsNmapXML(ctx _context.Context) apiExportAssetsNmapXMLRequest {
@@ -625,12 +636,13 @@ func (a *ExportApiService) ExportAssetsNmapXML(ctx _context.Context) apiExportAs
 
 /*
 Execute executes the request
- @return *os.File
+
+	@return *os.File
 */
 func (r apiExportAssetsNmapXMLRequest) Execute() (*os.File, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
+		localVarPostBody     any
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
@@ -717,7 +729,8 @@ func (r apiExportServicesCSVRequest) Search(search string) apiExportServicesCSVR
 
 /*
 ExportServicesCSV Service inventory as CSV.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+
 @return apiExportServicesCSVRequest
 */
 func (a *ExportApiService) ExportServicesCSV(ctx _context.Context) apiExportServicesCSVRequest {
@@ -729,12 +742,13 @@ func (a *ExportApiService) ExportServicesCSV(ctx _context.Context) apiExportServ
 
 /*
 Execute executes the request
- @return *os.File
+
+	@return *os.File
 */
 func (r apiExportServicesCSVRequest) Execute() (*os.File, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
+		localVarPostBody     any
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
@@ -827,7 +841,8 @@ func (r apiExportServicesJSONRequest) Fields(fields string) apiExportServicesJSO
 
 /*
 ExportServicesJSON Service inventory as JSON.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+
 @return apiExportServicesJSONRequest
 */
 func (a *ExportApiService) ExportServicesJSON(ctx _context.Context) apiExportServicesJSONRequest {
@@ -839,12 +854,13 @@ func (a *ExportApiService) ExportServicesJSON(ctx _context.Context) apiExportSer
 
 /*
 Execute executes the request
- @return []Service
+
+	@return []Service
 */
 func (r apiExportServicesJSONRequest) Execute() ([]Service, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
+		localVarPostBody     any
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
@@ -940,7 +956,8 @@ func (r apiExportServicesJSONLRequest) Fields(fields string) apiExportServicesJS
 
 /*
 ExportServicesJSONL Service inventory as JSON line-delimited.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+
 @return apiExportServicesJSONLRequest
 */
 func (a *ExportApiService) ExportServicesJSONL(ctx _context.Context) apiExportServicesJSONLRequest {
@@ -952,12 +969,13 @@ func (a *ExportApiService) ExportServicesJSONL(ctx _context.Context) apiExportSe
 
 /*
 Execute executes the request
- @return *os.File
+
+	@return *os.File
 */
 func (r apiExportServicesJSONLRequest) Execute() (*os.File, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
+		localVarPostBody     any
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
@@ -1041,7 +1059,8 @@ type apiExportSitesCSVRequest struct {
 
 /*
 ExportSitesCSV Site list as CSV.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+
 @return apiExportSitesCSVRequest
 */
 func (a *ExportApiService) ExportSitesCSV(ctx _context.Context) apiExportSitesCSVRequest {
@@ -1053,12 +1072,13 @@ func (a *ExportApiService) ExportSitesCSV(ctx _context.Context) apiExportSitesCS
 
 /*
 Execute executes the request
- @return *os.File
+
+	@return *os.File
 */
 func (r apiExportSitesCSVRequest) Execute() (*os.File, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
+		localVarPostBody     any
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
@@ -1148,7 +1168,8 @@ func (r apiExportSitesJSONRequest) Fields(fields string) apiExportSitesJSONReque
 
 /*
 ExportSitesJSON Export all sites.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+
 @return apiExportSitesJSONRequest
 */
 func (a *ExportApiService) ExportSitesJSON(ctx _context.Context) apiExportSitesJSONRequest {
@@ -1160,12 +1181,13 @@ func (a *ExportApiService) ExportSitesJSON(ctx _context.Context) apiExportSitesJ
 
 /*
 Execute executes the request
- @return []Site
+
+	@return []Site
 */
 func (r apiExportSitesJSONRequest) Execute() ([]Site, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
+		localVarPostBody     any
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
@@ -1261,7 +1283,8 @@ func (r apiExportSitesJSONLRequest) Fields(fields string) apiExportSitesJSONLReq
 
 /*
 ExportSitesJSONL Site list as JSON line-delimited.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+
 @return apiExportSitesJSONLRequest
 */
 func (a *ExportApiService) ExportSitesJSONL(ctx _context.Context) apiExportSitesJSONLRequest {
@@ -1273,12 +1296,13 @@ func (a *ExportApiService) ExportSitesJSONL(ctx _context.Context) apiExportSites
 
 /*
 Execute executes the request
- @return *os.File
+
+	@return *os.File
 */
 func (r apiExportSitesJSONLRequest) Execute() (*os.File, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
+		localVarPostBody     any
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
@@ -1368,7 +1392,8 @@ func (r apiExportWirelessCSVRequest) Search(search string) apiExportWirelessCSVR
 
 /*
 ExportWirelessCSV Wireless inventory as CSV.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+
 @return apiExportWirelessCSVRequest
 */
 func (a *ExportApiService) ExportWirelessCSV(ctx _context.Context) apiExportWirelessCSVRequest {
@@ -1380,12 +1405,13 @@ func (a *ExportApiService) ExportWirelessCSV(ctx _context.Context) apiExportWire
 
 /*
 Execute executes the request
- @return *os.File
+
+	@return *os.File
 */
 func (r apiExportWirelessCSVRequest) Execute() (*os.File, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
+		localVarPostBody     any
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
@@ -1478,7 +1504,8 @@ func (r apiExportWirelessJSONRequest) Fields(fields string) apiExportWirelessJSO
 
 /*
 ExportWirelessJSON Wireless inventory as JSON.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+
 @return apiExportWirelessJSONRequest
 */
 func (a *ExportApiService) ExportWirelessJSON(ctx _context.Context) apiExportWirelessJSONRequest {
@@ -1490,12 +1517,13 @@ func (a *ExportApiService) ExportWirelessJSON(ctx _context.Context) apiExportWir
 
 /*
 Execute executes the request
- @return []Wireless
+
+	@return []Wireless
 */
 func (r apiExportWirelessJSONRequest) Execute() ([]Wireless, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
+		localVarPostBody     any
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
@@ -1591,7 +1619,8 @@ func (r apiExportWirelessJSONLRequest) Fields(fields string) apiExportWirelessJS
 
 /*
 ExportWirelessJSONL Wireless inventory as JSON line-delimited.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+
 @return apiExportWirelessJSONLRequest
 */
 func (a *ExportApiService) ExportWirelessJSONL(ctx _context.Context) apiExportWirelessJSONLRequest {
@@ -1603,12 +1632,13 @@ func (a *ExportApiService) ExportWirelessJSONL(ctx _context.Context) apiExportWi
 
 /*
 Execute executes the request
- @return *os.File
+
+	@return *os.File
 */
 func (r apiExportWirelessJSONLRequest) Execute() (*os.File, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
+		localVarPostBody     any
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte

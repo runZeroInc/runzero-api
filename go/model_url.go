@@ -69,7 +69,7 @@ func (o *URL) SetId(v string) {
 }
 
 func (o URL) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
+	toSerialize := map[string]any{}
 	if o.Id != nil {
 		toSerialize["id"] = o.Id
 	}

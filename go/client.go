@@ -117,7 +117,7 @@ func contains(haystack []string, needle string) bool {
 }
 
 // Verify optional parameters are of the correct type.
-func typeCheckParameter(obj interface{}, expected string, name string) error {
+func typeCheckParameter(obj any, expected string, name string) error {
 	// Make sure there is an object.
 	if obj == nil {
 		return nil
@@ -131,7 +131,7 @@ func typeCheckParameter(obj interface{}, expected string, name string) error {
 }
 
 // parameterToString convert interface{} parameters to string, using a delimiter if format is provided.
-func parameterToString(obj interface{}, collectionFormat string) string {
+func parameterToString(obj any, collectionFormat string) string {
 	var delimiter string
 
 	switch collectionFormat {
@@ -155,7 +155,7 @@ func parameterToString(obj interface{}, collectionFormat string) string {
 }
 
 // helper for converting interface{} parameters to json strings
-func parameterToJson(obj interface{}) (string, error) {
+func parameterToJson(obj any) (string, error) {
 	jsonBuf, err := json.Marshal(obj)
 	if err != nil {
 		return "", err
@@ -198,7 +198,7 @@ func (c *APIClient) GetConfig() *Configuration {
 func (c *APIClient) prepareRequest(
 	ctx context.Context,
 	path string, method string,
-	postBody interface{},
+	postBody any,
 	headerParams map[string]string,
 	queryParams url.Values,
 	formParams url.Values,
@@ -355,7 +355,7 @@ func (c *APIClient) prepareRequest(
 	return localVarRequest, nil
 }
 
-func (c *APIClient) decode(v interface{}, b []byte, contentType string) (err error) {
+func (c *APIClient) decode(v any, b []byte, contentType string) (err error) {
 	if len(b) == 0 {
 		return nil
 	}
@@ -396,12 +396,12 @@ func addFile(w *multipart.Writer, fieldName, path string) error {
 }
 
 // Prevent trying to import "fmt"
-func reportError(format string, a ...interface{}) error {
+func reportError(format string, a ...any) error {
 	return fmt.Errorf(format, a...)
 }
 
 // Set request body from an interface{}
-func setBody(body interface{}, contentType string) (bodyBuf *bytes.Buffer, err error) {
+func setBody(body any, contentType string) (bodyBuf *bytes.Buffer, err error) {
 	if bodyBuf == nil {
 		bodyBuf = &bytes.Buffer{}
 	}
@@ -432,12 +432,12 @@ func setBody(body interface{}, contentType string) (bodyBuf *bytes.Buffer, err e
 }
 
 // detectContentType method is used to figure out `Request.Body` content type for request header
-func detectContentType(body interface{}) string {
+func detectContentType(body any) string {
 	contentType := "text/plain; charset=utf-8"
 	kind := reflect.TypeOf(body).Kind()
 
 	switch kind {
-	case reflect.Struct, reflect.Map, reflect.Ptr:
+	case reflect.Struct, reflect.Map, reflect.Pointer:
 		contentType = "application/json; charset=utf-8"
 	case reflect.String:
 		contentType = "text/plain; charset=utf-8"
@@ -458,7 +458,7 @@ type cacheControl map[string]string
 func parseCacheControl(headers http.Header) cacheControl {
 	cc := cacheControl{}
 	ccHeader := headers.Get("Cache-Control")
-	for _, part := range strings.Split(ccHeader, ",") {
+	for part := range strings.SplitSeq(ccHeader, ",") {
 		part = strings.Trim(part, " ")
 		if part == "" {
 			continue
@@ -510,7 +510,7 @@ func strlen(s string) int {
 type GenericOpenAPIError struct {
 	body  []byte
 	error string
-	model interface{}
+	model any
 }
 
 // Error returns non-empty string if there was an error.
@@ -524,6 +524,6 @@ func (e GenericOpenAPIError) Body() []byte {
 }
 
 // Model returns the unpacked model of the error
-func (e GenericOpenAPIError) Model() interface{} {
+func (e GenericOpenAPIError) Model() any {
 	return e.model
 }

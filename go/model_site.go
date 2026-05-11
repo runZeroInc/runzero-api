@@ -286,7 +286,7 @@ func (o *Site) SetExcludes(v string) {
 }
 
 func (o Site) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
+	toSerialize := map[string]any{}
 	if true {
 		toSerialize["id"] = o.Id
 	}

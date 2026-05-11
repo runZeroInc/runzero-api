@@ -32,7 +32,8 @@ type apiGetLatestAgentVersionRequest struct {
 
 /*
 GetLatestAgentVersion Returns latest agent version.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+
 @return apiGetLatestAgentVersionRequest
 */
 func (a *PublicApiService) GetLatestAgentVersion(ctx _context.Context) apiGetLatestAgentVersionRequest {
@@ -44,12 +45,13 @@ func (a *PublicApiService) GetLatestAgentVersion(ctx _context.Context) apiGetLat
 
 /*
 Execute executes the request
- @return ComponentVersion
+
+	@return ComponentVersion
 */
 func (r apiGetLatestAgentVersionRequest) Execute() (ComponentVersion, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
+		localVarPostBody     any
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
@@ -127,7 +129,8 @@ type apiGetLatestPlatformVersionRequest struct {
 
 /*
 GetLatestPlatformVersion Returns latest platform version.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+
 @return apiGetLatestPlatformVersionRequest
 */
 func (a *PublicApiService) GetLatestPlatformVersion(ctx _context.Context) apiGetLatestPlatformVersionRequest {
@@ -139,12 +142,13 @@ func (a *PublicApiService) GetLatestPlatformVersion(ctx _context.Context) apiGet
 
 /*
 Execute executes the request
- @return ComponentVersion
+
+	@return ComponentVersion
 */
 func (r apiGetLatestPlatformVersionRequest) Execute() (ComponentVersion, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
+		localVarPostBody     any
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
@@ -222,7 +226,8 @@ type apiGetLatestScannerVersionRequest struct {
 
 /*
 GetLatestScannerVersion Returns latest scanner version.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+
 @return apiGetLatestScannerVersionRequest
 */
 func (a *PublicApiService) GetLatestScannerVersion(ctx _context.Context) apiGetLatestScannerVersionRequest {
@@ -234,12 +239,13 @@ func (a *PublicApiService) GetLatestScannerVersion(ctx _context.Context) apiGetL
 
 /*
 Execute executes the request
- @return ComponentVersion
+
+	@return ComponentVersion
 */
 func (r apiGetLatestScannerVersionRequest) Execute() (ComponentVersion, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
+		localVarPostBody     any
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte

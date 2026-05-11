@@ -102,7 +102,7 @@ func (o *OrgOptions) SetDescription(v string) {
 }
 
 func (o OrgOptions) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
+	toSerialize := map[string]any{}
 	if o.Name != nil {
 		toSerialize["name"] = o.Name
 	}
