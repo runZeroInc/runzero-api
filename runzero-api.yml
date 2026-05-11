@@ -2076,7 +2076,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Search'
+              $ref: '#/components/schemas/SearchQuery'
       responses:
         '200':
           $ref: '#/components/responses/StatusMessage'
@@ -2196,7 +2196,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Search'
+              $ref: '#/components/schemas/SearchQuery'
       responses:
         '200':
           description: updated asset count
@@ -4649,9 +4649,14 @@ components:
             $ref: "#/components/schemas/Problem"
     StatusMessage:
       description: Summary of operation results
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/OperationStatus"
 
   schemas:
-    StatusMessage:
+    OperationStatus:
+      description: Summary of the result of a bulk or asynchronous operation.
       type: object
 
     Problem:
@@ -6237,7 +6242,8 @@ components:
           type: string
           example: alive:true and os:windows
 
-    Search:
+    SearchQuery:
+      description: A request body wrapping a runZero search query string.
       type: object
       required:
         - search
