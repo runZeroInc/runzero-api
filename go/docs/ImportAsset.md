@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | Any value which can uniquely identify the asset within the custom integration. | 
 **RunZeroID** | Pointer to **string** | The unique identifier of the runZero asset to merge into. | [optional] 
-**NetworkInterfaces** | Pointer to [**[]NetworkInterfacesInner**](NetworkInterfacesInner.md) | The asset&#39;s networking configuration. | [optional] 
+**NetworkInterfaces** | Pointer to [**[]NetworkInterface**](NetworkInterface.md) | The asset&#39;s networking configuration. | [optional] 
 **Hostnames** | Pointer to **[]string** | Represents hostnames the asset is assigned or reachable at. These can be fully-qualified hostnames with the domain name, or a short hostname. | [optional] 
 **Domain** | Pointer to **string** | Represents a single domain name which could be applied to all non-fqdns in the hostnames field. | [optional] 
 **FirstSeenTS** | Pointer to **time.Time** | Represents the earliest time the asset was seen by the custom integration reporting it, using a date string as defined by RFC 3339, section 5.6. | [optional] 
@@ -84,20 +84,20 @@ HasRunZeroID returns a boolean if a field has been set.
 
 ### GetNetworkInterfaces
 
-`func (o *ImportAsset) GetNetworkInterfaces() []NetworkInterfacesInner`
+`func (o *ImportAsset) GetNetworkInterfaces() []NetworkInterface`
 
 GetNetworkInterfaces returns the NetworkInterfaces field if non-nil, zero value otherwise.
 
 ### GetNetworkInterfacesOk
 
-`func (o *ImportAsset) GetNetworkInterfacesOk() (*[]NetworkInterfacesInner, bool)`
+`func (o *ImportAsset) GetNetworkInterfacesOk() (*[]NetworkInterface, bool)`
 
 GetNetworkInterfacesOk returns a tuple with the NetworkInterfaces field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNetworkInterfaces
 
-`func (o *ImportAsset) SetNetworkInterfaces(v []NetworkInterfacesInner)`
+`func (o *ImportAsset) SetNetworkInterfaces(v []NetworkInterface)`
 
 SetNetworkInterfaces sets NetworkInterfaces field to given value.
 

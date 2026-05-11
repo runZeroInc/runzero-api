@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Ownerships** | Pointer to [**[]AssetOwnershipsOwnershipsInner**](AssetOwnershipsOwnershipsInner.md) |  | [optional] 
+**Ownerships** | Pointer to [**[]AssetOwnership**](AssetOwnership.md) |  | [optional] 
 
 ## Methods
 
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetOwnerships
 
-`func (o *AssetOwnerships) GetOwnerships() []AssetOwnershipsOwnershipsInner`
+`func (o *AssetOwnerships) GetOwnerships() []AssetOwnership`
 
 GetOwnerships returns the Ownerships field if non-nil, zero value otherwise.
 
 ### GetOwnershipsOk
 
-`func (o *AssetOwnerships) GetOwnershipsOk() (*[]AssetOwnershipsOwnershipsInner, bool)`
+`func (o *AssetOwnerships) GetOwnershipsOk() (*[]AssetOwnership, bool)`
 
 GetOwnershipsOk returns a tuple with the Ownerships field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOwnerships
 
-`func (o *AssetOwnerships) SetOwnerships(v []AssetOwnershipsOwnershipsInner)`
+`func (o *AssetOwnerships) SetOwnerships(v []AssetOwnership)`
 
 SetOwnerships sets Ownerships field to given value.
 

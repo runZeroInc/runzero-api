@@ -7,12 +7,12 @@ Name | Type | Description | Notes
 **Name** | Pointer to **string** |  | [optional] 
 **Description** | Pointer to **string** |  | [optional] 
 **ParentId** | Pointer to **string** |  | [optional] 
-**ExpirationAssetsStale** | Pointer to **float64** |  | [optional] 
-**ExpirationAssetsOffline** | Pointer to **float64** |  | [optional] 
-**ExpirationIntegrationAttributes** | Pointer to **float64** |  | [optional] 
-**ExpirationScans** | Pointer to **float64** |  | [optional] 
-**ExpirationVulnerabilities** | Pointer to **float64** |  | [optional] 
-**KeepLatestIntegrationAttributes** | Pointer to **string** |  | [optional] 
+**ExpirationAssetsStale** | Pointer to **string** | Number of days before stale assets are expired, as a decimal string. | [optional] 
+**ExpirationAssetsOffline** | Pointer to **string** | Number of days before offline assets are expired, as a decimal string. | [optional] 
+**ExpirationIntegrationAttributes** | Pointer to **string** | Number of days before integration attributes are expired, as a decimal string. | [optional] 
+**ExpirationScans** | Pointer to **string** | Number of days before scan data is expired, as a decimal string. | [optional] 
+**ExpirationVulnerabilities** | Pointer to **string** | Number of days before vulnerabilities are expired, as a decimal string. | [optional] 
+**KeepLatestIntegrationAttributes** | Pointer to **string** | Whether to retain only the latest integration attribute values, as a boolean string (\&quot;true\&quot;/\&quot;false\&quot;). | [optional] 
 
 ## Methods
 
@@ -110,20 +110,20 @@ HasParentId returns a boolean if a field has been set.
 
 ### GetExpirationAssetsStale
 
-`func (o *OrgOptions) GetExpirationAssetsStale() float64`
+`func (o *OrgOptions) GetExpirationAssetsStale() string`
 
 GetExpirationAssetsStale returns the ExpirationAssetsStale field if non-nil, zero value otherwise.
 
 ### GetExpirationAssetsStaleOk
 
-`func (o *OrgOptions) GetExpirationAssetsStaleOk() (*float64, bool)`
+`func (o *OrgOptions) GetExpirationAssetsStaleOk() (*string, bool)`
 
 GetExpirationAssetsStaleOk returns a tuple with the ExpirationAssetsStale field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetExpirationAssetsStale
 
-`func (o *OrgOptions) SetExpirationAssetsStale(v float64)`
+`func (o *OrgOptions) SetExpirationAssetsStale(v string)`
 
 SetExpirationAssetsStale sets ExpirationAssetsStale field to given value.
 
@@ -135,20 +135,20 @@ HasExpirationAssetsStale returns a boolean if a field has been set.
 
 ### GetExpirationAssetsOffline
 
-`func (o *OrgOptions) GetExpirationAssetsOffline() float64`
+`func (o *OrgOptions) GetExpirationAssetsOffline() string`
 
 GetExpirationAssetsOffline returns the ExpirationAssetsOffline field if non-nil, zero value otherwise.
 
 ### GetExpirationAssetsOfflineOk
 
-`func (o *OrgOptions) GetExpirationAssetsOfflineOk() (*float64, bool)`
+`func (o *OrgOptions) GetExpirationAssetsOfflineOk() (*string, bool)`
 
 GetExpirationAssetsOfflineOk returns a tuple with the ExpirationAssetsOffline field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetExpirationAssetsOffline
 
-`func (o *OrgOptions) SetExpirationAssetsOffline(v float64)`
+`func (o *OrgOptions) SetExpirationAssetsOffline(v string)`
 
 SetExpirationAssetsOffline sets ExpirationAssetsOffline field to given value.
 
@@ -160,20 +160,20 @@ HasExpirationAssetsOffline returns a boolean if a field has been set.
 
 ### GetExpirationIntegrationAttributes
 
-`func (o *OrgOptions) GetExpirationIntegrationAttributes() float64`
+`func (o *OrgOptions) GetExpirationIntegrationAttributes() string`
 
 GetExpirationIntegrationAttributes returns the ExpirationIntegrationAttributes field if non-nil, zero value otherwise.
 
 ### GetExpirationIntegrationAttributesOk
 
-`func (o *OrgOptions) GetExpirationIntegrationAttributesOk() (*float64, bool)`
+`func (o *OrgOptions) GetExpirationIntegrationAttributesOk() (*string, bool)`
 
 GetExpirationIntegrationAttributesOk returns a tuple with the ExpirationIntegrationAttributes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetExpirationIntegrationAttributes
 
-`func (o *OrgOptions) SetExpirationIntegrationAttributes(v float64)`
+`func (o *OrgOptions) SetExpirationIntegrationAttributes(v string)`
 
 SetExpirationIntegrationAttributes sets ExpirationIntegrationAttributes field to given value.
 
@@ -185,20 +185,20 @@ HasExpirationIntegrationAttributes returns a boolean if a field has been set.
 
 ### GetExpirationScans
 
-`func (o *OrgOptions) GetExpirationScans() float64`
+`func (o *OrgOptions) GetExpirationScans() string`
 
 GetExpirationScans returns the ExpirationScans field if non-nil, zero value otherwise.
 
 ### GetExpirationScansOk
 
-`func (o *OrgOptions) GetExpirationScansOk() (*float64, bool)`
+`func (o *OrgOptions) GetExpirationScansOk() (*string, bool)`
 
 GetExpirationScansOk returns a tuple with the ExpirationScans field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetExpirationScans
 
-`func (o *OrgOptions) SetExpirationScans(v float64)`
+`func (o *OrgOptions) SetExpirationScans(v string)`
 
 SetExpirationScans sets ExpirationScans field to given value.
 
@@ -210,20 +210,20 @@ HasExpirationScans returns a boolean if a field has been set.
 
 ### GetExpirationVulnerabilities
 
-`func (o *OrgOptions) GetExpirationVulnerabilities() float64`
+`func (o *OrgOptions) GetExpirationVulnerabilities() string`
 
 GetExpirationVulnerabilities returns the ExpirationVulnerabilities field if non-nil, zero value otherwise.
 
 ### GetExpirationVulnerabilitiesOk
 
-`func (o *OrgOptions) GetExpirationVulnerabilitiesOk() (*float64, bool)`
+`func (o *OrgOptions) GetExpirationVulnerabilitiesOk() (*string, bool)`
 
 GetExpirationVulnerabilitiesOk returns a tuple with the ExpirationVulnerabilities field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetExpirationVulnerabilities
 
-`func (o *OrgOptions) SetExpirationVulnerabilities(v float64)`
+`func (o *OrgOptions) SetExpirationVulnerabilities(v string)`
 
 SetExpirationVulnerabilities sets ExpirationVulnerabilities field to given value.
 

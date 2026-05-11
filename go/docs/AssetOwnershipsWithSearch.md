@@ -5,13 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Search** | **string** |  | 
-**Ownerships** | [**[]AssetOwnershipsOwnershipsInner**](AssetOwnershipsOwnershipsInner.md) |  | 
+**Ownerships** | [**[]AssetOwnershipsWithSearchOwnershipsInner**](AssetOwnershipsWithSearchOwnershipsInner.md) |  | 
 
 ## Methods
 
 ### NewAssetOwnershipsWithSearch
 
-`func NewAssetOwnershipsWithSearch(search string, ownerships []AssetOwnershipsOwnershipsInner, ) *AssetOwnershipsWithSearch`
+`func NewAssetOwnershipsWithSearch(search string, ownerships []AssetOwnershipsWithSearchOwnershipsInner, ) *AssetOwnershipsWithSearch`
 
 NewAssetOwnershipsWithSearch instantiates a new AssetOwnershipsWithSearch object
 This constructor will assign default values to properties that have it defined,
@@ -48,20 +48,20 @@ SetSearch sets Search field to given value.
 
 ### GetOwnerships
 
-`func (o *AssetOwnershipsWithSearch) GetOwnerships() []AssetOwnershipsOwnershipsInner`
+`func (o *AssetOwnershipsWithSearch) GetOwnerships() []AssetOwnershipsWithSearchOwnershipsInner`
 
 GetOwnerships returns the Ownerships field if non-nil, zero value otherwise.
 
 ### GetOwnershipsOk
 
-`func (o *AssetOwnershipsWithSearch) GetOwnershipsOk() (*[]AssetOwnershipsOwnershipsInner, bool)`
+`func (o *AssetOwnershipsWithSearch) GetOwnershipsOk() (*[]AssetOwnershipsWithSearchOwnershipsInner, bool)`
 
 GetOwnershipsOk returns a tuple with the Ownerships field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOwnerships
 
-`func (o *AssetOwnershipsWithSearch) SetOwnerships(v []AssetOwnershipsOwnershipsInner)`
+`func (o *AssetOwnershipsWithSearch) SetOwnerships(v []AssetOwnershipsWithSearchOwnershipsInner)`
 
 SetOwnerships sets Ownerships field to given value.
 

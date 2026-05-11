@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Cves** | Pointer to [**[]FindingLinksCvesInner**](FindingLinksCvesInner.md) |  | [optional] 
-**RzBlog** | Pointer to [**[]FindingLinksCvesInner**](FindingLinksCvesInner.md) | URLs of relevant runZero blog postings. | [optional] 
-**Urls** | Pointer to [**[]FindingLinksCvesInner**](FindingLinksCvesInner.md) | Additional relevant URLs. | [optional] 
+**Cves** | Pointer to [**[]FindingLink**](FindingLink.md) | URLs of relevant CVE records. | [optional] 
+**RzBlog** | Pointer to [**[]FindingLink**](FindingLink.md) | URLs of relevant runZero blog postings. | [optional] 
+**Urls** | Pointer to [**[]FindingLink**](FindingLink.md) | Additional relevant URLs. | [optional] 
 
 ## Methods
 
@@ -29,20 +29,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetCves
 
-`func (o *FindingLinks) GetCves() []FindingLinksCvesInner`
+`func (o *FindingLinks) GetCves() []FindingLink`
 
 GetCves returns the Cves field if non-nil, zero value otherwise.
 
 ### GetCvesOk
 
-`func (o *FindingLinks) GetCvesOk() (*[]FindingLinksCvesInner, bool)`
+`func (o *FindingLinks) GetCvesOk() (*[]FindingLink, bool)`
 
 GetCvesOk returns a tuple with the Cves field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCves
 
-`func (o *FindingLinks) SetCves(v []FindingLinksCvesInner)`
+`func (o *FindingLinks) SetCves(v []FindingLink)`
 
 SetCves sets Cves field to given value.
 
@@ -54,20 +54,20 @@ HasCves returns a boolean if a field has been set.
 
 ### GetRzBlog
 
-`func (o *FindingLinks) GetRzBlog() []FindingLinksCvesInner`
+`func (o *FindingLinks) GetRzBlog() []FindingLink`
 
 GetRzBlog returns the RzBlog field if non-nil, zero value otherwise.
 
 ### GetRzBlogOk
 
-`func (o *FindingLinks) GetRzBlogOk() (*[]FindingLinksCvesInner, bool)`
+`func (o *FindingLinks) GetRzBlogOk() (*[]FindingLink, bool)`
 
 GetRzBlogOk returns a tuple with the RzBlog field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRzBlog
 
-`func (o *FindingLinks) SetRzBlog(v []FindingLinksCvesInner)`
+`func (o *FindingLinks) SetRzBlog(v []FindingLink)`
 
 SetRzBlog sets RzBlog field to given value.
 
@@ -79,20 +79,20 @@ HasRzBlog returns a boolean if a field has been set.
 
 ### GetUrls
 
-`func (o *FindingLinks) GetUrls() []FindingLinksCvesInner`
+`func (o *FindingLinks) GetUrls() []FindingLink`
 
 GetUrls returns the Urls field if non-nil, zero value otherwise.
 
 ### GetUrlsOk
 
-`func (o *FindingLinks) GetUrlsOk() (*[]FindingLinksCvesInner, bool)`
+`func (o *FindingLinks) GetUrlsOk() (*[]FindingLink, bool)`
 
 GetUrlsOk returns a tuple with the Urls field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUrls
 
-`func (o *FindingLinks) SetUrls(v []FindingLinksCvesInner)`
+`func (o *FindingLinks) SetUrls(v []FindingLink)`
 
 SetUrls sets Urls field to given value.
 

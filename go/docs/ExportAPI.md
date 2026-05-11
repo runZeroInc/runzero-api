@@ -4,6 +4,7 @@ All URIs are relative to *https://console.runzero.com/api/v1.0*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**ExportAssetMetricsJSON**](ExportAPI.md#ExportAssetMetricsJSON) | **Get** /org/metrics | Export asset metrics
 [**ExportAssetTopHWCSV**](ExportAPI.md#ExportAssetTopHWCSV) | **Get** /org/assets/hw.csv | Top asset hardware products as CSV
 [**ExportAssetTopOSCSV**](ExportAPI.md#ExportAssetTopOSCSV) | **Get** /org/assets/os.csv | Top asset operating systems as CSV
 [**ExportAssetTopTagsCSV**](ExportAPI.md#ExportAssetTopTagsCSV) | **Get** /org/assets/tags.csv | Top asset tags as CSV
@@ -48,6 +49,70 @@ Method | HTTP request | Description
 [**ExportWirelessJSON**](ExportAPI.md#ExportWirelessJSON) | **Get** /export/org/wireless.json | Wireless inventory as JSON
 [**ExportWirelessJSONL**](ExportAPI.md#ExportWirelessJSONL) | **Get** /export/org/wireless.jsonl | Wireless inventory as JSON line-delimited
 
+
+
+## ExportAssetMetricsJSON
+
+> map[string]AssetMetric ExportAssetMetricsJSON(ctx).Oid(oid).Execute()
+
+Export asset metrics
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+	oid := "oid_example" // string | The current Organization (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ExportAPI.ExportAssetMetricsJSON(context.Background()).Oid(oid).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ExportAPI.ExportAssetMetricsJSON``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ExportAssetMetricsJSON`: map[string]AssetMetric
+	fmt.Fprintf(os.Stdout, "Response from `ExportAPI.ExportAssetMetricsJSON`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiExportAssetMetricsJSONRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **oid** | **string** | The current Organization | 
+
+### Return type
+
+[**map[string]AssetMetric**](AssetMetric.md)
+
+### Authorization
+
+[oauthDefaults](../README.md#oauthDefaults), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
 
 ## ExportAssetTopHWCSV
@@ -374,7 +439,7 @@ Name | Type | Description  | Notes
 
 ## ExportAssetsJSON
 
-> ExportAssetsJSON200Response ExportAssetsJSON(ctx).Oid(oid).Search(search).Fields(fields).PageSize(pageSize).StartKey(startKey).Execute()
+> AssetExportResponse ExportAssetsJSON(ctx).Oid(oid).Search(search).Fields(fields).PageSize(pageSize).StartKey(startKey).Execute()
 
 Exports the asset inventory
 
@@ -404,7 +469,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `ExportAPI.ExportAssetsJSON``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ExportAssetsJSON`: ExportAssetsJSON200Response
+	// response from `ExportAssetsJSON`: AssetExportResponse
 	fmt.Fprintf(os.Stdout, "Response from `ExportAPI.ExportAssetsJSON`: %v\n", resp)
 }
 ```
@@ -428,7 +493,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ExportAssetsJSON200Response**](ExportAssetsJSON200Response.md)
+[**AssetExportResponse**](AssetExportResponse.md)
 
 ### Authorization
 
@@ -712,7 +777,7 @@ Name | Type | Description  | Notes
 
 ## ExportCertificatesJSONL
 
-> Certificate ExportCertificatesJSONL(ctx).Oid(oid).Search(search).Execute()
+> *os.File ExportCertificatesJSONL(ctx).Oid(oid).Search(search).Execute()
 
 Export the certificate inventory as JSONL line-delimited
 
@@ -739,7 +804,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `ExportAPI.ExportCertificatesJSONL``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ExportCertificatesJSONL`: Certificate
+	// response from `ExportCertificatesJSONL`: *os.File
 	fmt.Fprintf(os.Stdout, "Response from `ExportAPI.ExportCertificatesJSONL`: %v\n", resp)
 }
 ```
@@ -760,7 +825,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Certificate**](Certificate.md)
+[***os.File**](*os.File.md)
 
 ### Authorization
 
@@ -1510,7 +1575,7 @@ Name | Type | Description  | Notes
 
 ## ExportServicesJSON
 
-> ExportServicesJSON200Response ExportServicesJSON(ctx).Oid(oid).Search(search).Fields(fields).PageSize(pageSize).StartKey(startKey).Execute()
+> ServiceExportResponse ExportServicesJSON(ctx).Oid(oid).Search(search).Fields(fields).PageSize(pageSize).StartKey(startKey).Execute()
 
 Service inventory as JSON
 
@@ -1540,7 +1605,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `ExportAPI.ExportServicesJSON``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ExportServicesJSON`: ExportServicesJSON200Response
+	// response from `ExportServicesJSON`: ServiceExportResponse
 	fmt.Fprintf(os.Stdout, "Response from `ExportAPI.ExportServicesJSON`: %v\n", resp)
 }
 ```
@@ -1564,7 +1629,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ExportServicesJSON200Response**](ExportServicesJSON200Response.md)
+[**ServiceExportResponse**](ServiceExportResponse.md)
 
 ### Authorization
 
@@ -2172,7 +2237,7 @@ Name | Type | Description  | Notes
 
 ## ExportSoftwareJSON
 
-> ExportSoftwareJSON200Response ExportSoftwareJSON(ctx).Oid(oid).Search(search).Fields(fields).PageSize(pageSize).StartKey(startKey).Execute()
+> SoftwareExportResponse ExportSoftwareJSON(ctx).Oid(oid).Search(search).Fields(fields).PageSize(pageSize).StartKey(startKey).Execute()
 
 Exports the software inventory
 
@@ -2202,7 +2267,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `ExportAPI.ExportSoftwareJSON``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ExportSoftwareJSON`: ExportSoftwareJSON200Response
+	// response from `ExportSoftwareJSON`: SoftwareExportResponse
 	fmt.Fprintf(os.Stdout, "Response from `ExportAPI.ExportSoftwareJSON`: %v\n", resp)
 }
 ```
@@ -2226,7 +2291,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ExportSoftwareJSON200Response**](ExportSoftwareJSON200Response.md)
+[**SoftwareExportResponse**](SoftwareExportResponse.md)
 
 ### Authorization
 
@@ -2580,7 +2645,7 @@ Name | Type | Description  | Notes
 
 ## ExportVulnerabilitiesJSON
 
-> ExportVulnerabilitiesJSON200Response ExportVulnerabilitiesJSON(ctx).Oid(oid).Search(search).Fields(fields).PageSize(pageSize).StartKey(startKey).Execute()
+> VulnerabilityExportResponse ExportVulnerabilitiesJSON(ctx).Oid(oid).Search(search).Fields(fields).PageSize(pageSize).StartKey(startKey).Execute()
 
 Export the vulnerability inventory as JSON
 
@@ -2610,7 +2675,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `ExportAPI.ExportVulnerabilitiesJSON``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ExportVulnerabilitiesJSON`: ExportVulnerabilitiesJSON200Response
+	// response from `ExportVulnerabilitiesJSON`: VulnerabilityExportResponse
 	fmt.Fprintf(os.Stdout, "Response from `ExportAPI.ExportVulnerabilitiesJSON`: %v\n", resp)
 }
 ```
@@ -2634,7 +2699,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ExportVulnerabilitiesJSON200Response**](ExportVulnerabilitiesJSON200Response.md)
+[**VulnerabilityExportResponse**](VulnerabilityExportResponse.md)
 
 ### Authorization
 
@@ -2786,7 +2851,7 @@ Name | Type | Description  | Notes
 
 ## ExportWirelessJSON
 
-> ExportWirelessJSON200Response ExportWirelessJSON(ctx).Oid(oid).Search(search).Fields(fields).PageSize(pageSize).StartKey(startKey).Execute()
+> WirelessExportResponse ExportWirelessJSON(ctx).Oid(oid).Search(search).Fields(fields).PageSize(pageSize).StartKey(startKey).Execute()
 
 Wireless inventory as JSON
 
@@ -2816,7 +2881,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `ExportAPI.ExportWirelessJSON``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ExportWirelessJSON`: ExportWirelessJSON200Response
+	// response from `ExportWirelessJSON`: WirelessExportResponse
 	fmt.Fprintf(os.Stdout, "Response from `ExportAPI.ExportWirelessJSON`: %v\n", resp)
 }
 ```
@@ -2840,7 +2905,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ExportWirelessJSON200Response**](ExportWirelessJSON200Response.md)
+[**WirelessExportResponse**](WirelessExportResponse.md)
 
 ### Authorization
 

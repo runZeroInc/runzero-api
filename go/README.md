@@ -30,18 +30,18 @@ Default configuration comes with `Servers` field that contains server objects as
 
 ### Select Server Configuration
 
-For using other server than the one defined on index 0 set context value `runzero.ContextServerIndex` of type `int`.
+For using other server than the one defined on index 0 set context value `openapi.ContextServerIndex` of type `int`.
 
 ```go
-ctx := context.WithValue(context.Background(), runzero.ContextServerIndex, 1)
+ctx := context.WithValue(context.Background(), openapi.ContextServerIndex, 1)
 ```
 
 ### Templated Server URL
 
-Templated server URL is formatted using default variables from configuration or from context value `runzero.ContextServerVariables` of type `map[string]string`.
+Templated server URL is formatted using default variables from configuration or from context value `openapi.ContextServerVariables` of type `map[string]string`.
 
 ```go
-ctx := context.WithValue(context.Background(), runzero.ContextServerVariables, map[string]string{
+ctx := context.WithValue(context.Background(), openapi.ContextServerVariables, map[string]string{
 	"basePath": "v2",
 })
 ```
@@ -52,13 +52,13 @@ Note, enum values are always validated and all unused variables are silently ign
 
 Each operation can use different server URL defined using `OperationServers` map in the `Configuration`.
 An operation is uniquely identified by `"{classname}Service.{nickname}"` string.
-Similar rules for overriding default operation server index and variables applies by using `runzero.ContextOperationServerIndices` and `runzero.ContextOperationServerVariables` context maps.
+Similar rules for overriding default operation server index and variables applies by using `openapi.ContextOperationServerIndices` and `openapi.ContextOperationServerVariables` context maps.
 
 ```go
-ctx := context.WithValue(context.Background(), runzero.ContextOperationServerIndices, map[string]int{
+ctx := context.WithValue(context.Background(), openapi.ContextOperationServerIndices, map[string]int{
 	"{classname}Service.{nickname}": 2,
 })
-ctx = context.WithValue(context.Background(), runzero.ContextOperationServerVariables, map[string]map[string]string{
+ctx = context.WithValue(context.Background(), openapi.ContextOperationServerVariables, map[string]map[string]string{
 	"{classname}Service.{nickname}": {
 		"port": "8443",
 	},
@@ -137,7 +137,7 @@ Class | Method | HTTP request | Description
 *AccountAPI* | [**UpdateAccountScanTemplate**](docs/AccountAPI.md#updateaccountscantemplate) | **Put** /account/tasks/templates | Update scan template
 *AccountAPI* | [**UpdateAccountUser**](docs/AccountAPI.md#updateaccountuser) | **Patch** /account/users/{user_id} | Update a user&#39;s details
 *CiscoSNTCAPI* | [**ExportAssetsCiscoCSV**](docs/CiscoSNTCAPI.md#exportassetsciscocsv) | **Get** /export/org/assets.cisco.csv | Cisco serial number and model name export for Cisco Smart Net Total Care Service.
-*DefaultAPI* | [**ExportAssetMetricsJSON**](docs/DefaultAPI.md#exportassetmetricsjson) | **Get** /org/metrics | Export asset metrics
+*ExportAPI* | [**ExportAssetMetricsJSON**](docs/ExportAPI.md#exportassetmetricsjson) | **Get** /org/metrics | Export asset metrics
 *ExportAPI* | [**ExportAssetTopHWCSV**](docs/ExportAPI.md#exportassettophwcsv) | **Get** /org/assets/hw.csv | Top asset hardware products as CSV
 *ExportAPI* | [**ExportAssetTopOSCSV**](docs/ExportAPI.md#exportassettoposcsv) | **Get** /org/assets/os.csv | Top asset operating systems as CSV
 *ExportAPI* | [**ExportAssetTopTagsCSV**](docs/ExportAPI.md#exportassettoptagscsv) | **Get** /org/assets/tags.csv | Top asset tags as CSV
@@ -182,8 +182,6 @@ Class | Method | HTTP request | Description
 *ExportAPI* | [**ExportWirelessJSON**](docs/ExportAPI.md#exportwirelessjson) | **Get** /export/org/wireless.json | Wireless inventory as JSON
 *ExportAPI* | [**ExportWirelessJSONL**](docs/ExportAPI.md#exportwirelessjsonl) | **Get** /export/org/wireless.jsonl | Wireless inventory as JSON line-delimited
 *ImportAPI* | [**ImportCustomIntegrationAssets**](docs/ImportAPI.md#importcustomintegrationassets) | **Post** /import/org/{orgID}/assets | Import assets described by a registered custom integration
-*OrgAPI* | [**GetOrgCustomIntegration**](docs/OrgAPI.md#getorgcustomintegration) | **Get** /org/custom-integrations/{customIntegrationId} | Get single custom integration
-*OrgAPI* | [**GetOrgCustomIntegrations**](docs/OrgAPI.md#getorgcustomintegrations) | **Get** /org/custom-integrations | Get all custom integrations
 *OrganizationAPI* | [**BulkRemoveCustomIntegration**](docs/OrganizationAPI.md#bulkremovecustomintegration) | **Post** /org/custom-integrations/{custom_integration_id}/bulk/remove | Remove custom integration from a list of assets
 *OrganizationAPI* | [**ClearBulkAssetOwners**](docs/OrganizationAPI.md#clearbulkassetowners) | **Post** /org/assets/bulk/clearOwners | Clear all owners across multiple assets based on a search query
 *OrganizationAPI* | [**ClearBulkAssetTags**](docs/OrganizationAPI.md#clearbulkassettags) | **Post** /org/assets/bulk/clearTags | Clear all tags across multiple assets based on a search query
@@ -199,6 +197,8 @@ Class | Method | HTTP request | Description
 *OrganizationAPI* | [**GetHostedZone**](docs/OrganizationAPI.md#gethostedzone) | **Get** /org/hosted-zones/{hosted_zone_id} | Get details for a single hosted zone.
 *OrganizationAPI* | [**GetHostedZones**](docs/OrganizationAPI.md#gethostedzones) | **Get** /org/hosted-zones | Get all hosted zones
 *OrganizationAPI* | [**GetKey**](docs/OrganizationAPI.md#getkey) | **Get** /org/key | Get API key details
+*OrganizationAPI* | [**GetOrgCustomIntegration**](docs/OrganizationAPI.md#getorgcustomintegration) | **Get** /org/custom-integrations/{customIntegrationId} | Get single custom integration
+*OrganizationAPI* | [**GetOrgCustomIntegrations**](docs/OrganizationAPI.md#getorgcustomintegrations) | **Get** /org/custom-integrations | Get all custom integrations
 *OrganizationAPI* | [**GetOrganization**](docs/OrganizationAPI.md#getorganization) | **Get** /org | Get organization details
 *OrganizationAPI* | [**GetService**](docs/OrganizationAPI.md#getservice) | **Get** /org/services/{service_id} | Get service details
 *OrganizationAPI* | [**GetServices**](docs/OrganizationAPI.md#getservices) | **Get** /org/services | Get all services
@@ -267,12 +267,16 @@ Class | Method | HTTP request | Description
  - [AssetComments](docs/AssetComments.md)
  - [AssetCriticality](docs/AssetCriticality.md)
  - [AssetCriticalityWithSearch](docs/AssetCriticalityWithSearch.md)
+ - [AssetExportResponse](docs/AssetExportResponse.md)
  - [AssetIDs](docs/AssetIDs.md)
+ - [AssetMetric](docs/AssetMetric.md)
+ - [AssetOwnership](docs/AssetOwnership.md)
  - [AssetOwnershipType](docs/AssetOwnershipType.md)
  - [AssetOwnershipTypePost](docs/AssetOwnershipTypePost.md)
  - [AssetOwnerships](docs/AssetOwnerships.md)
- - [AssetOwnershipsOwnershipsInner](docs/AssetOwnershipsOwnershipsInner.md)
  - [AssetOwnershipsWithSearch](docs/AssetOwnershipsWithSearch.md)
+ - [AssetOwnershipsWithSearchOwnershipsInner](docs/AssetOwnershipsWithSearchOwnershipsInner.md)
+ - [AssetPage](docs/AssetPage.md)
  - [AssetServiceNow](docs/AssetServiceNow.md)
  - [AssetTags](docs/AssetTags.md)
  - [AssetTagsWithSearch](docs/AssetTagsWithSearch.md)
@@ -281,6 +285,7 @@ Class | Method | HTTP request | Description
  - [AzureUsernamePasswordCredentialFields](docs/AzureUsernamePasswordCredentialFields.md)
  - [BaseCustomIntegration](docs/BaseCustomIntegration.md)
  - [BaseResponse](docs/BaseResponse.md)
+ - [BulkAssetUpdateResult](docs/BulkAssetUpdateResult.md)
  - [CensysCredentialFields](docs/CensysCredentialFields.md)
  - [Certificate](docs/Certificate.md)
  - [ComponentVersion](docs/ComponentVersion.md)
@@ -295,24 +300,13 @@ Class | Method | HTTP request | Description
  - [DirectoryGroup](docs/DirectoryGroup.md)
  - [DirectoryUser](docs/DirectoryUser.md)
  - [Event](docs/Event.md)
- - [ExportAssetMetricsJSON200ResponseValue](docs/ExportAssetMetricsJSON200ResponseValue.md)
- - [ExportAssetsJSON200Response](docs/ExportAssetsJSON200Response.md)
- - [ExportAssetsJSON200ResponseOneOf](docs/ExportAssetsJSON200ResponseOneOf.md)
- - [ExportEventsJSON200Response](docs/ExportEventsJSON200Response.md)
- - [ExportEventsJSON200ResponseOneOf](docs/ExportEventsJSON200ResponseOneOf.md)
- - [ExportServicesJSON200Response](docs/ExportServicesJSON200Response.md)
- - [ExportServicesJSON200ResponseOneOf](docs/ExportServicesJSON200ResponseOneOf.md)
- - [ExportSoftwareJSON200Response](docs/ExportSoftwareJSON200Response.md)
- - [ExportSoftwareJSON200ResponseOneOf](docs/ExportSoftwareJSON200ResponseOneOf.md)
+ - [EventExportResponse](docs/EventExportResponse.md)
+ - [EventPage](docs/EventPage.md)
  - [ExportToken](docs/ExportToken.md)
  - [ExportTokenOptions](docs/ExportTokenOptions.md)
- - [ExportVulnerabilitiesJSON200Response](docs/ExportVulnerabilitiesJSON200Response.md)
- - [ExportVulnerabilitiesJSON200ResponseOneOf](docs/ExportVulnerabilitiesJSON200ResponseOneOf.md)
- - [ExportWirelessJSON200Response](docs/ExportWirelessJSON200Response.md)
- - [ExportWirelessJSON200ResponseOneOf](docs/ExportWirelessJSON200ResponseOneOf.md)
  - [Finding](docs/Finding.md)
+ - [FindingLink](docs/FindingLink.md)
  - [FindingLinks](docs/FindingLinks.md)
- - [FindingLinksCvesInner](docs/FindingLinksCvesInner.md)
  - [GCPCredentialFields](docs/GCPCredentialFields.md)
  - [GoogleWorkspaceCredentialFields](docs/GoogleWorkspaceCredentialFields.md)
  - [Group](docs/Group.md)
@@ -331,7 +325,7 @@ Class | Method | HTTP request | Description
  - [MirakiCredentialFields](docs/MirakiCredentialFields.md)
  - [NessusCredentialFields](docs/NessusCredentialFields.md)
  - [NetboxCredentialFields](docs/NetboxCredentialFields.md)
- - [NetworkInterfacesInner](docs/NetworkInterfacesInner.md)
+ - [NetworkInterface](docs/NetworkInterface.md)
  - [OrgOptions](docs/OrgOptions.md)
  - [Organization](docs/Organization.md)
  - [OrganizationAPIKey](docs/OrganizationAPIKey.md)
@@ -347,10 +341,14 @@ Class | Method | HTTP request | Description
  - [SearchQuery](docs/SearchQuery.md)
  - [SentinelOneCredentialFields](docs/SentinelOneCredentialFields.md)
  - [Service](docs/Service.md)
+ - [ServiceExportResponse](docs/ServiceExportResponse.md)
+ - [ServicePage](docs/ServicePage.md)
  - [ShodanCredentialFields](docs/ShodanCredentialFields.md)
  - [Site](docs/Site.md)
  - [SiteOptions](docs/SiteOptions.md)
  - [Software](docs/Software.md)
+ - [SoftwareExportResponse](docs/SoftwareExportResponse.md)
+ - [SoftwarePage](docs/SoftwarePage.md)
  - [TaniumCredentialFields](docs/TaniumCredentialFields.md)
  - [Task](docs/Task.md)
  - [TaskBase](docs/TaskBase.md)
@@ -358,13 +356,16 @@ Class | Method | HTTP request | Description
  - [TenableIoCredentialFields](docs/TenableIoCredentialFields.md)
  - [TenableScCredentialFields](docs/TenableScCredentialFields.md)
  - [URL](docs/URL.md)
- - [UpdateBulkAssetOwners200Response](docs/UpdateBulkAssetOwners200Response.md)
  - [User](docs/User.md)
  - [UserInviteOptions](docs/UserInviteOptions.md)
  - [UserOptions](docs/UserOptions.md)
  - [VMwareCredentialFields](docs/VMwareCredentialFields.md)
  - [Vulnerability](docs/Vulnerability.md)
+ - [VulnerabilityExportResponse](docs/VulnerabilityExportResponse.md)
+ - [VulnerabilityPage](docs/VulnerabilityPage.md)
  - [Wireless](docs/Wireless.md)
+ - [WirelessExportResponse](docs/WirelessExportResponse.md)
+ - [WirelessPage](docs/WirelessPage.md)
  - [WizCredentialFields](docs/WizCredentialFields.md)
  - [X509CredentialFields](docs/X509CredentialFields.md)
 
@@ -380,7 +381,7 @@ Authentication schemes defined for the API:
 Example
 
 ```go
-auth := context.WithValue(context.Background(), runzero.ContextAccessToken, "BEARER_TOKEN_STRING")
+auth := context.WithValue(context.Background(), openapi.ContextAccessToken, "BEARER_TOKEN_STRING")
 r, err := client.Service.Operation(auth, args)
 ```
 
@@ -395,7 +396,7 @@ r, err := client.Service.Operation(auth, args)
 Example
 
 ```go
-auth := context.WithValue(context.Background(), runzero.ContextAccessToken, "ACCESSTOKENSTRING")
+auth := context.WithValue(context.Background(), openapi.ContextAccessToken, "ACCESSTOKENSTRING")
 r, err := client.Service.Operation(auth, args)
 ```
 
@@ -407,7 +408,7 @@ import "golang.org/x/oauth2"
 /* Perform OAuth2 round trip request and obtain a token */
 
 tokenSource := oauth2cfg.TokenSource(createContext(httpClient), &token)
-auth := context.WithValue(oauth2.NoContext, runzero.ContextOAuth2, tokenSource)
+auth := context.WithValue(oauth2.NoContext, openapi.ContextOAuth2, tokenSource)
 r, err := client.Service.Operation(auth, args)
 ```
 

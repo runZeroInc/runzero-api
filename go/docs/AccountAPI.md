@@ -1191,7 +1191,7 @@ Name | Type | Description  | Notes
 
 ## ExportEventsJSON
 
-> ExportEventsJSON200Response ExportEventsJSON(ctx).Search(search).Fields(fields).PageSize(pageSize).StartKey(startKey).Execute()
+> EventExportResponse ExportEventsJSON(ctx).Search(search).Fields(fields).PageSize(pageSize).StartKey(startKey).Execute()
 
 System event log as JSON
 
@@ -1220,7 +1220,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `AccountAPI.ExportEventsJSON``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ExportEventsJSON`: ExportEventsJSON200Response
+	// response from `ExportEventsJSON`: EventExportResponse
 	fmt.Fprintf(os.Stdout, "Response from `AccountAPI.ExportEventsJSON`: %v\n", resp)
 }
 ```
@@ -1243,7 +1243,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ExportEventsJSON200Response**](ExportEventsJSON200Response.md)
+[**EventExportResponse**](EventExportResponse.md)
 
 ### Authorization
 
@@ -1261,7 +1261,7 @@ Name | Type | Description  | Notes
 
 ## ExportEventsJSONL
 
-> []Event ExportEventsJSONL(ctx).Search(search).Fields(fields).Execute()
+> *os.File ExportEventsJSONL(ctx).Search(search).Fields(fields).Execute()
 
 System event log as JSON line-delimited
 
@@ -1288,7 +1288,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `AccountAPI.ExportEventsJSONL``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ExportEventsJSONL`: []Event
+	// response from `ExportEventsJSONL`: *os.File
 	fmt.Fprintf(os.Stdout, "Response from `AccountAPI.ExportEventsJSONL`: %v\n", resp)
 }
 ```
@@ -1309,7 +1309,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]Event**](Event.md)
+[***os.File**](*os.File.md)
 
 ### Authorization
 

@@ -19,6 +19,8 @@ Method | HTTP request | Description
 [**GetHostedZone**](OrganizationAPI.md#GetHostedZone) | **Get** /org/hosted-zones/{hosted_zone_id} | Get details for a single hosted zone.
 [**GetHostedZones**](OrganizationAPI.md#GetHostedZones) | **Get** /org/hosted-zones | Get all hosted zones
 [**GetKey**](OrganizationAPI.md#GetKey) | **Get** /org/key | Get API key details
+[**GetOrgCustomIntegration**](OrganizationAPI.md#GetOrgCustomIntegration) | **Get** /org/custom-integrations/{customIntegrationId} | Get single custom integration
+[**GetOrgCustomIntegrations**](OrganizationAPI.md#GetOrgCustomIntegrations) | **Get** /org/custom-integrations | Get all custom integrations
 [**GetOrganization**](OrganizationAPI.md#GetOrganization) | **Get** /org | Get organization details
 [**GetService**](OrganizationAPI.md#GetService) | **Get** /org/services/{service_id} | Get service details
 [**GetServices**](OrganizationAPI.md#GetServices) | **Get** /org/services | Get all services
@@ -135,7 +137,7 @@ Name | Type | Description  | Notes
 
 ## ClearBulkAssetOwners
 
-> UpdateBulkAssetOwners200Response ClearBulkAssetOwners(ctx).SearchQuery(searchQuery).Oid(oid).Execute()
+> BulkAssetUpdateResult ClearBulkAssetOwners(ctx).SearchQuery(searchQuery).Oid(oid).Execute()
 
 Clear all owners across multiple assets based on a search query
 
@@ -162,7 +164,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `OrganizationAPI.ClearBulkAssetOwners``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ClearBulkAssetOwners`: UpdateBulkAssetOwners200Response
+	// response from `ClearBulkAssetOwners`: BulkAssetUpdateResult
 	fmt.Fprintf(os.Stdout, "Response from `OrganizationAPI.ClearBulkAssetOwners`: %v\n", resp)
 }
 ```
@@ -183,7 +185,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**UpdateBulkAssetOwners200Response**](UpdateBulkAssetOwners200Response.md)
+[**BulkAssetUpdateResult**](BulkAssetUpdateResult.md)
 
 ### Authorization
 
@@ -267,7 +269,7 @@ Name | Type | Description  | Notes
 
 ## CreateSample
 
-> Task CreateSample(ctx, siteId).Oid(oid).SampleOptions(sampleOptions).Execute()
+> Task CreateSample(ctx, siteId).SampleOptions(sampleOptions).Oid(oid).Execute()
 
 Create a traffic sampling task for a given site
 
@@ -285,12 +287,12 @@ import (
 
 func main() {
 	siteId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | UUID or name of the site to scan
+	sampleOptions := *openapiclient.NewSampleOptions("eth0,wlan0") // SampleOptions | 
 	oid := "oid_example" // string | The current Organization (optional)
-	sampleOptions := *openapiclient.NewSampleOptions("eth0,wlan0") // SampleOptions |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.OrganizationAPI.CreateSample(context.Background(), siteId).Oid(oid).SampleOptions(sampleOptions).Execute()
+	resp, r, err := apiClient.OrganizationAPI.CreateSample(context.Background(), siteId).SampleOptions(sampleOptions).Oid(oid).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `OrganizationAPI.CreateSample``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -316,8 +318,8 @@ Other parameters are passed through a pointer to a apiCreateSampleRequest struct
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **oid** | **string** | The current Organization | 
  **sampleOptions** | [**SampleOptions**](SampleOptions.md) |  | 
+ **oid** | **string** | The current Organization | 
 
 ### Return type
 
@@ -329,7 +331,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: text/json
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -339,7 +341,7 @@ Name | Type | Description  | Notes
 
 ## CreateScan
 
-> Task CreateScan(ctx, siteId).Oid(oid).ScanOptions(scanOptions).Execute()
+> Task CreateScan(ctx, siteId).ScanOptions(scanOptions).Oid(oid).Execute()
 
 Create a scan task for a given site
 
@@ -357,12 +359,12 @@ import (
 
 func main() {
 	siteId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | UUID or name of the site to scan
+	scanOptions := *openapiclient.NewScanOptions("defaults") // ScanOptions | 
 	oid := "oid_example" // string | The current Organization (optional)
-	scanOptions := *openapiclient.NewScanOptions("defaults") // ScanOptions |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.OrganizationAPI.CreateScan(context.Background(), siteId).Oid(oid).ScanOptions(scanOptions).Execute()
+	resp, r, err := apiClient.OrganizationAPI.CreateScan(context.Background(), siteId).ScanOptions(scanOptions).Oid(oid).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `OrganizationAPI.CreateScan``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -388,8 +390,8 @@ Other parameters are passed through a pointer to a apiCreateScanRequest struct v
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **oid** | **string** | The current Organization | 
  **scanOptions** | [**ScanOptions**](ScanOptions.md) |  | 
+ **oid** | **string** | The current Organization | 
 
 ### Return type
 
@@ -401,7 +403,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: text/json
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -1072,6 +1074,133 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**OrganizationAPIKey**](OrganizationAPIKey.md)
+
+### Authorization
+
+[oauthDefaults](../README.md#oauthDefaults), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetOrgCustomIntegration
+
+> CustomIntegration GetOrgCustomIntegration(ctx, customIntegrationId).Execute()
+
+Get single custom integration
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+	customIntegrationId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | UUID of the custom integration
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.OrganizationAPI.GetOrgCustomIntegration(context.Background(), customIntegrationId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `OrganizationAPI.GetOrgCustomIntegration``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetOrgCustomIntegration`: CustomIntegration
+	fmt.Fprintf(os.Stdout, "Response from `OrganizationAPI.GetOrgCustomIntegration`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**customIntegrationId** | **string** | UUID of the custom integration | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetOrgCustomIntegrationRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**CustomIntegration**](CustomIntegration.md)
+
+### Authorization
+
+[oauthDefaults](../README.md#oauthDefaults), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetOrgCustomIntegrations
+
+> CustomIntegration GetOrgCustomIntegrations(ctx).Execute()
+
+Get all custom integrations
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.OrganizationAPI.GetOrgCustomIntegrations(context.Background()).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `OrganizationAPI.GetOrgCustomIntegrations``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetOrgCustomIntegrations`: CustomIntegration
+	fmt.Fprintf(os.Stdout, "Response from `OrganizationAPI.GetOrgCustomIntegrations`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetOrgCustomIntegrationsRequest struct via the builder pattern
+
+
+### Return type
+
+[**CustomIntegration**](CustomIntegration.md)
 
 ### Authorization
 
@@ -1971,7 +2100,7 @@ Name | Type | Description  | Notes
 
 ## ImportNessusScanData
 
-> Task ImportNessusScanData(ctx, siteId).Oid(oid).Body(body).Execute()
+> Task ImportNessusScanData(ctx, siteId).Body(body).Oid(oid).Execute()
 
 Import a Nessus scan data file into a site
 
@@ -1989,12 +2118,12 @@ import (
 
 func main() {
 	siteId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | UUID or name of the site to import Nessus scan data into
+	body := os.NewFile(1234, "some_file") // *os.File | 
 	oid := "oid_example" // string | The current Organization (optional)
-	body := os.NewFile(1234, "some_file") // *os.File |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.OrganizationAPI.ImportNessusScanData(context.Background(), siteId).Oid(oid).Body(body).Execute()
+	resp, r, err := apiClient.OrganizationAPI.ImportNessusScanData(context.Background(), siteId).Body(body).Oid(oid).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `OrganizationAPI.ImportNessusScanData``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -2020,8 +2149,8 @@ Other parameters are passed through a pointer to a apiImportNessusScanDataReques
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **oid** | **string** | The current Organization | 
  **body** | ***os.File** |  | 
+ **oid** | **string** | The current Organization | 
 
 ### Return type
 
@@ -2043,7 +2172,7 @@ Name | Type | Description  | Notes
 
 ## ImportPacketData
 
-> Task ImportPacketData(ctx, siteId).Oid(oid).Body(body).Execute()
+> Task ImportPacketData(ctx, siteId).Body(body).Oid(oid).Execute()
 
 Import a packet capture file into a site
 
@@ -2061,12 +2190,12 @@ import (
 
 func main() {
 	siteId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | UUID or name of the site to import packet capture into
+	body := os.NewFile(1234, "some_file") // *os.File | 
 	oid := "oid_example" // string | The current Organization (optional)
-	body := os.NewFile(1234, "some_file") // *os.File |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.OrganizationAPI.ImportPacketData(context.Background(), siteId).Oid(oid).Body(body).Execute()
+	resp, r, err := apiClient.OrganizationAPI.ImportPacketData(context.Background(), siteId).Body(body).Oid(oid).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `OrganizationAPI.ImportPacketData``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -2092,8 +2221,8 @@ Other parameters are passed through a pointer to a apiImportPacketDataRequest st
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **oid** | **string** | The current Organization | 
  **body** | ***os.File** |  | 
+ **oid** | **string** | The current Organization | 
 
 ### Return type
 
@@ -2115,7 +2244,7 @@ Name | Type | Description  | Notes
 
 ## ImportScanData
 
-> Task ImportScanData(ctx, siteId).Oid(oid).Body(body).Execute()
+> Task ImportScanData(ctx, siteId).Body(body).Oid(oid).Execute()
 
 Import a scan data file into a site
 
@@ -2133,12 +2262,12 @@ import (
 
 func main() {
 	siteId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | UUID or name of the site to import scan data into
+	body := os.NewFile(1234, "some_file") // *os.File | 
 	oid := "oid_example" // string | The current Organization (optional)
-	body := os.NewFile(1234, "some_file") // *os.File |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.OrganizationAPI.ImportScanData(context.Background(), siteId).Oid(oid).Body(body).Execute()
+	resp, r, err := apiClient.OrganizationAPI.ImportScanData(context.Background(), siteId).Body(body).Oid(oid).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `OrganizationAPI.ImportScanData``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -2164,8 +2293,8 @@ Other parameters are passed through a pointer to a apiImportScanDataRequest stru
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **oid** | **string** | The current Organization | 
  **body** | ***os.File** |  | 
+ **oid** | **string** | The current Organization | 
 
 ### Return type
 
@@ -3487,7 +3616,7 @@ Name | Type | Description  | Notes
 
 ## UpdateBulkAssetOwners
 
-> UpdateBulkAssetOwners200Response UpdateBulkAssetOwners(ctx).AssetOwnershipsWithSearch(assetOwnershipsWithSearch).Oid(oid).Execute()
+> BulkAssetUpdateResult UpdateBulkAssetOwners(ctx).AssetOwnershipsWithSearch(assetOwnershipsWithSearch).Oid(oid).Execute()
 
 Update asset owners across multiple assets based on a search query
 
@@ -3504,7 +3633,7 @@ import (
 )
 
 func main() {
-	assetOwnershipsWithSearch := *openapiclient.NewAssetOwnershipsWithSearch("alive:true and os:windows", []openapiclient.AssetOwnershipsOwnershipsInner{*openapiclient.NewAssetOwnershipsOwnershipsInner()}) // AssetOwnershipsWithSearch | search query to filter and ownerships to apply
+	assetOwnershipsWithSearch := *openapiclient.NewAssetOwnershipsWithSearch("alive:true and os:windows", []openapiclient.AssetOwnershipsWithSearchOwnershipsInner{*openapiclient.NewAssetOwnershipsWithSearchOwnershipsInner()}) // AssetOwnershipsWithSearch | search query to filter and ownerships to apply
 	oid := "oid_example" // string | The current Organization (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -3514,7 +3643,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `OrganizationAPI.UpdateBulkAssetOwners``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `UpdateBulkAssetOwners`: UpdateBulkAssetOwners200Response
+	// response from `UpdateBulkAssetOwners`: BulkAssetUpdateResult
 	fmt.Fprintf(os.Stdout, "Response from `OrganizationAPI.UpdateBulkAssetOwners`: %v\n", resp)
 }
 ```
@@ -3535,7 +3664,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**UpdateBulkAssetOwners200Response**](UpdateBulkAssetOwners200Response.md)
+[**BulkAssetUpdateResult**](BulkAssetUpdateResult.md)
 
 ### Authorization
 
@@ -3619,7 +3748,7 @@ Name | Type | Description  | Notes
 
 ## UpdateExplorerSettings
 
-> Agent UpdateExplorerSettings(ctx, explorerId).Body(body).Oid(oid).Execute()
+> Agent UpdateExplorerSettings(ctx, explorerId).AgentPatchedSettings(agentPatchedSettings).Oid(oid).Execute()
 
 Update the settings associated with the Explorer
 
@@ -3639,12 +3768,12 @@ import (
 
 func main() {
 	explorerId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | UUID of the explorer to update
-	body := AgentPatchedSettings(987) // AgentPatchedSettings | The updated settings to apply to the Explorer
+	agentPatchedSettings := *openapiclient.NewAgentPatchedSettings() // AgentPatchedSettings | The updated settings to apply to the Explorer
 	oid := "oid_example" // string | The current Organization (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.OrganizationAPI.UpdateExplorerSettings(context.Background(), explorerId).Body(body).Oid(oid).Execute()
+	resp, r, err := apiClient.OrganizationAPI.UpdateExplorerSettings(context.Background(), explorerId).AgentPatchedSettings(agentPatchedSettings).Oid(oid).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `OrganizationAPI.UpdateExplorerSettings``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -3670,7 +3799,7 @@ Other parameters are passed through a pointer to a apiUpdateExplorerSettingsRequ
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | **AgentPatchedSettings** | The updated settings to apply to the Explorer | 
+ **agentPatchedSettings** | [**AgentPatchedSettings**](AgentPatchedSettings.md) | The updated settings to apply to the Explorer | 
  **oid** | **string** | The current Organization | 
 
 ### Return type
