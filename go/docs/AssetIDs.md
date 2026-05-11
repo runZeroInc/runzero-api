@@ -1,48 +1,48 @@
-# AgentSiteID
+# AssetIDs
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**SiteId** | Pointer to **string** |  | 
+**AssetIds** | **[]string** |  | 
 
 ## Methods
 
-### NewAgentSiteID
+### NewAssetIDs
 
-`func NewAgentSiteID(siteId string, ) *AgentSiteID`
+`func NewAssetIDs(assetIds []string, ) *AssetIDs`
 
-NewAgentSiteID instantiates a new AgentSiteID object
+NewAssetIDs instantiates a new AssetIDs object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewAgentSiteIDWithDefaults
+### NewAssetIDsWithDefaults
 
-`func NewAgentSiteIDWithDefaults() *AgentSiteID`
+`func NewAssetIDsWithDefaults() *AssetIDs`
 
-NewAgentSiteIDWithDefaults instantiates a new AgentSiteID object
+NewAssetIDsWithDefaults instantiates a new AssetIDs object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetSiteId
+### GetAssetIds
 
-`func (o *AgentSiteID) GetSiteId() string`
+`func (o *AssetIDs) GetAssetIds() []string`
 
-GetSiteId returns the SiteId field if non-nil, zero value otherwise.
+GetAssetIds returns the AssetIds field if non-nil, zero value otherwise.
 
-### GetSiteIdOk
+### GetAssetIdsOk
 
-`func (o *AgentSiteID) GetSiteIdOk() (*string, bool)`
+`func (o *AssetIDs) GetAssetIdsOk() (*[]string, bool)`
 
-GetSiteIdOk returns a tuple with the SiteId field if it's non-nil, zero value otherwise
+GetAssetIdsOk returns a tuple with the AssetIds field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetSiteId
+### SetAssetIds
 
-`func (o *AgentSiteID) SetSiteId(v string)`
+`func (o *AssetIDs) SetAssetIds(v []string)`
 
-SetSiteId sets SiteId field to given value.
+SetAssetIds sets AssetIds field to given value.
 
 
 

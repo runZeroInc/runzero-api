@@ -1,0 +1,82 @@
+# ExportEventsJSON200ResponseOneOf
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**Events** | Pointer to [**[]Event**](Event.md) |  | [optional] 
+**NextKey** | Pointer to **string** | The key to use for the next page of results | [optional] 
+
+## Methods
+
+### NewExportEventsJSON200ResponseOneOf
+
+`func NewExportEventsJSON200ResponseOneOf() *ExportEventsJSON200ResponseOneOf`
+
+NewExportEventsJSON200ResponseOneOf instantiates a new ExportEventsJSON200ResponseOneOf object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewExportEventsJSON200ResponseOneOfWithDefaults
+
+`func NewExportEventsJSON200ResponseOneOfWithDefaults() *ExportEventsJSON200ResponseOneOf`
+
+NewExportEventsJSON200ResponseOneOfWithDefaults instantiates a new ExportEventsJSON200ResponseOneOf object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
+### GetEvents
+
+`func (o *ExportEventsJSON200ResponseOneOf) GetEvents() []Event`
+
+GetEvents returns the Events field if non-nil, zero value otherwise.
+
+### GetEventsOk
+
+`func (o *ExportEventsJSON200ResponseOneOf) GetEventsOk() (*[]Event, bool)`
+
+GetEventsOk returns a tuple with the Events field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEvents
+
+`func (o *ExportEventsJSON200ResponseOneOf) SetEvents(v []Event)`
+
+SetEvents sets Events field to given value.
+
+### HasEvents
+
+`func (o *ExportEventsJSON200ResponseOneOf) HasEvents() bool`
+
+HasEvents returns a boolean if a field has been set.
+
+### GetNextKey
+
+`func (o *ExportEventsJSON200ResponseOneOf) GetNextKey() string`
+
+GetNextKey returns the NextKey field if non-nil, zero value otherwise.
+
+### GetNextKeyOk
+
+`func (o *ExportEventsJSON200ResponseOneOf) GetNextKeyOk() (*string, bool)`
+
+GetNextKeyOk returns a tuple with the NextKey field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNextKey
+
+`func (o *ExportEventsJSON200ResponseOneOf) SetNextKey(v string)`
+
+SetNextKey sets NextKey field to given value.
+
+### HasNextKey
+
+`func (o *ExportEventsJSON200ResponseOneOf) HasNextKey() bool`
+
+HasNextKey returns a boolean if a field has been set.
+
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

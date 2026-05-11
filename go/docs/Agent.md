@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **string** |  | 
+**Id** | **string** |  | 
 **ClientId** | Pointer to **string** |  | [optional] 
 **OrganizationId** | Pointer to **string** |  | [optional] 
 **CreatedAt** | Pointer to **int64** |  | [optional] 
@@ -18,8 +18,8 @@ Name | Type | Description | Notes
 **Arch** | Pointer to **string** |  | [optional] 
 **Version** | Pointer to **string** |  | [optional] 
 **ExternalIp** | Pointer to **string** |  | [optional] 
-**InternalIp** | Pointer to **string** |  | [optional] 
-**SystemInfo** | Pointer to **map[string]map[string]interface{}** |  | [optional] 
+**InternalIp** | Pointer to **NullableString** |  | [optional] 
+**SystemInfo** | Pointer to **map[string]interface{}** |  | [optional] 
 **Connected** | Pointer to **bool** |  | [optional] 
 **Inactive** | Pointer to **bool** |  | [optional] 
 **DeactivatedAt** | Pointer to **int64** |  | [optional] 
@@ -413,22 +413,32 @@ SetInternalIp sets InternalIp field to given value.
 
 HasInternalIp returns a boolean if a field has been set.
 
+### SetInternalIpNil
+
+`func (o *Agent) SetInternalIpNil(b bool)`
+
+ SetInternalIpNil sets the value for InternalIp to be an explicit nil
+
+### UnsetInternalIp
+`func (o *Agent) UnsetInternalIp()`
+
+UnsetInternalIp ensures that no value is present for InternalIp, not even an explicit nil
 ### GetSystemInfo
 
-`func (o *Agent) GetSystemInfo() map[string]map[string]interface{}`
+`func (o *Agent) GetSystemInfo() map[string]interface{}`
 
 GetSystemInfo returns the SystemInfo field if non-nil, zero value otherwise.
 
 ### GetSystemInfoOk
 
-`func (o *Agent) GetSystemInfoOk() (*map[string]map[string]interface{}, bool)`
+`func (o *Agent) GetSystemInfoOk() (*map[string]interface{}, bool)`
 
 GetSystemInfoOk returns a tuple with the SystemInfo field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSystemInfo
 
-`func (o *Agent) SetSystemInfo(v map[string]map[string]interface{})`
+`func (o *Agent) SetSystemInfo(v map[string]interface{})`
 
 SetSystemInfo sets SystemInfo field to given value.
 

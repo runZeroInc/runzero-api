@@ -4,10 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **string** |  | 
+**Name** | **string** |  | 
 **Description** | Pointer to **string** |  | [optional] 
 **Scope** | Pointer to **string** |  | [optional] 
 **Excludes** | Pointer to **string** |  | [optional] 
+**Subnets** | Pointer to **map[string]interface{}** |  | [optional] 
 
 ## Methods
 
@@ -122,6 +123,31 @@ SetExcludes sets Excludes field to given value.
 `func (o *SiteOptions) HasExcludes() bool`
 
 HasExcludes returns a boolean if a field has been set.
+
+### GetSubnets
+
+`func (o *SiteOptions) GetSubnets() map[string]interface{}`
+
+GetSubnets returns the Subnets field if non-nil, zero value otherwise.
+
+### GetSubnetsOk
+
+`func (o *SiteOptions) GetSubnetsOk() (*map[string]interface{}, bool)`
+
+GetSubnetsOk returns a tuple with the Subnets field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSubnets
+
+`func (o *SiteOptions) SetSubnets(v map[string]interface{})`
+
+SetSubnets sets Subnets field to given value.
+
+### HasSubnets
+
+`func (o *SiteOptions) HasSubnets() bool`
+
+HasSubnets returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

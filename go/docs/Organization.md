@@ -4,14 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **string** |  | 
+**Id** | **string** |  | 
 **CreatedAt** | Pointer to **int64** |  | [optional] 
 **UpdatedAt** | Pointer to **int64** |  | [optional] 
 **ClientId** | Pointer to **string** |  | [optional] 
 **DownloadToken** | Pointer to **string** |  | [optional] 
 **DownloadTokenCreatedAt** | Pointer to **int64** |  | [optional] 
-**Permanent** | Pointer to **bool** |  | [optional] 
-**Name** | Pointer to **string** |  | 
+**Name** | **string** |  | 
 **Description** | Pointer to **string** |  | [optional] 
 **Inactive** | Pointer to **bool** |  | [optional] 
 **DeactivatedAt** | Pointer to **int64** |  | [optional] 
@@ -21,11 +20,19 @@ Name | Type | Description | Notes
 **ServiceCountArp** | Pointer to **int64** |  | [optional] 
 **ServiceCountIcmp** | Pointer to **int64** |  | [optional] 
 **AssetCount** | Pointer to **int64** |  | [optional] 
+**Project** | Pointer to **bool** |  | [optional] 
+**ParentId** | Pointer to **string** |  | [optional] 
+**ExpirationAssetsStale** | Pointer to **int64** |  | [optional] 
+**ExpirationAssetsOffline** | Pointer to **int64** |  | [optional] 
+**ExpirationIntegrationAttributes** | Pointer to **int64** |  | [optional] 
+**ExpirationScans** | Pointer to **int64** |  | [optional] 
+**ExpirationVulnerabilities** | Pointer to **int64** |  | [optional] 
 **ExportToken** | Pointer to **string** |  | [optional] 
 **ExportTokenCreatedAt** | Pointer to **int64** |  | [optional] 
 **ExportTokenLastUsedAt** | Pointer to **int64** |  | [optional] 
 **ExportTokenLastUsedBy** | Pointer to **string** |  | [optional] 
 **ExportTokenCounter** | Pointer to **int64** |  | [optional] 
+**KeepLatestIntegrationAttributes** | Pointer to **bool** |  | [optional] 
 
 ## Methods
 
@@ -190,31 +197,6 @@ SetDownloadTokenCreatedAt sets DownloadTokenCreatedAt field to given value.
 `func (o *Organization) HasDownloadTokenCreatedAt() bool`
 
 HasDownloadTokenCreatedAt returns a boolean if a field has been set.
-
-### GetPermanent
-
-`func (o *Organization) GetPermanent() bool`
-
-GetPermanent returns the Permanent field if non-nil, zero value otherwise.
-
-### GetPermanentOk
-
-`func (o *Organization) GetPermanentOk() (*bool, bool)`
-
-GetPermanentOk returns a tuple with the Permanent field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPermanent
-
-`func (o *Organization) SetPermanent(v bool)`
-
-SetPermanent sets Permanent field to given value.
-
-### HasPermanent
-
-`func (o *Organization) HasPermanent() bool`
-
-HasPermanent returns a boolean if a field has been set.
 
 ### GetName
 
@@ -461,6 +443,181 @@ SetAssetCount sets AssetCount field to given value.
 
 HasAssetCount returns a boolean if a field has been set.
 
+### GetProject
+
+`func (o *Organization) GetProject() bool`
+
+GetProject returns the Project field if non-nil, zero value otherwise.
+
+### GetProjectOk
+
+`func (o *Organization) GetProjectOk() (*bool, bool)`
+
+GetProjectOk returns a tuple with the Project field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProject
+
+`func (o *Organization) SetProject(v bool)`
+
+SetProject sets Project field to given value.
+
+### HasProject
+
+`func (o *Organization) HasProject() bool`
+
+HasProject returns a boolean if a field has been set.
+
+### GetParentId
+
+`func (o *Organization) GetParentId() string`
+
+GetParentId returns the ParentId field if non-nil, zero value otherwise.
+
+### GetParentIdOk
+
+`func (o *Organization) GetParentIdOk() (*string, bool)`
+
+GetParentIdOk returns a tuple with the ParentId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetParentId
+
+`func (o *Organization) SetParentId(v string)`
+
+SetParentId sets ParentId field to given value.
+
+### HasParentId
+
+`func (o *Organization) HasParentId() bool`
+
+HasParentId returns a boolean if a field has been set.
+
+### GetExpirationAssetsStale
+
+`func (o *Organization) GetExpirationAssetsStale() int64`
+
+GetExpirationAssetsStale returns the ExpirationAssetsStale field if non-nil, zero value otherwise.
+
+### GetExpirationAssetsStaleOk
+
+`func (o *Organization) GetExpirationAssetsStaleOk() (*int64, bool)`
+
+GetExpirationAssetsStaleOk returns a tuple with the ExpirationAssetsStale field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExpirationAssetsStale
+
+`func (o *Organization) SetExpirationAssetsStale(v int64)`
+
+SetExpirationAssetsStale sets ExpirationAssetsStale field to given value.
+
+### HasExpirationAssetsStale
+
+`func (o *Organization) HasExpirationAssetsStale() bool`
+
+HasExpirationAssetsStale returns a boolean if a field has been set.
+
+### GetExpirationAssetsOffline
+
+`func (o *Organization) GetExpirationAssetsOffline() int64`
+
+GetExpirationAssetsOffline returns the ExpirationAssetsOffline field if non-nil, zero value otherwise.
+
+### GetExpirationAssetsOfflineOk
+
+`func (o *Organization) GetExpirationAssetsOfflineOk() (*int64, bool)`
+
+GetExpirationAssetsOfflineOk returns a tuple with the ExpirationAssetsOffline field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExpirationAssetsOffline
+
+`func (o *Organization) SetExpirationAssetsOffline(v int64)`
+
+SetExpirationAssetsOffline sets ExpirationAssetsOffline field to given value.
+
+### HasExpirationAssetsOffline
+
+`func (o *Organization) HasExpirationAssetsOffline() bool`
+
+HasExpirationAssetsOffline returns a boolean if a field has been set.
+
+### GetExpirationIntegrationAttributes
+
+`func (o *Organization) GetExpirationIntegrationAttributes() int64`
+
+GetExpirationIntegrationAttributes returns the ExpirationIntegrationAttributes field if non-nil, zero value otherwise.
+
+### GetExpirationIntegrationAttributesOk
+
+`func (o *Organization) GetExpirationIntegrationAttributesOk() (*int64, bool)`
+
+GetExpirationIntegrationAttributesOk returns a tuple with the ExpirationIntegrationAttributes field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExpirationIntegrationAttributes
+
+`func (o *Organization) SetExpirationIntegrationAttributes(v int64)`
+
+SetExpirationIntegrationAttributes sets ExpirationIntegrationAttributes field to given value.
+
+### HasExpirationIntegrationAttributes
+
+`func (o *Organization) HasExpirationIntegrationAttributes() bool`
+
+HasExpirationIntegrationAttributes returns a boolean if a field has been set.
+
+### GetExpirationScans
+
+`func (o *Organization) GetExpirationScans() int64`
+
+GetExpirationScans returns the ExpirationScans field if non-nil, zero value otherwise.
+
+### GetExpirationScansOk
+
+`func (o *Organization) GetExpirationScansOk() (*int64, bool)`
+
+GetExpirationScansOk returns a tuple with the ExpirationScans field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExpirationScans
+
+`func (o *Organization) SetExpirationScans(v int64)`
+
+SetExpirationScans sets ExpirationScans field to given value.
+
+### HasExpirationScans
+
+`func (o *Organization) HasExpirationScans() bool`
+
+HasExpirationScans returns a boolean if a field has been set.
+
+### GetExpirationVulnerabilities
+
+`func (o *Organization) GetExpirationVulnerabilities() int64`
+
+GetExpirationVulnerabilities returns the ExpirationVulnerabilities field if non-nil, zero value otherwise.
+
+### GetExpirationVulnerabilitiesOk
+
+`func (o *Organization) GetExpirationVulnerabilitiesOk() (*int64, bool)`
+
+GetExpirationVulnerabilitiesOk returns a tuple with the ExpirationVulnerabilities field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExpirationVulnerabilities
+
+`func (o *Organization) SetExpirationVulnerabilities(v int64)`
+
+SetExpirationVulnerabilities sets ExpirationVulnerabilities field to given value.
+
+### HasExpirationVulnerabilities
+
+`func (o *Organization) HasExpirationVulnerabilities() bool`
+
+HasExpirationVulnerabilities returns a boolean if a field has been set.
+
 ### GetExportToken
 
 `func (o *Organization) GetExportToken() string`
@@ -585,6 +742,31 @@ SetExportTokenCounter sets ExportTokenCounter field to given value.
 `func (o *Organization) HasExportTokenCounter() bool`
 
 HasExportTokenCounter returns a boolean if a field has been set.
+
+### GetKeepLatestIntegrationAttributes
+
+`func (o *Organization) GetKeepLatestIntegrationAttributes() bool`
+
+GetKeepLatestIntegrationAttributes returns the KeepLatestIntegrationAttributes field if non-nil, zero value otherwise.
+
+### GetKeepLatestIntegrationAttributesOk
+
+`func (o *Organization) GetKeepLatestIntegrationAttributesOk() (*bool, bool)`
+
+GetKeepLatestIntegrationAttributesOk returns a tuple with the KeepLatestIntegrationAttributes field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKeepLatestIntegrationAttributes
+
+`func (o *Organization) SetKeepLatestIntegrationAttributes(v bool)`
+
+SetKeepLatestIntegrationAttributes sets KeepLatestIntegrationAttributes field to given value.
+
+### HasKeepLatestIntegrationAttributes
+
+`func (o *Organization) HasKeepLatestIntegrationAttributes() bool`
+
+HasKeepLatestIntegrationAttributes returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

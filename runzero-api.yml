@@ -99,7 +99,6 @@ paths:
             format: uuid
           description: The ID of the organization to import the assets into
       tags:
-        - Organization
         - Import
       operationId: importCustomIntegrationAssets
       summary: Import assets described by a registered custom integration
@@ -607,7 +606,6 @@ paths:
     get:
       tags:
         - Export
-        - Certificates
       operationId: exportCertificatesCSV
       summary: Export the certificate inventory as CSV
       responses:
@@ -628,7 +626,6 @@ paths:
     get:
       tags:
         - Export
-        - Certificates
       operationId: exportCertificatesJSON
       summary: Export the certificate inventory as JSON
       responses:
@@ -650,7 +647,6 @@ paths:
     get:
       tags:
         - Export
-        - Certificates
       operationId: exportCertificatesJSONL
       summary: Export the certificate inventory as JSONL line-delimited
       responses:
@@ -1173,7 +1169,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/APIKey'
+                $ref: '#/components/schemas/OrganizationAPIKey'
         '401':
           $ref: '#/components/responses/UnauthorizedError'
     delete:
@@ -1201,7 +1197,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/APIKey'
+                $ref: '#/components/schemas/OrganizationAPIKey'
         '401':
           $ref: '#/components/responses/UnauthorizedError'
 
@@ -3205,7 +3201,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/APIKey'
+                  $ref: '#/components/schemas/OrganizationAPIKey'
         '401':
           $ref: '#/components/responses/UnauthorizedError'
     put:
@@ -3226,7 +3222,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/APIKey'
+                $ref: '#/components/schemas/OrganizationAPIKey'
         '401':
           $ref: '#/components/responses/UnauthorizedError'
         '404':
@@ -3251,7 +3247,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/APIKey'
+                $ref: '#/components/schemas/OrganizationAPIKey'
         '401':
           $ref: '#/components/responses/UnauthorizedError'
     delete:
@@ -3293,7 +3289,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/APIKey'
+                $ref: '#/components/schemas/OrganizationAPIKey'
         '401':
           $ref: '#/components/responses/UnauthorizedError'
 
@@ -4170,7 +4166,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/NewCustomIntegration"
+              $ref: "#/components/schemas/CustomIntegrationCreate"
       responses:
         '200':
           description: The custom integration created
@@ -4263,7 +4259,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/NewCustomIntegration'
+              $ref: '#/components/schemas/CustomIntegrationCreate'
       responses:
         '200':
           description: The updated custom integration
@@ -4350,7 +4346,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/APIClient'
+                $ref: '#/components/schemas/APIClientCredentials'
         '400':
           $ref: '#/components/responses/InvalidRequestBodyError'
         '401':
@@ -7550,7 +7546,8 @@ components:
           format: uuid
           example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
 
-    APIKey:
+    OrganizationAPIKey:
+      description: An API key issued for an organization.
       type: object
       required:
         - id
@@ -8687,7 +8684,8 @@ components:
         - $ref: "#/components/schemas/BaseCustomIntegration"
         - $ref: "#/components/schemas/BaseResponse"
 
-    NewCustomIntegration:
+    CustomIntegrationCreate:
+      description: Request body used to register a new custom integration.
       required:
         - name
       allOf:
@@ -8900,7 +8898,8 @@ components:
         expires_in:
           type: integer
 
-    APIClient:
+    APIClientCredentials:
+      description: Newly-issued OAuth client credentials returned when creating an API client.
       type: object
       properties:
         api_client_id:

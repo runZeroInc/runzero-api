@@ -4,23 +4,27 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **string** |  | 
+**Id** | **string** |  | 
 **Name** | Pointer to **string** |  | [optional] 
 **Description** | Pointer to **string** |  | [optional] 
+**TemplateId** | Pointer to **string** |  | [optional] 
 **ClientId** | Pointer to **string** |  | [optional] 
 **OrganizationId** | Pointer to **string** |  | [optional] 
 **AgentId** | Pointer to **string** |  | [optional] 
+**HostedZoneId** | Pointer to **string** | The ID of the Hosted Zone which executes the task. If the  | [optional] 
 **SiteId** | Pointer to **string** |  | [optional] 
 **CruncherId** | Pointer to **string** |  | [optional] 
 **CreatedAt** | Pointer to **int64** |  | [optional] 
 **CreatedBy** | Pointer to **string** |  | [optional] 
 **CreatedByUserId** | Pointer to **string** |  | [optional] 
+**CustomIntegrationId** | Pointer to **string** | The ID of the custom integration source, if the last task executed with this template was an import of Asset Data. | [optional] 
+**SourceId** | Pointer to **int32** | The numeric ID of the data source, if the task executed with this template is a runZero scan or third party data connection import. | [optional] 
 **UpdatedAt** | Pointer to **int64** |  | [optional] 
 **Type** | Pointer to **string** |  | [optional] 
 **Status** | Pointer to **string** |  | [optional] 
 **Error** | Pointer to **string** |  | [optional] 
 **Params** | Pointer to **map[string]string** |  | [optional] 
-**Stats** | Pointer to **map[string]map[string]interface{}** |  | [optional] 
+**Stats** | Pointer to **map[string]interface{}** |  | [optional] 
 **Hidden** | Pointer to **bool** |  | [optional] 
 **ParentId** | Pointer to **string** |  | [optional] 
 **Recur** | Pointer to **bool** |  | [optional] 
@@ -119,6 +123,31 @@ SetDescription sets Description field to given value.
 
 HasDescription returns a boolean if a field has been set.
 
+### GetTemplateId
+
+`func (o *Task) GetTemplateId() string`
+
+GetTemplateId returns the TemplateId field if non-nil, zero value otherwise.
+
+### GetTemplateIdOk
+
+`func (o *Task) GetTemplateIdOk() (*string, bool)`
+
+GetTemplateIdOk returns a tuple with the TemplateId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTemplateId
+
+`func (o *Task) SetTemplateId(v string)`
+
+SetTemplateId sets TemplateId field to given value.
+
+### HasTemplateId
+
+`func (o *Task) HasTemplateId() bool`
+
+HasTemplateId returns a boolean if a field has been set.
+
 ### GetClientId
 
 `func (o *Task) GetClientId() string`
@@ -193,6 +222,31 @@ SetAgentId sets AgentId field to given value.
 `func (o *Task) HasAgentId() bool`
 
 HasAgentId returns a boolean if a field has been set.
+
+### GetHostedZoneId
+
+`func (o *Task) GetHostedZoneId() string`
+
+GetHostedZoneId returns the HostedZoneId field if non-nil, zero value otherwise.
+
+### GetHostedZoneIdOk
+
+`func (o *Task) GetHostedZoneIdOk() (*string, bool)`
+
+GetHostedZoneIdOk returns a tuple with the HostedZoneId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHostedZoneId
+
+`func (o *Task) SetHostedZoneId(v string)`
+
+SetHostedZoneId sets HostedZoneId field to given value.
+
+### HasHostedZoneId
+
+`func (o *Task) HasHostedZoneId() bool`
+
+HasHostedZoneId returns a boolean if a field has been set.
 
 ### GetSiteId
 
@@ -318,6 +372,56 @@ SetCreatedByUserId sets CreatedByUserId field to given value.
 `func (o *Task) HasCreatedByUserId() bool`
 
 HasCreatedByUserId returns a boolean if a field has been set.
+
+### GetCustomIntegrationId
+
+`func (o *Task) GetCustomIntegrationId() string`
+
+GetCustomIntegrationId returns the CustomIntegrationId field if non-nil, zero value otherwise.
+
+### GetCustomIntegrationIdOk
+
+`func (o *Task) GetCustomIntegrationIdOk() (*string, bool)`
+
+GetCustomIntegrationIdOk returns a tuple with the CustomIntegrationId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCustomIntegrationId
+
+`func (o *Task) SetCustomIntegrationId(v string)`
+
+SetCustomIntegrationId sets CustomIntegrationId field to given value.
+
+### HasCustomIntegrationId
+
+`func (o *Task) HasCustomIntegrationId() bool`
+
+HasCustomIntegrationId returns a boolean if a field has been set.
+
+### GetSourceId
+
+`func (o *Task) GetSourceId() int32`
+
+GetSourceId returns the SourceId field if non-nil, zero value otherwise.
+
+### GetSourceIdOk
+
+`func (o *Task) GetSourceIdOk() (*int32, bool)`
+
+GetSourceIdOk returns a tuple with the SourceId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSourceId
+
+`func (o *Task) SetSourceId(v int32)`
+
+SetSourceId sets SourceId field to given value.
+
+### HasSourceId
+
+`func (o *Task) HasSourceId() bool`
+
+HasSourceId returns a boolean if a field has been set.
 
 ### GetUpdatedAt
 
@@ -446,20 +550,20 @@ HasParams returns a boolean if a field has been set.
 
 ### GetStats
 
-`func (o *Task) GetStats() map[string]map[string]interface{}`
+`func (o *Task) GetStats() map[string]interface{}`
 
 GetStats returns the Stats field if non-nil, zero value otherwise.
 
 ### GetStatsOk
 
-`func (o *Task) GetStatsOk() (*map[string]map[string]interface{}, bool)`
+`func (o *Task) GetStatsOk() (*map[string]interface{}, bool)`
 
 GetStatsOk returns a tuple with the Stats field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStats
 
-`func (o *Task) SetStats(v map[string]map[string]interface{})`
+`func (o *Task) SetStats(v map[string]interface{})`
 
 SetStats sets Stats field to given value.
 

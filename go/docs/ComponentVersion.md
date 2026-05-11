@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **string** |  | 
-**Version** | Pointer to **string** |  | 
+**Id** | **string** |  | 
+**Version** | **string** |  | 
 
 ## Methods
 

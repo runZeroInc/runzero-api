@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Comments** | Pointer to **string** |  | 
+**Comments** | **string** |  | 
 
 ## Methods
 

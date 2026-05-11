@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **string** |  | 
+**Id** | **string** |  | 
 **CreatedAt** | Pointer to **int64** |  | [optional] 
 **LastSeen** | Pointer to **int64** |  | [optional] 
 **OrganizationId** | Pointer to **string** |  | [optional] 

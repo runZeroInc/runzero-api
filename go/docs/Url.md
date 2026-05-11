@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **string** |  | [optional] 
+**Url** | **string** |  | 
 
 ## Methods
 
 ### NewURL
 
-`func NewURL() *URL`
+`func NewURL(url string, ) *URL`
 
 NewURL instantiates a new URL object
 This constructor will assign default values to properties that have it defined,
@@ -25,30 +25,25 @@ NewURLWithDefaults instantiates a new URL object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetId
+### GetUrl
 
-`func (o *URL) GetId() string`
+`func (o *URL) GetUrl() string`
 
-GetId returns the Id field if non-nil, zero value otherwise.
+GetUrl returns the Url field if non-nil, zero value otherwise.
 
-### GetIdOk
+### GetUrlOk
 
-`func (o *URL) GetIdOk() (*string, bool)`
+`func (o *URL) GetUrlOk() (*string, bool)`
 
-GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+GetUrlOk returns a tuple with the Url field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetId
+### SetUrl
 
-`func (o *URL) SetId(v string)`
+`func (o *URL) SetUrl(v string)`
 
-SetId sets Id field to given value.
+SetUrl sets Url field to given value.
 
-### HasId
-
-`func (o *URL) HasId() bool`
-
-HasId returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

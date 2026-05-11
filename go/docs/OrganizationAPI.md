@@ -1,50 +1,75 @@
-# \OrganizationApi
+# \OrganizationAPI
 
 All URIs are relative to *https://console.runzero.com/api/v1.0*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateScan**](OrganizationApi.md#CreateScan) | **Put** /org/sites/{site_id}/scan | Create a scan task for a given site.
-[**CreateSite**](OrganizationApi.md#CreateSite) | **Put** /org/sites | Create a new site.
-[**GetAgent**](OrganizationApi.md#GetAgent) | **Get** /org/agents/{agent_id} | Get details for a single agent.
-[**GetAgents**](OrganizationApi.md#GetAgents) | **Get** /org/agents | Get all agents.
-[**GetAsset**](OrganizationApi.md#GetAsset) | **Get** /org/assets/{asset_id} | Get asset details.
-[**GetAssets**](OrganizationApi.md#GetAssets) | **Get** /org/assets | Get all assets.
-[**GetKey**](OrganizationApi.md#GetKey) | **Get** /org/key | Get API key details.
-[**GetOrganization**](OrganizationApi.md#GetOrganization) | **Get** /org | Get organization details.
-[**GetService**](OrganizationApi.md#GetService) | **Get** /org/services/{service_id} | Get service details.
-[**GetServices**](OrganizationApi.md#GetServices) | **Get** /org/services | Get all services.
-[**GetSite**](OrganizationApi.md#GetSite) | **Get** /org/sites/{site_id} | Get site details.
-[**GetSites**](OrganizationApi.md#GetSites) | **Get** /org/sites | Get all sites.
-[**GetTask**](OrganizationApi.md#GetTask) | **Get** /org/tasks/{task_id} | Get task details.
-[**GetTaskChangeReport**](OrganizationApi.md#GetTaskChangeReport) | **Get** /org/tasks/{task_id}/changes | Returns a temporary task change report data url.
-[**GetTaskScanData**](OrganizationApi.md#GetTaskScanData) | **Get** /org/tasks/{task_id}/data | Returns a temporary task scan data url.
-[**GetTasks**](OrganizationApi.md#GetTasks) | **Get** /org/tasks | Get all tasks (last 1000).
-[**GetWirelessLAN**](OrganizationApi.md#GetWirelessLAN) | **Get** /org/wirelesss/{wireless_id} | Get wireless LAN details.
-[**GetWirelessLANs**](OrganizationApi.md#GetWirelessLANs) | **Get** /org/wireless | Get all wireless LANs.
-[**HideTask**](OrganizationApi.md#HideTask) | **Post** /org/tasks/{task_id}/hide | Signal that a completed task should be hidden.
-[**ImportScanData**](OrganizationApi.md#ImportScanData) | **Put** /org/sites/{site_id}/import | Import a scan data file into a site.
-[**RemoveAgent**](OrganizationApi.md#RemoveAgent) | **Delete** /org/agents/{agent_id} | Remove and uninstall an agent.
-[**RemoveAsset**](OrganizationApi.md#RemoveAsset) | **Delete** /org/assets/{asset_id} | Remove an asset.
-[**RemoveService**](OrganizationApi.md#RemoveService) | **Delete** /org/services/{service_id} | Remove a service.
-[**RemoveSite**](OrganizationApi.md#RemoveSite) | **Delete** /org/sites/{site_id} | Remove a site and associated assets.
-[**RemoveWirelessLAN**](OrganizationApi.md#RemoveWirelessLAN) | **Delete** /org/wirelesss/{wireless_id} | Remove a wireless LAN.
-[**StopTask**](OrganizationApi.md#StopTask) | **Post** /org/tasks/{task_id}/stop | Signal that a task should be stopped or canceled.
-[**UpdateAgentSite**](OrganizationApi.md#UpdateAgentSite) | **Patch** /org/agents/{agent_id} | Update the site associated with agent.
-[**UpdateAssetComments**](OrganizationApi.md#UpdateAssetComments) | **Patch** /org/assets/{asset_id}/comments | Update asset comments.
-[**UpdateAssetTags**](OrganizationApi.md#UpdateAssetTags) | **Patch** /org/assets/{asset_id}/tags | Update asset tags.
-[**UpdateOrganization**](OrganizationApi.md#UpdateOrganization) | **Patch** /org | Update organization details.
-[**UpdateSite**](OrganizationApi.md#UpdateSite) | **Patch** /org/sites/{site_id} | Update a site definition.
-[**UpdateTask**](OrganizationApi.md#UpdateTask) | **Patch** /org/tasks/{task_id} | Update task parameters.
-[**UpgradeAgent**](OrganizationApi.md#UpgradeAgent) | **Post** /org/agents/{agent_id}/update | Force an agent to update and restart.
+[**BulkRemoveCustomIntegration**](OrganizationAPI.md#BulkRemoveCustomIntegration) | **Post** /org/custom-integrations/{custom_integration_id}/bulk/remove | Remove custom integration from a list of assets
+[**ClearBulkAssetOwners**](OrganizationAPI.md#ClearBulkAssetOwners) | **Post** /org/assets/bulk/clearOwners | Clear all owners across multiple assets based on a search query
+[**ClearBulkAssetTags**](OrganizationAPI.md#ClearBulkAssetTags) | **Post** /org/assets/bulk/clearTags | Clear all tags across multiple assets based on a search query
+[**CreateSample**](OrganizationAPI.md#CreateSample) | **Put** /org/sites/{site_id}/sample | Create a traffic sampling task for a given site
+[**CreateScan**](OrganizationAPI.md#CreateScan) | **Put** /org/sites/{site_id}/scan | Create a scan task for a given site
+[**CreateSite**](OrganizationAPI.md#CreateSite) | **Put** /org/sites | Create a new site
+[**GetAgent**](OrganizationAPI.md#GetAgent) | **Get** /org/agents/{agent_id} | Get details for a single agent. Legacy path for /org/explorers/{explorer_id}
+[**GetAgents**](OrganizationAPI.md#GetAgents) | **Get** /org/agents | Get all agents. Legacy path for /org/explorers
+[**GetAsset**](OrganizationAPI.md#GetAsset) | **Get** /org/assets/{asset_id} | Get asset details
+[**GetAssets**](OrganizationAPI.md#GetAssets) | **Get** /org/assets | Get all assets
+[**GetExplorer**](OrganizationAPI.md#GetExplorer) | **Get** /org/explorers/{explorer_id} | Get details for a single explorer.
+[**GetExplorers**](OrganizationAPI.md#GetExplorers) | **Get** /org/explorers | Get all explorers
+[**GetHostedZone**](OrganizationAPI.md#GetHostedZone) | **Get** /org/hosted-zones/{hosted_zone_id} | Get details for a single hosted zone.
+[**GetHostedZones**](OrganizationAPI.md#GetHostedZones) | **Get** /org/hosted-zones | Get all hosted zones
+[**GetKey**](OrganizationAPI.md#GetKey) | **Get** /org/key | Get API key details
+[**GetOrganization**](OrganizationAPI.md#GetOrganization) | **Get** /org | Get organization details
+[**GetService**](OrganizationAPI.md#GetService) | **Get** /org/services/{service_id} | Get service details
+[**GetServices**](OrganizationAPI.md#GetServices) | **Get** /org/services | Get all services
+[**GetSite**](OrganizationAPI.md#GetSite) | **Get** /org/sites/{site_id} | Get site details
+[**GetSites**](OrganizationAPI.md#GetSites) | **Get** /org/sites | Get all sites
+[**GetTask**](OrganizationAPI.md#GetTask) | **Get** /org/tasks/{task_id} | Get task details
+[**GetTaskChangeReport**](OrganizationAPI.md#GetTaskChangeReport) | **Get** /org/tasks/{task_id}/changes | Returns a temporary task change report data url
+[**GetTaskLog**](OrganizationAPI.md#GetTaskLog) | **Get** /org/tasks/{task_id}/log | Returns a temporary task log data url
+[**GetTaskScanData**](OrganizationAPI.md#GetTaskScanData) | **Get** /org/tasks/{task_id}/data | Returns a temporary task scan data url
+[**GetTasks**](OrganizationAPI.md#GetTasks) | **Get** /org/tasks | Get all tasks (last 1000)
+[**GetWirelessLAN**](OrganizationAPI.md#GetWirelessLAN) | **Get** /org/wireless/{wireless_id} | Get wireless LAN details
+[**GetWirelessLANs**](OrganizationAPI.md#GetWirelessLANs) | **Get** /org/wireless | Get all wireless LANs
+[**HideTask**](OrganizationAPI.md#HideTask) | **Post** /org/tasks/{task_id}/hide | Signal that a completed task should be hidden
+[**ImportNessusScanData**](OrganizationAPI.md#ImportNessusScanData) | **Put** /org/sites/{site_id}/import/nessus | Import a Nessus scan data file into a site
+[**ImportPacketData**](OrganizationAPI.md#ImportPacketData) | **Put** /org/sites/{site_id}/import/packet | Import a packet capture file into a site
+[**ImportScanData**](OrganizationAPI.md#ImportScanData) | **Put** /org/sites/{site_id}/import | Import a scan data file into a site
+[**MergeAssets**](OrganizationAPI.md#MergeAssets) | **Patch** /org/assets/merge | Merge multiple assets
+[**RemoveAgent**](OrganizationAPI.md#RemoveAgent) | **Delete** /org/agents/{agent_id} | Remove and uninstall an agent. Legacy path for /org/explorers/{explorer_id}
+[**RemoveAsset**](OrganizationAPI.md#RemoveAsset) | **Delete** /org/assets/{asset_id} | Remove an asset
+[**RemoveAssetSource**](OrganizationAPI.md#RemoveAssetSource) | **Delete** /org/assets/{asset_id}/sources/{source_id}/remove | Remove single source from asset
+[**RemoveBulkAssets**](OrganizationAPI.md#RemoveBulkAssets) | **Post** /org/assets/bulk/delete | Removes multiple assets by ID
+[**RemoveCustomIntegration**](OrganizationAPI.md#RemoveCustomIntegration) | **Delete** /org/assets/{asset_id}/custom-integrations/{custom_integration_id}/remove | Remove single custom integration from asset
+[**RemoveExplorer**](OrganizationAPI.md#RemoveExplorer) | **Delete** /org/explorers/{explorer_id} | Remove and uninstall an explorer
+[**RemoveKey**](OrganizationAPI.md#RemoveKey) | **Delete** /org/key | Remove the current API key
+[**RemoveService**](OrganizationAPI.md#RemoveService) | **Delete** /org/services/{service_id} | Remove a service
+[**RemoveSite**](OrganizationAPI.md#RemoveSite) | **Delete** /org/sites/{site_id} | Remove a site and associated assets
+[**RemoveWirelessLAN**](OrganizationAPI.md#RemoveWirelessLAN) | **Delete** /org/wireless/{wireless_id} | Remove a wireless LAN
+[**RotateKey**](OrganizationAPI.md#RotateKey) | **Patch** /org/key/rotate | Rotate the API key secret and return the updated key
+[**StopTask**](OrganizationAPI.md#StopTask) | **Post** /org/tasks/{task_id}/stop | Signal that a task should be stopped or canceled.This will also remove recurring and scheduled tasks
+[**UpdateAgentSettings**](OrganizationAPI.md#UpdateAgentSettings) | **Patch** /org/agents/{agent_id} | Update the settings associated with the agent. Legacy path for /org/explorers/{explorer_id}
+[**UpdateAssetComments**](OrganizationAPI.md#UpdateAssetComments) | **Patch** /org/assets/{asset_id}/comments | Update asset comments
+[**UpdateAssetCriticality**](OrganizationAPI.md#UpdateAssetCriticality) | **Patch** /org/assets/{asset_id}/criticality | Update asset criticality
+[**UpdateAssetOwners**](OrganizationAPI.md#UpdateAssetOwners) | **Patch** /org/assets/{asset_id}/owners | Update asset owners
+[**UpdateAssetTags**](OrganizationAPI.md#UpdateAssetTags) | **Patch** /org/assets/{asset_id}/tags | Update asset tags
+[**UpdateBulkAssetCriticality**](OrganizationAPI.md#UpdateBulkAssetCriticality) | **Patch** /org/assets/bulk/criticality | Update criticality across multiple assets based on a search query
+[**UpdateBulkAssetOwners**](OrganizationAPI.md#UpdateBulkAssetOwners) | **Patch** /org/assets/bulk/owners | Update asset owners across multiple assets based on a search query
+[**UpdateBulkAssetTags**](OrganizationAPI.md#UpdateBulkAssetTags) | **Patch** /org/assets/bulk/tags | Update tags across multiple assets based on a search query
+[**UpdateExplorerSettings**](OrganizationAPI.md#UpdateExplorerSettings) | **Patch** /org/explorers/{explorer_id} | Update the settings associated with the Explorer
+[**UpdateOrganization**](OrganizationAPI.md#UpdateOrganization) | **Patch** /org | Update organization details
+[**UpdateSite**](OrganizationAPI.md#UpdateSite) | **Patch** /org/sites/{site_id} | Update a site definition
+[**UpdateTask**](OrganizationAPI.md#UpdateTask) | **Patch** /org/tasks/{task_id} | Update task parameters
+[**UpgradeAgent**](OrganizationAPI.md#UpgradeAgent) | **Post** /org/agents/{agent_id}/update | Force an agent to update and restart. Legacy path for /org/explorers/{explorer_id}/update
+[**UpgradeExplorer**](OrganizationAPI.md#UpgradeExplorer) | **Post** /org/explorers/{explorer_id}/update | Force an explorer to update and restart
 
 
 
-## CreateScan
+## BulkRemoveCustomIntegration
 
-> Task CreateScan(ctx, siteId).ScanOptions(scanOptions).Execute()
+> BulkRemoveCustomIntegration(ctx, customIntegrationId).AssetIDs(assetIDs).Execute()
 
-Create a scan task for a given site.
+Remove custom integration from a list of assets
 
 ### Example
 
@@ -52,25 +77,23 @@ Create a scan task for a given site.
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    siteId := TODO // string | UUID or name of the site to scan
-    scanOptions := openapiclient.ScanOptions{Targets: "Targets_example", Excludes: "Excludes_example", ScanName: "ScanName_example", ScanDescription: "ScanDescription_example", ScanFrequency: "ScanFrequency_example", ScanStart: 123, Agent: "Agent_example", Rate: 123, MaxHostRate: 123, Passes: 123, MaxSockets: 123, MaxGroupSize: 123, TcpPorts: "TcpPorts_example", Screenshots: true, Nameservers: "Nameservers_example", Probes: "Probes_example"} // ScanOptions |  (optional)
+	customIntegrationId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | UUID of the custom integration
+	assetIDs := *openapiclient.NewAssetIDs([]string{"453C191F-644E-4EA8-9727-0E81E5275C35"}) // AssetIDs | list of asset IDs to remove
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.OrganizationApi.CreateScan(context.Background(), siteId).ScanOptions(scanOptions).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `OrganizationApi.CreateScan``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `CreateScan`: Task
-    fmt.Fprintf(os.Stdout, "Response from `OrganizationApi.CreateScan`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.OrganizationAPI.BulkRemoveCustomIntegration(context.Background(), customIntegrationId).AssetIDs(assetIDs).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `OrganizationAPI.BulkRemoveCustomIntegration``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
 }
 ```
 
@@ -80,7 +103,282 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**siteId** | [**string**](.md) | UUID or name of the site to scan | 
+**customIntegrationId** | **string** | UUID of the custom integration | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiBulkRemoveCustomIntegrationRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **assetIDs** | [**AssetIDs**](AssetIDs.md) | list of asset IDs to remove | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[oauthDefaults](../README.md#oauthDefaults), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ClearBulkAssetOwners
+
+> UpdateBulkAssetOwners200Response ClearBulkAssetOwners(ctx).SearchQuery(searchQuery).Oid(oid).Execute()
+
+Clear all owners across multiple assets based on a search query
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+	searchQuery := *openapiclient.NewSearchQuery("alive:true and os:windows") // SearchQuery | search query to filter
+	oid := "oid_example" // string | The current Organization (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.OrganizationAPI.ClearBulkAssetOwners(context.Background()).SearchQuery(searchQuery).Oid(oid).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `OrganizationAPI.ClearBulkAssetOwners``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ClearBulkAssetOwners`: UpdateBulkAssetOwners200Response
+	fmt.Fprintf(os.Stdout, "Response from `OrganizationAPI.ClearBulkAssetOwners`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiClearBulkAssetOwnersRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **searchQuery** | [**SearchQuery**](SearchQuery.md) | search query to filter | 
+ **oid** | **string** | The current Organization | 
+
+### Return type
+
+[**UpdateBulkAssetOwners200Response**](UpdateBulkAssetOwners200Response.md)
+
+### Authorization
+
+[oauthDefaults](../README.md#oauthDefaults), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ClearBulkAssetTags
+
+> map[string]interface{} ClearBulkAssetTags(ctx).SearchQuery(searchQuery).Oid(oid).Execute()
+
+Clear all tags across multiple assets based on a search query
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+	searchQuery := *openapiclient.NewSearchQuery("alive:true and os:windows") // SearchQuery | search query to filter
+	oid := "oid_example" // string | The current Organization (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.OrganizationAPI.ClearBulkAssetTags(context.Background()).SearchQuery(searchQuery).Oid(oid).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `OrganizationAPI.ClearBulkAssetTags``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ClearBulkAssetTags`: map[string]interface{}
+	fmt.Fprintf(os.Stdout, "Response from `OrganizationAPI.ClearBulkAssetTags`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiClearBulkAssetTagsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **searchQuery** | [**SearchQuery**](SearchQuery.md) | search query to filter | 
+ **oid** | **string** | The current Organization | 
+
+### Return type
+
+**map[string]interface{}**
+
+### Authorization
+
+[oauthDefaults](../README.md#oauthDefaults), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## CreateSample
+
+> Task CreateSample(ctx, siteId).Oid(oid).SampleOptions(sampleOptions).Execute()
+
+Create a traffic sampling task for a given site
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+	siteId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | UUID or name of the site to scan
+	oid := "oid_example" // string | The current Organization (optional)
+	sampleOptions := *openapiclient.NewSampleOptions("eth0,wlan0") // SampleOptions |  (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.OrganizationAPI.CreateSample(context.Background(), siteId).Oid(oid).SampleOptions(sampleOptions).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `OrganizationAPI.CreateSample``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CreateSample`: Task
+	fmt.Fprintf(os.Stdout, "Response from `OrganizationAPI.CreateSample`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**siteId** | **string** | UUID or name of the site to scan | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateSampleRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **oid** | **string** | The current Organization | 
+ **sampleOptions** | [**SampleOptions**](SampleOptions.md) |  | 
+
+### Return type
+
+[**Task**](Task.md)
+
+### Authorization
+
+[oauthDefaults](../README.md#oauthDefaults), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: text/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## CreateScan
+
+> Task CreateScan(ctx, siteId).Oid(oid).ScanOptions(scanOptions).Execute()
+
+Create a scan task for a given site
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+	siteId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | UUID or name of the site to scan
+	oid := "oid_example" // string | The current Organization (optional)
+	scanOptions := *openapiclient.NewScanOptions("defaults") // ScanOptions |  (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.OrganizationAPI.CreateScan(context.Background(), siteId).Oid(oid).ScanOptions(scanOptions).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `OrganizationAPI.CreateScan``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CreateScan`: Task
+	fmt.Fprintf(os.Stdout, "Response from `OrganizationAPI.CreateScan`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**siteId** | **string** | UUID or name of the site to scan | 
 
 ### Other Parameters
 
@@ -90,6 +388,7 @@ Other parameters are passed through a pointer to a apiCreateScanRequest struct v
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **oid** | **string** | The current Organization | 
  **scanOptions** | [**ScanOptions**](ScanOptions.md) |  | 
 
 ### Return type
@@ -98,7 +397,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth)
+[oauthDefaults](../README.md#oauthDefaults), [bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -112,9 +411,9 @@ Name | Type | Description  | Notes
 
 ## CreateSite
 
-> Site CreateSite(ctx).SiteOptions(siteOptions).Execute()
+> Site CreateSite(ctx).SiteOptions(siteOptions).Oid(oid).Execute()
 
-Create a new site.
+Create a new site
 
 ### Example
 
@@ -122,24 +421,25 @@ Create a new site.
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    siteOptions := openapiclient.SiteOptions{Name: "Name_example", Description: "Description_example", Scope: "Scope_example", Excludes: "Excludes_example"} // SiteOptions | site definition
+	siteOptions := *openapiclient.NewSiteOptions("New Site") // SiteOptions | site definition
+	oid := "oid_example" // string | The current Organization (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.OrganizationApi.CreateSite(context.Background(), siteOptions).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `OrganizationApi.CreateSite``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `CreateSite`: Site
-    fmt.Fprintf(os.Stdout, "Response from `OrganizationApi.CreateSite`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.OrganizationAPI.CreateSite(context.Background()).SiteOptions(siteOptions).Oid(oid).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `OrganizationAPI.CreateSite``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CreateSite`: Site
+	fmt.Fprintf(os.Stdout, "Response from `OrganizationAPI.CreateSite`: %v\n", resp)
 }
 ```
 
@@ -155,6 +455,7 @@ Other parameters are passed through a pointer to a apiCreateSiteRequest struct v
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **siteOptions** | [**SiteOptions**](SiteOptions.md) | site definition | 
+ **oid** | **string** | The current Organization | 
 
 ### Return type
 
@@ -162,7 +463,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth)
+[oauthDefaults](../README.md#oauthDefaults), [bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -176,9 +477,9 @@ Name | Type | Description  | Notes
 
 ## GetAgent
 
-> Agent GetAgent(ctx, agentId).Execute()
+> Agent GetAgent(ctx, agentId).Oid(oid).Execute()
 
-Get details for a single agent.
+Get details for a single agent. Legacy path for /org/explorers/{explorer_id}
 
 ### Example
 
@@ -186,24 +487,25 @@ Get details for a single agent.
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    agentId := TODO // string | UUID of the agent
+	agentId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | UUID of the agent
+	oid := "oid_example" // string | The current Organization (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.OrganizationApi.GetAgent(context.Background(), agentId).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `OrganizationApi.GetAgent``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetAgent`: Agent
-    fmt.Fprintf(os.Stdout, "Response from `OrganizationApi.GetAgent`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.OrganizationAPI.GetAgent(context.Background(), agentId).Oid(oid).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `OrganizationAPI.GetAgent``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetAgent`: Agent
+	fmt.Fprintf(os.Stdout, "Response from `OrganizationAPI.GetAgent`: %v\n", resp)
 }
 ```
 
@@ -213,7 +515,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**agentId** | [**string**](.md) | UUID of the agent | 
+**agentId** | **string** | UUID of the agent | 
 
 ### Other Parameters
 
@@ -223,6 +525,7 @@ Other parameters are passed through a pointer to a apiGetAgentRequest struct via
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **oid** | **string** | The current Organization | 
 
 ### Return type
 
@@ -230,7 +533,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth)
+[oauthDefaults](../README.md#oauthDefaults), [bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -244,9 +547,9 @@ Name | Type | Description  | Notes
 
 ## GetAgents
 
-> []Agent GetAgents(ctx).Execute()
+> []Agent GetAgents(ctx).Oid(oid).Execute()
 
-Get all agents.
+Get all agents. Legacy path for /org/explorers
 
 ### Example
 
@@ -254,34 +557,39 @@ Get all agents.
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
+	oid := "oid_example" // string | The current Organization (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.OrganizationApi.GetAgents(context.Background(), ).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `OrganizationApi.GetAgents``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetAgents`: []Agent
-    fmt.Fprintf(os.Stdout, "Response from `OrganizationApi.GetAgents`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.OrganizationAPI.GetAgents(context.Background()).Oid(oid).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `OrganizationAPI.GetAgents``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetAgents`: []Agent
+	fmt.Fprintf(os.Stdout, "Response from `OrganizationAPI.GetAgents`: %v\n", resp)
 }
 ```
 
 ### Path Parameters
 
-This endpoint does not need any parameter.
+
 
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiGetAgentsRequest struct via the builder pattern
 
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **oid** | **string** | The current Organization | 
 
 ### Return type
 
@@ -289,7 +597,7 @@ Other parameters are passed through a pointer to a apiGetAgentsRequest struct vi
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth)
+[oauthDefaults](../README.md#oauthDefaults), [bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -303,9 +611,9 @@ Other parameters are passed through a pointer to a apiGetAgentsRequest struct vi
 
 ## GetAsset
 
-> Asset GetAsset(ctx, assetId).Execute()
+> Asset GetAsset(ctx, assetId).Oid(oid).Execute()
 
-Get asset details.
+Get asset details
 
 ### Example
 
@@ -313,24 +621,25 @@ Get asset details.
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    assetId := TODO // string | UUID of the asset to retrieve
+	assetId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | UUID of the asset to retrieve
+	oid := "oid_example" // string | The current Organization (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.OrganizationApi.GetAsset(context.Background(), assetId).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `OrganizationApi.GetAsset``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetAsset`: Asset
-    fmt.Fprintf(os.Stdout, "Response from `OrganizationApi.GetAsset`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.OrganizationAPI.GetAsset(context.Background(), assetId).Oid(oid).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `OrganizationAPI.GetAsset``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetAsset`: Asset
+	fmt.Fprintf(os.Stdout, "Response from `OrganizationAPI.GetAsset`: %v\n", resp)
 }
 ```
 
@@ -340,7 +649,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**assetId** | [**string**](.md) | UUID of the asset to retrieve | 
+**assetId** | **string** | UUID of the asset to retrieve | 
 
 ### Other Parameters
 
@@ -350,6 +659,7 @@ Other parameters are passed through a pointer to a apiGetAssetRequest struct via
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **oid** | **string** | The current Organization | 
 
 ### Return type
 
@@ -357,7 +667,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth)
+[oauthDefaults](../README.md#oauthDefaults), [bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -371,9 +681,9 @@ Name | Type | Description  | Notes
 
 ## GetAssets
 
-> []Asset GetAssets(ctx).Search(search).Execute()
+> []Asset GetAssets(ctx).Oid(oid).Search(search).Fields(fields).Execute()
 
-Get all assets.
+Get all assets
 
 ### Example
 
@@ -381,24 +691,26 @@ Get all assets.
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    search := "search_example" // string | an optional search string for filtering results (optional)
+	oid := "oid_example" // string | The current Organization (optional)
+	search := "search_example" // string | A search query in runZero search query syntax (optional)
+	fields := "fields_example" // string | A list of fields to export, comma-separated (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.OrganizationApi.GetAssets(context.Background(), ).Search(search).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `OrganizationApi.GetAssets``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetAssets`: []Asset
-    fmt.Fprintf(os.Stdout, "Response from `OrganizationApi.GetAssets`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.OrganizationAPI.GetAssets(context.Background()).Oid(oid).Search(search).Fields(fields).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `OrganizationAPI.GetAssets``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetAssets`: []Asset
+	fmt.Fprintf(os.Stdout, "Response from `OrganizationAPI.GetAssets`: %v\n", resp)
 }
 ```
 
@@ -413,7 +725,9 @@ Other parameters are passed through a pointer to a apiGetAssetsRequest struct vi
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **search** | **string** | an optional search string for filtering results | 
+ **oid** | **string** | The current Organization | 
+ **search** | **string** | A search query in runZero search query syntax | 
+ **fields** | **string** | A list of fields to export, comma-separated | 
 
 ### Return type
 
@@ -421,7 +735,283 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth)
+[oauthDefaults](../README.md#oauthDefaults), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetExplorer
+
+> Agent GetExplorer(ctx, explorerId).Oid(oid).Execute()
+
+Get details for a single explorer.
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+	explorerId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | UUID of the explorer
+	oid := "oid_example" // string | The current Organization (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.OrganizationAPI.GetExplorer(context.Background(), explorerId).Oid(oid).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `OrganizationAPI.GetExplorer``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetExplorer`: Agent
+	fmt.Fprintf(os.Stdout, "Response from `OrganizationAPI.GetExplorer`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**explorerId** | **string** | UUID of the explorer | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetExplorerRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **oid** | **string** | The current Organization | 
+
+### Return type
+
+[**Agent**](Agent.md)
+
+### Authorization
+
+[oauthDefaults](../README.md#oauthDefaults), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetExplorers
+
+> []Agent GetExplorers(ctx).Oid(oid).Execute()
+
+Get all explorers
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+	oid := "oid_example" // string | The current Organization (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.OrganizationAPI.GetExplorers(context.Background()).Oid(oid).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `OrganizationAPI.GetExplorers``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetExplorers`: []Agent
+	fmt.Fprintf(os.Stdout, "Response from `OrganizationAPI.GetExplorers`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetExplorersRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **oid** | **string** | The current Organization | 
+
+### Return type
+
+[**[]Agent**](Agent.md)
+
+### Authorization
+
+[oauthDefaults](../README.md#oauthDefaults), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetHostedZone
+
+> HostedZone GetHostedZone(ctx, hostedZoneId).Oid(oid).Execute()
+
+Get details for a single hosted zone.
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+	hostedZoneId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | UUID of the hosted zone
+	oid := "oid_example" // string | The current Organization (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.OrganizationAPI.GetHostedZone(context.Background(), hostedZoneId).Oid(oid).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `OrganizationAPI.GetHostedZone``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetHostedZone`: HostedZone
+	fmt.Fprintf(os.Stdout, "Response from `OrganizationAPI.GetHostedZone`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**hostedZoneId** | **string** | UUID of the hosted zone | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetHostedZoneRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **oid** | **string** | The current Organization | 
+
+### Return type
+
+[**HostedZone**](HostedZone.md)
+
+### Authorization
+
+[oauthDefaults](../README.md#oauthDefaults), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetHostedZones
+
+> []HostedZone GetHostedZones(ctx).Oid(oid).Execute()
+
+Get all hosted zones
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+	oid := "oid_example" // string | The current Organization (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.OrganizationAPI.GetHostedZones(context.Background()).Oid(oid).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `OrganizationAPI.GetHostedZones``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetHostedZones`: []HostedZone
+	fmt.Fprintf(os.Stdout, "Response from `OrganizationAPI.GetHostedZones`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetHostedZonesRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **oid** | **string** | The current Organization | 
+
+### Return type
+
+[**[]HostedZone**](HostedZone.md)
+
+### Authorization
+
+[oauthDefaults](../README.md#oauthDefaults), [bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -435,9 +1025,9 @@ Name | Type | Description  | Notes
 
 ## GetKey
 
-> APIKey GetKey(ctx).Execute()
+> OrganizationAPIKey GetKey(ctx).Oid(oid).Execute()
 
-Get API key details.
+Get API key details
 
 ### Example
 
@@ -445,42 +1035,47 @@ Get API key details.
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
+	oid := "oid_example" // string | The current Organization (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.OrganizationApi.GetKey(context.Background(), ).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `OrganizationApi.GetKey``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetKey`: APIKey
-    fmt.Fprintf(os.Stdout, "Response from `OrganizationApi.GetKey`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.OrganizationAPI.GetKey(context.Background()).Oid(oid).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `OrganizationAPI.GetKey``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetKey`: OrganizationAPIKey
+	fmt.Fprintf(os.Stdout, "Response from `OrganizationAPI.GetKey`: %v\n", resp)
 }
 ```
 
 ### Path Parameters
 
-This endpoint does not need any parameter.
+
 
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiGetKeyRequest struct via the builder pattern
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **oid** | **string** | The current Organization | 
+
 ### Return type
 
-[**APIKey**](APIKey.md)
+[**OrganizationAPIKey**](OrganizationAPIKey.md)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth)
+[oauthDefaults](../README.md#oauthDefaults), [bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -494,9 +1089,9 @@ Other parameters are passed through a pointer to a apiGetKeyRequest struct via t
 
 ## GetOrganization
 
-> Organization GetOrganization(ctx).Execute()
+> Organization GetOrganization(ctx).Oid(oid).Execute()
 
-Get organization details.
+Get organization details
 
 ### Example
 
@@ -504,34 +1099,39 @@ Get organization details.
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
+	oid := "oid_example" // string | The current Organization (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.OrganizationApi.GetOrganization(context.Background(), ).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `OrganizationApi.GetOrganization``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetOrganization`: Organization
-    fmt.Fprintf(os.Stdout, "Response from `OrganizationApi.GetOrganization`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.OrganizationAPI.GetOrganization(context.Background()).Oid(oid).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `OrganizationAPI.GetOrganization``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetOrganization`: Organization
+	fmt.Fprintf(os.Stdout, "Response from `OrganizationAPI.GetOrganization`: %v\n", resp)
 }
 ```
 
 ### Path Parameters
 
-This endpoint does not need any parameter.
+
 
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiGetOrganizationRequest struct via the builder pattern
 
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **oid** | **string** | The current Organization | 
 
 ### Return type
 
@@ -539,7 +1139,7 @@ Other parameters are passed through a pointer to a apiGetOrganizationRequest str
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth)
+[oauthDefaults](../README.md#oauthDefaults), [bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -553,9 +1153,9 @@ Other parameters are passed through a pointer to a apiGetOrganizationRequest str
 
 ## GetService
 
-> Service GetService(ctx, serviceId).Execute()
+> Service GetService(ctx, serviceId).Oid(oid).Execute()
 
-Get service details.
+Get service details
 
 ### Example
 
@@ -563,24 +1163,25 @@ Get service details.
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    serviceId := TODO // string | UUID of the service to retrieve
+	serviceId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | UUID of the service to retrieve
+	oid := "oid_example" // string | The current Organization (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.OrganizationApi.GetService(context.Background(), serviceId).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `OrganizationApi.GetService``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetService`: Service
-    fmt.Fprintf(os.Stdout, "Response from `OrganizationApi.GetService`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.OrganizationAPI.GetService(context.Background(), serviceId).Oid(oid).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `OrganizationAPI.GetService``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetService`: Service
+	fmt.Fprintf(os.Stdout, "Response from `OrganizationAPI.GetService`: %v\n", resp)
 }
 ```
 
@@ -590,7 +1191,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**serviceId** | [**string**](.md) | UUID of the service to retrieve | 
+**serviceId** | **string** | UUID of the service to retrieve | 
 
 ### Other Parameters
 
@@ -600,6 +1201,7 @@ Other parameters are passed through a pointer to a apiGetServiceRequest struct v
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **oid** | **string** | The current Organization | 
 
 ### Return type
 
@@ -607,7 +1209,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth)
+[oauthDefaults](../README.md#oauthDefaults), [bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -621,9 +1223,9 @@ Name | Type | Description  | Notes
 
 ## GetServices
 
-> []Service GetServices(ctx).Search(search).Execute()
+> []Service GetServices(ctx).Oid(oid).Search(search).Execute()
 
-Get all services.
+Get all services
 
 ### Example
 
@@ -631,24 +1233,25 @@ Get all services.
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    search := "search_example" // string | an optional search string for filtering results (optional)
+	oid := "oid_example" // string | The current Organization (optional)
+	search := "search_example" // string | an optional search string for filtering results (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.OrganizationApi.GetServices(context.Background(), ).Search(search).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `OrganizationApi.GetServices``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetServices`: []Service
-    fmt.Fprintf(os.Stdout, "Response from `OrganizationApi.GetServices`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.OrganizationAPI.GetServices(context.Background()).Oid(oid).Search(search).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `OrganizationAPI.GetServices``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetServices`: []Service
+	fmt.Fprintf(os.Stdout, "Response from `OrganizationAPI.GetServices`: %v\n", resp)
 }
 ```
 
@@ -663,6 +1266,7 @@ Other parameters are passed through a pointer to a apiGetServicesRequest struct 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **oid** | **string** | The current Organization | 
  **search** | **string** | an optional search string for filtering results | 
 
 ### Return type
@@ -671,7 +1275,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth)
+[oauthDefaults](../README.md#oauthDefaults), [bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -685,9 +1289,9 @@ Name | Type | Description  | Notes
 
 ## GetSite
 
-> Site GetSite(ctx, siteId).Execute()
+> Site GetSite(ctx, siteId).Oid(oid).Execute()
 
-Get site details.
+Get site details
 
 ### Example
 
@@ -695,24 +1299,25 @@ Get site details.
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    siteId := TODO // string | UUID or name of the site
+	siteId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | UUID or name of the site
+	oid := "oid_example" // string | The current Organization (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.OrganizationApi.GetSite(context.Background(), siteId).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `OrganizationApi.GetSite``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetSite`: Site
-    fmt.Fprintf(os.Stdout, "Response from `OrganizationApi.GetSite`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.OrganizationAPI.GetSite(context.Background(), siteId).Oid(oid).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `OrganizationAPI.GetSite``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetSite`: Site
+	fmt.Fprintf(os.Stdout, "Response from `OrganizationAPI.GetSite`: %v\n", resp)
 }
 ```
 
@@ -722,7 +1327,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**siteId** | [**string**](.md) | UUID or name of the site | 
+**siteId** | **string** | UUID or name of the site | 
 
 ### Other Parameters
 
@@ -732,6 +1337,7 @@ Other parameters are passed through a pointer to a apiGetSiteRequest struct via 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **oid** | **string** | The current Organization | 
 
 ### Return type
 
@@ -739,7 +1345,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth)
+[oauthDefaults](../README.md#oauthDefaults), [bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -753,9 +1359,9 @@ Name | Type | Description  | Notes
 
 ## GetSites
 
-> []Site GetSites(ctx).Execute()
+> []Site GetSites(ctx).Oid(oid).Execute()
 
-Get all sites.
+Get all sites
 
 ### Example
 
@@ -763,34 +1369,39 @@ Get all sites.
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
+	oid := "oid_example" // string | The current Organization (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.OrganizationApi.GetSites(context.Background(), ).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `OrganizationApi.GetSites``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetSites`: []Site
-    fmt.Fprintf(os.Stdout, "Response from `OrganizationApi.GetSites`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.OrganizationAPI.GetSites(context.Background()).Oid(oid).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `OrganizationAPI.GetSites``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetSites`: []Site
+	fmt.Fprintf(os.Stdout, "Response from `OrganizationAPI.GetSites`: %v\n", resp)
 }
 ```
 
 ### Path Parameters
 
-This endpoint does not need any parameter.
+
 
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiGetSitesRequest struct via the builder pattern
 
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **oid** | **string** | The current Organization | 
 
 ### Return type
 
@@ -798,7 +1409,7 @@ Other parameters are passed through a pointer to a apiGetSitesRequest struct via
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth)
+[oauthDefaults](../README.md#oauthDefaults), [bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -812,9 +1423,9 @@ Other parameters are passed through a pointer to a apiGetSitesRequest struct via
 
 ## GetTask
 
-> Task GetTask(ctx, taskId).Execute()
+> Task GetTask(ctx, taskId).Oid(oid).Execute()
 
-Get task details.
+Get task details
 
 ### Example
 
@@ -822,24 +1433,25 @@ Get task details.
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    taskId := TODO // string | UUID of the task to retrieve
+	taskId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | UUID of the task to retrieve
+	oid := "oid_example" // string | The current Organization (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.OrganizationApi.GetTask(context.Background(), taskId).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `OrganizationApi.GetTask``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetTask`: Task
-    fmt.Fprintf(os.Stdout, "Response from `OrganizationApi.GetTask`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.OrganizationAPI.GetTask(context.Background(), taskId).Oid(oid).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `OrganizationAPI.GetTask``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetTask`: Task
+	fmt.Fprintf(os.Stdout, "Response from `OrganizationAPI.GetTask`: %v\n", resp)
 }
 ```
 
@@ -849,7 +1461,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**taskId** | [**string**](.md) | UUID of the task to retrieve | 
+**taskId** | **string** | UUID of the task to retrieve | 
 
 ### Other Parameters
 
@@ -859,6 +1471,7 @@ Other parameters are passed through a pointer to a apiGetTaskRequest struct via 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **oid** | **string** | The current Organization | 
 
 ### Return type
 
@@ -866,7 +1479,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth)
+[oauthDefaults](../README.md#oauthDefaults), [bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -880,9 +1493,9 @@ Name | Type | Description  | Notes
 
 ## GetTaskChangeReport
 
-> GetTaskChangeReport(ctx, taskId).Execute()
+> GetTaskChangeReport(ctx, taskId).Oid(oid).Execute()
 
-Returns a temporary task change report data url.
+Returns a temporary task change report data url
 
 ### Example
 
@@ -890,22 +1503,23 @@ Returns a temporary task change report data url.
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    taskId := TODO // string | UUID of the task
+	taskId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | UUID of the task
+	oid := "oid_example" // string | The current Organization (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.OrganizationApi.GetTaskChangeReport(context.Background(), taskId).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `OrganizationApi.GetTaskChangeReport``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.OrganizationAPI.GetTaskChangeReport(context.Background(), taskId).Oid(oid).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `OrganizationAPI.GetTaskChangeReport``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
 }
 ```
 
@@ -915,7 +1529,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**taskId** | [**string**](.md) | UUID of the task | 
+**taskId** | **string** | UUID of the task | 
 
 ### Other Parameters
 
@@ -925,6 +1539,7 @@ Other parameters are passed through a pointer to a apiGetTaskChangeReportRequest
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **oid** | **string** | The current Organization | 
 
 ### Return type
 
@@ -932,23 +1547,23 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth)
+[oauthDefaults](../README.md#oauthDefaults), [bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## GetTaskScanData
+## GetTaskLog
 
-> GetTaskScanData(ctx, taskId).Execute()
+> GetTaskLog(ctx, taskId).Oid(oid).Execute()
 
-Returns a temporary task scan data url.
+Returns a temporary task log data url
 
 ### Example
 
@@ -956,22 +1571,23 @@ Returns a temporary task scan data url.
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    taskId := TODO // string | UUID of the task
+	taskId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | UUID of the task
+	oid := "oid_example" // string | The current Organization (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.OrganizationApi.GetTaskScanData(context.Background(), taskId).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `OrganizationApi.GetTaskScanData``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.OrganizationAPI.GetTaskLog(context.Background(), taskId).Oid(oid).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `OrganizationAPI.GetTaskLog``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
 }
 ```
 
@@ -981,7 +1597,75 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**taskId** | [**string**](.md) | UUID of the task | 
+**taskId** | **string** | UUID of the task | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetTaskLogRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **oid** | **string** | The current Organization | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[oauthDefaults](../README.md#oauthDefaults), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetTaskScanData
+
+> GetTaskScanData(ctx, taskId).Oid(oid).Execute()
+
+Returns a temporary task scan data url
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+	taskId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | UUID of the task
+	oid := "oid_example" // string | The current Organization (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.OrganizationAPI.GetTaskScanData(context.Background(), taskId).Oid(oid).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `OrganizationAPI.GetTaskScanData``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**taskId** | **string** | UUID of the task | 
 
 ### Other Parameters
 
@@ -991,6 +1675,7 @@ Other parameters are passed through a pointer to a apiGetTaskScanDataRequest str
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **oid** | **string** | The current Organization | 
 
 ### Return type
 
@@ -998,12 +1683,12 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth)
+[oauthDefaults](../README.md#oauthDefaults), [bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -1012,9 +1697,9 @@ Name | Type | Description  | Notes
 
 ## GetTasks
 
-> []Task GetTasks(ctx).Status(status).Execute()
+> []Task GetTasks(ctx).Oid(oid).Status(status).Search(search).Execute()
 
-Get all tasks (last 1000).
+Get all tasks (last 1000)
 
 ### Example
 
@@ -1022,24 +1707,26 @@ Get all tasks (last 1000).
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    status := "status_example" // string | an optional status string for filtering results (optional)
+	oid := "oid_example" // string | The current Organization (optional)
+	status := "status_example" // string | an optional status string for filtering results (optional)
+	search := "search_example" // string | an optional search string for filtering results (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.OrganizationApi.GetTasks(context.Background(), ).Status(status).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `OrganizationApi.GetTasks``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetTasks`: []Task
-    fmt.Fprintf(os.Stdout, "Response from `OrganizationApi.GetTasks`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.OrganizationAPI.GetTasks(context.Background()).Oid(oid).Status(status).Search(search).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `OrganizationAPI.GetTasks``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetTasks`: []Task
+	fmt.Fprintf(os.Stdout, "Response from `OrganizationAPI.GetTasks`: %v\n", resp)
 }
 ```
 
@@ -1054,7 +1741,9 @@ Other parameters are passed through a pointer to a apiGetTasksRequest struct via
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **oid** | **string** | The current Organization | 
  **status** | **string** | an optional status string for filtering results | 
+ **search** | **string** | an optional search string for filtering results | 
 
 ### Return type
 
@@ -1062,7 +1751,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth)
+[oauthDefaults](../README.md#oauthDefaults), [bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -1076,9 +1765,9 @@ Name | Type | Description  | Notes
 
 ## GetWirelessLAN
 
-> Wireless GetWirelessLAN(ctx, wirelessId).Execute()
+> Wireless GetWirelessLAN(ctx, wirelessId).Oid(oid).Execute()
 
-Get wireless LAN details.
+Get wireless LAN details
 
 ### Example
 
@@ -1086,24 +1775,25 @@ Get wireless LAN details.
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    wirelessId := TODO // string | UUID of the wireless LAN to retrieve
+	wirelessId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | UUID of the wireless LAN to retrieve
+	oid := "oid_example" // string | The current Organization (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.OrganizationApi.GetWirelessLAN(context.Background(), wirelessId).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `OrganizationApi.GetWirelessLAN``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetWirelessLAN`: Wireless
-    fmt.Fprintf(os.Stdout, "Response from `OrganizationApi.GetWirelessLAN`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.OrganizationAPI.GetWirelessLAN(context.Background(), wirelessId).Oid(oid).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `OrganizationAPI.GetWirelessLAN``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetWirelessLAN`: Wireless
+	fmt.Fprintf(os.Stdout, "Response from `OrganizationAPI.GetWirelessLAN`: %v\n", resp)
 }
 ```
 
@@ -1113,7 +1803,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**wirelessId** | [**string**](.md) | UUID of the wireless LAN to retrieve | 
+**wirelessId** | **string** | UUID of the wireless LAN to retrieve | 
 
 ### Other Parameters
 
@@ -1123,6 +1813,7 @@ Other parameters are passed through a pointer to a apiGetWirelessLANRequest stru
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **oid** | **string** | The current Organization | 
 
 ### Return type
 
@@ -1130,7 +1821,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth)
+[oauthDefaults](../README.md#oauthDefaults), [bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -1144,9 +1835,9 @@ Name | Type | Description  | Notes
 
 ## GetWirelessLANs
 
-> []Wireless GetWirelessLANs(ctx).Search(search).Execute()
+> []Wireless GetWirelessLANs(ctx).Oid(oid).Search(search).Execute()
 
-Get all wireless LANs.
+Get all wireless LANs
 
 ### Example
 
@@ -1154,24 +1845,25 @@ Get all wireless LANs.
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    search := "search_example" // string | an optional search string for filtering results (optional)
+	oid := "oid_example" // string | The current Organization (optional)
+	search := "search_example" // string | an optional search string for filtering results (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.OrganizationApi.GetWirelessLANs(context.Background(), ).Search(search).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `OrganizationApi.GetWirelessLANs``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetWirelessLANs`: []Wireless
-    fmt.Fprintf(os.Stdout, "Response from `OrganizationApi.GetWirelessLANs`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.OrganizationAPI.GetWirelessLANs(context.Background()).Oid(oid).Search(search).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `OrganizationAPI.GetWirelessLANs``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetWirelessLANs`: []Wireless
+	fmt.Fprintf(os.Stdout, "Response from `OrganizationAPI.GetWirelessLANs`: %v\n", resp)
 }
 ```
 
@@ -1186,6 +1878,7 @@ Other parameters are passed through a pointer to a apiGetWirelessLANsRequest str
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **oid** | **string** | The current Organization | 
  **search** | **string** | an optional search string for filtering results | 
 
 ### Return type
@@ -1194,7 +1887,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth)
+[oauthDefaults](../README.md#oauthDefaults), [bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -1208,9 +1901,9 @@ Name | Type | Description  | Notes
 
 ## HideTask
 
-> HideTask(ctx, taskId).Execute()
+> Task HideTask(ctx, taskId).Oid(oid).Execute()
 
-Signal that a completed task should be hidden.
+Signal that a completed task should be hidden
 
 ### Example
 
@@ -1218,22 +1911,25 @@ Signal that a completed task should be hidden.
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    taskId := TODO // string | UUID of the task to hide
+	taskId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | UUID of the task to hide
+	oid := "oid_example" // string | The current Organization (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.OrganizationApi.HideTask(context.Background(), taskId).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `OrganizationApi.HideTask``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.OrganizationAPI.HideTask(context.Background(), taskId).Oid(oid).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `OrganizationAPI.HideTask``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `HideTask`: Task
+	fmt.Fprintf(os.Stdout, "Response from `OrganizationAPI.HideTask`: %v\n", resp)
 }
 ```
 
@@ -1243,7 +1939,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**taskId** | [**string**](.md) | UUID of the task to hide | 
+**taskId** | **string** | UUID of the task to hide | 
 
 ### Other Parameters
 
@@ -1253,30 +1949,31 @@ Other parameters are passed through a pointer to a apiHideTaskRequest struct via
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **oid** | **string** | The current Organization | 
 
 ### Return type
 
- (empty response body)
+[**Task**](Task.md)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth)
+[oauthDefaults](../README.md#oauthDefaults), [bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## ImportScanData
+## ImportNessusScanData
 
-> Task ImportScanData(ctx, siteId).Body(body).Execute()
+> Task ImportNessusScanData(ctx, siteId).Oid(oid).Body(body).Execute()
 
-Import a scan data file into a site.
+Import a Nessus scan data file into a site
 
 ### Example
 
@@ -1284,25 +1981,26 @@ Import a scan data file into a site.
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    siteId := TODO // string | UUID or name of the site to import scan data into
-    body := 987 // *os.File |  (optional)
+	siteId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | UUID or name of the site to import Nessus scan data into
+	oid := "oid_example" // string | The current Organization (optional)
+	body := os.NewFile(1234, "some_file") // *os.File |  (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.OrganizationApi.ImportScanData(context.Background(), siteId).Body(body).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `OrganizationApi.ImportScanData``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ImportScanData`: Task
-    fmt.Fprintf(os.Stdout, "Response from `OrganizationApi.ImportScanData`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.OrganizationAPI.ImportNessusScanData(context.Background(), siteId).Oid(oid).Body(body).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `OrganizationAPI.ImportNessusScanData``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ImportNessusScanData`: Task
+	fmt.Fprintf(os.Stdout, "Response from `OrganizationAPI.ImportNessusScanData`: %v\n", resp)
 }
 ```
 
@@ -1312,16 +2010,17 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**siteId** | [**string**](.md) | UUID or name of the site to import scan data into | 
+**siteId** | **string** | UUID or name of the site to import Nessus scan data into | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiImportScanDataRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiImportNessusScanDataRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **oid** | **string** | The current Organization | 
  **body** | ***os.File** |  | 
 
 ### Return type
@@ -1330,7 +2029,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth)
+[oauthDefaults](../README.md#oauthDefaults), [bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -1342,11 +2041,11 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## RemoveAgent
+## ImportPacketData
 
-> RemoveAgent(ctx, agentId).Execute()
+> Task ImportPacketData(ctx, siteId).Oid(oid).Body(body).Execute()
 
-Remove and uninstall an agent.
+Import a packet capture file into a site
 
 ### Example
 
@@ -1354,22 +2053,26 @@ Remove and uninstall an agent.
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    agentId := TODO // string | UUID of the agent to remove
+	siteId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | UUID or name of the site to import packet capture into
+	oid := "oid_example" // string | The current Organization (optional)
+	body := os.NewFile(1234, "some_file") // *os.File |  (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.OrganizationApi.RemoveAgent(context.Background(), agentId).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `OrganizationApi.RemoveAgent``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.OrganizationAPI.ImportPacketData(context.Background(), siteId).Oid(oid).Body(body).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `OrganizationAPI.ImportPacketData``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ImportPacketData`: Task
+	fmt.Fprintf(os.Stdout, "Response from `OrganizationAPI.ImportPacketData`: %v\n", resp)
 }
 ```
 
@@ -1379,7 +2082,214 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**agentId** | [**string**](.md) | UUID of the agent to remove | 
+**siteId** | **string** | UUID or name of the site to import packet capture into | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiImportPacketDataRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **oid** | **string** | The current Organization | 
+ **body** | ***os.File** |  | 
+
+### Return type
+
+[**Task**](Task.md)
+
+### Authorization
+
+[oauthDefaults](../README.md#oauthDefaults), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/octet-stream
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ImportScanData
+
+> Task ImportScanData(ctx, siteId).Oid(oid).Body(body).Execute()
+
+Import a scan data file into a site
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+	siteId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | UUID or name of the site to import scan data into
+	oid := "oid_example" // string | The current Organization (optional)
+	body := os.NewFile(1234, "some_file") // *os.File |  (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.OrganizationAPI.ImportScanData(context.Background(), siteId).Oid(oid).Body(body).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `OrganizationAPI.ImportScanData``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ImportScanData`: Task
+	fmt.Fprintf(os.Stdout, "Response from `OrganizationAPI.ImportScanData`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**siteId** | **string** | UUID or name of the site to import scan data into | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiImportScanDataRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **oid** | **string** | The current Organization | 
+ **body** | ***os.File** |  | 
+
+### Return type
+
+[**Task**](Task.md)
+
+### Authorization
+
+[oauthDefaults](../README.md#oauthDefaults), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/octet-stream
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## MergeAssets
+
+> map[string]interface{} MergeAssets(ctx).AssetIDs(assetIDs).Oid(oid).Execute()
+
+Merge multiple assets
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+	assetIDs := *openapiclient.NewAssetIDs([]string{"453C191F-644E-4EA8-9727-0E81E5275C35"}) // AssetIDs | List of Asset IDs to merge
+	oid := "oid_example" // string | The current Organization (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.OrganizationAPI.MergeAssets(context.Background()).AssetIDs(assetIDs).Oid(oid).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `OrganizationAPI.MergeAssets``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `MergeAssets`: map[string]interface{}
+	fmt.Fprintf(os.Stdout, "Response from `OrganizationAPI.MergeAssets`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiMergeAssetsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **assetIDs** | [**AssetIDs**](AssetIDs.md) | List of Asset IDs to merge | 
+ **oid** | **string** | The current Organization | 
+
+### Return type
+
+**map[string]interface{}**
+
+### Authorization
+
+[oauthDefaults](../README.md#oauthDefaults), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## RemoveAgent
+
+> RemoveAgent(ctx, agentId).Oid(oid).Execute()
+
+Remove and uninstall an agent. Legacy path for /org/explorers/{explorer_id}
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+	agentId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | UUID of the agent to remove
+	oid := "oid_example" // string | The current Organization (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.OrganizationAPI.RemoveAgent(context.Background(), agentId).Oid(oid).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `OrganizationAPI.RemoveAgent``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**agentId** | **string** | UUID of the agent to remove | 
 
 ### Other Parameters
 
@@ -1389,6 +2299,7 @@ Other parameters are passed through a pointer to a apiRemoveAgentRequest struct 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **oid** | **string** | The current Organization | 
 
 ### Return type
 
@@ -1396,12 +2307,12 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth)
+[oauthDefaults](../README.md#oauthDefaults), [bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -1410,9 +2321,9 @@ Name | Type | Description  | Notes
 
 ## RemoveAsset
 
-> RemoveAsset(ctx, assetId).Execute()
+> RemoveAsset(ctx, assetId).Oid(oid).Execute()
 
-Remove an asset.
+Remove an asset
 
 ### Example
 
@@ -1420,22 +2331,23 @@ Remove an asset.
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    assetId := TODO // string | UUID of the asset to remove
+	assetId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | UUID of the asset to remove
+	oid := "oid_example" // string | The current Organization (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.OrganizationApi.RemoveAsset(context.Background(), assetId).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `OrganizationApi.RemoveAsset``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.OrganizationAPI.RemoveAsset(context.Background(), assetId).Oid(oid).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `OrganizationAPI.RemoveAsset``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
 }
 ```
 
@@ -1445,7 +2357,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**assetId** | [**string**](.md) | UUID of the asset to remove | 
+**assetId** | **string** | UUID of the asset to remove | 
 
 ### Other Parameters
 
@@ -1455,6 +2367,7 @@ Other parameters are passed through a pointer to a apiRemoveAssetRequest struct 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **oid** | **string** | The current Organization | 
 
 ### Return type
 
@@ -1462,23 +2375,23 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth)
+[oauthDefaults](../README.md#oauthDefaults), [bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## RemoveService
+## RemoveAssetSource
 
-> RemoveService(ctx, serviceId).Execute()
+> RemoveAssetSource(ctx, assetId, sourceId).Execute()
 
-Remove a service.
+Remove single source from asset
 
 ### Example
 
@@ -1486,22 +2399,23 @@ Remove a service.
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    serviceId := TODO // string | UUID of the service to remove
+	assetId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | UUID of the asset to update
+	sourceId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | UUID of the source
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.OrganizationApi.RemoveService(context.Background(), serviceId).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `OrganizationApi.RemoveService``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.OrganizationAPI.RemoveAssetSource(context.Background(), assetId, sourceId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `OrganizationAPI.RemoveAssetSource``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
 }
 ```
 
@@ -1511,7 +2425,341 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**serviceId** | [**string**](.md) | UUID of the service to remove | 
+**assetId** | **string** | UUID of the asset to update | 
+**sourceId** | **string** | UUID of the source | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiRemoveAssetSourceRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[oauthDefaults](../README.md#oauthDefaults), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## RemoveBulkAssets
+
+> RemoveBulkAssets(ctx).AssetIDs(assetIDs).Oid(oid).Execute()
+
+Removes multiple assets by ID
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+	assetIDs := *openapiclient.NewAssetIDs([]string{"453C191F-644E-4EA8-9727-0E81E5275C35"}) // AssetIDs | list of asset IDs to remove
+	oid := "oid_example" // string | The current Organization (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.OrganizationAPI.RemoveBulkAssets(context.Background()).AssetIDs(assetIDs).Oid(oid).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `OrganizationAPI.RemoveBulkAssets``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiRemoveBulkAssetsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **assetIDs** | [**AssetIDs**](AssetIDs.md) | list of asset IDs to remove | 
+ **oid** | **string** | The current Organization | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[oauthDefaults](../README.md#oauthDefaults), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## RemoveCustomIntegration
+
+> RemoveCustomIntegration(ctx, assetId, customIntegrationId).Execute()
+
+Remove single custom integration from asset
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+	assetId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | UUID of the asset to update
+	customIntegrationId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | UUID of the custom integration
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.OrganizationAPI.RemoveCustomIntegration(context.Background(), assetId, customIntegrationId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `OrganizationAPI.RemoveCustomIntegration``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**assetId** | **string** | UUID of the asset to update | 
+**customIntegrationId** | **string** | UUID of the custom integration | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiRemoveCustomIntegrationRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[oauthDefaults](../README.md#oauthDefaults), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## RemoveExplorer
+
+> RemoveExplorer(ctx, explorerId).Oid(oid).Execute()
+
+Remove and uninstall an explorer
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+	explorerId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | UUID of the explorer to remove
+	oid := "oid_example" // string | The current Organization (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.OrganizationAPI.RemoveExplorer(context.Background(), explorerId).Oid(oid).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `OrganizationAPI.RemoveExplorer``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**explorerId** | **string** | UUID of the explorer to remove | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiRemoveExplorerRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **oid** | **string** | The current Organization | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[oauthDefaults](../README.md#oauthDefaults), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## RemoveKey
+
+> RemoveKey(ctx).Oid(oid).Execute()
+
+Remove the current API key
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+	oid := "oid_example" // string | The current Organization (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.OrganizationAPI.RemoveKey(context.Background()).Oid(oid).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `OrganizationAPI.RemoveKey``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiRemoveKeyRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **oid** | **string** | The current Organization | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[oauthDefaults](../README.md#oauthDefaults), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## RemoveService
+
+> RemoveService(ctx, serviceId).Oid(oid).Execute()
+
+Remove a service
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+	serviceId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | UUID of the service to remove
+	oid := "oid_example" // string | The current Organization (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.OrganizationAPI.RemoveService(context.Background(), serviceId).Oid(oid).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `OrganizationAPI.RemoveService``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**serviceId** | **string** | UUID of the service to remove | 
 
 ### Other Parameters
 
@@ -1521,6 +2769,7 @@ Other parameters are passed through a pointer to a apiRemoveServiceRequest struc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **oid** | **string** | The current Organization | 
 
 ### Return type
 
@@ -1528,12 +2777,12 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth)
+[oauthDefaults](../README.md#oauthDefaults), [bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -1542,9 +2791,9 @@ Name | Type | Description  | Notes
 
 ## RemoveSite
 
-> RemoveSite(ctx, siteId).Execute()
+> RemoveSite(ctx, siteId).Oid(oid).Execute()
 
-Remove a site and associated assets.
+Remove a site and associated assets
 
 ### Example
 
@@ -1552,22 +2801,23 @@ Remove a site and associated assets.
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    siteId := TODO // string | UUID or name of the site to remove
+	siteId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | UUID or name of the site to remove
+	oid := "oid_example" // string | The current Organization (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.OrganizationApi.RemoveSite(context.Background(), siteId).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `OrganizationApi.RemoveSite``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.OrganizationAPI.RemoveSite(context.Background(), siteId).Oid(oid).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `OrganizationAPI.RemoveSite``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
 }
 ```
 
@@ -1577,7 +2827,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**siteId** | [**string**](.md) | UUID or name of the site to remove | 
+**siteId** | **string** | UUID or name of the site to remove | 
 
 ### Other Parameters
 
@@ -1587,6 +2837,7 @@ Other parameters are passed through a pointer to a apiRemoveSiteRequest struct v
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **oid** | **string** | The current Organization | 
 
 ### Return type
 
@@ -1594,12 +2845,12 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth)
+[oauthDefaults](../README.md#oauthDefaults), [bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -1608,9 +2859,9 @@ Name | Type | Description  | Notes
 
 ## RemoveWirelessLAN
 
-> RemoveWirelessLAN(ctx, wirelessId).Execute()
+> RemoveWirelessLAN(ctx, wirelessId).Oid(oid).Execute()
 
-Remove a wireless LAN.
+Remove a wireless LAN
 
 ### Example
 
@@ -1618,22 +2869,23 @@ Remove a wireless LAN.
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    wirelessId := TODO // string | UUID of the wireless LAN to remove
+	wirelessId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | UUID of the wireless LAN to remove
+	oid := "oid_example" // string | The current Organization (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.OrganizationApi.RemoveWirelessLAN(context.Background(), wirelessId).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `OrganizationApi.RemoveWirelessLAN``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.OrganizationAPI.RemoveWirelessLAN(context.Background(), wirelessId).Oid(oid).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `OrganizationAPI.RemoveWirelessLAN``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
 }
 ```
 
@@ -1643,7 +2895,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**wirelessId** | [**string**](.md) | UUID of the wireless LAN to remove | 
+**wirelessId** | **string** | UUID of the wireless LAN to remove | 
 
 ### Other Parameters
 
@@ -1653,6 +2905,7 @@ Other parameters are passed through a pointer to a apiRemoveWirelessLANRequest s
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **oid** | **string** | The current Organization | 
 
 ### Return type
 
@@ -1660,12 +2913,76 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth)
+[oauthDefaults](../README.md#oauthDefaults), [bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## RotateKey
+
+> OrganizationAPIKey RotateKey(ctx).Oid(oid).Execute()
+
+Rotate the API key secret and return the updated key
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+	oid := "oid_example" // string | The current Organization (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.OrganizationAPI.RotateKey(context.Background()).Oid(oid).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `OrganizationAPI.RotateKey``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `RotateKey`: OrganizationAPIKey
+	fmt.Fprintf(os.Stdout, "Response from `OrganizationAPI.RotateKey`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiRotateKeyRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **oid** | **string** | The current Organization | 
+
+### Return type
+
+[**OrganizationAPIKey**](OrganizationAPIKey.md)
+
+### Authorization
+
+[oauthDefaults](../README.md#oauthDefaults), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -1674,9 +2991,9 @@ Name | Type | Description  | Notes
 
 ## StopTask
 
-> StopTask(ctx, taskId).Execute()
+> Task StopTask(ctx, taskId).Oid(oid).Execute()
 
-Signal that a task should be stopped or canceled.
+Signal that a task should be stopped or canceled.This will also remove recurring and scheduled tasks
 
 ### Example
 
@@ -1684,22 +3001,25 @@ Signal that a task should be stopped or canceled.
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    taskId := TODO // string | UUID of the task to stop
+	taskId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | UUID of the task to stop
+	oid := "oid_example" // string | The current Organization (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.OrganizationApi.StopTask(context.Background(), taskId).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `OrganizationApi.StopTask``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.OrganizationAPI.StopTask(context.Background(), taskId).Oid(oid).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `OrganizationAPI.StopTask``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `StopTask`: Task
+	fmt.Fprintf(os.Stdout, "Response from `OrganizationAPI.StopTask`: %v\n", resp)
 }
 ```
 
@@ -1709,7 +3029,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**taskId** | [**string**](.md) | UUID of the task to stop | 
+**taskId** | **string** | UUID of the task to stop | 
 
 ### Other Parameters
 
@@ -1719,30 +3039,31 @@ Other parameters are passed through a pointer to a apiStopTaskRequest struct via
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **oid** | **string** | The current Organization | 
 
 ### Return type
 
- (empty response body)
+[**Task**](Task.md)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth)
+[oauthDefaults](../README.md#oauthDefaults), [bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## UpdateAgentSite
+## UpdateAgentSettings
 
-> Agent UpdateAgentSite(ctx, agentId).AgentSiteID(agentSiteID).Execute()
+> Agent UpdateAgentSettings(ctx, agentId).AgentPatchedSettings(agentPatchedSettings).Oid(oid).Execute()
 
-Update the site associated with agent.
+Update the settings associated with the agent. Legacy path for /org/explorers/{explorer_id}
 
 ### Example
 
@@ -1750,25 +3071,26 @@ Update the site associated with agent.
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    agentId := TODO // string | UUID of the agent to update
-    agentSiteID := openapiclient.AgentSiteID{SiteId: "SiteId_example"} // AgentSiteID | site_id to associate with the agent
+	agentId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | UUID of the agent to update
+	agentPatchedSettings := *openapiclient.NewAgentPatchedSettings() // AgentPatchedSettings | The updated settings to apply to the agent
+	oid := "oid_example" // string | The current Organization (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.OrganizationApi.UpdateAgentSite(context.Background(), agentId, agentSiteID).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `OrganizationApi.UpdateAgentSite``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `UpdateAgentSite`: Agent
-    fmt.Fprintf(os.Stdout, "Response from `OrganizationApi.UpdateAgentSite`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.OrganizationAPI.UpdateAgentSettings(context.Background(), agentId).AgentPatchedSettings(agentPatchedSettings).Oid(oid).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `OrganizationAPI.UpdateAgentSettings``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UpdateAgentSettings`: Agent
+	fmt.Fprintf(os.Stdout, "Response from `OrganizationAPI.UpdateAgentSettings`: %v\n", resp)
 }
 ```
 
@@ -1778,17 +3100,18 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**agentId** | [**string**](.md) | UUID of the agent to update | 
+**agentId** | **string** | UUID of the agent to update | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiUpdateAgentSiteRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiUpdateAgentSettingsRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **agentSiteID** | [**AgentSiteID**](AgentSiteID.md) | site_id to associate with the agent | 
+ **agentPatchedSettings** | [**AgentPatchedSettings**](AgentPatchedSettings.md) | The updated settings to apply to the agent | 
+ **oid** | **string** | The current Organization | 
 
 ### Return type
 
@@ -1796,7 +3119,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth)
+[oauthDefaults](../README.md#oauthDefaults), [bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -1810,9 +3133,9 @@ Name | Type | Description  | Notes
 
 ## UpdateAssetComments
 
-> Asset UpdateAssetComments(ctx, assetId).AssetComments(assetComments).Execute()
+> Asset UpdateAssetComments(ctx, assetId).AssetComments(assetComments).Oid(oid).Execute()
 
-Update asset comments.
+Update asset comments
 
 ### Example
 
@@ -1820,25 +3143,26 @@ Update asset comments.
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    assetId := TODO // string | UUID of the asset to update
-    assetComments := openapiclient.AssetComments{Comments: "Comments_example"} // AssetComments | comments to apply to the asset
+	assetId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | UUID of the asset to update
+	assetComments := *openapiclient.NewAssetComments("Sales Laptop") // AssetComments | comments to apply to the asset
+	oid := "oid_example" // string | The current Organization (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.OrganizationApi.UpdateAssetComments(context.Background(), assetId, assetComments).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `OrganizationApi.UpdateAssetComments``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `UpdateAssetComments`: Asset
-    fmt.Fprintf(os.Stdout, "Response from `OrganizationApi.UpdateAssetComments`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.OrganizationAPI.UpdateAssetComments(context.Background(), assetId).AssetComments(assetComments).Oid(oid).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `OrganizationAPI.UpdateAssetComments``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UpdateAssetComments`: Asset
+	fmt.Fprintf(os.Stdout, "Response from `OrganizationAPI.UpdateAssetComments`: %v\n", resp)
 }
 ```
 
@@ -1848,7 +3172,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**assetId** | [**string**](.md) | UUID of the asset to update | 
+**assetId** | **string** | UUID of the asset to update | 
 
 ### Other Parameters
 
@@ -1859,6 +3183,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **assetComments** | [**AssetComments**](AssetComments.md) | comments to apply to the asset | 
+ **oid** | **string** | The current Organization | 
 
 ### Return type
 
@@ -1866,7 +3191,151 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth)
+[oauthDefaults](../README.md#oauthDefaults), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UpdateAssetCriticality
+
+> Asset UpdateAssetCriticality(ctx, assetId).AssetCriticality(assetCriticality).Oid(oid).Execute()
+
+Update asset criticality
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+	assetId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | UUID of the asset to update
+	assetCriticality := *openapiclient.NewAssetCriticality("high") // AssetCriticality | comments to apply to the asset
+	oid := "oid_example" // string | The current Organization (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.OrganizationAPI.UpdateAssetCriticality(context.Background(), assetId).AssetCriticality(assetCriticality).Oid(oid).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `OrganizationAPI.UpdateAssetCriticality``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UpdateAssetCriticality`: Asset
+	fmt.Fprintf(os.Stdout, "Response from `OrganizationAPI.UpdateAssetCriticality`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**assetId** | **string** | UUID of the asset to update | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateAssetCriticalityRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **assetCriticality** | [**AssetCriticality**](AssetCriticality.md) | comments to apply to the asset | 
+ **oid** | **string** | The current Organization | 
+
+### Return type
+
+[**Asset**](Asset.md)
+
+### Authorization
+
+[oauthDefaults](../README.md#oauthDefaults), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UpdateAssetOwners
+
+> Asset UpdateAssetOwners(ctx, assetId).AssetOwnerships(assetOwnerships).Oid(oid).Execute()
+
+Update asset owners
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+	assetId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | UUID of the asset to update
+	assetOwnerships := *openapiclient.NewAssetOwnerships() // AssetOwnerships | list of ownerships to apply to the asset
+	oid := "oid_example" // string | The current Organization (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.OrganizationAPI.UpdateAssetOwners(context.Background(), assetId).AssetOwnerships(assetOwnerships).Oid(oid).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `OrganizationAPI.UpdateAssetOwners``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UpdateAssetOwners`: Asset
+	fmt.Fprintf(os.Stdout, "Response from `OrganizationAPI.UpdateAssetOwners`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**assetId** | **string** | UUID of the asset to update | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateAssetOwnersRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **assetOwnerships** | [**AssetOwnerships**](AssetOwnerships.md) | list of ownerships to apply to the asset | 
+ **oid** | **string** | The current Organization | 
+
+### Return type
+
+[**Asset**](Asset.md)
+
+### Authorization
+
+[oauthDefaults](../README.md#oauthDefaults), [bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -1880,9 +3349,9 @@ Name | Type | Description  | Notes
 
 ## UpdateAssetTags
 
-> Asset UpdateAssetTags(ctx, assetId).AssetTags(assetTags).Execute()
+> Asset UpdateAssetTags(ctx, assetId).AssetTags(assetTags).Oid(oid).Execute()
 
-Update asset tags.
+Update asset tags
 
 ### Example
 
@@ -1890,25 +3359,26 @@ Update asset tags.
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    assetId := TODO // string | UUID of the agent to update
-    assetTags := openapiclient.AssetTags{Tags: map[string]string{ "Key" = "Value" }} // AssetTags | tags to apply to the asset
+	assetId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | UUID of the asset to update
+	assetTags := *openapiclient.NewAssetTags("ThisTag=Value -OldTag") // AssetTags | tags to apply to the asset
+	oid := "oid_example" // string | The current Organization (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.OrganizationApi.UpdateAssetTags(context.Background(), assetId, assetTags).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `OrganizationApi.UpdateAssetTags``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `UpdateAssetTags`: Asset
-    fmt.Fprintf(os.Stdout, "Response from `OrganizationApi.UpdateAssetTags`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.OrganizationAPI.UpdateAssetTags(context.Background(), assetId).AssetTags(assetTags).Oid(oid).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `OrganizationAPI.UpdateAssetTags``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UpdateAssetTags`: Asset
+	fmt.Fprintf(os.Stdout, "Response from `OrganizationAPI.UpdateAssetTags`: %v\n", resp)
 }
 ```
 
@@ -1918,7 +3388,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**assetId** | [**string**](.md) | UUID of the agent to update | 
+**assetId** | **string** | UUID of the asset to update | 
 
 ### Other Parameters
 
@@ -1929,6 +3399,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **assetTags** | [**AssetTags**](AssetTags.md) | tags to apply to the asset | 
+ **oid** | **string** | The current Organization | 
 
 ### Return type
 
@@ -1936,7 +3407,279 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth)
+[oauthDefaults](../README.md#oauthDefaults), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UpdateBulkAssetCriticality
+
+> map[string]interface{} UpdateBulkAssetCriticality(ctx).AssetCriticalityWithSearch(assetCriticalityWithSearch).Oid(oid).Execute()
+
+Update criticality across multiple assets based on a search query
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+	assetCriticalityWithSearch := *openapiclient.NewAssetCriticalityWithSearch("high", "alive:true and os:windows") // AssetCriticalityWithSearch | search query to filter and criticality to apply
+	oid := "oid_example" // string | The current Organization (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.OrganizationAPI.UpdateBulkAssetCriticality(context.Background()).AssetCriticalityWithSearch(assetCriticalityWithSearch).Oid(oid).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `OrganizationAPI.UpdateBulkAssetCriticality``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UpdateBulkAssetCriticality`: map[string]interface{}
+	fmt.Fprintf(os.Stdout, "Response from `OrganizationAPI.UpdateBulkAssetCriticality`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateBulkAssetCriticalityRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **assetCriticalityWithSearch** | [**AssetCriticalityWithSearch**](AssetCriticalityWithSearch.md) | search query to filter and criticality to apply | 
+ **oid** | **string** | The current Organization | 
+
+### Return type
+
+**map[string]interface{}**
+
+### Authorization
+
+[oauthDefaults](../README.md#oauthDefaults), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UpdateBulkAssetOwners
+
+> UpdateBulkAssetOwners200Response UpdateBulkAssetOwners(ctx).AssetOwnershipsWithSearch(assetOwnershipsWithSearch).Oid(oid).Execute()
+
+Update asset owners across multiple assets based on a search query
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+	assetOwnershipsWithSearch := *openapiclient.NewAssetOwnershipsWithSearch("alive:true and os:windows", []openapiclient.AssetOwnershipsOwnershipsInner{*openapiclient.NewAssetOwnershipsOwnershipsInner()}) // AssetOwnershipsWithSearch | search query to filter and ownerships to apply
+	oid := "oid_example" // string | The current Organization (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.OrganizationAPI.UpdateBulkAssetOwners(context.Background()).AssetOwnershipsWithSearch(assetOwnershipsWithSearch).Oid(oid).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `OrganizationAPI.UpdateBulkAssetOwners``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UpdateBulkAssetOwners`: UpdateBulkAssetOwners200Response
+	fmt.Fprintf(os.Stdout, "Response from `OrganizationAPI.UpdateBulkAssetOwners`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateBulkAssetOwnersRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **assetOwnershipsWithSearch** | [**AssetOwnershipsWithSearch**](AssetOwnershipsWithSearch.md) | search query to filter and ownerships to apply | 
+ **oid** | **string** | The current Organization | 
+
+### Return type
+
+[**UpdateBulkAssetOwners200Response**](UpdateBulkAssetOwners200Response.md)
+
+### Authorization
+
+[oauthDefaults](../README.md#oauthDefaults), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UpdateBulkAssetTags
+
+> map[string]interface{} UpdateBulkAssetTags(ctx).AssetTagsWithSearch(assetTagsWithSearch).Oid(oid).Execute()
+
+Update tags across multiple assets based on a search query
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+	assetTagsWithSearch := *openapiclient.NewAssetTagsWithSearch("ThisTag=Value -OldTag", "alive:true and os:windows") // AssetTagsWithSearch | search query to filter and tags to apply
+	oid := "oid_example" // string | The current Organization (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.OrganizationAPI.UpdateBulkAssetTags(context.Background()).AssetTagsWithSearch(assetTagsWithSearch).Oid(oid).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `OrganizationAPI.UpdateBulkAssetTags``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UpdateBulkAssetTags`: map[string]interface{}
+	fmt.Fprintf(os.Stdout, "Response from `OrganizationAPI.UpdateBulkAssetTags`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateBulkAssetTagsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **assetTagsWithSearch** | [**AssetTagsWithSearch**](AssetTagsWithSearch.md) | search query to filter and tags to apply | 
+ **oid** | **string** | The current Organization | 
+
+### Return type
+
+**map[string]interface{}**
+
+### Authorization
+
+[oauthDefaults](../README.md#oauthDefaults), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UpdateExplorerSettings
+
+> Agent UpdateExplorerSettings(ctx, explorerId).Body(body).Oid(oid).Execute()
+
+Update the settings associated with the Explorer
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+	explorerId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | UUID of the explorer to update
+	body := AgentPatchedSettings(987) // AgentPatchedSettings | The updated settings to apply to the Explorer
+	oid := "oid_example" // string | The current Organization (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.OrganizationAPI.UpdateExplorerSettings(context.Background(), explorerId).Body(body).Oid(oid).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `OrganizationAPI.UpdateExplorerSettings``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UpdateExplorerSettings`: Agent
+	fmt.Fprintf(os.Stdout, "Response from `OrganizationAPI.UpdateExplorerSettings`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**explorerId** | **string** | UUID of the explorer to update | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateExplorerSettingsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **body** | **AgentPatchedSettings** | The updated settings to apply to the Explorer | 
+ **oid** | **string** | The current Organization | 
+
+### Return type
+
+[**Agent**](Agent.md)
+
+### Authorization
+
+[oauthDefaults](../README.md#oauthDefaults), [bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -1950,9 +3693,9 @@ Name | Type | Description  | Notes
 
 ## UpdateOrganization
 
-> Organization UpdateOrganization(ctx).OrgOptions(orgOptions).Execute()
+> Organization UpdateOrganization(ctx).OrgOptions(orgOptions).Oid(oid).Execute()
 
-Update organization details.
+Update organization details
 
 ### Example
 
@@ -1960,24 +3703,25 @@ Update organization details.
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    orgOptions := openapiclient.OrgOptions{Name: "Name_example", Description: "Description_example"} // OrgOptions | organization options
+	orgOptions := *openapiclient.NewOrgOptions() // OrgOptions | organization options
+	oid := "oid_example" // string | The current Organization (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.OrganizationApi.UpdateOrganization(context.Background(), orgOptions).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `OrganizationApi.UpdateOrganization``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `UpdateOrganization`: Organization
-    fmt.Fprintf(os.Stdout, "Response from `OrganizationApi.UpdateOrganization`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.OrganizationAPI.UpdateOrganization(context.Background()).OrgOptions(orgOptions).Oid(oid).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `OrganizationAPI.UpdateOrganization``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UpdateOrganization`: Organization
+	fmt.Fprintf(os.Stdout, "Response from `OrganizationAPI.UpdateOrganization`: %v\n", resp)
 }
 ```
 
@@ -1993,6 +3737,7 @@ Other parameters are passed through a pointer to a apiUpdateOrganizationRequest 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **orgOptions** | [**OrgOptions**](OrgOptions.md) | organization options | 
+ **oid** | **string** | The current Organization | 
 
 ### Return type
 
@@ -2000,7 +3745,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth)
+[oauthDefaults](../README.md#oauthDefaults), [bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -2014,9 +3759,9 @@ Name | Type | Description  | Notes
 
 ## UpdateSite
 
-> Site UpdateSite(ctx, siteId).SiteOptions(siteOptions).Execute()
+> Site UpdateSite(ctx, siteId).SiteOptions(siteOptions).Oid(oid).Execute()
 
-Update a site definition.
+Update a site definition
 
 ### Example
 
@@ -2024,25 +3769,26 @@ Update a site definition.
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    siteId := TODO // string | UUID or name of the site to update
-    siteOptions := openapiclient.SiteOptions{Name: "Name_example", Description: "Description_example", Scope: "Scope_example", Excludes: "Excludes_example"} // SiteOptions | site object
+	siteId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | UUID or name of the site to update
+	siteOptions := *openapiclient.NewSiteOptions("New Site") // SiteOptions | site object
+	oid := "oid_example" // string | The current Organization (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.OrganizationApi.UpdateSite(context.Background(), siteId, siteOptions).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `OrganizationApi.UpdateSite``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `UpdateSite`: Site
-    fmt.Fprintf(os.Stdout, "Response from `OrganizationApi.UpdateSite`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.OrganizationAPI.UpdateSite(context.Background(), siteId).SiteOptions(siteOptions).Oid(oid).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `OrganizationAPI.UpdateSite``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UpdateSite`: Site
+	fmt.Fprintf(os.Stdout, "Response from `OrganizationAPI.UpdateSite`: %v\n", resp)
 }
 ```
 
@@ -2052,7 +3798,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**siteId** | [**string**](.md) | UUID or name of the site to update | 
+**siteId** | **string** | UUID or name of the site to update | 
 
 ### Other Parameters
 
@@ -2063,6 +3809,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **siteOptions** | [**SiteOptions**](SiteOptions.md) | site object | 
+ **oid** | **string** | The current Organization | 
 
 ### Return type
 
@@ -2070,7 +3817,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth)
+[oauthDefaults](../README.md#oauthDefaults), [bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -2084,9 +3831,9 @@ Name | Type | Description  | Notes
 
 ## UpdateTask
 
-> Task UpdateTask(ctx, taskId).Task(task).Execute()
+> Task UpdateTask(ctx, taskId).TaskOptions(taskOptions).Oid(oid).Execute()
 
-Update task parameters.
+Update task parameters
 
 ### Example
 
@@ -2094,25 +3841,26 @@ Update task parameters.
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    taskId := TODO // string | UUID of the task to update
-    task := openapiclient.Task{Id: "Id_example", Name: "Name_example", Description: "Description_example", ClientId: "ClientId_example", OrganizationId: "OrganizationId_example", AgentId: "AgentId_example", SiteId: "SiteId_example", CruncherId: "CruncherId_example", CreatedAt: int64(123), CreatedBy: "CreatedBy_example", CreatedByUserId: "CreatedByUserId_example", UpdatedAt: int64(123), Type: "Type_example", Status: "Status_example", Error: "Error_example", Params: map[string]string{ "Key" = "Value" }, Stats: map[string]string{ "Key" = "Value" }, Hidden: false, ParentId: "ParentId_example", Recur: false, RecurFrequency: "RecurFrequency_example", StartTime: int64(123), RecurLast: int64(123), RecurNext: int64(123), RecurLastTaskId: "RecurLastTaskId_example"} // Task | task object
+	taskId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | UUID of the task to update
+	taskOptions := *openapiclient.NewTaskOptions() // TaskOptions | task object
+	oid := "oid_example" // string | The current Organization (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.OrganizationApi.UpdateTask(context.Background(), taskId, task).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `OrganizationApi.UpdateTask``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `UpdateTask`: Task
-    fmt.Fprintf(os.Stdout, "Response from `OrganizationApi.UpdateTask`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.OrganizationAPI.UpdateTask(context.Background(), taskId).TaskOptions(taskOptions).Oid(oid).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `OrganizationAPI.UpdateTask``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UpdateTask`: Task
+	fmt.Fprintf(os.Stdout, "Response from `OrganizationAPI.UpdateTask`: %v\n", resp)
 }
 ```
 
@@ -2122,7 +3870,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**taskId** | [**string**](.md) | UUID of the task to update | 
+**taskId** | **string** | UUID of the task to update | 
 
 ### Other Parameters
 
@@ -2132,7 +3880,8 @@ Other parameters are passed through a pointer to a apiUpdateTaskRequest struct v
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **task** | [**Task**](Task.md) | task object | 
+ **taskOptions** | [**TaskOptions**](TaskOptions.md) | task object | 
+ **oid** | **string** | The current Organization | 
 
 ### Return type
 
@@ -2140,7 +3889,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth)
+[oauthDefaults](../README.md#oauthDefaults), [bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -2154,9 +3903,9 @@ Name | Type | Description  | Notes
 
 ## UpgradeAgent
 
-> UpgradeAgent(ctx, agentId).Execute()
+> UpgradeAgent(ctx, agentId).Oid(oid).Execute()
 
-Force an agent to update and restart.
+Force an agent to update and restart. Legacy path for /org/explorers/{explorer_id}/update
 
 ### Example
 
@@ -2164,22 +3913,23 @@ Force an agent to update and restart.
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    agentId := TODO // string | UUID of the agent to update
+	agentId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | UUID of the agent to update
+	oid := "oid_example" // string | The current Organization (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.OrganizationApi.UpgradeAgent(context.Background(), agentId).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `OrganizationApi.UpgradeAgent``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.OrganizationAPI.UpgradeAgent(context.Background(), agentId).Oid(oid).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `OrganizationAPI.UpgradeAgent``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
 }
 ```
 
@@ -2189,7 +3939,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**agentId** | [**string**](.md) | UUID of the agent to update | 
+**agentId** | **string** | UUID of the agent to update | 
 
 ### Other Parameters
 
@@ -2199,6 +3949,7 @@ Other parameters are passed through a pointer to a apiUpgradeAgentRequest struct
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **oid** | **string** | The current Organization | 
 
 ### Return type
 
@@ -2206,12 +3957,82 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth)
+[oauthDefaults](../README.md#oauthDefaults), [bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UpgradeExplorer
+
+> UpgradeExplorer(ctx, explorerId).Oid(oid).Execute()
+
+Force an explorer to update and restart
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+	explorerId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | UUID of the explorer to update
+	oid := "oid_example" // string | The current Organization (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.OrganizationAPI.UpgradeExplorer(context.Background(), explorerId).Oid(oid).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `OrganizationAPI.UpgradeExplorer``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**explorerId** | **string** | UUID of the explorer to update | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpgradeExplorerRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **oid** | **string** | The current Organization | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[oauthDefaults](../README.md#oauthDefaults), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
