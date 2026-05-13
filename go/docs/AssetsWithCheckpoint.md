@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Since** | Pointer to **int64** |  | 
-**Assets** | Pointer to [**[]Asset**](Asset.md) |  | 
+**Since** | **int64** |  | 
+**Assets** | [**[]Asset**](Asset.md) |  | 
 
 ## Methods
 

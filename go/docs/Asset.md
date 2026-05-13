@@ -4,11 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **string** |  | 
+**Id** | **string** |  | 
 **CreatedAt** | Pointer to **int64** |  | [optional] 
 **UpdatedAt** | Pointer to **int64** |  | [optional] 
 **OrganizationId** | Pointer to **string** |  | [optional] 
 **SiteId** | Pointer to **string** |  | [optional] 
+**Scanned** | Pointer to **bool** |  | [optional] 
 **Alive** | Pointer to **bool** |  | [optional] 
 **FirstSeen** | Pointer to **int64** |  | [optional] 
 **LastSeen** | Pointer to **int64** |  | [optional] 
@@ -38,15 +39,22 @@ Name | Type | Description | Notes
 **Comments** | Pointer to **string** |  | [optional] 
 **ServicePortsTcp** | Pointer to **[]string** |  | [optional] 
 **ServicePortsUdp** | Pointer to **[]string** |  | [optional] 
-**ServicePortsProtocols** | Pointer to **[]string** |  | [optional] 
-**ServicePortsProducts** | Pointer to **[]string** |  | [optional] 
+**ServiceProtocols** | Pointer to **[]string** |  | [optional] 
+**ServiceProducts** | Pointer to **[]string** |  | [optional] 
 **OrgName** | Pointer to **string** |  | [optional] 
 **SiteName** | Pointer to **string** |  | [optional] 
 **AgentName** | Pointer to **string** |  | [optional] 
 **Tags** | Pointer to **map[string]string** |  | [optional] 
-**Services** | Pointer to [**map[string]map[string]string**](map.md) |  | [optional] 
-**Rtts** | Pointer to **map[string]map[string]interface{}** |  | [optional] 
-**Credentials** | Pointer to [**map[string]map[string]bool**](map.md) |  | [optional] 
+**Services** | Pointer to **map[string]map[string]string** |  | [optional] 
+**Rtts** | Pointer to **map[string]interface{}** |  | [optional] 
+**RiskRank** | Pointer to **float32** | -1 &#x3D; none, 0 &#x3D; info, 4 &#x3D; critical | [optional] 
+**Risk** | Pointer to **string** |  | [optional] 
+**Credentials** | Pointer to **map[string]map[string]bool** |  | [optional] 
+**VulnerabilityCount** | Pointer to **float32** |  | [optional] 
+**FindingCount** | Pointer to **float32** |  | [optional] 
+**EolOs** | Pointer to **float32** | OS main EOL date | [optional] 
+**EolOsExt** | Pointer to **float32** | OS extended support EOL date | [optional] 
+**Sources** | Pointer to **[]string** | Sources used for asset data | [optional] 
 **Attributes** | Pointer to **map[string]string** |  | [optional] 
 
 ## Methods
@@ -187,6 +195,31 @@ SetSiteId sets SiteId field to given value.
 `func (o *Asset) HasSiteId() bool`
 
 HasSiteId returns a boolean if a field has been set.
+
+### GetScanned
+
+`func (o *Asset) GetScanned() bool`
+
+GetScanned returns the Scanned field if non-nil, zero value otherwise.
+
+### GetScannedOk
+
+`func (o *Asset) GetScannedOk() (*bool, bool)`
+
+GetScannedOk returns a tuple with the Scanned field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetScanned
+
+`func (o *Asset) SetScanned(v bool)`
+
+SetScanned sets Scanned field to given value.
+
+### HasScanned
+
+`func (o *Asset) HasScanned() bool`
+
+HasScanned returns a boolean if a field has been set.
 
 ### GetAlive
 
@@ -390,20 +423,20 @@ HasHw returns a boolean if a field has been set.
 
 ### GetAddresses
 
-`func (o *Asset) GetAddresses() []string`
+`func (o *Asset) GetAddresses() []*string`
 
 GetAddresses returns the Addresses field if non-nil, zero value otherwise.
 
 ### GetAddressesOk
 
-`func (o *Asset) GetAddressesOk() (*[]string, bool)`
+`func (o *Asset) GetAddressesOk() (*[]*string, bool)`
 
 GetAddressesOk returns a tuple with the Addresses field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAddresses
 
-`func (o *Asset) SetAddresses(v []string)`
+`func (o *Asset) SetAddresses(v []*string)`
 
 SetAddresses sets Addresses field to given value.
 
@@ -415,20 +448,20 @@ HasAddresses returns a boolean if a field has been set.
 
 ### GetAddressesExtra
 
-`func (o *Asset) GetAddressesExtra() []string`
+`func (o *Asset) GetAddressesExtra() []*string`
 
 GetAddressesExtra returns the AddressesExtra field if non-nil, zero value otherwise.
 
 ### GetAddressesExtraOk
 
-`func (o *Asset) GetAddressesExtraOk() (*[]string, bool)`
+`func (o *Asset) GetAddressesExtraOk() (*[]*string, bool)`
 
 GetAddressesExtraOk returns a tuple with the AddressesExtra field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAddressesExtra
 
-`func (o *Asset) SetAddressesExtra(v []string)`
+`func (o *Asset) SetAddressesExtra(v []*string)`
 
 SetAddressesExtra sets AddressesExtra field to given value.
 
@@ -913,55 +946,55 @@ SetServicePortsUdp sets ServicePortsUdp field to given value.
 
 HasServicePortsUdp returns a boolean if a field has been set.
 
-### GetServicePortsProtocols
+### GetServiceProtocols
 
-`func (o *Asset) GetServicePortsProtocols() []string`
+`func (o *Asset) GetServiceProtocols() []string`
 
-GetServicePortsProtocols returns the ServicePortsProtocols field if non-nil, zero value otherwise.
+GetServiceProtocols returns the ServiceProtocols field if non-nil, zero value otherwise.
 
-### GetServicePortsProtocolsOk
+### GetServiceProtocolsOk
 
-`func (o *Asset) GetServicePortsProtocolsOk() (*[]string, bool)`
+`func (o *Asset) GetServiceProtocolsOk() (*[]string, bool)`
 
-GetServicePortsProtocolsOk returns a tuple with the ServicePortsProtocols field if it's non-nil, zero value otherwise
+GetServiceProtocolsOk returns a tuple with the ServiceProtocols field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetServicePortsProtocols
+### SetServiceProtocols
 
-`func (o *Asset) SetServicePortsProtocols(v []string)`
+`func (o *Asset) SetServiceProtocols(v []string)`
 
-SetServicePortsProtocols sets ServicePortsProtocols field to given value.
+SetServiceProtocols sets ServiceProtocols field to given value.
 
-### HasServicePortsProtocols
+### HasServiceProtocols
 
-`func (o *Asset) HasServicePortsProtocols() bool`
+`func (o *Asset) HasServiceProtocols() bool`
 
-HasServicePortsProtocols returns a boolean if a field has been set.
+HasServiceProtocols returns a boolean if a field has been set.
 
-### GetServicePortsProducts
+### GetServiceProducts
 
-`func (o *Asset) GetServicePortsProducts() []string`
+`func (o *Asset) GetServiceProducts() []string`
 
-GetServicePortsProducts returns the ServicePortsProducts field if non-nil, zero value otherwise.
+GetServiceProducts returns the ServiceProducts field if non-nil, zero value otherwise.
 
-### GetServicePortsProductsOk
+### GetServiceProductsOk
 
-`func (o *Asset) GetServicePortsProductsOk() (*[]string, bool)`
+`func (o *Asset) GetServiceProductsOk() (*[]string, bool)`
 
-GetServicePortsProductsOk returns a tuple with the ServicePortsProducts field if it's non-nil, zero value otherwise
+GetServiceProductsOk returns a tuple with the ServiceProducts field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetServicePortsProducts
+### SetServiceProducts
 
-`func (o *Asset) SetServicePortsProducts(v []string)`
+`func (o *Asset) SetServiceProducts(v []string)`
 
-SetServicePortsProducts sets ServicePortsProducts field to given value.
+SetServiceProducts sets ServiceProducts field to given value.
 
-### HasServicePortsProducts
+### HasServiceProducts
 
-`func (o *Asset) HasServicePortsProducts() bool`
+`func (o *Asset) HasServiceProducts() bool`
 
-HasServicePortsProducts returns a boolean if a field has been set.
+HasServiceProducts returns a boolean if a field has been set.
 
 ### GetOrgName
 
@@ -1090,20 +1123,20 @@ HasServices returns a boolean if a field has been set.
 
 ### GetRtts
 
-`func (o *Asset) GetRtts() map[string]map[string]interface{}`
+`func (o *Asset) GetRtts() map[string]interface{}`
 
 GetRtts returns the Rtts field if non-nil, zero value otherwise.
 
 ### GetRttsOk
 
-`func (o *Asset) GetRttsOk() (*map[string]map[string]interface{}, bool)`
+`func (o *Asset) GetRttsOk() (*map[string]interface{}, bool)`
 
 GetRttsOk returns a tuple with the Rtts field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRtts
 
-`func (o *Asset) SetRtts(v map[string]map[string]interface{})`
+`func (o *Asset) SetRtts(v map[string]interface{})`
 
 SetRtts sets Rtts field to given value.
 
@@ -1112,6 +1145,56 @@ SetRtts sets Rtts field to given value.
 `func (o *Asset) HasRtts() bool`
 
 HasRtts returns a boolean if a field has been set.
+
+### GetRiskRank
+
+`func (o *Asset) GetRiskRank() float32`
+
+GetRiskRank returns the RiskRank field if non-nil, zero value otherwise.
+
+### GetRiskRankOk
+
+`func (o *Asset) GetRiskRankOk() (*float32, bool)`
+
+GetRiskRankOk returns a tuple with the RiskRank field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRiskRank
+
+`func (o *Asset) SetRiskRank(v float32)`
+
+SetRiskRank sets RiskRank field to given value.
+
+### HasRiskRank
+
+`func (o *Asset) HasRiskRank() bool`
+
+HasRiskRank returns a boolean if a field has been set.
+
+### GetRisk
+
+`func (o *Asset) GetRisk() string`
+
+GetRisk returns the Risk field if non-nil, zero value otherwise.
+
+### GetRiskOk
+
+`func (o *Asset) GetRiskOk() (*string, bool)`
+
+GetRiskOk returns a tuple with the Risk field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRisk
+
+`func (o *Asset) SetRisk(v string)`
+
+SetRisk sets Risk field to given value.
+
+### HasRisk
+
+`func (o *Asset) HasRisk() bool`
+
+HasRisk returns a boolean if a field has been set.
 
 ### GetCredentials
 
@@ -1137,6 +1220,131 @@ SetCredentials sets Credentials field to given value.
 `func (o *Asset) HasCredentials() bool`
 
 HasCredentials returns a boolean if a field has been set.
+
+### GetVulnerabilityCount
+
+`func (o *Asset) GetVulnerabilityCount() float32`
+
+GetVulnerabilityCount returns the VulnerabilityCount field if non-nil, zero value otherwise.
+
+### GetVulnerabilityCountOk
+
+`func (o *Asset) GetVulnerabilityCountOk() (*float32, bool)`
+
+GetVulnerabilityCountOk returns a tuple with the VulnerabilityCount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVulnerabilityCount
+
+`func (o *Asset) SetVulnerabilityCount(v float32)`
+
+SetVulnerabilityCount sets VulnerabilityCount field to given value.
+
+### HasVulnerabilityCount
+
+`func (o *Asset) HasVulnerabilityCount() bool`
+
+HasVulnerabilityCount returns a boolean if a field has been set.
+
+### GetFindingCount
+
+`func (o *Asset) GetFindingCount() float32`
+
+GetFindingCount returns the FindingCount field if non-nil, zero value otherwise.
+
+### GetFindingCountOk
+
+`func (o *Asset) GetFindingCountOk() (*float32, bool)`
+
+GetFindingCountOk returns a tuple with the FindingCount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFindingCount
+
+`func (o *Asset) SetFindingCount(v float32)`
+
+SetFindingCount sets FindingCount field to given value.
+
+### HasFindingCount
+
+`func (o *Asset) HasFindingCount() bool`
+
+HasFindingCount returns a boolean if a field has been set.
+
+### GetEolOs
+
+`func (o *Asset) GetEolOs() float32`
+
+GetEolOs returns the EolOs field if non-nil, zero value otherwise.
+
+### GetEolOsOk
+
+`func (o *Asset) GetEolOsOk() (*float32, bool)`
+
+GetEolOsOk returns a tuple with the EolOs field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEolOs
+
+`func (o *Asset) SetEolOs(v float32)`
+
+SetEolOs sets EolOs field to given value.
+
+### HasEolOs
+
+`func (o *Asset) HasEolOs() bool`
+
+HasEolOs returns a boolean if a field has been set.
+
+### GetEolOsExt
+
+`func (o *Asset) GetEolOsExt() float32`
+
+GetEolOsExt returns the EolOsExt field if non-nil, zero value otherwise.
+
+### GetEolOsExtOk
+
+`func (o *Asset) GetEolOsExtOk() (*float32, bool)`
+
+GetEolOsExtOk returns a tuple with the EolOsExt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEolOsExt
+
+`func (o *Asset) SetEolOsExt(v float32)`
+
+SetEolOsExt sets EolOsExt field to given value.
+
+### HasEolOsExt
+
+`func (o *Asset) HasEolOsExt() bool`
+
+HasEolOsExt returns a boolean if a field has been set.
+
+### GetSources
+
+`func (o *Asset) GetSources() []string`
+
+GetSources returns the Sources field if non-nil, zero value otherwise.
+
+### GetSourcesOk
+
+`func (o *Asset) GetSourcesOk() (*[]string, bool)`
+
+GetSourcesOk returns a tuple with the Sources field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSources
+
+`func (o *Asset) SetSources(v []string)`
+
+SetSources sets Sources field to given value.
+
+### HasSources
+
+`func (o *Asset) HasSources() bool`
+
+HasSources returns a boolean if a field has been set.
 
 ### GetAttributes
 

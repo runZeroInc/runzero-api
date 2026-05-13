@@ -9,7 +9,7 @@ import (
 	"time"
 
 	"github.com/gofrs/uuid"
-	openapi "github.com/runZeroInc/runzero-api/go"
+	runzero "github.com/runZeroInc/runzero-api/go"
 	rc "github.com/runZeroInc/runzero-api/go/runzero-client"
 )
 
@@ -45,7 +45,7 @@ func main() {
 	}
 
 	// Build a list of connected agents
-	getAgentsReq := client.OrganizationApi.GetAgents(ctx)
+	getAgentsReq := client.OrganizationAPI.GetAgents(ctx)
 	agents, _, err := getAgentsReq.Execute()
 	if err != nil {
 		log.Fatalf("failed to get agent list %s", err)
@@ -73,7 +73,7 @@ func main() {
 	}
 
 	// Build a list of recurring tasks
-	getTasksReq := client.OrganizationApi.GetTasks(ctx)
+	getTasksReq := client.OrganizationAPI.GetTasks(ctx)
 	tasks, _, err := getTasksReq.Execute()
 	if err != nil {
 		log.Fatalf("failed to get task list %s", err)
@@ -92,16 +92,15 @@ func main() {
 	}
 
 	// Build a list of sites
-	getSitesReq := client.OrganizationApi.GetSites(ctx)
+	getSitesReq := client.OrganizationAPI.GetSites(ctx)
 	sites, _, err := getSitesReq.Execute()
 	if err != nil {
 		log.Fatalf("failed to get sites list %s", err)
 	}
 
 	scansCurrent := 0
-	todoSites := []openapi.Site{}
+	todoSites := []runzero.Site{}
 	for _, site := range sites {
-		site := site
 		if _, ok := siteTaskMap[site.GetId()]; ok {
 			scansCurrent++
 			continue
@@ -132,8 +131,8 @@ func main() {
 
 		log.Printf("adding scan for site %s [%s]..", site.GetName(), site.GetId())
 
-		newScanReq := client.OrganizationApi.CreateScan(ctx, site.GetId())
-		newScanReq = newScanReq.ScanOptions(openapi.ScanOptions{
+		newScanReq := client.OrganizationAPI.CreateScan(ctx, site.GetId())
+		newScanReq = newScanReq.ScanOptions(runzero.ScanOptions{
 			Targets:       "defaults",
 			ScanFrequency: newString(*flagScanFreq),
 			ScanStart:     newString(fmt.Sprintf("%d", ts.Unix())),

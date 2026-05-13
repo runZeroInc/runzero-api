@@ -4,7 +4,7 @@ servers:
     url: https://console.runzero.com/api/v1.0
 info:
   description: runZero API. API use is rate limited, you can make as many calls per day as you have licensed assets.
-  version: 4.0.250826.0
+  version: 1.0.5
   title: runZero API
   contact:
     email: support@runzero.com
@@ -20,6 +20,12 @@ tags:
     description: Requires Export token (starts with ET), Organization key (starts with OT), Account key (starts with CT), or OAuth
   - name: Import
     description: Requires Organization key (starts with OT), Account key (starts with CT), or OAuth
+  - name: ServiceNow
+    description: ServiceNow integration endpoints. Requires Organization key (starts with OT), Account key (starts with CT), or OAuth.
+  - name: Splunk
+    description: Splunk-friendly export endpoints. Requires Export token (starts with ET), Organization key (starts with OT), Account key (starts with CT), or OAuth.
+  - name: Cisco SNTC
+    description: Cisco Smart Net Total Care integration endpoints. Requires Organization key (starts with OT), Account key (starts with CT), or OAuth.
   - name: Public
     description: Unauthenticated
 
@@ -99,7 +105,6 @@ paths:
             format: uuid
           description: The ID of the organization to import the assets into
       tags:
-        - Organization
         - Import
       operationId: importCustomIntegrationAssets
       summary: Import assets described by a registered custom integration
@@ -153,19 +158,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                  - type: array
-                    items:
-                      $ref: '#/components/schemas/Asset'
-                  - type: object
-                    properties:
-                      assets:
-                        type: array
-                        items:
-                          $ref: '#/components/schemas/Asset'
-                      next_key:
-                        type: string
-                        description: The key to use for the next page of results
+                $ref: '#/components/schemas/AssetExportResponse'
         '401':
           $ref: '#/components/responses/UnauthorizedError'
 
@@ -249,19 +242,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                  - type: array
-                    items:
-                      $ref: '#/components/schemas/Service'
-                  - type: object
-                    properties:
-                      services:
-                        type: array
-                        items:
-                          $ref: '#/components/schemas/Service'
-                      next_key:
-                        type: string
-                        description: The key to use for the next page of results
+                $ref: '#/components/schemas/ServiceExportResponse'
         '401':
           $ref: '#/components/responses/UnauthorizedError'
 
@@ -390,19 +371,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                  - type: array
-                    items:
-                      $ref: '#/components/schemas/Wireless'
-                  - type: object
-                    properties:
-                      wireless:
-                        type: array
-                        items:
-                          $ref: '#/components/schemas/Wireless'
-                      next_key:
-                        type: string
-                        description: The key to use for the next page of results
+                $ref: '#/components/schemas/WirelessExportResponse'
         '401':
           $ref: '#/components/responses/UnauthorizedError'
 
@@ -466,19 +435,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                  - type: array
-                    items:
-                      $ref: '#/components/schemas/Software'
-                  - type: object
-                    properties:
-                      software:
-                        type: array
-                        items:
-                          $ref: '#/components/schemas/Software'
-                      next_key:
-                        type: string
-                        description: The key to use for the next page of results
+                $ref: '#/components/schemas/SoftwareExportResponse'
         '401':
           $ref: '#/components/responses/UnauthorizedError'
 
@@ -542,19 +499,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                  - type: array
-                    items:
-                      $ref: '#/components/schemas/Vulnerability'
-                  - type: object
-                    properties:
-                      vulnerabilities:
-                        type: array
-                        items:
-                          $ref: '#/components/schemas/Vulnerability'
-                      next_key:
-                        type: string
-                        description: The key to use for the next page of results
+                $ref: '#/components/schemas/VulnerabilityExportResponse'
         '401':
           $ref: '#/components/responses/UnauthorizedError'
 
@@ -607,7 +552,6 @@ paths:
     get:
       tags:
         - Export
-        - Certificates
       operationId: exportCertificatesCSV
       summary: Export the certificate inventory as CSV
       responses:
@@ -628,7 +572,6 @@ paths:
     get:
       tags:
         - Export
-        - Certificates
       operationId: exportCertificatesJSON
       summary: Export the certificate inventory as JSON
       responses:
@@ -650,16 +593,17 @@ paths:
     get:
       tags:
         - Export
-        - Certificates
       operationId: exportCertificatesJSONL
       summary: Export the certificate inventory as JSONL line-delimited
       responses:
         '200':
+          # This is a streaming response of one Certificate object per line in JSON format
           description: filtered certificate results
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Certificate"
+                type: string
+                format: binary
         '401':
           $ref: '#/components/responses/UnauthorizedError'
 
@@ -1100,6 +1044,8 @@ paths:
     parameters:
       - $ref: '#/components/parameters/orgID'
     get:
+      tags:
+        - Export
       operationId: exportAssetMetricsJSON
       summary: Export asset metrics
       responses:
@@ -1110,12 +1056,7 @@ paths:
               schema:
                 type: object
                 additionalProperties:
-                  type: object
-                  properties:
-                    site_id:
-                      type: string
-                    metrics:
-                      type: object
+                  $ref: '#/components/schemas/AssetMetric'
         '401':
           $ref: '#/components/responses/UnauthorizedError'
 
@@ -1173,7 +1114,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/APIKey'
+                $ref: '#/components/schemas/OrganizationAPIKey'
         '401':
           $ref: '#/components/responses/UnauthorizedError'
     delete:
@@ -1201,7 +1142,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/APIKey'
+                $ref: '#/components/schemas/OrganizationAPIKey'
         '401':
           $ref: '#/components/responses/UnauthorizedError'
 
@@ -1345,7 +1286,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Explorer'
+                  $ref: '#/components/schemas/Agent'
         '401':
           $ref: '#/components/responses/UnauthorizedError'
 
@@ -1372,7 +1313,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Explorer'
+                $ref: '#/components/schemas/Agent'
         '401':
           $ref: '#/components/responses/UnauthorizedError'
         '404':
@@ -1418,14 +1359,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/ExplorerPatchedSettings"
+              $ref: "#/components/schemas/AgentPatchedSettings"
       responses:
         '200':
           description: explorer details
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Explorer'
+                $ref: '#/components/schemas/Agent'
         '401':
           $ref: '#/components/responses/UnauthorizedError'
         '404':
@@ -1645,6 +1586,7 @@ paths:
           required: true
           description: UUID or name of the site to import scan data into
       requestBody:
+        required: true
         content:
           application/octet-stream:
             schema:
@@ -1683,6 +1625,7 @@ paths:
           required: true
           description: UUID or name of the site to import Nessus scan data into
       requestBody:
+        required: true
         content:
           application/octet-stream:
             schema:
@@ -1721,6 +1664,7 @@ paths:
           required: true
           description: UUID or name of the site to import packet capture into
       requestBody:
+        required: true
         content:
           application/octet-stream:
             schema:
@@ -1759,8 +1703,9 @@ paths:
           required: true
           description: UUID or name of the site to scan
       requestBody:
+        required: true
         content:
-          text/json:
+          application/json:
             schema:
               $ref: '#/components/schemas/ScanOptions'
       responses:
@@ -1796,8 +1741,9 @@ paths:
           required: true
           description: UUID or name of the site to scan
       requestBody:
+        required: true
         content:
-          text/json:
+          application/json:
             schema:
               $ref: '#/components/schemas/SampleOptions'
       responses:
@@ -2076,7 +2022,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Search'
+              $ref: '#/components/schemas/SearchQuery'
       responses:
         '200':
           $ref: '#/components/responses/StatusMessage'
@@ -2168,11 +2114,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  updated_asset_count:
-                    type: integer
-                    example: 10
+                $ref: '#/components/schemas/BulkAssetUpdateResult'
         '400':
           $ref: '#/components/responses/InvalidRequestBodyError'
         '403':
@@ -2196,18 +2138,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Search'
+              $ref: '#/components/schemas/SearchQuery'
       responses:
         '200':
           description: updated asset count
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  updated_asset_count:
-                    type: integer
-                    example: 10
+                $ref: '#/components/schemas/BulkAssetUpdateResult'
         '400':
           $ref: '#/components/responses/InvalidRequestBodyError'
         '403':
@@ -2317,7 +2255,7 @@ paths:
   /org/custom-integrations:
     get:
       tags:
-        - Org
+        - Organization
       operationId: getOrgCustomIntegrations
       summary: Get all custom integrations
       responses:
@@ -2347,7 +2285,7 @@ paths:
         description: UUID of the custom integration
     get:
       tags:
-        - Org
+        - Organization
       operationId: getOrgCustomIntegration
       summary: Get single custom integration
       responses:
@@ -3205,7 +3143,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/APIKey'
+                  $ref: '#/components/schemas/OrganizationAPIKey'
         '401':
           $ref: '#/components/responses/UnauthorizedError'
     put:
@@ -3226,7 +3164,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/APIKey'
+                $ref: '#/components/schemas/OrganizationAPIKey'
         '401':
           $ref: '#/components/responses/UnauthorizedError'
         '404':
@@ -3251,7 +3189,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/APIKey'
+                $ref: '#/components/schemas/OrganizationAPIKey'
         '401':
           $ref: '#/components/responses/UnauthorizedError'
     delete:
@@ -3293,7 +3231,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/APIKey'
+                $ref: '#/components/schemas/OrganizationAPIKey'
         '401':
           $ref: '#/components/responses/UnauthorizedError'
 
@@ -3324,19 +3262,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                  - type: array
-                    items:
-                      $ref: '#/components/schemas/Event'
-                  - type: object
-                    properties:
-                      events:
-                        type: array
-                        items:
-                          $ref: '#/components/schemas/Event'
-                      next_key:
-                        type: string
-                        description: The key to use for the next page of results
+                $ref: '#/components/schemas/EventExportResponse'
         '401':
           $ref: '#/components/responses/UnauthorizedError'
 
@@ -3361,13 +3287,13 @@ paths:
             type: string
       responses:
         '200':
+          # This is a streaming response of one Event object per line in JSON format
           description: filtered event results
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Event'
+                type: string
+                format: binary
         '401':
           $ref: '#/components/responses/UnauthorizedError'
 
@@ -4170,7 +4096,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/NewCustomIntegration"
+              $ref: "#/components/schemas/CustomIntegrationCreate"
       responses:
         '200':
           description: The custom integration created
@@ -4263,7 +4189,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/NewCustomIntegration'
+              $ref: '#/components/schemas/CustomIntegrationCreate'
       responses:
         '200':
           description: The updated custom integration
@@ -4323,13 +4249,13 @@ paths:
           description: An access token
           content:
             application/json:
-              schema: 
+              schema:
                 $ref: '#/components/schemas/AccessToken'
         '400':
           $ref: '#/components/responses/InvalidRequestBodyError'
         '401':
           $ref: '#/components/responses/UnauthorizedError'
-        
+
 
   /account/api/rotate:
     post:
@@ -4350,7 +4276,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/APIClient'
+                $ref: '#/components/schemas/APIClientCredentials'
         '400':
           $ref: '#/components/responses/InvalidRequestBodyError'
         '401':
@@ -4502,7 +4428,7 @@ paths:
         - ServiceNow
       operationId: snowServiceGraphExportAssetsJSON
       summary: Exports the asset inventory as JSON
-      parameters: 
+      parameters:
         - in: query
           name: search
           description: an optional search string for filtering results
@@ -4649,9 +4575,14 @@ components:
             $ref: "#/components/schemas/Problem"
     StatusMessage:
       description: Summary of operation results
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/OperationStatus"
 
   schemas:
-    StatusMessage:
+    OperationStatus:
+      description: Summary of the result of a bulk or asynchronous operation.
       type: object
 
     Problem:
@@ -5022,37 +4953,7 @@ components:
           description: Remediation information.
           type: string
         links:
-          type: object
-          properties:
-            cves:
-              type: array
-              items:
-                type: object
-                properties:
-                  title:
-                    type: string
-                  url:
-                    type: string
-            rz_blog:
-              description: URLs of relevant runZero blog postings.
-              type: array
-              items:
-                type: object
-                properties:
-                  title:
-                    type: string
-                  url:
-                    type: string
-            urls:
-              description: Additional relevant URLs.
-              type: array
-              items:
-                type: object
-                properties:
-                  title:
-                    type: string
-                  url:
-                    type: string
+          $ref: '#/components/schemas/FindingLinks'
         created_at:
           type: integer
           format: int64
@@ -5730,10 +5631,6 @@ components:
           type: string
           format: uuid
           example: "f6cfb91a-52ea-4a86-bf9a-5a891a26f52b"
-          x-go-type: uuid.UUID
-          x-go-import:
-            name: uuid
-            path: github.com/gofrs/uuid
         params:
           description: A number of scan parameter values. Currently there is no authoritative list of acceptable values. See existing templates for examples.
           type: object
@@ -5764,10 +5661,6 @@ components:
           type: string
           format: uuid
           example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
-          x-go-type: uuid.UUID
-          x-go-import:
-            name: uuid
-            path: github.com/gofrs/uuid
         name:
           description: The name of the template.
           type: string
@@ -5781,46 +5674,26 @@ components:
           type: string
           format: uuid
           example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
-          x-go-type: uuid.UUID
-          x-go-import:
-            name: uuid
-            path: github.com/gofrs/uuid
         organization_id:
           description: ID of the organization the template is available in.
           type: string
           format: uuid
           example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
-          x-go-type: uuid.UUID
-          x-go-import:
-            name: uuid
-            path: github.com/gofrs/uuid
         agent_id:
           description: ID of the explorer which may execute the template.
           type: string
           format: uuid
           example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
-          x-go-type: uuid.UUID
-          x-go-import:
-            name: uuid
-            path: github.com/gofrs/uuid
         site_id:
           description: ID of the site the template is being used in.
           type: string
           format: uuid
           example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
-          x-go-type: uuid.UUID
-          x-go-import:
-            name: uuid
-            path: github.com/gofrs/uuid
         cruncher_id:
           description: ID of the runZero cruncher the task is executing on.
           type: string
           format: uuid
           example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
-          x-go-type: uuid.UUID
-          x-go-import:
-            name: uuid
-            path: github.com/gofrs/uuid
         created_at:
           description: Unix timestamp value indicating when the template was created.
           type: integer
@@ -5835,10 +5708,6 @@ components:
           type: string
           format: uuid
           example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
-          x-go-type: uuid.UUID
-          x-go-import:
-            name: uuid
-            path: github.com/gofrs/uuid
         updated_at:
           description: Unix timestamp value indicating when the template was last modified.
           type: integer
@@ -5874,10 +5743,6 @@ components:
           type: string
           format: uuid
           example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
-          x-go-type: uuid.UUID
-          x-go-import:
-            name: uuid
-            path: github.com/gofrs/uuid
         recur:
           description: A flag representing whether derived tasks are scheduled to repeat.
           type: boolean
@@ -5908,10 +5773,6 @@ components:
           type: string
           format: uuid
           example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
-          x-go-type: uuid.UUID
-          x-go-import:
-            name: uuid
-            path: github.com/gofrs/uuid
         grace_period:
           description: Additional time beyond hard expiration deadline by which the task may still be allowed to execute.
           type: string
@@ -5921,10 +5782,6 @@ components:
           type: string
           format: uuid
           example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
-          x-go-type: uuid.UUID
-          x-go-import:
-            name: uuid
-            path: github.com/gofrs/uuid
         source_id:
           description: The numeric ID of the data source, if the task executed with this template is a runZero scan or third party data connection import.
           type: string
@@ -5934,10 +5791,6 @@ components:
           type: string
           format: uuid
           example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
-          x-go-type: uuid.UUID
-          x-go-import:
-            name: uuid
-            path: github.com/gofrs/uuid
         size_site:
           description: The size in assets of the site the last task the template was executed against.
           type: integer
@@ -5958,10 +5811,6 @@ components:
           type: string
           format: uuid
           example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
-          x-go-type: uuid.UUID
-          x-go-import:
-            name: uuid
-            path: github.com/gofrs/uuid
         linked_task_count:
           description: The number of tasks derived from the template.
           type: integer
@@ -5995,12 +5844,6 @@ components:
               format: int64
               example: 5
 
-    Explorer:
-      $ref: '#/components/schemas/Agent'
-
-    ExplorerPatchedSettings:
-      $ref: '#/components/schemas/AgentPatchedSettings'
-
     OrgOptions:
       type: object
       properties:
@@ -6015,26 +5858,27 @@ components:
           format: uuid
           example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         expiration_assets_stale:
+          description: Number of days before stale assets are expired, as a decimal string.
           type: string
-          format: number
           example: "365"
         expiration_assets_offline:
+          description: Number of days before offline assets are expired, as a decimal string.
           type: string
-          format: number
           example: "365"
         expiration_integration_attributes:
+          description: Number of days before integration attributes are expired, as a decimal string.
           type: string
-          format: number
           example: "365"
         expiration_scans:
+          description: Number of days before scan data is expired, as a decimal string.
           type: string
-          format: number
           example: "365"
         expiration_vulnerabilities:
+          description: Number of days before vulnerabilities are expired, as a decimal string.
           type: string
-          format: number
           example: "365"
         keep_latest_integration_attributes:
+          description: Whether to retain only the latest integration attribute values, as a boolean string ("true"/"false").
           type: string
           example: "true"
     SiteOptions:
@@ -6237,7 +6081,8 @@ components:
           type: string
           example: alive:true and os:windows
 
-    Search:
+    SearchQuery:
+      description: A request body wrapping a runZero search query string.
       type: object
       required:
         - search
@@ -7370,10 +7215,6 @@ components:
           type: string
           format: uuid
           example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
-          x-go-type: uuid.UUID
-          x-go-import:
-            name: uuid
-            path: github.com/gofrs/uuid
         created_at:
           type: integer
           format: int64
@@ -7386,10 +7227,6 @@ components:
           type: string
           format: uuid
           example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
-          x-go-type: uuid.UUID
-          x-go-import:
-            name: uuid
-            path: github.com/gofrs/uuid
         download_token:
           type: string
           example: DT11226D9EEEA2B035D42569585900
@@ -7506,7 +7343,34 @@ components:
           example: credentials_name
         type:
           type: string
-          enum: [miradore_api_key_v1, aws_access_secret, crowdstrike_api_key, azure_client_secret, azure_username_password, censys_search_api_key, snmpv2_community, snmpv3_credential, vmware_username_password]
+          enum:
+            - aws_access_secret
+            - azure_client_secret
+            - azure_username_password
+            - censys_search_api_key
+            - crowdstrike_api_key
+            - custom_integration_credential
+            - gcp_service_account_key
+            - google_workspace_client_secret
+            - insightvm_username_password
+            - ldap_username_password
+            - mecm_db_connection_string
+            - meraki_api_key
+            - miradore_api_key_v1
+            - nessus_access_secret
+            - netbox_api_key
+            - palo_alto_api_key
+            - qualys_username_password
+            - sentinelone_api_key
+            - shodan_api_key
+            - snmpv2_community
+            - snmpv3_credential
+            - tanium_api_token
+            - tenable_access_secret
+            - tenable_security_center_access_secret
+            - vmware_username_password
+            - wiz_client_secret
+            - x509_keypair
           description: The service the credentials are for.
         created_at:
           type: integer
@@ -7544,7 +7408,8 @@ components:
           format: uuid
           example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
 
-    APIKey:
+    OrganizationAPIKey:
+      description: An API key issued for an organization.
       type: object
       required:
         - id
@@ -7720,10 +7585,6 @@ components:
           type: string
           format: uuid
           example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
-          x-go-type: uuid.UUID
-          x-go-import:
-            name: uuid
-            path: github.com/gofrs/uuid
         name:
           type: string
           example: Hourly Scan
@@ -7734,60 +7595,32 @@ components:
           type: string
           format: uuid
           example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
-          x-go-type: uuid.UUID
-          x-go-import:
-            name: uuid
-            path: github.com/gofrs/uuid
         client_id:
           type: string
           format: uuid
           example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
-          x-go-type: uuid.UUID
-          x-go-import:
-            name: uuid
-            path: github.com/gofrs/uuid
         organization_id:
           type: string
           format: uuid
           example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
-          x-go-type: uuid.UUID
-          x-go-import:
-            name: uuid
-            path: github.com/gofrs/uuid
         agent_id:
           type: string
           format: uuid
           example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
-          x-go-type: uuid.UUID
-          x-go-import:
-            name: uuid
-            path: github.com/gofrs/uuid
         hosted_zone_id:
           description: |
             The ID of the Hosted Zone which executes the task. If the
           type: string
           format: uuid
           example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
-          x-go-type: uuid.UUID
-          x-go-import:
-            name: uuid
-            path: github.com/gofrs/uuid
         site_id:
           type: string
           format: uuid
           example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
-          x-go-type: uuid.UUID
-          x-go-import:
-            name: uuid
-            path: github.com/gofrs/uuid
         cruncher_id:
           type: string
           format: uuid
           example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
-          x-go-type: uuid.UUID
-          x-go-import:
-            name: uuid
-            path: github.com/gofrs/uuid
         created_at:
           type: integer
           format: int64
@@ -7799,19 +7632,11 @@ components:
           type: string
           format: uuid
           example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
-          x-go-type: uuid.UUID
-          x-go-import:
-            name: uuid
-            path: github.com/gofrs/uuid
         custom_integration_id:
           description: The ID of the custom integration source, if the last task executed with this template was an import of Asset Data.
           type: string
           format: uuid
           example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
-          x-go-type: uuid.UUID
-          x-go-import:
-            name: uuid
-            path: github.com/gofrs/uuid
         source_id:
           description: The numeric ID of the data source, if the task executed with this template is a runZero scan or third party data connection import.
           type: integer
@@ -7843,10 +7668,6 @@ components:
           type: string
           format: uuid
           example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
-          x-go-type: uuid.UUID
-          x-go-import:
-            name: uuid
-            path: github.com/gofrs/uuid
         recur:
           type: boolean
           example: false
@@ -7869,10 +7690,6 @@ components:
           type: string
           format: uuid
           example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
-          x-go-type: uuid.UUID
-          x-go-import:
-            name: uuid
-            path: github.com/gofrs/uuid
 
     Task:
       description: A task object
@@ -8573,14 +8390,7 @@ components:
         ownerships:
           type: array
           items:
-            type: object
-            properties:
-              ownership_type_id:
-                type: string
-                example: "2318e078-4164-4e1b-92a5-11e353093f4b"
-              owner:
-                type: string
-                example: "it@runzero.com"
+            $ref: '#/components/schemas/AssetOwnership'
 
     AssetOwnershipsWithSearch:
       type: object
@@ -8608,49 +8418,37 @@ components:
       type: object
       required:
         - id
-        - clientId
-        - createdAt
-        - createdById
-        - updatedAt
+        - client_id
+        - created_at
+        - created_by_id
+        - updated_at
       properties:
         id:
           description: The unique ID of the object
           type: string
           format: uuid
           example: "f6cfb91a-52ea-4a86-bf9a-5a891a26f52b"
-          x-go-type: uuid.UUID
-          x-go-import:
-            name: uuid
-            path: github.com/gofrs/uuid
-        clientId:
+        client_id:
           description: The unique ID of the runZero client/customer account that owns the object
           type: string
           format: uuid
           example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
-          x-go-type: uuid.UUID
-          x-go-import:
-            name: uuid
-            path: github.com/gofrs/uuid
-        createdById:
+        created_by_id:
           description: The unique ID of the entity that created the object
           type: string
           format: uuid
           example: "f6cfb91a-52ea-4a86-bf9a-5a891a26f52b"
-          x-go-type: uuid.UUID
-          x-go-import:
-            name: uuid
-            path: github.com/gofrs/uuid
-        createdAt:
+        created_at:
           description: A timestamp indicating creation time of the object
           type: string
           format: date-time
           example: "2023-03-06T18:14:50.52Z"
-        updatedAt:
+        updated_at:
           description: A timestamp indicating last modified time of the object
           type: string
           format: date-time
           example: "2023-03-06T18:14:50.52Z"
-        destroyedAt:
+        destroyed_at:
           description: A timestamp indicating deletion time of the object
           type: string
           format: date-time
@@ -8661,7 +8459,6 @@ components:
       properties:
         name:
           description: The unique name of the custom integration, without spaces.
-          pattern: '^\S+$'
           type: string
           example: my-custom-integration
         icon:
@@ -8681,7 +8478,8 @@ components:
         - $ref: "#/components/schemas/BaseCustomIntegration"
         - $ref: "#/components/schemas/BaseResponse"
 
-    NewCustomIntegration:
+    CustomIntegrationCreate:
+      description: Request body used to register a new custom integration.
       required:
         - name
       allOf:
@@ -8712,48 +8510,14 @@ components:
           type: string
           format: uuid
           example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
-          x-go-type: uuid.UUID
-          x-go-import:
-            name: uuid
-            path: github.com/gofrs/uuid
         customIntegrationId:
           description: The unique ID of the registered custom integration which produced the asset data. Uniqueness is not checked/enforced. See /account/custom-integrations api.
           type: string
           format: uuid
           example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
-          x-go-type: uuid.UUID
-          x-go-import:
-            name: uuid
-            path: github.com/gofrs/uuid
 
         importTask:
-          title: ImportTask
-          description: Information which describes the task created when asset data is imported.
-          type: object
-          required:
-            - name
-          properties:
-            name:
-              type: string
-              maxLength: 100
-              example: "my import task"
-            description:
-              type: string
-              maxLength: 1024
-              example: "importing assets from custom integration A"
-            excludeUnknown:
-              description: Instructs the data ingestion process whether to skip assets which do not merge into an existing asset in the asset inventory
-              type: boolean
-              default: false
-              example: true
-            tags:
-              description: Arbitrary string tag values which are applied to the asset data import task created.
-              type: array
-              maxItems: 100
-              items:
-                type: string
-                maxLength: 1024
-              example: [ "tag1", "tag2" ]
+          $ref: '#/components/schemas/ImportTask'
         assetData:
           description: |
             A gzip (not .tar.gz) compressed file containing ImportAsset objects. The file data may be a JSON array of
@@ -8777,52 +8541,13 @@ components:
           type: string
           format: uuid
           example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
-          x-go-type: uuid.UUID
-          x-go-import:
-            name: uuid
-            path: github.com/gofrs/uuid
         networkInterfaces:
           title: NetworkInterfaces
           description: The asset's networking configuration.
           type: array
           maxItems: 256
           items:
-            type: object
-            properties:
-              ipv4Addresses:
-                description: Represents IPV4 addresses. Addresses are ordered from most to least likely to uniquely identify the asset.
-                type: array
-                maxItems: 256
-                items:
-                  type: string
-                  format: ipv4
-              ipv6Addresses:
-                description: Represents the IPV6 addresses. Addresses are ordered from most to least likely to uniquely identify the asset.
-                type: array
-                maxItems: 100
-                items:
-                  type: string
-                  format: ipv6
-              macAddress:
-                description: |
-                  Represents a MAC address in IEEE 802 MAC/EUI-48, or EUI-64 form in one of the following formats:
-                    01:23:45:67:89:AB
-                    01:23:45:67:89:ab:cd:ef
-                    01-23-45-67-89-ab
-                    01-23-45-67-89-ab-cd-ef
-                    0123.4567.89ab
-                    0123.4567.89ab.cdef
-                    0123 4567 89ab cdEF
-                type: string
-                maxLength: 23
-                example: "01:23:45:67:89:0A"
-                pattern: "^([A-Fa-f0-9]{2}:){5}[A-Fa-f0-9]{2}$|\
-                          ^([A-Fa-f0-9]{2}:){7}[A-Fa-f0-9]{2}$|\
-                          ^([A-Fa-f0-9]{2}-){5}[A-Fa-f0-9]{2}$|\
-                          ^([A-Fa-f0-9]{2}-){7}[A-Fa-f0-9]{2}$|\
-                          ^([A-Fa-f0-9]{4}\\.){2}[A-Fa-f0-9]{4}$|\
-                          ^([A-Fa-f0-9]{4}\\.){3}[A-Fa-f0-9]{4}$|\
-                          ^([A-Fa-f0-9]{4} ){3}[A-Fa-f0-9]{4}$"
+            $ref: '#/components/schemas/NetworkInterface'
 
         hostnames:
           description: Represents hostnames the asset is assigned or reachable at. These can be fully-qualified hostnames with the domain name, or a short hostname.
@@ -8884,7 +8609,7 @@ components:
             anyOf:
               - type: string
                 maxLength: 1024
-    AccessToken: 
+    AccessToken:
       type: object
       properties:
         access_token:
@@ -8894,14 +8619,15 @@ components:
         expires_in:
           type: integer
 
-    APIClient:
+    APIClientCredentials:
+      description: Newly-issued OAuth client credentials returned when creating an API client.
       type: object
       properties:
         api_client_id:
           type: string
           format: uuid
           example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
-        api_client_secret: 
+        api_client_secret:
           type: string
 
     ClientIDForm:
@@ -8918,3 +8644,245 @@ components:
           type: string
         client_secret:
           type: string
+
+    AssetPage:
+      description: A page of assets returned from a paginated export.
+      type: object
+      properties:
+        assets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Asset'
+        next_key:
+          type: string
+          description: The key to use for the next page of results
+
+    AssetExportResponse:
+      description: |
+        Response body for the asset export endpoint. When `page_size` is omitted the response is a bare array of assets;
+        when `page_size` is set the response is a paged `AssetPage` object.
+      oneOf:
+        - type: array
+          items:
+            $ref: '#/components/schemas/Asset'
+        - $ref: '#/components/schemas/AssetPage'
+
+    ServicePage:
+      description: A page of services returned from a paginated export.
+      type: object
+      properties:
+        services:
+          type: array
+          items:
+            $ref: '#/components/schemas/Service'
+        next_key:
+          type: string
+          description: The key to use for the next page of results
+
+    ServiceExportResponse:
+      description: Response body for the service export endpoint. Bare array unless `page_size` is provided.
+      oneOf:
+        - type: array
+          items:
+            $ref: '#/components/schemas/Service'
+        - $ref: '#/components/schemas/ServicePage'
+
+    WirelessPage:
+      description: A page of wireless devices returned from a paginated export.
+      type: object
+      properties:
+        wireless:
+          type: array
+          items:
+            $ref: '#/components/schemas/Wireless'
+        next_key:
+          type: string
+          description: The key to use for the next page of results
+
+    WirelessExportResponse:
+      description: Response body for the wireless export endpoint. Bare array unless `page_size` is provided.
+      oneOf:
+        - type: array
+          items:
+            $ref: '#/components/schemas/Wireless'
+        - $ref: '#/components/schemas/WirelessPage'
+
+    SoftwarePage:
+      description: A page of software inventory entries returned from a paginated export.
+      type: object
+      properties:
+        software:
+          type: array
+          items:
+            $ref: '#/components/schemas/Software'
+        next_key:
+          type: string
+          description: The key to use for the next page of results
+
+    SoftwareExportResponse:
+      description: Response body for the software export endpoint. Bare array unless `page_size` is provided.
+      oneOf:
+        - type: array
+          items:
+            $ref: '#/components/schemas/Software'
+        - $ref: '#/components/schemas/SoftwarePage'
+
+    VulnerabilityPage:
+      description: A page of vulnerabilities returned from a paginated export.
+      type: object
+      properties:
+        vulnerabilities:
+          type: array
+          items:
+            $ref: '#/components/schemas/Vulnerability'
+        next_key:
+          type: string
+          description: The key to use for the next page of results
+
+    VulnerabilityExportResponse:
+      description: Response body for the vulnerability export endpoint. Bare array unless `page_size` is provided.
+      oneOf:
+        - type: array
+          items:
+            $ref: '#/components/schemas/Vulnerability'
+        - $ref: '#/components/schemas/VulnerabilityPage'
+
+    EventPage:
+      description: A page of events returned from a paginated export.
+      type: object
+      properties:
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/Event'
+        next_key:
+          type: string
+          description: The key to use for the next page of results
+
+    EventExportResponse:
+      description: Response body for the event export endpoint. Bare array unless `page_size` is provided.
+      oneOf:
+        - type: array
+          items:
+            $ref: '#/components/schemas/Event'
+        - $ref: '#/components/schemas/EventPage'
+
+    AssetMetric:
+      description: Asset metric summary for a single asset, keyed by asset ID in the parent map.
+      type: object
+      properties:
+        site_id:
+          type: string
+          format: uuid
+        metrics:
+          description: Free-form metric values keyed by metric name.
+          type: object
+          additionalProperties: true
+
+    BulkAssetUpdateResult:
+      description: Result of a bulk asset update operation.
+      type: object
+      properties:
+        updated_asset_count:
+          type: integer
+          example: 10
+
+    FindingLink:
+      description: A title and URL pointing to additional finding context.
+      type: object
+      properties:
+        title:
+          type: string
+        url:
+          type: string
+
+    FindingLinks:
+      description: Groups of related URLs that provide additional context for a finding.
+      type: object
+      properties:
+        cves:
+          description: URLs of relevant CVE records.
+          type: array
+          items:
+            $ref: '#/components/schemas/FindingLink'
+        rz_blog:
+          description: URLs of relevant runZero blog postings.
+          type: array
+          items:
+            $ref: '#/components/schemas/FindingLink'
+        urls:
+          description: Additional relevant URLs.
+          type: array
+          items:
+            $ref: '#/components/schemas/FindingLink'
+
+    AssetOwnership:
+      description: A single ownership assignment on an asset.
+      type: object
+      properties:
+        ownership_type_id:
+          type: string
+          example: "2318e078-4164-4e1b-92a5-11e353093f4b"
+        owner:
+          type: string
+          example: "it@runzero.com"
+
+    NetworkInterface:
+      description: A network interface attached to a custom-integration asset.
+      type: object
+      properties:
+        ipv4Addresses:
+          description: Represents IPV4 addresses. Addresses are ordered from most to least likely to uniquely identify the asset.
+          type: array
+          maxItems: 256
+          items:
+            type: string
+            format: ipv4
+        ipv6Addresses:
+          description: Represents the IPV6 addresses. Addresses are ordered from most to least likely to uniquely identify the asset.
+          type: array
+          maxItems: 100
+          items:
+            type: string
+            format: ipv6
+        macAddress:
+          description: |
+            Represents a MAC address in IEEE 802 MAC/EUI-48, or EUI-64 form in one of the following formats:
+              01:23:45:67:89:AB
+              01:23:45:67:89:ab:cd:ef
+              01-23-45-67-89-ab
+              01-23-45-67-89-ab-cd-ef
+              0123.4567.89ab
+              0123.4567.89ab.cdef
+              0123 4567 89ab cdEF
+          type: string
+          maxLength: 23
+          example: "01:23:45:67:89:0A"
+
+    ImportTask:
+      description: Information which describes the task created when asset data is imported.
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          maxLength: 100
+          example: "my import task"
+        description:
+          type: string
+          maxLength: 1024
+          example: "importing assets from custom integration A"
+        excludeUnknown:
+          description: Instructs the data ingestion process whether to skip assets which do not merge into an existing asset in the asset inventory
+          type: boolean
+          default: false
+          example: true
+        tags:
+          description: Arbitrary string tag values which are applied to the asset data import task created.
+          type: array
+          maxItems: 100
+          items:
+            type: string
+            maxLength: 1024
+          example: [ "tag1", "tag2" ]

@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ServiceId** | Pointer to **string** |  | 
+**ServiceId** | **string** |  | 
 **ServiceAssetId** | Pointer to **string** |  | [optional] 
 **ServiceCreatedAt** | Pointer to **int64** |  | [optional] 
 **ServiceUpdatedAt** | Pointer to **int64** |  | [optional] 
-**ServiceAddress** | Pointer to **string** |  | [optional] 
+**ServiceAddress** | Pointer to **NullableString** |  | [optional] 
 **ServiceTransport** | Pointer to **string** |  | [optional] 
 **ServiceVhost** | Pointer to **string** |  | [optional] 
 **ServicePort** | Pointer to **string** |  | [optional] 
@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 **ServiceSummary** | Pointer to **string** |  | [optional] 
 **ServiceScreenshotLink** | Pointer to **string** |  | [optional] 
 **ServiceLink** | Pointer to **string** |  | [optional] 
-**Id** | Pointer to **string** |  | 
+**Id** | **string** |  | 
 **CreatedAt** | Pointer to **int64** |  | [optional] 
 **UpdatedAt** | Pointer to **int64** |  | [optional] 
 **OrganizationId** | Pointer to **string** |  | [optional] 
@@ -57,9 +57,9 @@ Name | Type | Description | Notes
 **SiteName** | Pointer to **string** |  | [optional] 
 **AgentName** | Pointer to **string** |  | [optional] 
 **Tags** | Pointer to **map[string]string** |  | [optional] 
-**Services** | Pointer to [**map[string]map[string]string**](map.md) |  | [optional] 
-**Rtts** | Pointer to **map[string]map[string]interface{}** |  | [optional] 
-**Credentials** | Pointer to [**map[string]map[string]bool**](map.md) |  | [optional] 
+**Services** | Pointer to **map[string]map[string]string** |  | [optional] 
+**Rtts** | Pointer to **map[string]interface{}** |  | [optional] 
+**Credentials** | Pointer to **map[string]map[string]bool** |  | [optional] 
 **Attributes** | Pointer to **map[string]string** |  | [optional] 
 
 ## Methods
@@ -201,6 +201,16 @@ SetServiceAddress sets ServiceAddress field to given value.
 
 HasServiceAddress returns a boolean if a field has been set.
 
+### SetServiceAddressNil
+
+`func (o *Service) SetServiceAddressNil(b bool)`
+
+ SetServiceAddressNil sets the value for ServiceAddress to be an explicit nil
+
+### UnsetServiceAddress
+`func (o *Service) UnsetServiceAddress()`
+
+UnsetServiceAddress ensures that no value is present for ServiceAddress, not even an explicit nil
 ### GetServiceTransport
 
 `func (o *Service) GetServiceTransport() string`
@@ -723,20 +733,20 @@ HasHw returns a boolean if a field has been set.
 
 ### GetAddresses
 
-`func (o *Service) GetAddresses() []string`
+`func (o *Service) GetAddresses() []*string`
 
 GetAddresses returns the Addresses field if non-nil, zero value otherwise.
 
 ### GetAddressesOk
 
-`func (o *Service) GetAddressesOk() (*[]string, bool)`
+`func (o *Service) GetAddressesOk() (*[]*string, bool)`
 
 GetAddressesOk returns a tuple with the Addresses field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAddresses
 
-`func (o *Service) SetAddresses(v []string)`
+`func (o *Service) SetAddresses(v []*string)`
 
 SetAddresses sets Addresses field to given value.
 
@@ -748,20 +758,20 @@ HasAddresses returns a boolean if a field has been set.
 
 ### GetAddressesExtra
 
-`func (o *Service) GetAddressesExtra() []string`
+`func (o *Service) GetAddressesExtra() []*string`
 
 GetAddressesExtra returns the AddressesExtra field if non-nil, zero value otherwise.
 
 ### GetAddressesExtraOk
 
-`func (o *Service) GetAddressesExtraOk() (*[]string, bool)`
+`func (o *Service) GetAddressesExtraOk() (*[]*string, bool)`
 
 GetAddressesExtraOk returns a tuple with the AddressesExtra field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAddressesExtra
 
-`func (o *Service) SetAddressesExtra(v []string)`
+`func (o *Service) SetAddressesExtra(v []*string)`
 
 SetAddressesExtra sets AddressesExtra field to given value.
 
@@ -1423,20 +1433,20 @@ HasServices returns a boolean if a field has been set.
 
 ### GetRtts
 
-`func (o *Service) GetRtts() map[string]map[string]interface{}`
+`func (o *Service) GetRtts() map[string]interface{}`
 
 GetRtts returns the Rtts field if non-nil, zero value otherwise.
 
 ### GetRttsOk
 
-`func (o *Service) GetRttsOk() (*map[string]map[string]interface{}, bool)`
+`func (o *Service) GetRttsOk() (*map[string]interface{}, bool)`
 
 GetRttsOk returns a tuple with the Rtts field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRtts
 
-`func (o *Service) SetRtts(v map[string]map[string]interface{})`
+`func (o *Service) SetRtts(v map[string]interface{})`
 
 SetRtts sets Rtts field to given value.
 
