@@ -6,6 +6,10 @@
 # Folders
 _obj
 _test
+node_modules
+
+# Editor directories and files
+.idea
 
 # Architecture specific extensions/prefixes
 *.[568vq]
