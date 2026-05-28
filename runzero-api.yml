@@ -5866,19 +5866,23 @@ components:
           type: string
           example: "365"
         expiration_integration_attributes:
-          description: Number of days before integration attributes are expired, as a decimal string.
+          description: Number of days before integration attributes are expired, as a decimal string. (Deprecated; use expiration_settings.)
           type: string
           example: "365"
         expiration_scans:
           description: Number of days before scan data is expired, as a decimal string.
           type: string
           example: "365"
+        expiration_settings:
+          description: JSON string containing optional attribute and vulnerability expiration settings. If not provided and deprecated settings are present, this will be populated from the deprecated settings. Omit keys to use their defaults.
+          type: string
+          example: "{\"attributes\":0,\"attributes_keep_latest\":true,\"vulnerabilities\":14}"
         expiration_vulnerabilities:
-          description: Number of days before vulnerabilities are expired, as a decimal string.
+          description: Number of days before vulnerabilities are expired, as a decimal string. (Deprecated; use expiration_settings.)
           type: string
           example: "365"
         keep_latest_integration_attributes:
-          description: Whether to retain only the latest integration attribute values, as a boolean string ("true"/"false").
+          description: Whether to retain only the latest integration attribute values, as a boolean string ("true"/"false"). (Deprecated; use expiration_settings.)
           type: string
           example: "true"
     SiteOptions:
@@ -7294,6 +7298,20 @@ components:
           type: integer
           format: int64
           example: 365
+        expiration_settings:
+          type: object
+          properties:
+            attributes:
+              type: integer
+              format: int64
+              example: 7
+            attributes_keep_latest:
+              type: boolean
+              example: true
+            vulnerabilities:
+              type: integer
+              format: int64
+              example: 30
         expiration_vulnerabilities:
           type: integer
           format: int64
