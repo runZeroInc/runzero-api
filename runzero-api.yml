@@ -2694,13 +2694,13 @@ paths:
       parameters:
         - in: query
           name: search
-          description: an optional search string for filtering results
+          description: An optional search string for filtering results
           required: false
           schema:
             type: string
       responses:
         '200':
-          description: array of issues
+          description: Array of issues
           content:
             application/json:
               schema:
@@ -2723,7 +2723,7 @@ paths:
       operationId: updateIssue
       summary: Update issue
       requestBody:
-        description: issue object
+        description: Issue object
         required: true
         content:
           application/json:
@@ -2731,7 +2731,7 @@ paths:
               $ref: '#/components/schemas/IssueOptions'
       responses:
         '200':
-          description: issue details
+          description: Issue details
           content:
             application/json:
               schema:
