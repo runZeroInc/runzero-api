@@ -2692,12 +2692,7 @@ paths:
       operationId: getIssues
       summary: Get all issues (up to 1000)
       parameters:
-        - in: query
-          name: search
-          description: An optional search string for filtering results
-          required: false
-          schema:
-            type: string
+        - $ref: '#/components/parameters/search'
       responses:
         '200':
           description: Array of issues
