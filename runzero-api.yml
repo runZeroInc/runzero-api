@@ -43,7 +43,7 @@ paths:
       summary: Returns latest agent version
       responses:
         '200':
-          description: component version
+          description: Component version
           content:
             application/json:
               schema:
@@ -58,7 +58,7 @@ paths:
       summary: Returns latest scanner version
       responses:
         '200':
-          description: component version
+          description: Component version
           content:
             application/json:
               schema:
@@ -73,7 +73,7 @@ paths:
       summary: Returns latest platform version
       responses:
         '200':
-          description: component version
+          description: Component version
           content:
             application/json:
               schema:
@@ -88,7 +88,7 @@ paths:
       summary: Returns a health check status (cloud and self-hosted)
       responses:
         '200':
-          description: health status and current version
+          description: Health status and current version
           content:
             application/json:
               schema:
@@ -122,7 +122,7 @@ paths:
                 contentType: application/gzip
       responses:
         '200':
-          description: import task created. The task ID should be checked for its status.
+          description: Import task created. The task ID should be checked for its status.
           content:
             application/json:
               schema:
@@ -175,7 +175,7 @@ paths:
       responses:
         '200':
           # This is a streaming response of one Asset object per line in JSON format
-          description: filtered asset results
+          description: Filtered asset results
           content:
             application/json:
               schema:
@@ -195,7 +195,7 @@ paths:
       summary: Asset inventory as CSV
       responses:
         '200':
-          description: filtered asset results
+          description: Filtered asset results
           content:
             text/csv:
               schema:
@@ -215,7 +215,7 @@ paths:
       summary: Asset inventory as Nmap-style XML
       responses:
         '200':
-          description: filtered asset results
+          description: Filtered asset results
           content:
             text/xml:
               schema:
@@ -258,7 +258,7 @@ paths:
       summary: Service inventory as JSON line-delimited
       responses:
         '200':
-          description: filtered service results
+          description: Filtered service results
           content:
             # This is a streaming response of one Service object per line in JSON format
             application/json:
@@ -279,7 +279,7 @@ paths:
       summary: Service inventory as CSV
       responses:
         '200':
-          description: filtered service results
+          description: Filtered service results
           content:
             text/csv:
               schema:
@@ -301,7 +301,7 @@ paths:
       summary: Export all sites
       responses:
         '200':
-          description: all sites
+          description: All sites
           content:
             application/json:
               schema:
@@ -323,7 +323,7 @@ paths:
       summary: Site list as JSON line-delimited
       responses:
         '200':
-          description: all sites
+          description: All sites
           content:
             # This is a streaming response of one Site object per line in JSON format
             application/json:
@@ -343,7 +343,7 @@ paths:
       summary: Site list as CSV
       responses:
         '200':
-          description: all sites
+          description: All sites
           content:
             text/csv:
               schema:
@@ -387,7 +387,7 @@ paths:
       summary: Wireless inventory as JSON line-delimited
       responses:
         '200':
-          description: filtered wireless results
+          description: Filtered wireless results
           content:
             # This is a streaming response of one Wireless object per line in JSON format
             application/json:
@@ -408,7 +408,7 @@ paths:
       summary: Wireless inventory as CSV
       responses:
         '200':
-          description: filtered wireless results
+          description: Filtered wireless results
           content:
             text/csv:
               schema:
@@ -452,7 +452,7 @@ paths:
       responses:
         '200':
           # This is a streaming response of one Software object per line in JSON format
-          description: filtered software results
+          description: Filtered software results
           content:
             application/json:
               schema:
@@ -472,7 +472,7 @@ paths:
       summary: Software inventory as CSV
       responses:
         '200':
-          description: filtered software results
+          description: Filtered software results
           content:
             text/csv:
               schema:
@@ -516,7 +516,7 @@ paths:
       responses:
         '200':
           # This is a streaming response of one Vulnerability object per line in JSON format
-          description: filtered vulnerability results
+          description: Filtered vulnerability results
           content:
             application/json:
               schema:
@@ -536,7 +536,7 @@ paths:
       summary: Export the vulnerability inventory as CSV
       responses:
         '200':
-          description: filtered vulnerability results
+          description: Filtered vulnerability results
           content:
             text/csv:
               schema:
@@ -556,7 +556,7 @@ paths:
       summary: Export the certificate inventory as CSV
       responses:
         '200':
-          description: filtered certificate results
+          description: Filtered certificate results
           content:
             text/csv:
               schema:
@@ -576,7 +576,7 @@ paths:
       summary: Export the certificate inventory as JSON
       responses:
         '200':
-          description: filtered certificate results
+          description: Filtered certificate results
           content:
             application/json:
               schema:
@@ -598,7 +598,7 @@ paths:
       responses:
         '200':
           # This is a streaming response of one Certificate object per line in JSON format
-          description: filtered certificate results
+          description: Filtered certificate results
           content:
             application/json:
               schema:
@@ -619,7 +619,7 @@ paths:
       summary: Exports the user inventory
       responses:
         '200':
-          description: filtered user results
+          description: Filtered user results
           content:
             application/json:
               schema:
@@ -642,7 +642,7 @@ paths:
       responses:
         '200':
           # This is a streaming response of one DirectoryUser object per line in JSON format
-          description: filtered user results
+          description: Filtered user results
           content:
             application/json:
               schema:
@@ -662,7 +662,7 @@ paths:
       summary: User inventory as CSV
       responses:
         '200':
-          description: filtered user results
+          description: Filtered user results
           content:
             text/csv:
               schema:
@@ -683,7 +683,7 @@ paths:
       summary: Exports the group inventory
       responses:
         '200':
-          description: filtered group results
+          description: Filtered group results
           content:
             application/json:
               schema:
@@ -706,7 +706,7 @@ paths:
       responses:
         '200':
           # This is a streaming response of one DirectoryGroup object per line in JSON format
-          description: filtered group results
+          description: Filtered group results
           content:
             application/json:
               schema:
@@ -726,7 +726,7 @@ paths:
       summary: Group inventory as CSV
       responses:
         '200':
-          description: filtered group results
+          description: Filtered group results
           content:
             text/csv:
               schema:
@@ -746,7 +746,7 @@ paths:
       summary: Export findings as CSV
       responses:
         '200':
-          description: filtered findings
+          description: Filtered findings
           content:
             text/csv:
               schema:
@@ -766,7 +766,7 @@ paths:
       summary: Export findings as JSON
       responses:
         '200':
-          description: filtered findings
+          description: Filtered findings
           content:
             application/json:
               schema:
@@ -787,7 +787,7 @@ paths:
       summary: Export findings as JSON line-delimited
       responses:
         '200':
-          description: filtered findings
+          description: Filtered findings
           content:
             application/json:
               schema:
@@ -808,13 +808,13 @@ paths:
       parameters:
         - in: query
           name: mask
-          description: an optional subnet mask size (ex:24)
+          description: An optional subnet mask size (ex:24)
           required: false
           schema:
             type: string
       responses:
         '200':
-          description: subnet utilization stats as csv
+          description: Subnet utilization stats as CSV
           content:
             text/csv:
               schema:
@@ -854,7 +854,7 @@ paths:
       summary: Exports organization tasks
       responses:
         '200':
-          description: filtered task results
+          description: Filtered task results
           content:
             application/json:
               schema:
@@ -877,7 +877,7 @@ paths:
       responses:
         '200':
           # This is a streaming response of one Task object per line in JSON format
-          description: filtered task results
+          description: Filtered task results
           content:
             application/json:
               schema:
@@ -897,7 +897,7 @@ paths:
       summary: Top asset types as CSV
       responses:
         '200':
-          description: top asset types and counts as csv
+          description: Top asset types and counts as CSV
           content:
             text/csv:
               schema:
@@ -916,7 +916,7 @@ paths:
       summary: Top asset operating systems as CSV
       responses:
         '200':
-          description: top operating systems and counts as csv
+          description: Top operating systems and counts as CSV
           content:
             text/csv:
               schema:
@@ -935,7 +935,7 @@ paths:
       summary: Top asset hardware products as CSV
       responses:
         '200':
-          description: top asset hardware platforms and counts as csv
+          description: Top asset hardware platforms and counts as CSV
           content:
             text/csv:
               schema:
@@ -954,7 +954,7 @@ paths:
       summary: Top asset tags as CSV
       responses:
         '200':
-          description: top asset tags and counts as csv
+          description: Top asset tags and counts as CSV
           content:
             text/csv:
               schema:
@@ -974,7 +974,7 @@ paths:
       summary: Top TCP services as CSV
       responses:
         '200':
-          description: top TCP services and counts as csv
+          description: Top TCP services and counts as CSV
           content:
             text/csv:
               schema:
@@ -993,7 +993,7 @@ paths:
       summary: Top UDP services as CSV
       responses:
         '200':
-          description: top UDP services and counts as csv
+          description: Top UDP services and counts as CSV
           content:
             text/csv:
               schema:
@@ -1012,7 +1012,7 @@ paths:
       summary: Top service protocols as CSV
       responses:
         '200':
-          description: top service protocols and counts as csv
+          description: Top service protocols and counts as CSV
           content:
             text/csv:
               schema:
@@ -1031,7 +1031,7 @@ paths:
       summary: Top service products as CSV
       responses:
         '200':
-          description: top service products and counts as csv
+          description: Top service products and counts as CSV
           content:
             text/csv:
               schema:
@@ -1050,7 +1050,7 @@ paths:
       summary: Export asset metrics
       responses:
         '200':
-          description: asset metrics
+          description: Asset metrics
           content:
             application/json:
               schema:
@@ -1070,7 +1070,7 @@ paths:
       summary: Get organization details
       responses:
         '200':
-          description: organization details
+          description: Organization details
           content:
             application/json:
               schema:
@@ -1083,7 +1083,7 @@ paths:
       operationId: updateOrganization
       summary: Update organization details
       requestBody:
-        description: organization options
+        description: Organization options
         required: true
         content:
           application/json:
@@ -1091,7 +1091,7 @@ paths:
               $ref: '#/components/schemas/OrgOptions'
       responses:
         '200':
-          description: organization details
+          description: Organization details
           content:
             application/json:
               schema:
@@ -1110,7 +1110,7 @@ paths:
       summary: Get API key details
       responses:
         '200':
-          description: api key details
+          description: API key details
           content:
             application/json:
               schema:
@@ -1124,7 +1124,7 @@ paths:
       summary: Remove the current API key
       responses:
         '204':
-          description: empty response
+          description: Empty response
         '401':
           $ref: '#/components/responses/UnauthorizedError'
 
@@ -1138,7 +1138,7 @@ paths:
       summary: Rotate the API key secret and return the updated key
       responses:
         '200':
-          description: api key details
+          description: API key details
           content:
             application/json:
               schema:
@@ -1156,7 +1156,7 @@ paths:
       summary: Get all agents. Legacy path for /org/explorers
       responses:
         '200':
-          description: array of agents
+          description: Array of agents
           content:
             application/json:
               schema:
@@ -1184,7 +1184,7 @@ paths:
           description: UUID of the agent
       responses:
         '200':
-          description: agent details
+          description: Agent details
           content:
             application/json:
               schema:
@@ -1208,7 +1208,7 @@ paths:
           description: UUID of the agent to remove
       responses:
         '204':
-          description: empty response
+          description: Empty response
         '401':
           $ref: '#/components/responses/UnauthorizedError'
         '404':
@@ -1235,7 +1235,7 @@ paths:
               $ref: "#/components/schemas/AgentPatchedSettings"
       responses:
         '200':
-          description: agent details
+          description: Agent details
           content:
             application/json:
               schema:
@@ -1263,7 +1263,7 @@ paths:
           description: UUID of the agent to update
       responses:
         '204':
-          description: empty response
+          description: Empty response
         '401':
           $ref: '#/components/responses/UnauthorizedError'
         '404':
@@ -1280,7 +1280,7 @@ paths:
       description: Get all explorers. This is the same call as legacy path /org/agents
       responses:
         '200':
-          description: array of agents
+          description: Array of agents
           content:
             application/json:
               schema:
@@ -1309,7 +1309,7 @@ paths:
           description: UUID of the explorer
       responses:
         '200':
-          description: explorer details
+          description: Explorer details
           content:
             application/json:
               schema:
@@ -1334,7 +1334,7 @@ paths:
           description: UUID of the explorer to remove
       responses:
         '204':
-          description: empty response
+          description: Empty response
         '401':
           $ref: '#/components/responses/UnauthorizedError'
         '404':
@@ -1362,7 +1362,7 @@ paths:
               $ref: "#/components/schemas/AgentPatchedSettings"
       responses:
         '200':
-          description: explorer details
+          description: Explorer details
           content:
             application/json:
               schema:
@@ -1391,7 +1391,7 @@ paths:
           description: UUID of the explorer to update
       responses:
         '204':
-          description: empty response
+          description: Empty response
         '401':
           $ref: '#/components/responses/UnauthorizedError'
         '404':
@@ -1408,7 +1408,7 @@ paths:
       description: Get all hosted zones. Hosted Zones are only available to Enterprise licensed customers.
       responses:
         '200':
-          description: array of hosted zones
+          description: Array of hosted zones
           content:
             application/json:
               schema:
@@ -1437,7 +1437,7 @@ paths:
           description: UUID of the hosted zone
       responses:
         '200':
-          description: hosted zone details
+          description: Hosted zone details
           content:
             application/json:
               schema:
@@ -1457,7 +1457,7 @@ paths:
       summary: Get all sites
       responses:
         '200':
-          description: array of sites
+          description: Array of sites
           content:
             application/json:
               schema:
@@ -1472,7 +1472,7 @@ paths:
       operationId: createSite
       summary: Create a new site
       requestBody:
-        description: site definition
+        description: Site definition
         required: true
         content:
           application/json:
@@ -1480,7 +1480,7 @@ paths:
               $ref: "#/components/schemas/SiteOptions"
       responses:
         '200':
-          description: site details
+          description: Site details
           content:
             application/json:
               schema:
@@ -1508,7 +1508,7 @@ paths:
           description: UUID or name of the site
       responses:
         '200':
-          description: site details
+          description: Site details
           content:
             application/json:
               schema:
@@ -1532,7 +1532,7 @@ paths:
           description: UUID or name of the site to remove
       responses:
         '204':
-          description: empty response
+          description: Empty response
         '401':
           $ref: '#/components/responses/UnauthorizedError'
         '404':
@@ -1551,7 +1551,7 @@ paths:
           required: true
           description: UUID or name of the site to update
       requestBody:
-        description: site object
+        description: Site object
         required: true
         content:
           application/json:
@@ -1559,7 +1559,7 @@ paths:
               $ref: '#/components/schemas/SiteOptions'
       responses:
         '200':
-          description: site details
+          description: Site details
           content:
             application/json:
               schema:
@@ -1594,7 +1594,7 @@ paths:
               format: binary
       responses:
         '200':
-          description: import task
+          description: Import task
           content:
             application/json:
               schema:
@@ -1633,7 +1633,7 @@ paths:
               format: binary
       responses:
         '200':
-          description: import task
+          description: Import task
           content:
             application/json:
               schema:
@@ -1672,7 +1672,7 @@ paths:
               format: binary
       responses:
         '200':
-          description: import task
+          description: Import task
           content:
             application/json:
               schema:
@@ -1710,7 +1710,7 @@ paths:
               $ref: '#/components/schemas/ScanOptions'
       responses:
         '200':
-          description: a created scan task
+          description: A created scan task
           content:
             application/json:
               schema:
@@ -1748,7 +1748,7 @@ paths:
               $ref: '#/components/schemas/SampleOptions'
       responses:
         '200':
-          description: a created scan task
+          description: A created scan task
           content:
             application/json:
               schema:
@@ -1774,7 +1774,7 @@ paths:
       summary: Get all assets
       responses:
         '200':
-          description: array of assets
+          description: Array of assets
           content:
             application/json:
               schema:
@@ -1802,7 +1802,7 @@ paths:
           description: UUID of the asset to retrieve
       responses:
         '200':
-          description: asset details
+          description: Asset details
           content:
             application/json:
               schema:
@@ -1826,7 +1826,7 @@ paths:
           description: UUID of the asset to remove
       responses:
         '204':
-          description: empty response
+          description: Empty response
         '401':
           $ref: '#/components/responses/UnauthorizedError'
         '404':
@@ -1841,7 +1841,7 @@ paths:
       operationId: removeBulkAssets
       summary: Removes multiple assets by ID
       requestBody:
-        description: list of asset IDs to remove
+        description: List of asset IDs to remove
         required: true
         content:
           application/json:
@@ -1849,7 +1849,7 @@ paths:
               $ref: '#/components/schemas/AssetIDs'
       responses:
         '204':
-          description: empty response
+          description: Empty response
         '401':
           $ref: '#/components/responses/UnauthorizedError'
         '404':
@@ -1874,7 +1874,7 @@ paths:
           required: true
           description: UUID of the asset to update
       requestBody:
-        description: comments to apply to the asset
+        description: Comments to apply to the asset
         required: true
         content:
           application/json:
@@ -1882,7 +1882,7 @@ paths:
               $ref: '#/components/schemas/AssetComments'
       responses:
         '200':
-          description: asset details
+          description: Asset details
           content:
             application/json:
               schema:
@@ -1909,7 +1909,7 @@ paths:
           required: true
           description: UUID of the asset to update
       requestBody:
-        description: tags to apply to the asset
+        description: Tags to apply to the asset
         required: true
         content:
           application/json:
@@ -1917,7 +1917,7 @@ paths:
               $ref: '#/components/schemas/AssetTags'
       responses:
         '200':
-          description: asset details
+          description: Asset details
           content:
             application/json:
               schema:
@@ -1944,7 +1944,7 @@ paths:
           required: true
           description: UUID of the asset to update
       requestBody:
-        description: comments to apply to the asset
+        description: Criticality to apply to the asset
         required: true
         content:
           application/json:
@@ -1952,7 +1952,7 @@ paths:
               $ref: '#/components/schemas/AssetCriticality'
       responses:
         '200':
-          description: asset details
+          description: Asset details
           content:
             application/json:
               schema:
@@ -1994,7 +1994,7 @@ paths:
       operationId: updateBulkAssetTags
       summary: Update tags across multiple assets based on a search query
       requestBody:
-        description: search query to filter and tags to apply
+        description: Search query to filter and tags to apply
         required: true
         content:
           application/json:
@@ -2017,7 +2017,7 @@ paths:
       operationId: clearBulkAssetTags
       summary: Clear all tags across multiple assets based on a search query
       requestBody:
-        description: search query to filter
+        description: Search query to filter
         required: true
         content:
           application/json:
@@ -2040,7 +2040,7 @@ paths:
       operationId: updateBulkAssetCriticality
       summary: Update criticality across multiple assets based on a search query
       requestBody:
-        description: search query to filter and criticality to apply
+        description: Search query to filter and criticality to apply
         required: true
         content:
           application/json:
@@ -2071,7 +2071,7 @@ paths:
           required: true
           description: UUID of the asset to update
       requestBody:
-        description: list of ownerships to apply to the asset
+        description: List of ownerships to apply to the asset
         required: true
         content:
           application/json:
@@ -2079,7 +2079,7 @@ paths:
               $ref: '#/components/schemas/AssetOwnerships'
       responses:
         '200':
-          description: asset details
+          description: Asset details
           content:
             application/json:
               schema:
@@ -2102,7 +2102,7 @@ paths:
       operationId: updateBulkAssetOwners
       summary: Update asset owners across multiple assets based on a search query
       requestBody:
-        description: search query to filter and ownerships to apply
+        description: Search query to filter and ownerships to apply
         required: true
         content:
           application/json:
@@ -2110,7 +2110,7 @@ paths:
               $ref: '#/components/schemas/AssetOwnershipsWithSearch'
       responses:
         '200':
-          description: updated asset count
+          description: Updated asset count
           content:
             application/json:
               schema:
@@ -2133,7 +2133,7 @@ paths:
       operationId: clearBulkAssetOwners
       summary: Clear all owners across multiple assets based on a search query
       requestBody:
-        description: search query to filter
+        description: Search query to filter
         required: true
         content:
           application/json:
@@ -2141,7 +2141,7 @@ paths:
               $ref: '#/components/schemas/SearchQuery'
       responses:
         '200':
-          description: updated asset count
+          description: Updated asset count
           content:
             application/json:
               schema:
@@ -2166,7 +2166,7 @@ paths:
       operationId: bulkRemoveCustomIntegration
       summary: Remove custom integration from a list of assets
       requestBody:
-        description: list of asset IDs to remove
+        description: List of asset IDs to remove
         required: true
         content:
           application/json:
@@ -2174,7 +2174,7 @@ paths:
               $ref: '#/components/schemas/AssetIDs'
       responses:
         '204':
-          description: empty response
+          description: Empty response
         '400':
           $ref: '#/components/responses/InvalidRequestParamError'
         '401':
@@ -2209,7 +2209,7 @@ paths:
       summary: Remove single custom integration from asset
       responses:
         '204':
-          description: empty response
+          description: Empty response
         '400':
           $ref: '#/components/responses/InvalidRequestParamError'
         '401':
@@ -2242,7 +2242,7 @@ paths:
       summary: Remove single source from asset
       responses:
         '204':
-          description: empty response
+          description: Empty response
         '400':
           $ref: '#/components/responses/InvalidRequestParamError'
         '401':
@@ -2313,15 +2313,10 @@ paths:
       operationId: getServices
       summary: Get all services
       parameters:
-        - in: query
-          name: search
-          description: an optional search string for filtering results
-          required: false
-          schema:
-            type: string
+        - $ref: '#/components/parameters/search'
       responses:
         '200':
-          description: array of services
+          description: Array of services
           content:
             application/json:
               schema:
@@ -2349,7 +2344,7 @@ paths:
           description: UUID of the service to retrieve
       responses:
         '200':
-          description: service details
+          description: Service details
           content:
             application/json:
               schema:
@@ -2373,7 +2368,7 @@ paths:
           description: UUID of the service to remove
       responses:
         '204':
-          description: empty response
+          description: Empty response
         '401':
           $ref: '#/components/responses/UnauthorizedError'
         '404':
@@ -2388,15 +2383,10 @@ paths:
       operationId: getWirelessLANs
       summary: Get all wireless LANs
       parameters:
-        - in: query
-          name: search
-          description: an optional search string for filtering results
-          required: false
-          schema:
-            type: string
+        - $ref: '#/components/parameters/search'
       responses:
         '200':
-          description: array of wireless LANs
+          description: Array of wireless LANs
           content:
             application/json:
               schema:
@@ -2424,7 +2414,7 @@ paths:
           description: UUID of the wireless LAN to retrieve
       responses:
         '200':
-          description: wireless details
+          description: Wireless LAN details
           content:
             application/json:
               schema:
@@ -2446,7 +2436,7 @@ paths:
           description: UUID of the wireless LAN to remove
       responses:
         '204':
-          description: empty response
+          description: Empty response
         '401':
           $ref: '#/components/responses/UnauthorizedError'
         '404':
@@ -2464,19 +2454,14 @@ paths:
       parameters:
         - in: query
           name: status
-          description: an optional status string for filtering results
+          description: An optional status string for filtering results
           required: false
           schema:
             type: string
-        - in: query
-          name: search
-          description: an optional search string for filtering results
-          required: false
-          schema:
-            type: string
+        - $ref: '#/components/parameters/search'
       responses:
         '200':
-          description: array of tasks
+          description: Array of tasks
           content:
             application/json:
               schema:
@@ -2504,7 +2489,7 @@ paths:
           description: UUID of the task to retrieve
       responses:
         '200':
-          description: task details
+          description: Task details
           content:
             application/json:
               schema:
@@ -2525,7 +2510,7 @@ paths:
           required: true
           description: UUID of the task to update
       requestBody:
-        description: task object
+        description: Task object
         required: true
         content:
           application/json:
@@ -2533,7 +2518,7 @@ paths:
               $ref: '#/components/schemas/TaskOptions'
       responses:
         '200':
-          description: task details
+          description: Task details
           content:
             application/json:
               schema:
@@ -2645,7 +2630,7 @@ paths:
           description: UUID of the task to stop
       responses:
         '200':
-          description: task information
+          description: Task information
           content:
             application/json:
               schema:
@@ -2673,7 +2658,7 @@ paths:
           description: UUID of the task to hide
       responses:
         '200':
-          description: task information
+          description: Task information
           content:
             application/json:
               schema:
@@ -2690,15 +2675,10 @@ paths:
       operationId: getAccountOrganizations
       summary: Get all organization details
       parameters:
-        - in: query
-          name: search
-          description: an optional search string for filtering results
-          required: false
-          schema:
-            type: string
+        - $ref: '#/components/parameters/search'
       responses:
         '200':
-          description: array of organizations
+          description: Array of organizations
           content:
             application/json:
               schema:
@@ -2713,7 +2693,7 @@ paths:
       operationId: createAccountOrganization
       summary: Create a new organization
       requestBody:
-        description: organization definition
+        description: Organization definition
         required: true
         content:
           application/json:
@@ -2721,7 +2701,7 @@ paths:
               $ref: "#/components/schemas/OrgOptions"
       responses:
         '200':
-          description: organization details
+          description: Organization details
           content:
             application/json:
               schema:
@@ -2747,7 +2727,7 @@ paths:
           description: UUID of the organization to retrieve
       responses:
         '200':
-          description: organization information
+          description: Organization information
           content:
             application/json:
               schema:
@@ -2768,7 +2748,7 @@ paths:
           required: true
           description: UUID of the organization to retrieve
       requestBody:
-        description: organization options
+        description: Organization options
         required: true
         content:
           application/json:
@@ -2776,7 +2756,7 @@ paths:
               $ref: '#/components/schemas/OrgOptions'
       responses:
         '200':
-          description: organization details
+          description: Organization details
           content:
             application/json:
               schema:
@@ -2798,7 +2778,7 @@ paths:
           description: UUID of the organization to retrieve
       responses:
         '204':
-          description: empty response
+          description: Empty response
         '401':
           $ref: '#/components/responses/UnauthorizedError'
 
@@ -2820,7 +2800,7 @@ paths:
           description: UUID of the organization to retrieve
       responses:
         '204':
-          description: empty response
+          description: Empty response
         '401':
           $ref: '#/components/responses/UnauthorizedError'
 
@@ -2842,7 +2822,7 @@ paths:
           description: UUID of the organization to retrieve
       responses:
         '200':
-          description: export token details
+          description: Export token details
           content:
             application/json:
               schema:
@@ -2866,7 +2846,7 @@ paths:
           description: UUID of the organization to retrieve export tokens for
       responses:
         '200':
-          description: array of export tokens
+          description: Array of export tokens
           content:
             application/json:
               schema:
@@ -2889,7 +2869,7 @@ paths:
           required: true
           description: UUID of the organization to create an export token for
       requestBody:
-        description: export token parameters
+        description: Export token parameters
         required: true
         content:
           application/json:
@@ -2897,7 +2877,7 @@ paths:
               $ref: "#/components/schemas/ExportTokenOptions"
       responses:
         '200':
-          description: export token details
+          description: Export token details
           content:
             application/json:
               schema:
@@ -2930,7 +2910,7 @@ paths:
           description: UUID of the export token ID to retrieve
       responses:
         '200':
-          description: export token details
+          description: Export token details
           content:
             application/json:
               schema:
@@ -2959,7 +2939,7 @@ paths:
           description: UUID of the export token ID to remove
       responses:
         '204':
-          description: empty response
+          description: Empty response
         '401':
           $ref: '#/components/responses/UnauthorizedError'
 
@@ -2986,7 +2966,7 @@ paths:
           description: UUID of the export token ID to rotate
       responses:
         '200':
-          description: export token details
+          description: Export token details
           content:
             application/json:
               schema:
@@ -3002,7 +2982,7 @@ paths:
       summary: Get license details
       responses:
         '200':
-          description: license information
+          description: License information
           content:
             application/json:
               schema:
@@ -3018,15 +2998,10 @@ paths:
       operationId: getAccountSites
       summary: Get all sites details across all organizations
       parameters:
-        - in: query
-          name: search
-          description: an optional search string for filtering results
-          required: false
-          schema:
-            type: string
+        - $ref: '#/components/parameters/search'
       responses:
         '200':
-          description: array of sites
+          description: Array of sites
           content:
             application/json:
               schema:
@@ -3042,15 +3017,10 @@ paths:
       operationId: getAccountCredentials
       summary: Get all account credentials
       parameters:
-        - in: query
-          name: search
-          description: an optional search string for filtering results
-          required: false
-          schema:
-            type: string
+        - $ref: '#/components/parameters/search'
       responses:
         '200':
-          description: array of credentials
+          description: Array of credentials
           content:
             application/json:
               schema:
@@ -3065,7 +3035,7 @@ paths:
       operationId: createAccountCredential
       summary: Create a new credential
       requestBody:
-        description: credential parameters
+        description: Credential parameters
         required: true
         content:
           application/json:
@@ -3073,7 +3043,7 @@ paths:
               $ref: "#/components/schemas/CredentialOptions"
       responses:
         '200':
-          description: credential details
+          description: Credential details
           content:
             application/json:
               schema:
@@ -3099,7 +3069,7 @@ paths:
           description: UUID of the credential to retrieve
       responses:
         '200':
-          description: credential details
+          description: Credential details
           content:
             application/json:
               schema:
@@ -3123,7 +3093,7 @@ paths:
           description: UUID of the credential to delete
       responses:
         '204':
-          description: empty response
+          description: Empty response
         '401':
           $ref: '#/components/responses/UnauthorizedError'
         '404':
@@ -3137,7 +3107,7 @@ paths:
       summary: Get all active API keys
       responses:
         '200':
-          description: array of keys
+          description: Array of keys
           content:
             application/json:
               schema:
@@ -3152,7 +3122,7 @@ paths:
       operationId: createAccountKey
       summary: Create a new key
       requestBody:
-        description: key parameters
+        description: Key parameters
         required: true
         content:
           application/json:
@@ -3160,7 +3130,7 @@ paths:
               $ref: "#/components/schemas/APIKeyOptions"
       responses:
         '200':
-          description: key details
+          description: Key details
           content:
             application/json:
               schema:
@@ -3185,7 +3155,7 @@ paths:
           description: UUID of the key to retrieve
       responses:
         '200':
-          description: api key information
+          description: API key information
           content:
             application/json:
               schema:
@@ -3207,7 +3177,7 @@ paths:
           description: UUID of the key to retrieve
       responses:
         '204':
-          description: empty response
+          description: Empty response
         '401':
           $ref: '#/components/responses/UnauthorizedError'
 
@@ -3227,7 +3197,7 @@ paths:
           description: UUID of the key to retrieve
       responses:
         '200':
-          description: key details
+          description: Key details
           content:
             application/json:
               schema:
@@ -3242,18 +3212,8 @@ paths:
       operationId: exportEventsJSON
       summary: System event log as JSON
       parameters:
-        - in: query
-          name: search
-          description: an optional search string for filtering results
-          required: false
-          schema:
-            type: string
-        - in: query
-          name: fields
-          description: an optional list of fields to export, comma-separated
-          required: false
-          schema:
-            type: string
+        - $ref: '#/components/parameters/search'
+        - $ref: '#/components/parameters/fields'
         - $ref: '#/components/parameters/pageSize'
         - $ref: '#/components/parameters/startKey'
       responses:
@@ -3273,22 +3233,12 @@ paths:
       operationId: exportEventsJSONL
       summary: System event log as JSON line-delimited
       parameters:
-        - in: query
-          name: search
-          description: an optional search string for filtering results
-          required: false
-          schema:
-            type: string
-        - in: query
-          name: fields
-          description: an optional list of fields to export, comma-separated
-          required: false
-          schema:
-            type: string
+        - $ref: '#/components/parameters/search'
+        - $ref: '#/components/parameters/fields'
       responses:
         '200':
           # This is a streaming response of one Event object per line in JSON format
-          description: filtered event results
+          description: Filtered event results
           content:
             application/json:
               schema:
@@ -3304,15 +3254,10 @@ paths:
       operationId: getAccountTasks
       summary: Get all task details across all organizations (up to 1000)
       parameters:
-        - in: query
-          name: search
-          description: an optional search string for filtering results
-          required: false
-          schema:
-            type: string
+        - $ref: '#/components/parameters/search'
       responses:
         '200':
-          description: array of tasks
+          description: Array of tasks
           content:
             application/json:
               schema:
@@ -3329,15 +3274,10 @@ paths:
       operationId: getAccountScanTemplates
       summary: Get all scan templates across all organizations (up to 1000)
       parameters:
-        - in: query
-          name: search
-          description: an optional search string for filtering results
-          required: false
-          schema:
-            type: string
+        - $ref: '#/components/parameters/search'
       responses:
         '200':
-          description: array of scan templates
+          description: Array of scan templates
           content:
             application/json:
               schema:
@@ -3345,7 +3285,7 @@ paths:
                 items:
                   $ref: '#/components/schemas/ScanTemplate'
         '422':
-          description: failed to parse search string
+          description: Failed to parse search string
         '401':
           $ref: '#/components/responses/UnauthorizedError'
     post:
@@ -3361,7 +3301,7 @@ paths:
               $ref: "#/components/schemas/ScanTemplateOptions"
       responses:
         '200':
-          description: scan template
+          description: Scan template
           content:
             application/json:
               schema:
@@ -3385,7 +3325,7 @@ paths:
               $ref: "#/components/schemas/ScanTemplate"
       responses:
         '200':
-          description: scan template
+          description: Scan template
           content:
             application/json:
               schema:
@@ -3397,7 +3337,7 @@ paths:
         '400':
           $ref: '#/components/responses/InvalidRequestBodyError'
         '404':
-          description: scan template or permissions not found
+          description: Scan template or permissions not found
 
   /account/tasks/templates/{scan_template_id}:
     get:
@@ -3415,7 +3355,7 @@ paths:
           description: UUID of the scan template to retrieve
       responses:
         '200':
-          description: scan template
+          description: Scan template
           content:
             application/json:
               schema:
@@ -3423,9 +3363,9 @@ paths:
         '401':
           $ref: '#/components/responses/UnauthorizedError'
         '422':
-          description: invalid scan template id
+          description: Invalid scan template ID
         '404':
-          description: scan template not found
+          description: Scan template not found
     delete:
       tags:
         - Account
@@ -3441,7 +3381,7 @@ paths:
           description: UUID of the scan template to remove
       responses:
         '200':
-          description: scan template
+          description: Scan template
           content:
             application/json:
               schema:
@@ -3449,9 +3389,9 @@ paths:
         '401':
           $ref: '#/components/responses/UnauthorizedError'
         '422':
-          description: invalid request
+          description: Invalid request
         '404':
-          description: scan template not found
+          description: Scan template not found
 
 
   /account/agents:
@@ -3461,15 +3401,10 @@ paths:
       operationId: getAccountAgents
       summary: Get all agents across all organizations
       parameters:
-        - in: query
-          name: search
-          description: an optional search string for filtering results
-          required: false
-          schema:
-            type: string
+        - $ref: '#/components/parameters/search'
       responses:
         '200':
-          description: array of tasks
+          description: Array of agents
           content:
             application/json:
               schema:
@@ -3487,7 +3422,7 @@ paths:
       summary: Get all users
       responses:
         '200':
-          description: array of users
+          description: Array of users
           content:
             application/json:
               schema:
@@ -3502,7 +3437,7 @@ paths:
       operationId: createAccountUser
       summary: Create a new user account
       requestBody:
-        description: user parameters
+        description: User parameters
         required: true
         content:
           application/json:
@@ -3510,7 +3445,7 @@ paths:
               $ref: "#/components/schemas/UserOptions"
       responses:
         '200':
-          description: key details
+          description: User details
           content:
             application/json:
               schema:
@@ -3527,7 +3462,7 @@ paths:
       operationId: createAccountUserInvite
       summary: Create a new user account and send an email invite
       requestBody:
-        description: user invite parameters
+        description: User invite parameters
         required: true
         content:
           application/json:
@@ -3535,7 +3470,7 @@ paths:
               $ref: "#/components/schemas/UserInviteOptions"
       responses:
         '200':
-          description: key details
+          description: User details
           content:
             application/json:
               schema:
@@ -3561,7 +3496,7 @@ paths:
           description: UUID of the user to retrieve
       responses:
         '200':
-          description: user information
+          description: User information
           content:
             application/json:
               schema:
@@ -3583,7 +3518,7 @@ paths:
           description: UUID of the user to delete
       responses:
         '204':
-          description: empty response
+          description: Empty response
         '401':
           $ref: '#/components/responses/UnauthorizedError'
     patch:
@@ -3600,7 +3535,7 @@ paths:
           required: true
           description: UUID of the user to retrieve
       requestBody:
-        description: user parameters
+        description: User parameters
         required: true
         content:
           application/json:
@@ -3608,7 +3543,7 @@ paths:
               $ref: "#/components/schemas/UserOptions"
       responses:
         '200':
-          description: user information
+          description: User information
           content:
             application/json:
               schema:
@@ -3632,7 +3567,7 @@ paths:
           description: UUID of the user to retrieve
       responses:
         '200':
-          description: user information
+          description: User information
           content:
             application/json:
               schema:
@@ -3657,7 +3592,7 @@ paths:
           description: UUID of the user to retrieve
       responses:
         '200':
-          description: user information
+          description: User information
           content:
             application/json:
               schema:
@@ -3681,7 +3616,7 @@ paths:
           description: UUID of the user to retrieve
       responses:
         '200':
-          description: user information
+          description: User information
           content:
             application/json:
               schema:
@@ -3697,7 +3632,7 @@ paths:
       summary: Get all groups
       responses:
         '200':
-          description: group information
+          description: Group information
           content:
             application/json:
               schema:
@@ -3717,7 +3652,7 @@ paths:
               $ref: "#/components/schemas/GroupPost"
       responses:
         '200':
-          description: group information
+          description: Group information
           content:
             application/json:
               schema:
@@ -3737,7 +3672,7 @@ paths:
               $ref: "#/components/schemas/GroupPut"
       responses:
         '200':
-          description: group information
+          description: Group information
           content:
             application/json:
               schema:
@@ -3761,7 +3696,7 @@ paths:
       summary: Get group details
       responses:
         '200':
-          description: group information
+          description: Group information
           content:
             application/json:
               schema:
@@ -3777,7 +3712,7 @@ paths:
       summary: Remove this group
       responses:
         '204':
-          description: empty response
+          description: Empty response
         '401':
           $ref: '#/components/responses/UnauthorizedError'
 
@@ -3789,7 +3724,7 @@ paths:
       summary: Get all SSO group mappings
       responses:
         '200':
-          description: group mapping information
+          description: Group mapping information
           content:
             application/json:
               schema:
@@ -3809,7 +3744,7 @@ paths:
               $ref: "#/components/schemas/GroupMapping"
       responses:
         '200':
-          description: group information
+          description: Group mapping information
           content:
             application/json:
               schema:
@@ -3829,7 +3764,7 @@ paths:
               $ref: "#/components/schemas/GroupMapping"
       responses:
         '200':
-          description: group information
+          description: Group mapping information
           content:
             application/json:
               schema:
@@ -3853,7 +3788,7 @@ paths:
       summary: Get SSO group mapping details
       responses:
         '200':
-          description: group information
+          description: Group mapping information
           content:
             application/json:
               schema:
@@ -3869,7 +3804,7 @@ paths:
       summary: Remove this SSO group mapping
       responses:
         '204':
-          description: empty response
+          description: Empty response
         '401':
           $ref: '#/components/responses/UnauthorizedError'
 
@@ -3881,7 +3816,7 @@ paths:
       summary: Get all asset ownership types
       responses:
         '200':
-          description: array of asset ownership types
+          description: Array of asset ownership types
           content:
             application/json:
               schema:
@@ -3901,7 +3836,7 @@ paths:
       summary: Create new asset ownership types
       requestBody:
         required: true
-        description: array of asset ownership types
+        description: Array of asset ownership types
         content:
           application/json:
             schema:
@@ -3910,7 +3845,7 @@ paths:
                 $ref: '#/components/schemas/AssetOwnershipTypePost'
       responses:
         '200':
-          description: array of asset ownership types
+          description: Array of asset ownership types
           content:
             application/json:
               schema:
@@ -3936,7 +3871,7 @@ paths:
       summary: Update asset ownership types
       requestBody:
         required: true
-        description: array of asset ownership types
+        description: Array of asset ownership types
         content:
           application/json:
             schema:
@@ -3945,7 +3880,7 @@ paths:
                 $ref: '#/components/schemas/AssetOwnershipType'
       responses:
         '200':
-          description: array of asset ownership types
+          description: Array of asset ownership types
           content:
             application/json:
               schema:
@@ -3981,7 +3916,7 @@ paths:
               example: ["2318e078-4164-4e1b-92a5-11e353093f4b", "a352c76b-0eb7-4dab-adea-66e8b6016565"]
       responses:
         '200':
-          description: array of remaining asset ownership types
+          description: Array of remaining asset ownership types
           content:
             application/json:
               schema:
@@ -4021,7 +3956,7 @@ paths:
               $ref: '#/components/schemas/AssetOwnershipTypePost'
       responses:
         '200':
-          description: updated asset ownership type
+          description: Updated asset ownership type
           content:
             application/json:
               schema:
@@ -4045,7 +3980,7 @@ paths:
       summary: Delete a single asset ownership type
       responses:
         '200':
-          description: array of remaining asset ownership types
+          description: Array of remaining asset ownership types
           content:
             application/json:
               schema:
@@ -4185,7 +4120,7 @@ paths:
       summary: Replace custom integration at provided ID
       requestBody:
         required: true
-        description: single custom integration type
+        description: Single custom integration type
         content:
           application/json:
             schema:
@@ -4292,21 +4227,11 @@ paths:
       operationId: splunkAssetSyncCreatedJSON
       summary: Exports the asset inventory in a sync-friendly manner using created_at as a checkpoint. Requires the Splunk entitlement.
       parameters:
-        - in: query
-          name: search
-          description: an optional search string for filtering results
-          required: false
-          schema:
-            type: string
-        - in: query
-          name: fields
-          description: an optional list of fields to export, comma-separated
-          required: false
-          schema:
-            type: string
+        - $ref: '#/components/parameters/search'
+        - $ref: '#/components/parameters/fields'
         - in: query
           name: since
-          description: an optional unix timestamp to use as a checkpoint
+          description: An optional unix timestamp to use as a checkpoint
           required: false
           schema:
             type: integer
@@ -4314,7 +4239,7 @@ paths:
             example: 1576300370
       responses:
         '200':
-          description: filtered asset results with a checkpoint wrapper
+          description: Filtered asset results with a checkpoint wrapper
           content:
             application/json:
               schema:
@@ -4331,21 +4256,11 @@ paths:
       operationId: splunkAssetSyncUpdatedJSON
       summary: Exports the asset inventory in a sync-friendly manner using updated_at as a checkpoint. Requires the Splunk entitlement.
       parameters:
-        - in: query
-          name: search
-          description: an optional search string for filtering results
-          required: false
-          schema:
-            type: string
-        - in: query
-          name: fields
-          description: an optional list of fields to export, comma-separated
-          required: false
-          schema:
-            type: string
+        - $ref: '#/components/parameters/search'
+        - $ref: '#/components/parameters/fields'
         - in: query
           name: since
-          description: an optional unix timestamp to use as a checkpoint
+          description: An optional unix timestamp to use as a checkpoint
           required: false
           schema:
             type: integer
@@ -4353,7 +4268,7 @@ paths:
             example: 1576300370
       responses:
         '200':
-          description: filtered asset results with a checkpoint wrapper
+          description: Filtered asset results with a checkpoint wrapper
           content:
             application/json:
               schema:
@@ -4372,7 +4287,7 @@ paths:
       summary: Export an asset inventory as CSV for ServiceNow integration
       responses:
         '200':
-          description: asset export
+          description: Asset export
           content:
             text/csv:
               schema:
@@ -4391,7 +4306,7 @@ paths:
       summary: Exports the asset inventory as JSON
       responses:
         '200':
-          description: filtered asset results
+          description: Filtered asset results
           content:
             application/json:
               schema:
@@ -4411,7 +4326,7 @@ paths:
       summary: Export a service inventory as CSV for ServiceNow integration
       responses:
         '200':
-          description: services export
+          description: Services export
           content:
             text/csv:
               schema:
@@ -4429,15 +4344,10 @@ paths:
       operationId: snowServiceGraphExportAssetsJSON
       summary: Exports the asset inventory as JSON
       parameters:
-        - in: query
-          name: search
-          description: an optional search string for filtering results
-          required: false
-          schema:
-            type: string
+        - $ref: '#/components/parameters/search'
       responses:
         '200':
-          description: filtered asset results
+          description: Filtered asset results
           content:
             application/json:
               schema:
@@ -4460,15 +4370,10 @@ paths:
       operationId: exportAssetsCiscoCSV
       summary: Cisco serial number and model name export for Cisco Smart Net Total Care Service.
       parameters:
-        - in: query
-          name: search
-          description: an optional search string for filtering results
-          required: false
-          schema:
-            type: string
+        - $ref: '#/components/parameters/search'
       responses:
         '200':
-          description: filtered asset results
+          description: Filtered asset results
           content:
             text/csv:
               schema:
