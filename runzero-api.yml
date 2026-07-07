@@ -5781,7 +5781,7 @@ components:
         expiration_settings:
           description: JSON string containing optional attribute and vulnerability expiration settings. If not provided and deprecated settings are present, this will be populated from the deprecated settings. Omit keys to use their defaults.
           type: string
-          example: "{\"attributes\":0,\"attributes_keep_latest\":true,\"vulnerabilities\":14}"
+          example: "{\"attributes\":0,\"attributes_by_source\":{\"4\":7}}\",\"attributes_keep_latest\":true,\"vulnerabilities\":14}"
         expiration_vulnerabilities:
           description: Number of days before vulnerabilities are expired, as a decimal string. (Deprecated; use expiration_settings.)
           type: string
@@ -7210,6 +7210,9 @@ components:
               type: integer
               format: int64
               example: 7
+            attributes_by_source:
+              type: object
+              example: "{\"3\":7,\"4\":30}"
             attributes_keep_latest:
               type: boolean
               example: true
