@@ -2668,6 +2668,63 @@ paths:
         '404':
           $ref: '#/components/responses/NotFoundError'
 
+  /org/issues:
+    parameters:
+        - $ref: '#/components/parameters/orgID'
+    get:
+      tags:
+        - Organization
+      operationId: getIssues
+      summary: Get all issues (up to 1000)
+      parameters:
+        - $ref: '#/components/parameters/search'
+      responses:
+        '200':
+          description: Array of issues
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Issue'
+        '403':
+          $ref: '#/components/responses/NotAllowedForLicenseError'
+        '422':
+          $ref: '#/components/responses/InvalidRequestBodyError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /org/issues/{issue_id}:
+    parameters:
+      - $ref: '#/components/parameters/orgID'
+    patch:
+      tags:
+        - Organization
+      operationId: updateIssue
+      summary: Update issue
+      requestBody:
+        description: Issue object
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IssueOptions'
+      responses:
+        '200':
+          description: Issue details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Issue'
+        '403':
+          $ref: '#/components/responses/NotAllowedForLicenseError'
+        '400':
+          $ref: '#/components/responses/InvalidRequestBodyError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
   /account/orgs:
     get:
       tags:
@@ -7535,7 +7592,7 @@ components:
           example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
         hosted_zone_id:
           description: |
-            The ID of the Hosted Zone which executes the task. If the
+            The ID of the Hosted Zone which executes the task.
           type: string
           format: uuid
           example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
@@ -8812,3 +8869,111 @@ components:
             type: string
             maxLength: 1024
           example: [ "tag1", "tag2" ]
+
+    Issue:
+      description: A single issue.
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
+        org_id:
+          type: string
+          format: uuid
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
+        client_id:
+          type: string
+          format: uuid
+          example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
+        name:
+          type: string
+          example: "Sample Issue"
+        description:
+          type: string
+        solution:
+          type: string
+        created_at:
+          type: integer
+          format: int64
+          example: 1576300370
+        updated_at:
+          type: integer
+          format: int64
+          example: 1576300370
+        created_by:
+          type: string
+          example: user@example.com
+        risk:
+          type: string
+          example: "high"
+        risk_rank:
+          type: integer
+          example: 1
+        state:
+          type: string
+          example: "in progress"
+        state_rank:
+          type: integer
+          example: 1
+        due_date:
+          type: integer
+          nullable: true
+          format: int64
+          example: 1576300370
+        external_sync_config:
+          type: object
+          properties:
+            credential_id: 
+              type: string
+              format: uuid
+              example: "e77602e0-3fb8-4734-aef9-fbc6fdcb0fa8"
+            base_url:
+              type: string
+              example: "https://example.com"
+        external_id:
+          type: string
+        external_link:
+          type: string
+        instances:
+          type: integer
+          example: 1
+        remediated_instance_count:
+          type: integer
+          example: 1
+        recurrence_count:
+          type: integer
+          example: 1
+        recurrence_at:
+          type: integer
+          format: int64
+          example: 1576300370
+        remediated_at:
+          type: integer
+          format: int64
+          example: 1576300370
+
+    IssueOptions:
+      type: object
+      properties:
+        name:
+          type: string
+          example: "Sample Issue"
+        description:
+          type: string
+        solution:
+          type: string
+        risk:
+          type: string
+          example: "high"
+        state:
+          type: string
+          example: "in progress"
+        due_date:
+          type: integer
+          nullable: true
+          format: int64
+          example: 1576300370
+        comment:
+          type: string
+          example: "This is a comment on the issue."
