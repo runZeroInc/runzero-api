@@ -1965,6 +1965,183 @@ paths:
       summary: Export asset metrics
       tags:
       - Export
+  /org/vulnerabilities/suppress:
+    post:
+      operationId: suppressVulnerabilities
+      parameters:
+      - description: The current Organization
+        explode: true
+        in: query
+        name: _oid
+        required: false
+        schema:
+          type: string
+        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/VulnerabilitySuppressionRequest"
+        description: vulnerability suppressions and unsuppressions
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SuppressionResponse"
+          description: suppression results
+        "207":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Problem"
+          description: Partial suppression results
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Problem"
+          description: Errors during suppression or unsuppression
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Problem"
+          description: Access token is missing or invalid
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Problem"
+          description: Action not allowed for this license type
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Problem"
+          description: No records found to suppress or unsuppress
+      summary: Suppress vulnerabilities
+      tags:
+      - Organization
+  /org/vulnerability-groups/suppress:
+    post:
+      operationId: suppressVulnerabilityGroups
+      parameters:
+      - description: The current Organization
+        explode: true
+        in: query
+        name: _oid
+        required: false
+        schema:
+          type: string
+        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/VulnerabilityGroupSuppressionRequest"
+        description: vulnerability group suppressions and unsuppressions
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SuppressionResponse"
+          description: suppression results
+        "207":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Problem"
+          description: Partial suppression results
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Problem"
+          description: Errors during suppression or unsuppression
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Problem"
+          description: Access token is missing or invalid
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Problem"
+          description: Action not allowed for this license type
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Problem"
+          description: No records found to suppress or unsuppress
+      summary: Suppress vulnerability groups
+      tags:
+      - Organization
+  /org/findings/suppress:
+    post:
+      operationId: suppressFindings
+      parameters:
+      - description: The current Organization
+        explode: true
+        in: query
+        name: _oid
+        required: false
+        schema:
+          type: string
+        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/FindingSuppressionRequest"
+        description: finding suppressions and unsuppressions
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SuppressionResponse"
+          description: suppression results
+        "207":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Problem"
+          description: Partial suppression results
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Problem"
+          description: Errors during suppression or unsuppression
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Problem"
+          description: Access token is missing or invalid
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Problem"
+          description: Action not allowed for this license type
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Problem"
+          description: No records found to suppress or unsuppress
+      summary: Suppress findings
+      tags:
+      - Organization
   /org:
     get:
       operationId: getOrganization
@@ -12662,6 +12839,135 @@ components:
       anyOf:
       - maxLength: 1024
         type: string
+    SuppressionResponse:
+      description: Summary of suppression and unsuppression results.
+      properties:
+        suppressed:
+          items:
+            type: string
+          type: array
+        unsuppressed:
+          items:
+            type: string
+          type: array
+        errors:
+          items:
+            $ref: "#/components/schemas/SuppressionError"
+          type: array
+      type: object
+    SuppressionError:
+      description: A single suppression operation error.
+      properties:
+        operation:
+          type: string
+        code:
+          type: string
+        message:
+          type: string
+      type: object
+    VulnerabilitySuppressionRequest:
+      description: Request body for suppressing or unsuppressing vulnerabilities.
+      properties:
+        suppress:
+          items:
+            $ref: "#/components/schemas/VulnerabilitySuppression"
+          type: array
+        unsuppress:
+          items:
+            format: uuid
+            type: string
+          type: array
+      type: object
+    VulnerabilitySuppression:
+      description: A vulnerability suppression request.
+      properties:
+        vulnerability_id:
+          format: uuid
+          type: string
+        suppression_reason:
+          type: string
+      required:
+      - suppression_reason
+      - vulnerability_id
+      type: object
+    VulnerabilityGroupSuppressionRequest:
+      description: Request body for suppressing or unsuppressing vulnerability groups.
+      properties:
+        suppress:
+          items:
+            $ref: "#/components/schemas/VulnerabilityGroupSuppression"
+          type: array
+        unsuppress:
+          items:
+            $ref: "#/components/schemas/VulnerabilityGroupUnsuppression"
+          type: array
+      type: object
+    VulnerabilityGroupSuppression:
+      description: A vulnerability group suppression request.
+      properties:
+        organization_id:
+          format: uuid
+          type: string
+        vulnerability_group_name:
+          type: string
+        suppression_reason:
+          type: string
+      required:
+      - organization_id
+      - suppression_reason
+      - vulnerability_group_name
+      type: object
+    VulnerabilityGroupUnsuppression:
+      description: A vulnerability group unsuppression request.
+      properties:
+        organization_id:
+          format: uuid
+          type: string
+        vulnerability_group_name:
+          type: string
+      required:
+      - organization_id
+      - vulnerability_group_name
+      type: object
+    FindingSuppressionRequest:
+      description: Request body for suppressing or unsuppressing findings.
+      properties:
+        suppress:
+          items:
+            $ref: "#/components/schemas/FindingSuppression"
+          type: array
+        unsuppress:
+          items:
+            $ref: "#/components/schemas/FindingUnsuppression"
+          type: array
+      type: object
+    FindingSuppression:
+      description: A finding suppression request.
+      properties:
+        organization_id:
+          format: uuid
+          type: string
+        finding_code:
+          type: string
+        suppression_reason:
+          type: string
+      required:
+      - finding_code
+      - organization_id
+      - suppression_reason
+      type: object
+    FindingUnsuppression:
+      description: A finding unsuppression request.
+      properties:
+        organization_id:
+          format: uuid
+          type: string
+        finding_code:
+          type: string
+      required:
+      - finding_code
+      - organization_id
+      type: object
   securitySchemes:
     bearerAuth:
       scheme: bearer
